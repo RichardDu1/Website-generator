@@ -42,6 +42,8 @@ pub struct Orchestrator {
     windows: HashMap<String, WindowState>,
     assets_filter: Option<HashSet<Asset>>,
     clob_subscribed: HashSet<String>,
+    /// Dedup guard: order IDs already recorded as fills (prevents WS + reconcile double-count)
+    seen_fills: HashSet<String>,
 
     dry_run: bool,
     wind_down_secs: f64,
@@ -83,6 +85,7 @@ impl Orchestrator {
             windows: HashMap::new(),
             assets_filter,
             clob_subscribed: HashSet::new(),
+            seen_fills: HashSet::new(),
             dry_run,
             wind_down_secs,
             stop_quote_secs,
@@ -146,6 +149,11 @@ impl Orchestrator {
     }
 
     fn on_fill(&mut self, fill: Fill) {
+        // Dedup: skip if already recorded (prevents WS + reconcile double-counting)
+        if !self.seen_fills.insert(fill.order_id.clone()) {
+            return;
+        }
+
         let size = match fill.side {
             FillSide::BuyYes => fill.size as i64,
             FillSide::SellYes => -(fill.size as i64),
@@ -200,7 +208,8 @@ impl Orchestrator {
         let pnl = if won {
             pos_before as f64 * 1.0
         } else {
-            pos_before as f64 * 0.0
+            // Loss: recover 0, so PnL = -cost_basis (what we paid)
+            -self.inventory.cost_basis(&r.condition_id)
         };
         self.risk.record_pnl(pnl);
 
@@ -449,10 +458,14 @@ impl Orchestrator {
             if !self.dry_run {
                 if let Some(ref client) = self.order_client {
                     if let Some(ref id) = window.quotes.bid_order_id {
-                        let _ = client.cancel_order(id).await;
+                        if let Err(e) = client.cancel_order(id).await {
+                            warn!("[CANCEL] failed to cancel bid {id}: {e}");
+                        }
                     }
                     if let Some(ref id) = window.quotes.ask_order_id {
-                        let _ = client.cancel_order(id).await;
+                        if let Err(e) = client.cancel_order(id).await {
+                            warn!("[CANCEL] failed to cancel ask {id}: {e}");
+                        }
                     }
                 }
             }
