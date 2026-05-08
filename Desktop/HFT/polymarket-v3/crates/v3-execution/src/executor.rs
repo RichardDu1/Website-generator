@@ -278,19 +278,24 @@ impl OrderExecutor {
         Ok(Some(bal))
     }
 
-    /// Gengar-style BUY with maker-first priority.
+    /// Gengar-style BUY with maker-first priority + pre-flight crossing guard.
     ///
-    /// Tries `place_limit_order` (post-only GTC, maker = 0% fee) first. If the
-    /// CLOB rejects because the order would cross (taker), falls back to
-    /// `place_gtc_order` (non-post-only) so we still get filled — Gengar's
-    /// edge decays in seconds, missing a fill costs more than a taker fee.
+    /// If `book_top` is Some and our desired `price` would cross it, we clamp
+    /// the submitted limit to `(best_ask - 1 tick)` so the post-only actually
+    /// sits as maker. Only falls back to `place_gtc_order` (taker) if:
+    ///   a) book is crossed/invalid (no safe price exists), OR
+    ///   b) CLOB still rejects the clamped price with a cross error.
     ///
-    /// The limit price is the same in both cases: we never pay above `price`.
+    /// The limit price is never above `price`: we may submit at a *lower* price
+    /// if clamping kicks in, which means the order might not fill. That's an
+    /// acceptable trade-off — Gengar's edge decays quickly, missing a fill at
+    /// 0.02 above market is cheaper than paying 2% taker fee.
     pub async fn execute_gengar_order(
         &self,
         token_id: &str,
         price: f64,
         shares: u64,
+        book_top: Option<(f64, f64)>,
     ) -> Result<String> {
         if self.dry_run {
             let id = format!("dry-run-gengar-{}", uuid::Uuid::new_v4());
@@ -307,7 +312,33 @@ impl OrderExecutor {
             .client
             .as_ref()
             .ok_or_else(|| anyhow::anyhow!("OrderClient not initialized"))?;
-        let price_d = Decimal::from_f64(price)
+
+        // Pre-flight: clamp to maker-safe price using book_top if provided.
+        let submit_price = match book_top {
+            Some((bid, ask)) => match v3_strategy::post_only_safe_price(
+                true, price, bid, ask, 0.01,
+            ) {
+                Some(p) => {
+                    if (p - price).abs() > 1e-9 {
+                        info!(
+                            "🛡️ Gengar BUY crossing-guard: desired {:.4} → safe {:.4} (book {}/{})",
+                            price, p, bid, ask
+                        );
+                    }
+                    p
+                }
+                None => {
+                    warn!(
+                        "Gengar BUY book unsafe (bid={} ask={}), going direct taker",
+                        bid, ask
+                    );
+                    return self.gengar_taker_buy(client, token_id, price, shares).await;
+                }
+            },
+            None => price, // no book info → proceed as before
+        };
+
+        let price_d = Decimal::from_f64(submit_price)
             .ok_or_else(|| anyhow::anyhow!("Invalid Gengar price"))?;
         let size_d = Decimal::from(shares);
 
@@ -322,36 +353,51 @@ impl OrderExecutor {
             .await
         {
             Ok(id) => {
-                info!("✅ Gengar BUY placed (post-only maker): {}", id);
+                info!("✅ Gengar BUY placed (post-only maker @ {:.4}): {}", submit_price, id);
                 Ok(id)
             }
             Err(e) if is_cross_rejection(&e) => {
                 warn!(
-                    "Gengar BUY post-only rejected (crosses book), retrying as GTC taker"
+                    "Gengar BUY post-only rejected (crosses book) despite pre-flight, retrying as GTC taker"
                 );
-                let id = client
-                    .place_gtc_order(
-                        token_id,
-                        v3_mm_exchange::types::OrderSide::Buy,
-                        price_d,
-                        size_d,
-                    )
-                    .await
-                    .context("place_gtc_order (Gengar buy fallback)")?;
-                info!("✅ Gengar BUY placed (GTC fallback): {}", id);
-                Ok(id)
+                self.gengar_taker_buy(client, token_id, price, shares).await
             }
             Err(e) => Err(e).context("place_limit_order (Gengar buy)"),
         }
     }
 
-    /// Gengar-style SELL with maker-first priority. See `execute_gengar_order`
-    /// for the fee/fallback rationale — applies symmetrically to exits.
+    async fn gengar_taker_buy(
+        &self,
+        client: &OrderClient,
+        token_id: &str,
+        price: f64,
+        shares: u64,
+    ) -> Result<String> {
+        let price_d = Decimal::from_f64(price)
+            .ok_or_else(|| anyhow::anyhow!("Invalid Gengar taker price"))?;
+        let size_d = Decimal::from(shares);
+        let id = client
+            .place_gtc_order(
+                token_id,
+                v3_mm_exchange::types::OrderSide::Buy,
+                price_d,
+                size_d,
+            )
+            .await
+            .context("place_gtc_order (Gengar buy fallback)")?;
+        info!("✅ Gengar BUY placed (GTC fallback): {}", id);
+        Ok(id)
+    }
+
+    /// Gengar-style SELL with maker-first priority + pre-flight crossing guard.
+    /// See `execute_gengar_order` for the clamping rationale — applies
+    /// symmetrically to exits.
     pub async fn execute_gengar_sell(
         &self,
         token_id: &str,
         price: f64,
         shares: u64,
+        book_top: Option<(f64, f64)>,
     ) -> Result<String> {
         if self.dry_run {
             let id = format!("dry-run-gengar-sell-{}", uuid::Uuid::new_v4());
@@ -368,7 +414,33 @@ impl OrderExecutor {
             .client
             .as_ref()
             .ok_or_else(|| anyhow::anyhow!("OrderClient not initialized"))?;
-        let price_d = Decimal::from_f64(price)
+
+        // Pre-flight clamp to maker-safe price.
+        let submit_price = match book_top {
+            Some((bid, ask)) => match v3_strategy::post_only_safe_price(
+                false, price, bid, ask, 0.01,
+            ) {
+                Some(p) => {
+                    if (p - price).abs() > 1e-9 {
+                        info!(
+                            "🛡️ Gengar SELL crossing-guard: desired {:.4} → safe {:.4} (book {}/{})",
+                            price, p, bid, ask
+                        );
+                    }
+                    p
+                }
+                None => {
+                    warn!(
+                        "Gengar SELL book unsafe (bid={} ask={}), going direct taker",
+                        bid, ask
+                    );
+                    return self.gengar_taker_sell(client, token_id, price, shares).await;
+                }
+            },
+            None => price,
+        };
+
+        let price_d = Decimal::from_f64(submit_price)
             .ok_or_else(|| anyhow::anyhow!("Invalid Gengar sell price"))?;
         let size_d = Decimal::from(shares);
 
@@ -382,27 +454,40 @@ impl OrderExecutor {
             .await
         {
             Ok(id) => {
-                info!("✅ Gengar SELL placed (post-only maker): {}", id);
+                info!("✅ Gengar SELL placed (post-only maker @ {:.4}): {}", submit_price, id);
                 Ok(id)
             }
             Err(e) if is_cross_rejection(&e) => {
                 warn!(
-                    "Gengar SELL post-only rejected (crosses book), retrying as GTC taker"
+                    "Gengar SELL post-only rejected (crosses book) despite pre-flight, retrying as GTC taker"
                 );
-                let id = client
-                    .place_gtc_order(
-                        token_id,
-                        v3_mm_exchange::types::OrderSide::Sell,
-                        price_d,
-                        size_d,
-                    )
-                    .await
-                    .context("place_gtc_order (Gengar sell fallback)")?;
-                info!("✅ Gengar SELL placed (GTC fallback): {}", id);
-                Ok(id)
+                self.gengar_taker_sell(client, token_id, price, shares).await
             }
             Err(e) => Err(e).context("place_limit_order (Gengar sell)"),
         }
+    }
+
+    async fn gengar_taker_sell(
+        &self,
+        client: &OrderClient,
+        token_id: &str,
+        price: f64,
+        shares: u64,
+    ) -> Result<String> {
+        let price_d = Decimal::from_f64(price)
+            .ok_or_else(|| anyhow::anyhow!("Invalid Gengar taker sell price"))?;
+        let size_d = Decimal::from(shares);
+        let id = client
+            .place_gtc_order(
+                token_id,
+                v3_mm_exchange::types::OrderSide::Sell,
+                price_d,
+                size_d,
+            )
+            .await
+            .context("place_gtc_order (Gengar sell fallback)")?;
+        info!("✅ Gengar SELL placed (GTC fallback): {}", id);
+        Ok(id)
     }
 
     /// Query order status from CLOB API

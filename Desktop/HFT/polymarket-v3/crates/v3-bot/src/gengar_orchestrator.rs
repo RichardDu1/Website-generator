@@ -494,10 +494,12 @@ impl GengarOrchestrator {
             return Ok(());
         }
 
-        let order_id = self
-            .executor
-            .execute_gengar_order(token, sig.market_price, shares)
-            .await?;
+        let order_id = {
+            let book_top = self.book_cache.read().await.get_top(token);
+            self.executor
+                .execute_gengar_order(token, sig.market_price, shares, book_top)
+                .await?
+        };
 
         let pair_id = format!("{:?}-{}", kind, &order_id[..order_id.len().min(8)]);
         let pos = OpenPosition {
@@ -663,17 +665,17 @@ impl GengarOrchestrator {
         current_edge: f64,
         reason: &'static str,
     ) {
-        let best_bid = {
+        let book_top = {
             let book = self.book_cache.read().await;
-            book.get_top(&pos.token_id).map(|(b, _)| b)
+            book.get_top(&pos.token_id)
         };
-        let sell_price = match best_bid {
-            Some(b) => ((b - 0.01).max(0.01) * 100.0).round() / 100.0,
+        let sell_price = match book_top {
+            Some((b, _)) => ((b - 0.01).max(0.01) * 100.0).round() / 100.0,
             None => (pos.entry_price * 0.90 * 100.0).round() / 100.0,
         };
         match self
             .executor
-            .execute_gengar_sell(&pos.token_id, sell_price, pos.shares)
+            .execute_gengar_sell(&pos.token_id, sell_price, pos.shares, book_top)
             .await
         {
             Ok(order_id) => {
@@ -728,17 +730,17 @@ impl GengarOrchestrator {
     /// still drop the position from our map and log so we don't loop forever
     /// on a dead market.
     async fn force_sell_position(&self, pos: &OpenPosition) {
-        let best_bid = {
+        let book_top = {
             let book = self.book_cache.read().await;
-            book.get_top(&pos.token_id).map(|(b, _)| b)
+            book.get_top(&pos.token_id)
         };
-        let sell_price = match best_bid {
-            Some(b) => ((b - 0.01).max(0.01) * 100.0).round() / 100.0,
+        let sell_price = match book_top {
+            Some((b, _)) => ((b - 0.01).max(0.01) * 100.0).round() / 100.0,
             None => (pos.entry_price * 0.90 * 100.0).round() / 100.0,
         };
         match self
             .executor
-            .execute_gengar_sell(&pos.token_id, sell_price, pos.shares)
+            .execute_gengar_sell(&pos.token_id, sell_price, pos.shares, book_top)
             .await
         {
             Ok(order_id) => {

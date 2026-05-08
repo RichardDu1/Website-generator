@@ -6,6 +6,7 @@ edition.workspace = true
 [dependencies]
 v3-core = { path = "../v3-core" }
 v3-signal = { path = "../v3-signal" }
+v3-strategy = { path = "../v3-strategy" }
 v3-mm-exchange = { workspace = true }
 
 tokio = { workspace = true }

@@ -239,6 +239,50 @@ pub fn should_preemptive_cancel(
     effective_prob < config.preemptive_cancel_prob
 }
 
+/// Clamp a desired limit price so that a post-only order is guaranteed not
+/// to cross the book.
+///
+/// Returns `Some(price)` with one-tick adjustment if the desired price would
+/// cross; `Some(desired)` unchanged if it's already maker-safe; `None` if the
+/// book is crossed/one-sided such that no safe price exists (caller should
+/// fall back to a taker order — the edge is dying fast either way).
+///
+/// `is_buy` — true for BUY (we're bidding), false for SELL (we're asking).
+/// `tick` — price increment, typically 0.01 for Polymarket.
+pub fn post_only_safe_price(
+    is_buy: bool,
+    desired: f64,
+    best_bid: f64,
+    best_ask: f64,
+    tick: f64,
+) -> Option<f64> {
+    // Sanity: book is crossed or invalid → we can't help, bail.
+    if !(best_bid > 0.0 && best_ask > 0.0 && best_ask > best_bid) {
+        return None;
+    }
+    if is_buy {
+        // A buy crosses if our price >= best_ask. Maker-safe price is
+        // min(desired, best_ask - tick). If that's <= 0, book is too tight.
+        let safe = desired.min(best_ask - tick);
+        if safe <= 0.0 || safe < best_bid.min(desired) * 0.5 {
+            return None; // pathologically wide spread — caller should bail
+        }
+        Some(round_tick(safe, tick))
+    } else {
+        // A sell crosses if our price <= best_bid. Maker-safe price is
+        // max(desired, best_bid + tick).
+        let safe = desired.max(best_bid + tick);
+        if safe >= 1.0 {
+            return None;
+        }
+        Some(round_tick(safe, tick))
+    }
+}
+
+fn round_tick(price: f64, tick: f64) -> f64 {
+    (price / tick).round() * tick
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -393,5 +437,48 @@ mod tests {
         assert!(should_preemptive_cancel(&cfg, 0.549));
         assert!(should_preemptive_cancel(&cfg, 0.30));
         assert!(should_preemptive_cancel(&cfg, 0.0));
+    }
+
+    #[test]
+    fn post_only_safe_buy_not_crossing_returns_desired() {
+        // desired=0.60, book bid=0.55/ask=0.62 → 0.60 < 0.62 so safe as-is
+        let p = post_only_safe_price(true, 0.60, 0.55, 0.62, 0.01);
+        assert_eq!(p, Some(0.60));
+    }
+
+    #[test]
+    fn post_only_safe_buy_would_cross_clamps_to_ask_minus_tick() {
+        // desired=0.65 > ask=0.62 → clamp to 0.61 (ask-tick)
+        let p = post_only_safe_price(true, 0.65, 0.55, 0.62, 0.01);
+        assert_eq!(p, Some(0.61));
+    }
+
+    #[test]
+    fn post_only_safe_buy_exactly_at_ask_clamps() {
+        // desired=0.62 == ask → clamp to 0.61
+        let p = post_only_safe_price(true, 0.62, 0.55, 0.62, 0.01);
+        assert_eq!(p, Some(0.61));
+    }
+
+    #[test]
+    fn post_only_safe_sell_not_crossing_returns_desired() {
+        // desired=0.72 > bid=0.55 → safe
+        let p = post_only_safe_price(false, 0.72, 0.55, 0.62, 0.01);
+        assert_eq!(p, Some(0.72));
+    }
+
+    #[test]
+    fn post_only_safe_sell_would_cross_clamps_to_bid_plus_tick() {
+        // desired=0.50 < bid=0.55 → clamp to 0.56
+        let p = post_only_safe_price(false, 0.50, 0.55, 0.62, 0.01);
+        assert_eq!(p, Some(0.56));
+    }
+
+    #[test]
+    fn post_only_safe_invalid_book_returns_none() {
+        // Crossed book
+        assert_eq!(post_only_safe_price(true, 0.55, 0.60, 0.55, 0.01), None);
+        // Zero best_bid
+        assert_eq!(post_only_safe_price(true, 0.55, 0.0, 0.62, 0.01), None);
     }
 }
