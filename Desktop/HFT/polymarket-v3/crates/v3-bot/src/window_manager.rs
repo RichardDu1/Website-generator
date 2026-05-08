@@ -65,6 +65,167 @@ pub struct WindowState {
     pub opening_price: Option<f64>,
 }
 
+// ---------------------------------------------------------------------------
+// WindowManager: fetches and refreshes the 3 active windows from Gamma API.
+// ---------------------------------------------------------------------------
+
+use anyhow::{Context, Result};
+use reqwest::Client;
+use serde_json::Value;
+use std::collections::HashMap;
+use std::sync::Arc;
+use tokio::sync::RwLock;
+use tracing::{info, warn};
+
+const GAMMA_API: &str = "https://gamma-api.polymarket.com";
+
+pub struct WindowManager {
+    http: Client,
+    windows: Arc<RwLock<HashMap<WindowKind, WindowState>>>,
+}
+
+impl WindowManager {
+    pub fn new() -> Self {
+        Self {
+            http: Client::builder()
+                .timeout(std::time::Duration::from_secs(10))
+                .user_agent("v3-bot/0.1")
+                .build()
+                .unwrap_or_else(|_| Client::new()),
+            windows: Arc::new(RwLock::new(HashMap::new())),
+        }
+    }
+
+    /// For each `WindowKind`, compute the current slug and (re)load it from Gamma
+    /// if we haven't seen this slug before.
+    pub async fn refresh_all(&self) -> Result<()> {
+        let now = chrono::Utc::now().timestamp();
+        for kind in WindowKind::all() {
+            let ts = kind.current_window_ts(now);
+            let slug = kind.slug(ts);
+            let need_refresh = {
+                let map = self.windows.read().await;
+                map.get(&kind).map_or(true, |w| w.slug != slug)
+            };
+            if !need_refresh {
+                continue;
+            }
+            match self.fetch_window(kind, ts, &slug).await {
+                Ok(ws) => {
+                    self.windows.write().await.insert(kind, ws);
+                    info!("📥 Loaded window {:?}: {}", kind, slug);
+                }
+                Err(e) => warn!("Failed to fetch {}: {:#}", slug, e),
+            }
+        }
+        Ok(())
+    }
+
+    async fn fetch_window(
+        &self,
+        kind: WindowKind,
+        window_ts: u64,
+        slug: &str,
+    ) -> Result<WindowState> {
+        let url = format!("{GAMMA_API}/events?slug={slug}");
+        let resp: Value = self
+            .http
+            .get(&url)
+            .send()
+            .await
+            .context("gamma get")?
+            .json()
+            .await
+            .context("gamma json")?;
+        let arr = resp.as_array().context("gamma response not array")?;
+        let event = arr.first().context("empty gamma result")?;
+        let markets = event["markets"]
+            .as_array()
+            .context("no markets array")?;
+        let market = markets.first().context("empty markets")?;
+        let condition_id = market["conditionId"]
+            .as_str()
+            .unwrap_or_default()
+            .to_string();
+
+        let clob_tokens: Vec<String> = match &market["clobTokenIds"] {
+            Value::String(s) => serde_json::from_str(s).unwrap_or_default(),
+            Value::Array(arr) => arr
+                .iter()
+                .filter_map(|v| v.as_str().map(str::to_string))
+                .collect(),
+            _ => vec![],
+        };
+        let outcomes: Vec<String> = match &market["outcomes"] {
+            Value::String(s) => serde_json::from_str(s).unwrap_or_default(),
+            Value::Array(arr) => arr
+                .iter()
+                .filter_map(|v| v.as_str().map(str::to_string))
+                .collect(),
+            _ => vec![],
+        };
+
+        let (mut up, mut down) = (String::new(), String::new());
+        for (i, o) in outcomes.iter().enumerate() {
+            match o.to_lowercase().as_str() {
+                "up" => up = clob_tokens.get(i).cloned().unwrap_or_default(),
+                "down" => down = clob_tokens.get(i).cloned().unwrap_or_default(),
+                _ => {}
+            }
+        }
+        if up.is_empty() {
+            up = clob_tokens.first().cloned().unwrap_or_default();
+        }
+        if down.is_empty() {
+            down = clob_tokens.get(1).cloned().unwrap_or_default();
+        }
+
+        Ok(WindowState {
+            kind,
+            window_ts,
+            slug: slug.to_string(),
+            condition_id,
+            token_id_up: up,
+            token_id_down: down,
+            opening_price: None,
+        })
+    }
+
+    pub async fn get(&self, kind: WindowKind) -> Option<WindowState> {
+        self.windows.read().await.get(&kind).cloned()
+    }
+
+    /// Set the opening price once (first write wins) for a window.
+    pub async fn set_opening_price(&self, kind: WindowKind, price: f64) {
+        if let Some(w) = self.windows.write().await.get_mut(&kind) {
+            if w.opening_price.is_none() {
+                w.opening_price = Some(price);
+            }
+        }
+    }
+
+    /// Return all currently subscribed CLOB token IDs (UP + DOWN per window).
+    pub async fn all_tokens(&self) -> Vec<String> {
+        let map = self.windows.read().await;
+        let mut v = Vec::with_capacity(6);
+        for w in map.values() {
+            if !w.token_id_up.is_empty() {
+                v.push(w.token_id_up.clone());
+            }
+            if !w.token_id_down.is_empty() {
+                v.push(w.token_id_down.clone());
+            }
+        }
+        v
+    }
+}
+
+impl Default for WindowManager {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
