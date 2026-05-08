@@ -7,6 +7,7 @@ mod position_tracker;
 mod window_manager;
 mod gengar_orchestrator;
 mod event_logger;
+mod notifier;
 
 use anyhow::Result;
 use tracing::{info, error};

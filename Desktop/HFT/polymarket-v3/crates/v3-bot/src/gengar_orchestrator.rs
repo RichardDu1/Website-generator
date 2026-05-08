@@ -26,6 +26,7 @@ use crate::binance_integration::BinanceFeed;
 use crate::clob_integration::{BookCache, ClobFeed};
 use crate::config::BotConfig;
 use crate::event_logger::EventLogger;
+use crate::notifier::Notifier;
 use crate::window_manager::{WindowKind, WindowManager, WindowState};
 
 /// An open Gengar position (single leg). We allow at most one per WindowKind.
@@ -71,6 +72,7 @@ pub struct GengarOrchestrator {
     last_bankroll_refresh_secs: Arc<RwLock<i64>>,
 
     event_log: Arc<EventLogger>,
+    notifier: Notifier,
 }
 
 impl GengarOrchestrator {
@@ -127,6 +129,10 @@ impl GengarOrchestrator {
         let event_log = Arc::new(
             EventLogger::new("logs").context("init EventLogger")?,
         );
+        let notifier = Notifier::from_env();
+        if notifier.is_enabled() {
+            info!("📣 Telegram notifier enabled");
+        }
 
         Ok(Self {
             gengar_cfg: config.strategies.gengar.clone(),
@@ -144,6 +150,7 @@ impl GengarOrchestrator {
             last_refresh_secs: Arc::new(RwLock::new(0)),
             last_bankroll_refresh_secs: Arc::new(RwLock::new(0)),
             event_log,
+            notifier,
         })
     }
 
@@ -153,6 +160,15 @@ impl GengarOrchestrator {
             "▶ GengarOrchestrator running; tick_interval_ms={}",
             self.config.tick_interval_ms
         );
+        let bk = *self.bankroll_usdc.read().await;
+        self.notifier
+            .notify(&format!(
+                "🚀 Gengar bot started\nmode={}\nbankroll=${:.2}\ntick={}ms",
+                if self.config.dry_run { "DRY-RUN" } else { "LIVE" },
+                bk,
+                self.config.tick_interval_ms,
+            ))
+            .await;
         let interval = std::time::Duration::from_millis(self.config.tick_interval_ms);
         loop {
             if let Err(e) = self.tick().await {
@@ -516,6 +532,20 @@ impl GengarOrchestrator {
             sig.edge,
             &order_id,
         );
+        self.notifier
+            .notify(&format!(
+                "✅ ENTRY {:?} {:?}\nprice=${:.4} x {} = ${:.2}\nedge={:.4} prob={:.3}\nvol={:.3} sec_rem={:.0}",
+                kind,
+                sig.side,
+                sig.market_price,
+                shares,
+                sig.market_price * shares as f64,
+                sig.edge,
+                sig.true_prob,
+                vol,
+                sec_rem,
+            ))
+            .await;
         self.positions.write().await.insert(pair_id, pos);
         Ok(())
     }
@@ -612,6 +642,7 @@ impl GengarOrchestrator {
                             "🔒 Profit-lock exit {} @ {:.4}: initial_edge={:.4} current={:.4}",
                             pos.pair_id, sell_price, pos.initial_edge, current_edge
                         );
+                        let pnl = (sell_price - pos.entry_price) * pos.shares as f64;
                         self.event_log.log_exit(
                             &pos.pair_id,
                             pos.window_kind,
@@ -625,9 +656,20 @@ impl GengarOrchestrator {
                             pos.initial_edge,
                             Some(current_edge),
                             &order_id,
-                            Some((sell_price - pos.entry_price) * pos.shares as f64),
+                            Some(pnl),
                             "profit-lock",
                         );
+                        self.notifier
+                            .notify(&format!(
+                                "🔒 EXIT profit-lock {:?}\npnl=${:+.2} (entry {:.4} → {:.4})\ninitial_edge={:.4} current={:.4}",
+                                pos.window_kind,
+                                pnl,
+                                pos.entry_price,
+                                sell_price,
+                                pos.initial_edge,
+                                current_edge,
+                            ))
+                            .await;
                         self.positions.write().await.remove(&pos.pair_id);
                     }
                     Err(e) => warn!("sell failed for {}: {:#}", pos.pair_id, e),
@@ -661,6 +703,7 @@ impl GengarOrchestrator {
                     "💨 Force-sell {} @ {:.4} → order={}",
                     pos.pair_id, sell_price, order_id
                 );
+                let pnl = (sell_price - pos.entry_price) * pos.shares as f64;
                 self.event_log.log_exit(
                     &pos.pair_id,
                     pos.window_kind,
@@ -674,14 +717,28 @@ impl GengarOrchestrator {
                     pos.initial_edge,
                     None,
                     &order_id,
-                    Some((sell_price - pos.entry_price) * pos.shares as f64),
+                    Some(pnl),
                     "force-sell",
                 );
+                self.notifier
+                    .notify(&format!(
+                        "⏱️ FORCE-SELL {:?}\npnl=${:+.2} (entry {:.4} → {:.4})\nreason=wall-clock max_hold",
+                        pos.window_kind, pnl, pos.entry_price, sell_price
+                    ))
+                    .await;
             }
-            Err(e) => warn!(
-                "💥 Force-sell FAILED for {} @ {:.4}: {:#} (dropping from position map anyway)",
-                pos.pair_id, sell_price, e
-            ),
+            Err(e) => {
+                warn!(
+                    "💥 Force-sell FAILED for {} @ {:.4}: {:#} (dropping from position map anyway)",
+                    pos.pair_id, sell_price, e
+                );
+                self.notifier
+                    .notify(&format!(
+                        "💥 FORCE-SELL FAILED {:?}\n{:?} entry ${:.4} x {} — CHECK WALLET",
+                        pos.window_kind, pos.side, pos.entry_price, pos.shares
+                    ))
+                    .await;
+            }
         }
         self.positions.write().await.remove(&pos.pair_id);
     }
