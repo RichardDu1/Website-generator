@@ -1,0 +1,69 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/v3-core",
+    "crates/v3-signal",
+    "crates/v3-strategy",
+    "crates/v3-execution",
+    "crates/v3-risk",
+    "crates/v3-bot",
+    # TODO: Uncomment when implemented
+    # "crates/v3-dashboard",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Polymarket V3 Team"]
+license = "MIT"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.40", features = ["full"] }
+tokio-tungstenite = "0.24"
+futures = "0.3"
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# HTTP/WebSocket
+reqwest = { version = "0.12", features = ["json"] }
+tungstenite = "0.24"
+
+# Crypto/Web3
+ethers = { version = "2.0", features = ["abigen", "ws"] }
+alloy-primitives = "0.8"
+
+# Decimal math
+rust_decimal = { version = "1.36", features = ["serde-with-str"] }
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Collections
+dashmap = "6.1"
+
+# Config
+dotenv = "0.15"
+
+# Reuse from polymarket-mm
+mm-core = { path = "../polymarket-mm/crates/mm-core" }
+mm-exchange = { path = "../polymarket-mm/crates/mm-exchange" }
+mm-risk = { path = "../polymarket-mm/crates/mm-risk" }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

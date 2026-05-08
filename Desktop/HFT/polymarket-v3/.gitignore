@@ -1,0 +1,29 @@
+# Rust build
+target/
+Cargo.lock.bak
+
+# Env / secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Logs / state
+logs/
+*.log
+state/*.json
+!state/.gitkeep
+
+# Deploy artifacts
+*.tar.gz
+deploy_*/
+polymarket-v3-*.tar.gz
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

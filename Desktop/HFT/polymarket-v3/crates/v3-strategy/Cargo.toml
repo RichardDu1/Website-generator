@@ -1,0 +1,19 @@
+[package]
+name = "v3-strategy"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+v3-core = { path = "../v3-core" }
+v3-signal = { path = "../v3-signal" }
+mm-core = { workspace = true }
+
+tokio = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+rust_decimal = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

@@ -1,0 +1,19 @@
+[package]
+name = "v3-risk"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+v3-core = { path = "../v3-core" }
+
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+rust_decimal = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

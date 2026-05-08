@@ -1,0 +1,53 @@
+# Bot Configuration - Imbalance Strategy (Phase 4 Test)
+
+# Dry-run mode (no real orders) - SET TO false FOR LIVE
+dry_run = true
+
+# Event loop tick interval (milliseconds)
+tick_interval_ms = 100
+
+[polymarket]
+# API credentials (override with environment variables)
+api_key = ""
+api_secret = ""
+api_passphrase = ""
+chain_id = 137  # Polygon mainnet
+
+[strategies.momentum]
+enabled = true
+min_velocity = 1.0          # Increased from 0.5 (stricter signal requirement)
+position_size = 1           # Fixed 1 share (adaptive sizing will adjust)
+max_hold_time = 30          # seconds
+stop_loss_pct = 0.005       # 0.5% (aligned with distinct-baguette)
+take_profit_pct = 0.01      # 1% (reduced from 3% for faster exits)
+order_ttl = 30              # seconds
+
+[strategies.market_making]
+enabled = true              # Enabled for full strategy test
+base_spread = 0.01          # 1% (reduced from 2% for tighter quotes)
+size_per_side = 5           # shares per side
+inventory_skew = 0.01       # Inventory adjustment factor (1% per unit)
+min_edge = 0.005            # 0.5% minimum edge
+order_ttl = 30              # seconds
+max_inventory = 20          # shares (reduced from 40 for $50 test)
+
+[strategies.spread_capture]
+enabled = true              # Enabled for full strategy test
+min_spread_edge = 0.01      # 1% minimum arbitrage edge
+position_size = 10          # shares (split between YES and NO)
+max_hold_time = 15          # seconds (reduced from 60s for faster arbitrage)
+order_ttl = 15              # seconds (reduced from 60s)
+
+[risk]
+max_position_size = 3              # USDC per position (reduced from 10 for $50 test)
+max_total_exposure = 15            # USDC total (reduced from 50 for $50 test)
+max_daily_loss = 5.0               # USDC (reduced from 20 for $50 test)
+max_hold_time_secs = 30            # seconds
+max_concurrent_positions = 6       # number of positions (reduced from 10)
+max_loss_per_position = 1.5        # USDC (reduced from 5 for $50 test)
+
+[execution]
+order_ttl_secs = 30                     # seconds
+adverse_threshold = 0.5                 # $/second for preemptive cancel
+cancel_check_interval_ms = 100          # milliseconds
+position_check_interval_ms = 1000       # milliseconds

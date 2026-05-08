@@ -1,0 +1,20 @@
+[package]
+name = "v3-signal"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+v3-core = { path = "../v3-core" }
+mm-core = { workspace = true }
+mm-exchange = { workspace = true }
+
+tokio = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+# For circular buffer

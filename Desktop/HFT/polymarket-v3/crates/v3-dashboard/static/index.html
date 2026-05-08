@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polymarket V3 Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d1117;--card:#161b22;--border:#30363d;--text:#c9d1d9;
+  --dim:#8b949e;--green:#3fb950;--red:#f85149;--yellow:#d29922;
+  --blue:#58a6ff;--purple:#bc8cff;--mono:'Consolas','Courier New',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;padding:12px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:12px}
+.header h1{font-size:16px;font-weight:600;letter-spacing:1px;color:var(--purple)}
+.header .status{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--dim)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite}
+.dead-dot{background:var(--red);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.top-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.card h2{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);margin-bottom:10px}
+.metric{display:flex;justify-content:space-between;padding:3px 0;font-family:var(--mono);font-size:13px}
+.metric .label{color:var(--dim)}
+.metric .value{font-weight:600}
+.pos{color:var(--green)}.neg{color:var(--red)}.warn{color:var(--yellow)}
+.section{margin-bottom:12px}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.section-title h2{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim)}
+.section-title .badge{font-size:12px;color:var(--blue);font-family:var(--mono)}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
+th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--dim);padding:6px 8px;border-bottom:1px solid var(--border)}
+td{padding:5px 8px;border-bottom:1px solid var(--border)}
+tr:hover{background:rgba(188,140,255,0.04)}
+.log-container{max-height:220px;overflow-y:auto;font-family:var(--mono);font-size:12px}
+.log-row{display:flex;gap:10px;padding:3px 8px;border-bottom:1px solid rgba(48,54,61,0.5)}
+.log-ts{color:var(--dim);min-width:75px}
+.log-kind{min-width:60px;font-weight:600}
+.log-order{color:var(--blue)}.log-fill{color:var(--green)}.log-cancel{color:var(--yellow)}.log-error{color:var(--red)}.log-risk{color:var(--purple)}
+.log-msg{color:var(--text)}
+.no-data{color:var(--dim);font-style:italic;padding:12px 8px;text-align:center}
+.big-number{font-size:24px;font-weight:700;font-family:var(--mono);margin-top:4px}
+@media(max-width:768px){.top-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>POLYMARKET V3</h1>
+  <div class="status">
+    <span><span class="live-dot" id="statusDot"></span> <span id="modeLabel">CONNECTING...</span></span>
+    <span id="clock">--:--:-- UTC</span>
+    <span id="uptime">0s</span>
+  </div>
+</div>
+
+<div class="top-row">
+  <div class="card">
+    <h2>Daily PnL</h2>
+    <div class="big-number" id="dailyPnl">$0.00</div>
+    <div class="metric"><span class="label">Max Loss</span><span class="value" id="maxLoss">$100.00</span></div>
+  </div>
+  <div class="card">
+    <h2>Positions</h2>
+    <div class="big-number" id="positionCount">0</div>
+    <div class="metric"><span class="label">Total Exposure</span><span class="value" id="totalExposure">$0.00</span></div>
+  </div>
+  <div class="card">
+    <h2>Orders</h2>
+    <div class="big-number" id="orderCount">0</div>
+    <div class="metric"><span class="label">Active</span><span class="value" id="activeOrders">0</span></div>
+  </div>
+  <div class="card">
+    <h2>Circuit Breaker</h2>
+    <div class="big-number" id="circuitStatus">OK</div>
+    <div class="metric"><span class="label">Trading</span><span class="value" id="tradingStatus">Enabled</span></div>
+  </div>
+</div>
+
+<div class="card section">
+  <div class="section-title"><h2>Active Positions</h2><span class="badge" id="positionBadge">0 positions</span></div>
+  <table>
+    <thead>
+      <tr>
+        <th>Market ID</th>
+        <th>Outcome</th>
+        <th>Size</th>
+        <th>Entry Price</th>
+        <th>Current Price</th>
+        <th>Unrealized PnL</th>
+        <th>Hold Time</th>
+      </tr>
+    </thead>
+    <tbody id="positionsBody">
+      <tr><td colspan="7" class="no-data">No active positions</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card section">
+  <div class="section-title"><h2>Active Orders</h2><span class="badge" id="orderBadge">0 orders</span></div>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Market</th>
+        <th>Side</th>
+        <th>Price</th>
+        <th>Size</th>
+        <th>TTL</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody id="ordersBody">
+      <tr><td colspan="7" class="no-data">No active orders</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card section">
+  <div class="section-title"><h2>Activity Log</h2></div>
+  <div class="log-container" id="logContainer">
+    <div class="no-data">Waiting for events...</div>
+  </div>
+</div>
+
+<div class="card section">
+  <div class="section-title"><h2>System Status</h2></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;font-family:var(--mono);font-size:13px">
+    <div class="metric"><span class="label">Scanner</span><span class="value" id="scannerStatus">Unknown</span></div>
+    <div class="metric"><span class="label">Binance WS</span><span class="value" id="binanceStatus">Unknown</span></div>
+    <div class="metric"><span class="label">CLOB WS</span><span class="value" id="clobStatus">Unknown</span></div>
+    <div class="metric"><span class="label">Event Loop</span><span class="value" id="loopStatus">Running</span></div>
+    <div class="metric"><span class="label">Tick Interval</span><span class="value" id="tickInterval">100ms</span></div>
+    <div class="metric"><span class="label">Version</span><span class="value">v3.0.0</span></div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmt = (v,d=2) => v != null ? '$'+v.toFixed(d) : '---';
+const pct = v => v != null ? (v*100).toFixed(1)+'%' : '---';
+const cls = v => v > 0 ? 'pos' : v < 0 ? 'neg' : '';
+
+function fmtUptime(s) {
+  if (s < 60) return s+'s';
+  if (s < 3600) return Math.floor(s/60)+'m';
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60);
+  return h+'h '+m+'m';
+}
+
+function fmtTime(secs) {
+  if (secs <= 0) return '0s';
+  if (secs < 60) return Math.floor(secs)+'s';
+  const m = Math.floor(secs/60), s = Math.floor(secs%60);
+  return m+'m '+s+'s';
+}
+
+let logs = [];
+const MAX_LOGS = 50;
+
+function addLog(kind, msg) {
+  const now = new Date();
+  const ts = now.toTimeString().slice(0,8);
+  logs.unshift({ts, kind, msg});
+  if (logs.length > MAX_LOGS) logs.pop();
+  updateLogs();
+}
+
+function updateLogs() {
+  const container = $('logContainer');
+  if (logs.length === 0) {
+    container.innerHTML = '<div class="no-data">Waiting for events...</div>';
+    return;
+  }
+  container.innerHTML = logs.map(l =>
+    `<div class="log-row">
+      <span class="log-ts">${l.ts}</span>
+      <span class="log-kind log-${l.kind.toLowerCase()}">${l.kind}</span>
+      <span class="log-msg">${l.msg}</span>
+    </div>`
+  ).join('');
+}
+
+function updateClock() {
+  const now = new Date();
+  $('clock').textContent = now.toUTCString().slice(17,25) + ' UTC';
+}
+
+// Simulated data for dry-run mode
+let uptime = 0;
+let dailyPnl = 0;
+let positions = [];
+let orders = [];
+
+function simulateUpdate() {
+  uptime += 1;
+  $('uptime').textContent = fmtUptime(uptime);
+
+  // Simulate some activity
+  if (uptime % 10 === 0) {
+    dailyPnl += (Math.random() - 0.5) * 2;
+    const pnlEl = $('dailyPnl');
+    pnlEl.textContent = (dailyPnl >= 0 ? '+' : '') + fmt(dailyPnl);
+    pnlEl.className = 'big-number ' + cls(dailyPnl);
+  }
+
+  if (uptime % 15 === 0 && Math.random() > 0.5) {
+    addLog('ORDER', 'DRY-RUN: Would place order Up Buy @ 0.51 (size: 5)');
+  }
+
+  if (uptime % 30 === 0 && orders.length > 0) {
+    addLog('CANCEL', 'Cancelled ' + orders.length + ' expired orders');
+  }
+}
+
+// Connect to WebSocket (when backend is ready)
+function connectWebSocket() {
+  const ws = new WebSocket('ws://' + location.host + '/ws');
+
+  ws.onopen = () => {
+    console.log('WebSocket connected successfully');
+    addLog('SYSTEM', 'Connected to V3 bot');
+    $('statusDot').className = 'live-dot';
+  };
+
+  ws.onmessage = (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      console.log('WebSocket data received:', data);
+      console.log('State:', data.state);
+      console.log('dry_run value:', data.state ? data.state.dry_run : 'no state');
+      updateDashboard(data);
+    } catch (e) {
+      console.error('Failed to parse message:', e);
+    }
+  };
+
+  ws.onerror = () => {
+    addLog('ERROR', 'WebSocket connection error');
+    $('statusDot').className = 'live-dot dead-dot';
+  };
+
+  ws.onclose = () => {
+    addLog('SYSTEM', 'Disconnected, reconnecting in 5s...');
+    $('statusDot').className = 'live-dot dead-dot';
+    setTimeout(connectWebSocket, 5000);
+  };
+}
+
+function updateDashboard(data) {
+  // Handle nested state structure from WebSocket
+  const state = data.state || data;
+  const events = data.events || {};
+
+  // Update mode label
+  if (state.dry_run !== undefined) {
+    $('modeLabel').textContent = state.dry_run ? 'DRY-RUN' : 'LIVE';
+    $('statusDot').className = state.dry_run ? 'live-dot dead-dot' : 'live-dot';
+  }
+
+  // Update from real data when available
+  if (state.uptime_secs) {
+    uptime = state.uptime_secs;
+    $('uptime').textContent = fmtUptime(uptime);
+  }
+
+  if (state.daily_pnl !== undefined) {
+    dailyPnl = state.daily_pnl;
+    const pnlEl = $('dailyPnl');
+    pnlEl.textContent = (dailyPnl >= 0 ? '+' : '') + fmt(dailyPnl);
+    pnlEl.className = 'big-number ' + cls(dailyPnl);
+  }
+
+  if (state.max_daily_loss !== undefined) {
+    $('maxLoss').textContent = fmt(state.max_daily_loss);
+  }
+
+  if (state.total_exposure !== undefined) {
+    $('totalExposure').textContent = fmt(state.total_exposure);
+  }
+
+  if (state.circuit_breaker_active !== undefined) {
+    $('circuitStatus').textContent = state.circuit_breaker_active ? 'TRIPPED' : 'OK';
+    $('circuitStatus').className = state.circuit_breaker_active ? 'big-number warn' : 'big-number';
+  }
+
+  if (state.trading_enabled !== undefined) {
+    $('tradingStatus').textContent = state.trading_enabled ? 'Enabled' : 'Disabled';
+  }
+
+  if (state.positions) {
+    positions = state.positions;
+    $('positionCount').textContent = positions.length;
+    $('positionBadge').textContent = positions.length + ' positions';
+    updatePositionsTable();
+  }
+
+  if (state.orders) {
+    orders = state.orders;
+    $('orderCount').textContent = orders.length;
+    $('activeOrders').textContent = orders.length;
+    $('orderBadge').textContent = orders.length + ' orders';
+    updateOrdersTable();
+  }
+
+  // Update event logs
+  if (events.events && events.events.length > 0) {
+    // Map backend event structure {ts, kind, message} to frontend {ts, kind, msg}
+    logs = events.events.map(e => ({
+      ts: e.ts,
+      kind: e.kind,
+      msg: e.message
+    }));
+    updateLogs();
+  }
+}
+
+function updatePositionsTable() {
+  const tbody = $('positionsBody');
+  if (positions.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" class="no-data">No active positions</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = positions.map(p => `
+    <tr>
+      <td>${p.market_id.slice(0,8)}...</td>
+      <td>${p.outcome}</td>
+      <td>${p.size}</td>
+      <td>${fmt(p.entry_price, 4)}</td>
+      <td>${fmt(p.current_price, 4)}</td>
+      <td class="${cls(p.unrealized_pnl)}">${fmt(p.unrealized_pnl)}</td>
+      <td>${fmtTime(p.hold_time_secs)}</td>
+    </tr>
+  `).join('');
+}
+
+function updateOrdersTable() {
+  const tbody = $('ordersBody');
+  if (orders.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" class="no-data">No active orders</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = orders.map(o => `
+    <tr>
+      <td>${o.order_id.slice(0,12)}...</td>
+      <td>${o.market_id.slice(0,8)}...</td>
+      <td>${o.side}</td>
+      <td>${fmt(o.price, 4)}</td>
+      <td>${o.size}</td>
+      <td>${o.ttl_secs}s</td>
+      <td>${fmtTime(o.age_secs)}</td>
+    </tr>
+  `).join('');
+}
+
+// Initialize
+updateClock();
+setInterval(updateClock, 1000);
+// Don't run simulateUpdate - we use real WebSocket data
+
+// Try to connect to WebSocket (will fail gracefully if backend not ready)
+setTimeout(() => {
+  try {
+    connectWebSocket();
+  } catch (e) {
+    console.error('Failed to connect WebSocket:', e);
+    addLog('ERROR', 'Failed to connect to backend');
+  }
+}, 1000);
+
+// Initial log
+addLog('SYSTEM', 'Dashboard initialized');
+</script>
+</body>
+</html>

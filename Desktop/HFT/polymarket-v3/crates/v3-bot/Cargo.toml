@@ -1,0 +1,33 @@
+[package]
+name = "v3-bot"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "v3-bot"
+path = "src/main.rs"
+
+[dependencies]
+v3-core = { path = "../v3-core" }
+v3-signal = { path = "../v3-signal" }
+v3-strategy = { path = "../v3-strategy" }
+v3-execution = { path = "../v3-execution" }
+v3-risk = { path = "../v3-risk" }
+v3-dashboard = { path = "../v3-dashboard" }
+mm-exchange = { workspace = true }
+mm-core = { workspace = true }
+
+tokio = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+dotenv = { workspace = true }
+toml = { workspace = true }
+rust_decimal = { workspace = true }
+uuid = { version = "1", features = ["v4"] }
+futures = { workspace = true }
