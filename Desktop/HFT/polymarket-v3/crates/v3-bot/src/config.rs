@@ -1,8 +1,8 @@
 use serde::Deserialize;
 use anyhow::{Result, Context};
 use std::path::Path;
-use v3_core::{MomentumConfig, MarketMakingConfig, SpreadCaptureConfig};
 use v3_risk::RiskLimits;
+use v3_strategy::GengarConfig;
 
 /// Bot configuration
 #[derive(Debug, Clone, Deserialize)]
@@ -20,7 +20,7 @@ pub struct BotConfig {
     /// Polymarket API configuration
     pub polymarket: PolymarketConfig,
 
-    /// Strategy configurations
+    /// Strategy configurations (Gengar only)
     pub strategies: StrategyConfigs,
 
     /// Risk configuration
@@ -40,9 +40,7 @@ pub struct PolymarketConfig {
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct StrategyConfigs {
-    pub momentum: MomentumConfig,
-    pub market_making: MarketMakingConfig,
-    pub spread_capture: SpreadCaptureConfig,
+    pub gengar: GengarConfig,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -115,17 +113,12 @@ impl BotConfig {
 
     /// Validate configuration
     pub fn validate(&self) -> Result<()> {
-        // API keys are not required - we use PRIVATE_KEY for OrderClient
-        // Validation removed as polymarket-mm uses private key authentication
-
         if self.tick_interval_ms == 0 {
             anyhow::bail!("tick_interval_ms must be > 0");
         }
-
         if self.execution.order_ttl_secs == 0 {
             anyhow::bail!("order_ttl_secs must be > 0");
         }
-
         Ok(())
     }
 }
@@ -142,10 +135,10 @@ mod tests {
     }
 
     #[test]
-    fn test_config_validation() {
-        let mut config = BotConfig {
+    fn test_config_validation_gengar() {
+        let config = BotConfig {
             dry_run: true,
-            tick_interval_ms: 100,
+            tick_interval_ms: 500,
             close_on_shutdown: false,
             polymarket: PolymarketConfig {
                 api_key: String::new(),
@@ -154,19 +147,11 @@ mod tests {
                 chain_id: 137,
             },
             strategies: StrategyConfigs {
-                momentum: MomentumConfig::default(),
-                market_making: MarketMakingConfig::default(),
-                spread_capture: SpreadCaptureConfig::default(),
+                gengar: GengarConfig::default(),
             },
             risk: RiskLimits::default(),
             execution: ExecutionConfig::default(),
         };
-
-        // Should pass in dry-run mode
         assert!(config.validate().is_ok());
-
-        // Should fail in live mode without API keys
-        config.dry_run = false;
-        assert!(config.validate().is_err());
     }
 }

@@ -120,7 +120,7 @@ impl GengarOrchestrator {
         };
 
         Ok(Self {
-            gengar_cfg: GengarConfig::default(),
+            gengar_cfg: config.strategies.gengar.clone(),
             config,
             window_manager,
             binance_feed,

@@ -1,53 +1,65 @@
-# Bot Configuration - Imbalance Strategy (Phase 4 Test)
+# Bot Configuration — Gengar directional latency arbitrage
+#
+# Covers 5m / 15m / 1h BTC UP/DOWN markets simultaneously.
 
-# Dry-run mode (no real orders) - SET TO false FOR LIVE
+# Dry-run mode (no real orders) — SET TO false FOR LIVE
 dry_run = true
 
-# Event loop tick interval (milliseconds)
-tick_interval_ms = 100
+# Event loop tick interval (milliseconds).
+# 500 ms is a good balance: fast enough to catch decaying edge,
+# slow enough to not hammer the CLOB or exhaust rate limits.
+tick_interval_ms = 500
 
 [polymarket]
-# API credentials (override with environment variables)
+# API credentials (override with env vars)
 api_key = ""
 api_secret = ""
 api_passphrase = ""
 chain_id = 137  # Polygon mainnet
 
-[strategies.momentum]
+# --- Gengar strategy (the only strategy) ---
+[strategies.gengar]
 enabled = true
-min_velocity = 1.0          # Increased from 0.5 (stricter signal requirement)
-position_size = 1           # Fixed 1 share (adaptive sizing will adjust)
-max_hold_time = 30          # seconds
-stop_loss_pct = 0.005       # 0.5% (aligned with distinct-baguette)
-take_profit_pct = 0.01      # 1% (reduced from 3% for faster exits)
-order_ttl = 30              # seconds
 
-[strategies.market_making]
-enabled = true              # Enabled for full strategy test
-base_spread = 0.01          # 1% (reduced from 2% for tighter quotes)
-size_per_side = 5           # shares per side
-inventory_skew = 0.01       # Inventory adjustment factor (1% per unit)
-min_edge = 0.005            # 0.5% minimum edge
-order_ttl = 30              # seconds
-max_inventory = 20          # shares (reduced from 40 for $50 test)
+# Minimum `prob - market_price` required to enter. 0.05 = 5%.
+min_edge = 0.05
 
-[strategies.spread_capture]
-enabled = true              # Enabled for full strategy test
-min_spread_edge = 0.01      # 1% minimum arbitrage edge
-position_size = 10          # shares (split between YES and NO)
-max_hold_time = 15          # seconds (reduced from 60s for faster arbitrage)
-order_ttl = 15              # seconds (reduced from 60s)
+# Minimum Brownian probability estimate. 0.80 = 80%.
+min_prob = 0.80
+
+# Only enter when we're between (T-240s) and (T-10s) of window end.
+entry_window_start_secs = 240
+entry_window_end_secs = 10
+
+# Don't enter when the market price is outside [0.50, 0.90].
+# Below 0.50 the signal is backwards; above 0.90 we'd be paying too much.
+max_price = 0.90
+min_price = 0.50
+
+# |btc_delta_pct| below this is treated as noise (Binance / oracle can disagree).
+min_btc_delta_pct = 0.06
+
+# Quarter-Kelly for safety.
+kelly_fraction = 0.25
+min_bet_usdc = 5.0
+max_bet_usdc = 25.0
+
+# Dynamic profit lock: exit when `current_edge < initial_edge * ratio`.
+profit_lock_ratio = 0.30
+
+# Used before the per-window VolTracker has 12 samples.
+static_vol_fallback = 0.12
 
 [risk]
-max_position_size = 3              # USDC per position (reduced from 10 for $50 test)
-max_total_exposure = 15            # USDC total (reduced from 50 for $50 test)
-max_daily_loss = 5.0               # USDC (reduced from 20 for $50 test)
-max_hold_time_secs = 30            # seconds
-max_concurrent_positions = 6       # number of positions (reduced from 10)
-max_loss_per_position = 1.5        # USDC (reduced from 5 for $50 test)
+max_position_size = 25             # USDC per position (Kelly cap)
+max_total_exposure = 100           # USDC total across all windows
+max_daily_loss = 10.0              # USDC
+max_hold_time_secs = 3600          # 1h window is the longest we hold
+max_concurrent_positions = 3       # at most 1 per window (5m + 15m + 1h = 3)
+max_loss_per_position = 10.0       # USDC
 
 [execution]
-order_ttl_secs = 30                     # seconds
-adverse_threshold = 0.5                 # $/second for preemptive cancel
-cancel_check_interval_ms = 100          # milliseconds
-position_check_interval_ms = 1000       # milliseconds
+order_ttl_secs = 60                # not used by Gengar directly; Gengar relies on profit_lock + window end
+adverse_threshold = 0.5            # $/second — unused by Gengar
+cancel_check_interval_ms = 100
+position_check_interval_ms = 1000
