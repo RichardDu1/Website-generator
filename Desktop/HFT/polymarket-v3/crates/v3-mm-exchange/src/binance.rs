@@ -96,7 +96,7 @@ pub async fn spawn_binance_feed(
                     error!("Binance: channel closed, stopping");
                     break;
                 }
-                Err(e) => warn!("Binance: session ended: {e}"),
+                Err(e) => warn!("Binance: session ended: {e:#}"),
                 Ok(_) => {}
             }
             warn!("Binance: reconnecting in 2s...");

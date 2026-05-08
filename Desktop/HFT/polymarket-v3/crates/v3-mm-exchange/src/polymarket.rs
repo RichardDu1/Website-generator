@@ -404,7 +404,7 @@ pub async fn spawn_clob_ws(
                     break;
                 }
                 Ok(false) => warn!("CLOB WS: session ended, reconnecting"),
-                Err(e) => warn!("CLOB WS: session error: {e}"),
+                Err(e) => warn!("CLOB WS: session error: {e:#}"),
             }
             warn!("CLOB WS: reconnecting in 2s...");
             tokio::time::sleep(tokio::time::Duration::from_secs(2)).await;

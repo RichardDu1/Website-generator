@@ -24,7 +24,7 @@ license = "MIT"
 [workspace.dependencies]
 # Async runtime
 tokio = { version = "1.40", features = ["full"] }
-tokio-tungstenite = "0.24"
+tokio-tungstenite = { version = "0.24", features = ["native-tls"] }
 futures = "0.3"
 futures-util = "0.3"
 async-trait = "0.1"
