@@ -136,6 +136,35 @@ impl GengarOrchestrator {
             info!("📣 Telegram notifier enabled");
         }
 
+        // Recover any positions left open by a prior run. Silent no-op if
+        // logs/trades.csv is missing or has no unmatched entries.
+        let recovered = crate::state_recovery::recover_open_positions("logs/trades.csv")
+            .context("recover_open_positions")?;
+        if !recovered.is_empty() {
+            info!(
+                "🔁 Recovered {} open position(s) from logs/trades.csv",
+                recovered.len()
+            );
+            for p in &recovered {
+                info!(
+                    "  ↪ {} {:?} {:?} @ {:.4} x {} (initial_edge={:.4})",
+                    p.pair_id, p.window_kind, p.side, p.entry_price, p.shares, p.initial_edge
+                );
+            }
+            let summary: Vec<String> = recovered.iter()
+                .map(|p| format!("{:?} {:?} @ {:.4} x {}", p.window_kind, p.side, p.entry_price, p.shares))
+                .collect();
+            notifier
+                .notify(&format!(
+                    "🔁 Recovered {} open position(s) on restart:\n{}",
+                    recovered.len(),
+                    summary.join("\n"),
+                ))
+                .await;
+        }
+        let positions_map: HashMap<String, OpenPosition> =
+            recovered.into_iter().map(|p| (p.pair_id.clone(), p)).collect();
+
         Ok(Self {
             gengar_cfg: config.strategies.gengar.clone(),
             config,
@@ -147,7 +176,7 @@ impl GengarOrchestrator {
             vol_trackers,
             last_window_ts: Arc::new(RwLock::new(HashMap::new())),
             bankroll_usdc: Arc::new(RwLock::new(initial_bankroll_usdc)),
-            positions: Arc::new(RwLock::new(HashMap::new())),
+            positions: Arc::new(RwLock::new(positions_map)),
             latest_btc_price: Arc::new(RwLock::new(0.0)),
             last_refresh_secs: Arc::new(RwLock::new(0)),
             last_bankroll_refresh_secs: Arc::new(RwLock::new(0)),

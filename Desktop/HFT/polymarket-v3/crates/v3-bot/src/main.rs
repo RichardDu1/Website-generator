@@ -9,6 +9,7 @@ mod gengar_orchestrator;
 mod event_logger;
 mod notifier;
 mod hourly_stats;
+mod state_recovery;
 
 use anyhow::Result;
 use tracing::{info, error};
