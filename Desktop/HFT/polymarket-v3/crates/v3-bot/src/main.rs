@@ -6,6 +6,7 @@ mod clob_integration;
 mod position_tracker;
 mod window_manager;
 mod gengar_orchestrator;
+mod event_logger;
 
 use anyhow::Result;
 use tracing::{info, error};

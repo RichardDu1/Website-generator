@@ -10,7 +10,7 @@
 //!   5. Per open position: compute current edge, dynamic profit-lock, or window-end
 //!      close-out.
 
-use anyhow::Result;
+use anyhow::{Context, Result};
 use chrono::{DateTime, Utc};
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -25,6 +25,7 @@ use v3_strategy::{gengar, GengarConfig, VolTracker};
 use crate::binance_integration::BinanceFeed;
 use crate::clob_integration::{BookCache, ClobFeed};
 use crate::config::BotConfig;
+use crate::event_logger::EventLogger;
 use crate::window_manager::{WindowKind, WindowManager, WindowState};
 
 /// An open Gengar position (single leg). We allow at most one per WindowKind.
@@ -68,6 +69,8 @@ pub struct GengarOrchestrator {
 
     last_refresh_secs: Arc<RwLock<i64>>,
     last_bankroll_refresh_secs: Arc<RwLock<i64>>,
+
+    event_log: Arc<EventLogger>,
 }
 
 impl GengarOrchestrator {
@@ -120,6 +123,11 @@ impl GengarOrchestrator {
             Arc::new(RwLock::new(m))
         };
 
+        // CSV event logger under ./logs/. Directory auto-created.
+        let event_log = Arc::new(
+            EventLogger::new("logs").context("init EventLogger")?,
+        );
+
         Ok(Self {
             gengar_cfg: config.strategies.gengar.clone(),
             config,
@@ -135,6 +143,7 @@ impl GengarOrchestrator {
             latest_btc_price: Arc::new(RwLock::new(0.0)),
             last_refresh_secs: Arc::new(RwLock::new(0)),
             last_bankroll_refresh_secs: Arc::new(RwLock::new(0)),
+            event_log,
         })
     }
 
@@ -390,6 +399,7 @@ impl GengarOrchestrator {
 
         let bankroll = *self.bankroll_usdc.read().await;
 
+        let delta_pct_preview = (binance_price - opening) / opening * 100.0;
         let Some(sig) = gengar::evaluate(
             binance_price,
             opening,
@@ -400,6 +410,30 @@ impl GengarOrchestrator {
             &self.gengar_cfg,
             vol,
         ) else {
+            // Log skip reason to signals.csv so we can post-hoc analyze which
+            // gate rejected. Cheap to derive here.
+            let skip_reason = classify_skip(
+                &self.gengar_cfg,
+                delta_pct_preview,
+                sec_rem,
+                up_ask,
+                down_ask,
+            );
+            self.event_log.log_signal(
+                kind,
+                binance_price,
+                opening,
+                delta_pct_preview,
+                sec_rem,
+                vol,
+                up_ask,
+                down_ask,
+                "skip",
+                None,
+                None,
+                None,
+                Some(skip_reason),
+            );
             return Ok(());
         };
 
@@ -414,6 +448,21 @@ impl GengarOrchestrator {
             info!(
                 "Gengar skip: shares {} < 5 (kelly=${:.2} @ {:.4})",
                 shares, sig.kelly_size, sig.market_price
+            );
+            self.event_log.log_signal(
+                kind,
+                binance_price,
+                opening,
+                sig.btc_delta_pct,
+                sec_rem,
+                vol,
+                up_ask,
+                down_ask,
+                "skip",
+                Some(sig.true_prob),
+                Some(sig.edge),
+                Some(sig.kelly_size),
+                Some("shares_below_min"),
             );
             return Ok(());
         }
@@ -432,12 +481,40 @@ impl GengarOrchestrator {
             entry_price: sig.market_price,
             shares,
             initial_edge: sig.edge,
-            order_id,
+            order_id: order_id.clone(),
             entered_at: Utc::now(),
         };
         info!(
             "✅ Gengar entry {:?} {:?} @ {:.4} x {} shares, edge={:.4} vol={:.3} sec_rem={:.0}",
             kind, sig.side, sig.market_price, shares, sig.edge, vol, sec_rem
+        );
+        self.event_log.log_signal(
+            kind,
+            binance_price,
+            opening,
+            sig.btc_delta_pct,
+            sec_rem,
+            vol,
+            up_ask,
+            down_ask,
+            "enter",
+            Some(sig.true_prob),
+            Some(sig.edge),
+            Some(sig.kelly_size),
+            None,
+        );
+        self.event_log.log_entry(
+            &pair_id,
+            kind,
+            match sig.side {
+                gengar::Side::Up => "Up",
+                gengar::Side::Down => "Down",
+            },
+            token,
+            sig.market_price,
+            shares,
+            sig.edge,
+            &order_id,
         );
         self.positions.write().await.insert(pair_id, pos);
         Ok(())
@@ -530,10 +607,26 @@ impl GengarOrchestrator {
                     .execute_gengar_sell(&pos.token_id, sell_price, pos.shares)
                     .await
                 {
-                    Ok(_) => {
+                    Ok(order_id) => {
                         info!(
                             "🔒 Profit-lock exit {} @ {:.4}: initial_edge={:.4} current={:.4}",
                             pos.pair_id, sell_price, pos.initial_edge, current_edge
+                        );
+                        self.event_log.log_exit(
+                            &pos.pair_id,
+                            pos.window_kind,
+                            match pos.side {
+                                gengar::Side::Up => "Up",
+                                gengar::Side::Down => "Down",
+                            },
+                            &pos.token_id,
+                            sell_price,
+                            pos.shares,
+                            pos.initial_edge,
+                            Some(current_edge),
+                            &order_id,
+                            Some((sell_price - pos.entry_price) * pos.shares as f64),
+                            "profit-lock",
                         );
                         self.positions.write().await.remove(&pos.pair_id);
                     }
@@ -563,10 +656,28 @@ impl GengarOrchestrator {
             .execute_gengar_sell(&pos.token_id, sell_price, pos.shares)
             .await
         {
-            Ok(order_id) => info!(
-                "💨 Force-sell {} @ {:.4} → order={}",
-                pos.pair_id, sell_price, order_id
-            ),
+            Ok(order_id) => {
+                info!(
+                    "💨 Force-sell {} @ {:.4} → order={}",
+                    pos.pair_id, sell_price, order_id
+                );
+                self.event_log.log_exit(
+                    &pos.pair_id,
+                    pos.window_kind,
+                    match pos.side {
+                        gengar::Side::Up => "Up",
+                        gengar::Side::Down => "Down",
+                    },
+                    &pos.token_id,
+                    sell_price,
+                    pos.shares,
+                    pos.initial_edge,
+                    None,
+                    &order_id,
+                    Some((sell_price - pos.entry_price) * pos.shares as f64),
+                    "force-sell",
+                );
+            }
             Err(e) => warn!(
                 "💥 Force-sell FAILED for {} @ {:.4}: {:#} (dropping from position map anyway)",
                 pos.pair_id, sell_price, e
@@ -574,4 +685,33 @@ impl GengarOrchestrator {
         }
         self.positions.write().await.remove(&pos.pair_id);
     }
+}
+
+/// Classify why `gengar::evaluate` returned None. Mirrors its gate order;
+/// cheap string return for CSV logging.
+fn classify_skip(
+    cfg: &GengarConfig,
+    delta_pct: f64,
+    sec_rem: f64,
+    up_ask: f64,
+    down_ask: f64,
+) -> &'static str {
+    if sec_rem > cfg.entry_window_start_secs as f64 {
+        return "outside_window_early";
+    }
+    if sec_rem < cfg.entry_window_end_secs as f64 {
+        return "outside_window_late";
+    }
+    if delta_pct.abs() < cfg.min_btc_delta_pct {
+        return "delta_too_small";
+    }
+    let side_price = if delta_pct > 0.0 { up_ask } else { down_ask };
+    if side_price > cfg.max_price || side_price < cfg.min_price {
+        return "price_out_of_range";
+    }
+    // If we got here, either prob < min_prob or edge < min_edge.
+    // (Can't easily distinguish without recomputing the Brownian prob here,
+    // and either way the post-hoc analyzer can reconstruct prob from
+    // delta_pct/sec_rem/vol.)
+    "prob_or_edge_too_low"
 }

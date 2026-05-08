@@ -32,3 +32,6 @@ rust_decimal = { workspace = true }
 uuid = { version = "1", features = ["v4"] }
 futures = { workspace = true }
 reqwest = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"
