@@ -7,6 +7,16 @@ use crate::{TtlManager, CancelMonitor, OrderTracker};
 use v3_mm_exchange::polymarket::OrderClient;
 use rust_decimal::prelude::*;
 
+/// True if a CLOB error is the post-only-would-cross rejection.
+/// We match the string rather than a typed variant because the underlying
+/// SDK surfaces this as a generic error; broadening the match here is cheap
+/// and safe — worst case we fall back to GTC on a non-cross error, which is
+/// the same behavior we'd want for "not sure, try taker".
+fn is_cross_rejection(e: &anyhow::Error) -> bool {
+    let msg = e.to_string().to_lowercase();
+    msg.contains("cross") || msg.contains("post-only") || msg.contains("post_only")
+}
+
 /// Order executor - handles order placement and cancellation
 pub struct OrderExecutor {
     client: Option<Arc<OrderClient>>,
@@ -253,12 +263,14 @@ impl OrderExecutor {
         Arc::clone(&self.order_tracker)
     }
 
-    /// Gengar-style BUY: non-post-only GTC at the given price.
+    /// Gengar-style BUY with maker-first priority.
     ///
-    /// We intentionally use non-post-only here: the edge decays quickly, so
-    /// getting filled immediately (as taker) is often worth the fee. The
-    /// order is limit-priced at `price`, so we never pay more than that even
-    /// if it lands as a taker.
+    /// Tries `place_limit_order` (post-only GTC, maker = 0% fee) first. If the
+    /// CLOB rejects because the order would cross (taker), falls back to
+    /// `place_gtc_order` (non-post-only) so we still get filled — Gengar's
+    /// edge decays in seconds, missing a fill costs more than a taker fee.
+    ///
+    /// The limit price is the same in both cases: we never pay above `price`.
     pub async fn execute_gengar_order(
         &self,
         token_id: &str,
@@ -283,22 +295,43 @@ impl OrderExecutor {
         let price_d = Decimal::from_f64(price)
             .ok_or_else(|| anyhow::anyhow!("Invalid Gengar price"))?;
         let size_d = Decimal::from(shares);
-        let id = client
-            .place_gtc_order(
+
+        // First attempt: post-only (maker, 0% fee).
+        match client
+            .place_limit_order(
                 token_id,
                 v3_mm_exchange::types::OrderSide::Buy,
                 price_d,
                 size_d,
             )
             .await
-            .context("place_gtc_order (Gengar buy)")?;
-        info!("✅ Gengar BUY placed: {}", id);
-        Ok(id)
+        {
+            Ok(id) => {
+                info!("✅ Gengar BUY placed (post-only maker): {}", id);
+                Ok(id)
+            }
+            Err(e) if is_cross_rejection(&e) => {
+                warn!(
+                    "Gengar BUY post-only rejected (crosses book), retrying as GTC taker"
+                );
+                let id = client
+                    .place_gtc_order(
+                        token_id,
+                        v3_mm_exchange::types::OrderSide::Buy,
+                        price_d,
+                        size_d,
+                    )
+                    .await
+                    .context("place_gtc_order (Gengar buy fallback)")?;
+                info!("✅ Gengar BUY placed (GTC fallback): {}", id);
+                Ok(id)
+            }
+            Err(e) => Err(e).context("place_limit_order (Gengar buy)"),
+        }
     }
 
-    /// Gengar-style SELL (used for profit-lock exit).
-    /// Non-post-only GTC at given price. Same reasoning as `execute_gengar_order`:
-    /// when the signal is decaying we want a fast exit.
+    /// Gengar-style SELL with maker-first priority. See `execute_gengar_order`
+    /// for the fee/fallback rationale — applies symmetrically to exits.
     pub async fn execute_gengar_sell(
         &self,
         token_id: &str,
@@ -323,17 +356,38 @@ impl OrderExecutor {
         let price_d = Decimal::from_f64(price)
             .ok_or_else(|| anyhow::anyhow!("Invalid Gengar sell price"))?;
         let size_d = Decimal::from(shares);
-        let id = client
-            .place_gtc_order(
+
+        match client
+            .place_limit_order(
                 token_id,
                 v3_mm_exchange::types::OrderSide::Sell,
                 price_d,
                 size_d,
             )
             .await
-            .context("place_gtc_order (Gengar sell)")?;
-        info!("✅ Gengar SELL placed: {}", id);
-        Ok(id)
+        {
+            Ok(id) => {
+                info!("✅ Gengar SELL placed (post-only maker): {}", id);
+                Ok(id)
+            }
+            Err(e) if is_cross_rejection(&e) => {
+                warn!(
+                    "Gengar SELL post-only rejected (crosses book), retrying as GTC taker"
+                );
+                let id = client
+                    .place_gtc_order(
+                        token_id,
+                        v3_mm_exchange::types::OrderSide::Sell,
+                        price_d,
+                        size_d,
+                    )
+                    .await
+                    .context("place_gtc_order (Gengar sell fallback)")?;
+                info!("✅ Gengar SELL placed (GTC fallback): {}", id);
+                Ok(id)
+            }
+            Err(e) => Err(e).context("place_limit_order (Gengar sell)"),
+        }
     }
 
     /// Query order status from CLOB API
@@ -383,6 +437,19 @@ mod tests {
     use v3_signal::BinanceMonitor;
     use chrono::Utc;
     use rust_decimal::Decimal;
+
+    #[test]
+    fn cross_rejection_matches_expected_strings() {
+        assert!(is_cross_rejection(&anyhow::anyhow!(
+            "post-only order crosses book"
+        )));
+        assert!(is_cross_rejection(&anyhow::anyhow!("POST_ONLY rejected")));
+        assert!(is_cross_rejection(&anyhow::anyhow!(
+            "Cross-book protection triggered"
+        )));
+        assert!(!is_cross_rejection(&anyhow::anyhow!("timeout reading body")));
+        assert!(!is_cross_rejection(&anyhow::anyhow!("insufficient balance")));
+    }
 
     fn create_test_order() -> Order {
         Order {
