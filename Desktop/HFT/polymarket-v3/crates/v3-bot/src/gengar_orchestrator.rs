@@ -554,7 +554,12 @@ impl GengarOrchestrator {
                 .await?
         };
 
-        let pair_id = format!("{:?}-{:?}-{}", asset, kind, &order_id[..order_id.len().min(8)]);
+        // Take the last 8 chars of order_id so we get uuid-like entropy even
+        // when the id has a static prefix ("dry-run-gengar-<uuid>" in dry_run).
+        // Without this, every pair_id collapses to "M5-dry-run-" and state
+        // recovery can't tell entries apart.
+        let oid_tail = &order_id[order_id.len().saturating_sub(8)..];
+        let pair_id = format!("{:?}-{:?}-{}", asset, kind, oid_tail);
         let pos = OpenPosition {
             pair_id: pair_id.clone(),
             asset,
