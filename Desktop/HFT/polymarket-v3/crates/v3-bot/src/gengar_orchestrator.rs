@@ -630,67 +630,97 @@ impl GengarOrchestrator {
             };
             let current_edge = effective_prob - current_market_price;
 
+            // --- Preemptive cancel (Binance adverse move) ---
+            //
+            // Fires when the model's probability has collapsed — usually
+            // because BTC has moved strongly against us. Bails faster than
+            // profit-lock, which needs edge to decay proportionally.
+            if gengar::should_preemptive_cancel(&self.gengar_cfg, effective_prob) {
+                self.sell_with_log(&pos, current_edge, "preemptive-cancel").await;
+                continue;
+            }
+
             if gengar::should_lock_profit(
                 pos.initial_edge,
                 current_edge,
                 self.gengar_cfg.profit_lock_ratio,
             ) {
-                // Sell: aggressive, leave it as a maker-ish sell at best_bid - 1c tick
-                let best_bid = {
-                    let book = self.book_cache.read().await;
-                    book.get_top(&pos.token_id).map(|(b, _)| b)
-                };
-                let sell_price = match best_bid {
-                    Some(b) => ((b - 0.01).max(0.01) * 100.0).round() / 100.0,
-                    None => (pos.entry_price * 0.90 * 100.0).round() / 100.0,
-                };
-                match self
-                    .executor
-                    .execute_gengar_sell(&pos.token_id, sell_price, pos.shares)
-                    .await
-                {
-                    Ok(order_id) => {
-                        info!(
-                            "🔒 Profit-lock exit {} @ {:.4}: initial_edge={:.4} current={:.4}",
-                            pos.pair_id, sell_price, pos.initial_edge, current_edge
-                        );
-                        let pnl = (sell_price - pos.entry_price) * pos.shares as f64;
-                        self.event_log.log_exit(
-                            &pos.pair_id,
-                            pos.window_kind,
-                            match pos.side {
-                                gengar::Side::Up => "Up",
-                                gengar::Side::Down => "Down",
-                            },
-                            &pos.token_id,
-                            sell_price,
-                            pos.shares,
-                            pos.initial_edge,
-                            Some(current_edge),
-                            &order_id,
-                            Some(pnl),
-                            "profit-lock",
-                        );
-                        self.hourly_stats.record_exit("profit-lock", pnl);
-                        self.notifier
-                            .notify(&format!(
-                                "🔒 EXIT profit-lock {:?}\npnl=${:+.2} (entry {:.4} → {:.4})\ninitial_edge={:.4} current={:.4}",
-                                pos.window_kind,
-                                pnl,
-                                pos.entry_price,
-                                sell_price,
-                                pos.initial_edge,
-                                current_edge,
-                            ))
-                            .await;
-                        self.positions.write().await.remove(&pos.pair_id);
-                    }
-                    Err(e) => warn!("sell failed for {}: {:#}", pos.pair_id, e),
-                }
+                self.sell_with_log(&pos, current_edge, "profit-lock").await;
+                continue;
             }
         }
 
         Ok(())
+    }
+
+    /// Shared sell path used by profit-lock and preemptive-cancel exits.
+    /// Quotes best_bid - 1 tick (or 90% of entry as last resort), submits
+    /// via the executor, logs both to event_log and Telegram, and drops the
+    /// position from the map.
+    async fn sell_with_log(
+        &self,
+        pos: &OpenPosition,
+        current_edge: f64,
+        reason: &'static str,
+    ) {
+        let best_bid = {
+            let book = self.book_cache.read().await;
+            book.get_top(&pos.token_id).map(|(b, _)| b)
+        };
+        let sell_price = match best_bid {
+            Some(b) => ((b - 0.01).max(0.01) * 100.0).round() / 100.0,
+            None => (pos.entry_price * 0.90 * 100.0).round() / 100.0,
+        };
+        match self
+            .executor
+            .execute_gengar_sell(&pos.token_id, sell_price, pos.shares)
+            .await
+        {
+            Ok(order_id) => {
+                let pnl = (sell_price - pos.entry_price) * pos.shares as f64;
+                info!(
+                    "🚪 Exit ({}) {} @ {:.4}: initial_edge={:.4} current={:.4} pnl={:+.2}",
+                    reason, pos.pair_id, sell_price, pos.initial_edge, current_edge, pnl
+                );
+                self.event_log.log_exit(
+                    &pos.pair_id,
+                    pos.window_kind,
+                    match pos.side {
+                        gengar::Side::Up => "Up",
+                        gengar::Side::Down => "Down",
+                    },
+                    &pos.token_id,
+                    sell_price,
+                    pos.shares,
+                    pos.initial_edge,
+                    Some(current_edge),
+                    &order_id,
+                    Some(pnl),
+                    reason,
+                );
+                self.hourly_stats.record_exit(reason, pnl);
+                let emoji = match reason {
+                    "profit-lock" => "🔒",
+                    "preemptive-cancel" => "⚡",
+                    _ => "🚪",
+                };
+                self.notifier
+                    .notify(&format!(
+                        "{} EXIT {} {:?}\npnl=${:+.2} (entry {:.4} → {:.4})\ninitial_edge={:.4} current={:.4}",
+                        emoji,
+                        reason,
+                        pos.window_kind,
+                        pnl,
+                        pos.entry_price,
+                        sell_price,
+                        pos.initial_edge,
+                        current_edge,
+                    ))
+                    .await;
+                self.positions.write().await.remove(&pos.pair_id);
+            }
+            Err(e) => warn!("sell ({}) failed for {}: {:#}", reason, pos.pair_id, e),
+        }
     }
 
     /// Best-effort close: try to sell at best_bid - 1 tick, else at 90% of

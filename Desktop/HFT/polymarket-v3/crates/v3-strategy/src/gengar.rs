@@ -39,6 +39,10 @@ pub struct GengarConfig {
     /// Default 900s (15 min): 5m windows never hit it; 15m positions trip near
     /// window end; 4h positions are force-closed well before window resolution.
     pub max_position_hold_secs: u64,
+    /// Preemptive cancel threshold: exit when the Brownian model's directional
+    /// probability falls below this. 0.55 means we bail once our conviction
+    /// drops to "barely better than coin flip". Gengar v13 behavior.
+    pub preemptive_cancel_prob: f64,
     /// Used when the per-window VolTracker isn't full yet.
     pub static_vol_fallback: f64,
 }
@@ -59,6 +63,7 @@ impl Default for GengarConfig {
             max_bet_usdc: 25.0,
             profit_lock_ratio: 0.30,
             max_position_hold_secs: 900,
+            preemptive_cancel_prob: 0.55,
             static_vol_fallback: 0.12,
         }
     }
@@ -222,6 +227,18 @@ pub fn should_force_close_by_wallclock(
     held_secs >= config.max_position_hold_secs
 }
 
+/// Preemptive cancel check: returns true when the model's directional prob
+/// for our position side has fallen below the config threshold.
+///
+/// `effective_prob` is already side-adjusted — callers should compute it as
+/// `prob` when BTC delta sign matches position side, else `1 - prob`.
+pub fn should_preemptive_cancel(
+    config: &GengarConfig,
+    effective_prob: f64,
+) -> bool {
+    effective_prob < config.preemptive_cancel_prob
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -366,5 +383,15 @@ mod tests {
         };
         assert!(!should_force_close_by_wallclock(&cfg, 59));
         assert!(should_force_close_by_wallclock(&cfg, 60));
+    }
+
+    #[test]
+    fn preemptive_cancel_fires_below_threshold() {
+        let cfg = GengarConfig::default(); // threshold = 0.55
+        assert!(!should_preemptive_cancel(&cfg, 0.80));
+        assert!(!should_preemptive_cancel(&cfg, 0.55)); // boundary is <, not <=
+        assert!(should_preemptive_cancel(&cfg, 0.549));
+        assert!(should_preemptive_cancel(&cfg, 0.30));
+        assert!(should_preemptive_cancel(&cfg, 0.0));
     }
 }

@@ -54,6 +54,11 @@ profit_lock_ratio = 0.30
 # 4h positions are force-closed well before resolution.
 max_position_hold_secs = 900
 
+# Preemptive cancel threshold: exit when the Brownian model's directional
+# probability falls below this. 0.55 means we bail once conviction drops to
+# barely better than coin flip (gengar v13 behavior).
+preemptive_cancel_prob = 0.55
+
 # Used before the per-window VolTracker has 12 samples.
 static_vol_fallback = 0.12
 
