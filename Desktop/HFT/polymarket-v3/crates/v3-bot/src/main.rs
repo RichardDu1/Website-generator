@@ -5,6 +5,7 @@ mod binance_integration;
 mod rtds_integration;
 mod clob_integration;
 mod position_tracker;
+mod window_manager;
 
 use anyhow::Result;
 use tracing::{info, error};
