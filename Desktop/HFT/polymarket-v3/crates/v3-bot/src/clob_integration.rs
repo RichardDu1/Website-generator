@@ -5,8 +5,8 @@ use std::collections::HashMap;
 use tokio::sync::mpsc;
 use tracing::info;
 
-use mm_exchange::types::{ExchangeEvent, BookSnapshot};
-use mm_core::Asset;
+use v3_mm_exchange::types::{ExchangeEvent, BookSnapshot};
+use v3_mm_core::Asset;
 
 /// CLOB feed manager
 pub struct ClobFeed {
@@ -27,7 +27,7 @@ impl ClobFeed {
         let (tx, rx) = mpsc::channel(1000); // Larger buffer for high-frequency book updates
 
         // Spawn CLOB WebSocket
-        mm_exchange::polymarket::spawn_clob_ws(tx, token_ids.clone(), cid_to_asset, None).await?;
+        v3_mm_exchange::polymarket::spawn_clob_ws(tx, token_ids.clone(), cid_to_asset, None).await?;
 
         info!("CLOB feed initialized with {} tokens", token_ids.len());
 
@@ -62,7 +62,7 @@ impl ClobFeed {
             .collect();
 
         let (tx, rx) = mpsc::channel(1000);
-        mm_exchange::polymarket::spawn_clob_ws(tx, all_tokens.clone(), cid_to_asset, None).await?;
+        v3_mm_exchange::polymarket::spawn_clob_ws(tx, all_tokens.clone(), cid_to_asset, None).await?;
 
         self.rx = rx;
         self.subscribed_tokens = all_tokens.into_iter().collect();

@@ -282,12 +282,12 @@ impl Orchestrator {
 
                 for event in events {
                     match event {
-                        mm_exchange::types::ExchangeEvent::BookUpdate(snapshot) => {
+                        v3_mm_exchange::types::ExchangeEvent::BookUpdate(snapshot) => {
                             // Update book cache
                             let mut cache = book_cache.write().await;
                             cache.update(snapshot);
                         }
-                        mm_exchange::types::ExchangeEvent::OrderFill(fill) => {
+                        v3_mm_exchange::types::ExchangeEvent::OrderFill(fill) => {
                             // CRITICAL FIX #4: Process WebSocket Fill events immediately
                             info!("📨 WebSocket Fill received: order_id={}, size={}", fill.order_id, fill.size);
                             let mut tracker = position_tracker.write().await;
@@ -298,7 +298,7 @@ impl Orchestrator {
                             drop(tracker);
                             drop(risk);
                         }
-                        mm_exchange::types::ExchangeEvent::MarketResolved(resolved) => {
+                        v3_mm_exchange::types::ExchangeEvent::MarketResolved(resolved) => {
                             info!("Market resolved: {} -> {:?}", resolved.condition_id, resolved.winner);
                             // TODO: Handle market resolution
                         }
@@ -431,8 +431,8 @@ impl Orchestrator {
                 .flat_map(|m| vec![m.token_id_yes.clone(), m.token_id_no.clone()])
                 .filter(|t| !t.is_empty())
                 .collect();
-            let cid_to_asset: std::collections::HashMap<String, mm_core::Asset> = markets.iter()
-                .map(|m| (m.condition_id.clone(), mm_core::Asset::BTC))
+            let cid_to_asset: std::collections::HashMap<String, v3_mm_core::Asset> = markets.iter()
+                .map(|m| (m.condition_id.clone(), v3_mm_core::Asset::BTC))
                 .collect();
             if let Err(e) = self.clob_feed.write().await
                 .ensure_subscribed(token_ids, cid_to_asset).await {
@@ -1148,9 +1148,9 @@ impl Orchestrator {
     async fn handle_fill(
         tracker: &mut crate::position_tracker::PositionTracker,
         risk: &mut v3_risk::limits::RiskManager,
-        fill: mm_exchange::types::Fill,
+        fill: v3_mm_exchange::types::Fill,
     ) {
-        use mm_exchange::types::FillSide;
+        use v3_mm_exchange::types::FillSide;
         use rust_decimal::prelude::ToPrimitive;
 
         info!("Processing fill: order_id={}, condition_id={}, side={:?}, size={}, price={}",

@@ -8,7 +8,7 @@ use v3_core::{Asset, Market};
 
 /// Market scanner that discovers active 15-minute markets
 pub struct MarketScanner {
-    rx: mpsc::Receiver<mm_exchange::types::ExchangeEvent>,
+    rx: mpsc::Receiver<v3_mm_exchange::types::ExchangeEvent>,
 }
 
 impl MarketScanner {
@@ -17,7 +17,7 @@ impl MarketScanner {
         let (tx, rx) = mpsc::channel(100);
 
         // Spawn scanner background task
-        mm_exchange::scanner::spawn_market_scanner(tx).await?;
+        v3_mm_exchange::scanner::spawn_market_scanner(tx).await?;
 
         info!("Market scanner initialized");
 
@@ -28,9 +28,9 @@ impl MarketScanner {
     pub async fn next_market(&mut self) -> Option<Market> {
         match self.rx.try_recv() {
             Ok(event) => {
-                if let mm_exchange::types::ExchangeEvent::MarketReady(market_info) = event {
+                if let v3_mm_exchange::types::ExchangeEvent::MarketReady(market_info) = event {
                     info!("📥 Received market from scanner: {} {}", market_info.asset, &market_info.condition_id[..16]);
-                    // Convert mm_exchange::MarketInfo to v3_core::Market
+                    // Convert v3_mm_exchange::MarketInfo to v3_core::Market
                     let market = Market {
                         condition_id: market_info.condition_id,
                         token_id_yes: market_info.token_id_yes,

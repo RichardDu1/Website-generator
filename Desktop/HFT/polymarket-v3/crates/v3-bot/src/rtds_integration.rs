@@ -4,7 +4,7 @@ use anyhow::Result;
 use tokio::sync::mpsc;
 use tracing::info;
 
-use mm_exchange::types::ExchangeEvent;
+use v3_mm_exchange::types::ExchangeEvent;
 
 /// RTDS feed manager
 pub struct RtdsFeed {
@@ -17,7 +17,7 @@ impl RtdsFeed {
         let (tx, rx) = mpsc::channel(100);
 
         // Spawn RTDS WebSocket
-        mm_exchange::rtds::spawn_rtds_feed(tx, None).await?;
+        v3_mm_exchange::rtds::spawn_rtds_feed(tx, None).await?;
 
         info!("RTDS feed initialized");
 
@@ -25,7 +25,7 @@ impl RtdsFeed {
     }
 
     /// Get next price update from RTDS (non-blocking)
-    pub async fn next_price(&mut self) -> Option<mm_exchange::types::RtdsPrice> {
+    pub async fn next_price(&mut self) -> Option<v3_mm_exchange::types::RtdsPrice> {
         loop {
             match self.rx.try_recv() {
                 Ok(event) => {
@@ -46,7 +46,7 @@ impl RtdsFeed {
     }
 
     /// Drain all available price updates
-    pub async fn drain_prices(&mut self) -> Vec<mm_exchange::types::RtdsPrice> {
+    pub async fn drain_prices(&mut self) -> Vec<v3_mm_exchange::types::RtdsPrice> {
         let mut prices = Vec::new();
 
         while let Some(price) = self.next_price().await {

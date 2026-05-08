@@ -7,6 +7,9 @@ members = [
     "crates/v3-execution",
     "crates/v3-risk",
     "crates/v3-bot",
+    "crates/v3-mm-core",
+    "crates/v3-mm-exchange",
+    "crates/v3-mm-risk",
     # TODO: Uncomment when implemented
     # "crates/v3-dashboard",
 ]
@@ -22,6 +25,7 @@ license = "MIT"
 tokio = { version = "1.40", features = ["full"] }
 tokio-tungstenite = "0.24"
 futures = "0.3"
+futures-util = "0.3"
 async-trait = "0.1"
 
 # Serialization
@@ -34,8 +38,10 @@ reqwest = { version = "0.12", features = ["json"] }
 tungstenite = "0.24"
 
 # Crypto/Web3
-ethers = { version = "2.0", features = ["abigen", "ws"] }
-alloy-primitives = "0.8"
+alloy = { version = "1.7", features = ["full"] }
+alloy-primitives = "1.5"
+polymarket-client-sdk = { version = "0.4", features = ["clob"] }
+hex = "0.4"
 
 # Decimal math
 rust_decimal = { version = "1.36", features = ["serde-with-str"] }
@@ -54,13 +60,16 @@ thiserror = "1.0"
 # Collections
 dashmap = "6.1"
 
+# Stats / math
+statrs = "0.17"
+
 # Config
 dotenv = "0.15"
 
-# Reuse from polymarket-mm
-mm-core = { path = "../polymarket-mm/crates/mm-core" }
-mm-exchange = { path = "../polymarket-mm/crates/mm-exchange" }
-mm-risk = { path = "../polymarket-mm/crates/mm-risk" }
+# Vendored in-tree
+v3-mm-core = { path = "crates/v3-mm-core" }
+v3-mm-exchange = { path = "crates/v3-mm-exchange" }
+v3-mm-risk = { path = "crates/v3-mm-risk" }
 
 [profile.release]
 opt-level = 3

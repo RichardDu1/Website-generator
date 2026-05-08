@@ -4,7 +4,7 @@ use v3_core::{Order, OrderSide, Outcome};
 use anyhow::{Result, Context};
 use tracing::{info, warn};
 use crate::{TtlManager, CancelMonitor, OrderTracker};
-use mm_exchange::polymarket::OrderClient;
+use v3_mm_exchange::polymarket::OrderClient;
 use rust_decimal::prelude::*;
 
 /// Order executor - handles order placement and cancellation
@@ -103,8 +103,8 @@ impl OrderExecutor {
 
         // Convert side to mm-exchange type
         let side = match order.side {
-            OrderSide::Buy => mm_exchange::types::OrderSide::Buy,
-            OrderSide::Sell => mm_exchange::types::OrderSide::Sell,
+            OrderSide::Buy => v3_mm_exchange::types::OrderSide::Buy,
+            OrderSide::Sell => v3_mm_exchange::types::OrderSide::Sell,
         };
 
         // Convert price to Decimal

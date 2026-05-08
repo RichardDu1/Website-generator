@@ -14,8 +14,8 @@ v3-strategy = { path = "../v3-strategy" }
 v3-execution = { path = "../v3-execution" }
 v3-risk = { path = "../v3-risk" }
 v3-dashboard = { path = "../v3-dashboard" }
-mm-exchange = { workspace = true }
-mm-core = { workspace = true }
+v3-mm-exchange = { workspace = true }
+v3-mm-core = { workspace = true }
 
 tokio = { workspace = true }
 async-trait = { workspace = true }

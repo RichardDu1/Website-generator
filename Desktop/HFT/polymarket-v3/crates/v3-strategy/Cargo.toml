@@ -6,7 +6,7 @@ edition.workspace = true
 [dependencies]
 v3-core = { path = "../v3-core" }
 v3-signal = { path = "../v3-signal" }
-mm-core = { workspace = true }
+v3-mm-core = { workspace = true }
 
 tokio = { workspace = true }
 async-trait = { workspace = true }

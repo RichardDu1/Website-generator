@@ -4,7 +4,7 @@ use anyhow::Result;
 use tokio::sync::mpsc;
 use tracing::info;
 
-use mm_exchange::types::ExchangeEvent;
+use v3_mm_exchange::types::ExchangeEvent;
 
 /// Binance feed manager
 pub struct BinanceFeed {
@@ -20,7 +20,7 @@ impl BinanceFeed {
         let symbols = vec!["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT"];
         info!("Spawning Binance feed for symbols: {:?}", symbols);
 
-        match mm_exchange::binance::spawn_binance_feed(tx, &symbols, None).await {
+        match v3_mm_exchange::binance::spawn_binance_feed(tx, &symbols, None).await {
             Ok(_) => info!("Binance feed spawned successfully"),
             Err(e) => {
                 tracing::error!("Failed to spawn Binance feed: {}", e);
@@ -34,7 +34,7 @@ impl BinanceFeed {
     }
 
     /// Get next tick from Binance (non-blocking)
-    pub async fn next_tick(&mut self) -> Option<mm_exchange::types::BinanceTick> {
+    pub async fn next_tick(&mut self) -> Option<v3_mm_exchange::types::BinanceTick> {
         loop {
             match self.rx.try_recv() {
                 Ok(event) => {
@@ -53,7 +53,7 @@ impl BinanceFeed {
     }
 
     /// Drain all available ticks
-    pub async fn drain_ticks(&mut self) -> Vec<mm_exchange::types::BinanceTick> {
+    pub async fn drain_ticks(&mut self) -> Vec<v3_mm_exchange::types::BinanceTick> {
         let mut ticks = Vec::new();
 
         while let Some(tick) = self.next_tick().await {

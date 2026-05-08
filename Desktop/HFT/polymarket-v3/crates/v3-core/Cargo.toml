@@ -5,7 +5,7 @@ edition.workspace = true
 
 [dependencies]
 # Reuse from mm-core
-mm-core = { workspace = true }
+v3-mm-core = { workspace = true }
 
 # Async
 tokio = { workspace = true }

@@ -1,7 +1,7 @@
 use chrono::{DateTime, Utc};
 use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
-use mm_core::Asset;
+use v3_mm_core::Asset;
 
 /// Market representation for 15-minute crypto markets
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]

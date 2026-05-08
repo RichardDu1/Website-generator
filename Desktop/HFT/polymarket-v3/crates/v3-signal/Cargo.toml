@@ -5,8 +5,8 @@ edition.workspace = true
 
 [dependencies]
 v3-core = { path = "../v3-core" }
-mm-core = { workspace = true }
-mm-exchange = { workspace = true }
+v3-mm-core = { workspace = true }
+v3-mm-exchange = { workspace = true }
 
 tokio = { workspace = true }
 async-trait = { workspace = true }

@@ -9,4 +9,4 @@ pub use math::*;
 pub use config::*;
 
 // Re-export commonly used types from mm-core
-pub use mm_core::Asset;
+pub use v3_mm_core::Asset;
