@@ -33,6 +33,12 @@ pub struct GengarConfig {
     pub max_bet_usdc: f64,
     /// Profit-lock exit ratio: if `current_edge < initial_edge * ratio` → close.
     pub profit_lock_ratio: f64,
+    /// Wall-clock hard ceiling on position hold time (seconds). Independent
+    /// of window end — protects against stuck positions if our tick loop stops
+    /// seeing price updates (network flap, CLOB reconnect storm, etc.).
+    /// Default 900s (15 min): 5m windows never hit it; 15m positions trip near
+    /// window end; 4h positions are force-closed well before window resolution.
+    pub max_position_hold_secs: u64,
     /// Used when the per-window VolTracker isn't full yet.
     pub static_vol_fallback: f64,
 }
@@ -52,6 +58,7 @@ impl Default for GengarConfig {
             min_bet_usdc: 5.0,
             max_bet_usdc: 25.0,
             profit_lock_ratio: 0.30,
+            max_position_hold_secs: 900,
             static_vol_fallback: 0.12,
         }
     }
@@ -205,6 +212,16 @@ pub fn should_lock_profit(initial_edge: f64, current_edge: f64, lock_ratio: f64)
     current_edge < initial_edge * lock_ratio
 }
 
+/// Wall-clock hard ceiling check: returns true when a position has been held
+/// for at least `config.max_position_hold_secs`. Pure function — orchestrator
+/// does the actual force-sell.
+pub fn should_force_close_by_wallclock(
+    config: &GengarConfig,
+    held_secs: u64,
+) -> bool {
+    held_secs >= config.max_position_hold_secs
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -330,5 +347,24 @@ mod tests {
     #[test]
     fn lock_profit_ignores_non_positive_initial() {
         assert!(!should_lock_profit(0.0, -0.1, 0.30));
+    }
+
+    #[test]
+    fn wallclock_trips_at_or_past_limit() {
+        let cfg = GengarConfig::default(); // max_position_hold_secs = 900
+        assert!(!should_force_close_by_wallclock(&cfg, 0));
+        assert!(!should_force_close_by_wallclock(&cfg, 899));
+        assert!(should_force_close_by_wallclock(&cfg, 900));
+        assert!(should_force_close_by_wallclock(&cfg, 10_000));
+    }
+
+    #[test]
+    fn wallclock_respects_custom_config() {
+        let cfg = GengarConfig {
+            max_position_hold_secs: 60,
+            ..GengarConfig::default()
+        };
+        assert!(!should_force_close_by_wallclock(&cfg, 59));
+        assert!(should_force_close_by_wallclock(&cfg, 60));
     }
 }

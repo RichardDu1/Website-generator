@@ -47,6 +47,13 @@ max_bet_usdc = 25.0
 # Dynamic profit lock: exit when `current_edge < initial_edge * ratio`.
 profit_lock_ratio = 0.30
 
+# Wall-clock hard ceiling on position hold time (seconds). Independent of
+# window end — fires if the tick loop stops seeing price updates (network
+# flap, CLOB reconnect storm).
+# 900s (15 min): 5m windows never hit it; 15m positions trip near window end;
+# 4h positions are force-closed well before resolution.
+max_position_hold_secs = 900
+
 # Used before the per-window VolTracker has 12 samples.
 static_vol_fallback = 0.12
 

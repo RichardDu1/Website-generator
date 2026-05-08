@@ -400,6 +400,17 @@ impl GengarOrchestrator {
             self.positions.read().await.values().cloned().collect();
 
         for pos in positions {
+            // --- Wall-clock hard ceiling ---
+            let held_secs = (chrono::Utc::now() - pos.entered_at).num_seconds().max(0) as u64;
+            if gengar::should_force_close_by_wallclock(&self.gengar_cfg, held_secs) {
+                warn!(
+                    "⏱️ Wall-clock max_hold exceeded for {}: held {}s >= limit {}s — force-sell",
+                    pos.pair_id, held_secs, self.gengar_cfg.max_position_hold_secs
+                );
+                self.force_sell_position(&pos).await;
+                continue;
+            }
+
             let Some(ws) = self.window_manager.get(pos.window_kind).await else {
                 // window gone → release
                 info!("🏁 Window gone, release {}", pos.pair_id);
@@ -484,5 +495,35 @@ impl GengarOrchestrator {
         }
 
         Ok(())
+    }
+
+    /// Best-effort close: try to sell at best_bid - 1 tick, else at 90% of
+    /// entry price as a last-ditch price floor. If the sell itself errors we
+    /// still drop the position from our map and log so we don't loop forever
+    /// on a dead market.
+    async fn force_sell_position(&self, pos: &OpenPosition) {
+        let best_bid = {
+            let book = self.book_cache.read().await;
+            book.get_top(&pos.token_id).map(|(b, _)| b)
+        };
+        let sell_price = match best_bid {
+            Some(b) => ((b - 0.01).max(0.01) * 100.0).round() / 100.0,
+            None => (pos.entry_price * 0.90 * 100.0).round() / 100.0,
+        };
+        match self
+            .executor
+            .execute_gengar_sell(&pos.token_id, sell_price, pos.shares)
+            .await
+        {
+            Ok(order_id) => info!(
+                "💨 Force-sell {} @ {:.4} → order={}",
+                pos.pair_id, sell_price, order_id
+            ),
+            Err(e) => warn!(
+                "💥 Force-sell FAILED for {} @ {:.4}: {:#} (dropping from position map anyway)",
+                pos.pair_id, sell_price, e
+            ),
+        }
+        self.positions.write().await.remove(&pos.pair_id);
     }
 }
