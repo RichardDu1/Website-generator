@@ -253,6 +253,89 @@ impl OrderExecutor {
         Arc::clone(&self.order_tracker)
     }
 
+    /// Gengar-style BUY: non-post-only GTC at the given price.
+    ///
+    /// We intentionally use non-post-only here: the edge decays quickly, so
+    /// getting filled immediately (as taker) is often worth the fee. The
+    /// order is limit-priced at `price`, so we never pay more than that even
+    /// if it lands as a taker.
+    pub async fn execute_gengar_order(
+        &self,
+        token_id: &str,
+        price: f64,
+        shares: u64,
+    ) -> Result<String> {
+        if self.dry_run {
+            let id = format!("dry-run-gengar-{}", uuid::Uuid::new_v4());
+            info!(
+                "DRY-RUN: Gengar BUY token={}... @ {:.4} x {} → {}",
+                &token_id[..token_id.len().min(12)],
+                price,
+                shares,
+                id
+            );
+            return Ok(id);
+        }
+        let client = self
+            .client
+            .as_ref()
+            .ok_or_else(|| anyhow::anyhow!("OrderClient not initialized"))?;
+        let price_d = Decimal::from_f64(price)
+            .ok_or_else(|| anyhow::anyhow!("Invalid Gengar price"))?;
+        let size_d = Decimal::from(shares);
+        let id = client
+            .place_gtc_order(
+                token_id,
+                v3_mm_exchange::types::OrderSide::Buy,
+                price_d,
+                size_d,
+            )
+            .await
+            .context("place_gtc_order (Gengar buy)")?;
+        info!("✅ Gengar BUY placed: {}", id);
+        Ok(id)
+    }
+
+    /// Gengar-style SELL (used for profit-lock exit).
+    /// Non-post-only GTC at given price. Same reasoning as `execute_gengar_order`:
+    /// when the signal is decaying we want a fast exit.
+    pub async fn execute_gengar_sell(
+        &self,
+        token_id: &str,
+        price: f64,
+        shares: u64,
+    ) -> Result<String> {
+        if self.dry_run {
+            let id = format!("dry-run-gengar-sell-{}", uuid::Uuid::new_v4());
+            info!(
+                "DRY-RUN: Gengar SELL token={}... @ {:.4} x {} → {}",
+                &token_id[..token_id.len().min(12)],
+                price,
+                shares,
+                id
+            );
+            return Ok(id);
+        }
+        let client = self
+            .client
+            .as_ref()
+            .ok_or_else(|| anyhow::anyhow!("OrderClient not initialized"))?;
+        let price_d = Decimal::from_f64(price)
+            .ok_or_else(|| anyhow::anyhow!("Invalid Gengar sell price"))?;
+        let size_d = Decimal::from(shares);
+        let id = client
+            .place_gtc_order(
+                token_id,
+                v3_mm_exchange::types::OrderSide::Sell,
+                price_d,
+                size_d,
+            )
+            .await
+            .context("place_gtc_order (Gengar sell)")?;
+        info!("✅ Gengar SELL placed: {}", id);
+        Ok(id)
+    }
+
     /// Query order status from CLOB API
     /// Returns: "FILLED", "OPEN", "CANCELLED", "EXPIRED", or "PARTIALLY_FILLED"
     pub async fn get_order_status(&self, order_id: &str) -> Result<String> {
