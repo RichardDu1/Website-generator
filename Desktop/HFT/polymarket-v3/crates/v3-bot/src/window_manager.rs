@@ -1,8 +1,12 @@
-//! Polymarket 5m / 15m / 1h BTC UP/DOWN window math.
+//! Polymarket 5m / 15m / 4h BTC UP/DOWN window math.
 //!
-//! Polymarket uses deterministic slugs: `btc-updown-{5m|15m|1h}-{window_ts}`
+//! Polymarket uses deterministic slugs: `btc-updown-{5m|15m|4h}-{window_ts}`
 //! where `window_ts = now - (now % period)`. This module encodes that math
 //! so we don't have to keep string-formatting slugs by hand.
+//!
+//! Note: verified via live Gamma API on 2026-05-08 that Polymarket runs
+//!       5m / 15m / 4h for BTC (NOT 1h — `btc-updown-1h-*` returns empty).
+//!       If a 1h tier is added later, extend `WindowKind` with `H1`.
 
 use serde::{Deserialize, Serialize};
 
@@ -10,7 +14,7 @@ use serde::{Deserialize, Serialize};
 pub enum WindowKind {
     M5,
     M15,
-    H1,
+    H4,
 }
 
 impl WindowKind {
@@ -18,7 +22,7 @@ impl WindowKind {
         match self {
             WindowKind::M5 => 300,
             WindowKind::M15 => 900,
-            WindowKind::H1 => 3600,
+            WindowKind::H4 => 14_400,
         }
     }
 
@@ -26,7 +30,7 @@ impl WindowKind {
         match self {
             WindowKind::M5 => "5m",
             WindowKind::M15 => "15m",
-            WindowKind::H1 => "1h",
+            WindowKind::H4 => "4h",
         }
     }
 
@@ -48,7 +52,7 @@ impl WindowKind {
     }
 
     pub fn all() -> [WindowKind; 3] {
-        [WindowKind::M5, WindowKind::M15, WindowKind::H1]
+        [WindowKind::M5, WindowKind::M15, WindowKind::H4]
     }
 }
 
@@ -234,14 +238,15 @@ mod tests {
     fn period_seconds_correct() {
         assert_eq!(WindowKind::M5.period_secs(), 300);
         assert_eq!(WindowKind::M15.period_secs(), 900);
-        assert_eq!(WindowKind::H1.period_secs(), 3600);
+        assert_eq!(WindowKind::H4.period_secs(), 14_400);
     }
 
     #[test]
     fn window_ts_aligns_to_period() {
         assert_eq!(WindowKind::M5.current_window_ts(1_700_000_123), 1_700_000_100);
         assert_eq!(WindowKind::M15.current_window_ts(1_700_000_999), 1_700_000_100);
-        assert_eq!(WindowKind::H1.current_window_ts(1_700_000_100), 1_699_999_200);
+        // 4h = 14_400s; floor(1_700_000_100 / 14400) * 14400 = 1_699_992_000
+        assert_eq!(WindowKind::H4.current_window_ts(1_700_000_100), 1_699_992_000);
     }
 
     #[test]
@@ -255,8 +260,8 @@ mod tests {
             "btc-updown-15m-1700000100"
         );
         assert_eq!(
-            WindowKind::H1.slug(1_700_000_100),
-            "btc-updown-1h-1700000100"
+            WindowKind::H4.slug(1_700_000_100),
+            "btc-updown-4h-1700000100"
         );
     }
 
