@@ -102,14 +102,22 @@ impl WindowManager {
 
     /// For each `WindowKind`, compute the current slug and (re)load it from Gamma
     /// if we haven't seen this slug before.
-    pub async fn refresh_all(&self) -> Result<()> {
+    ///
+    /// Returns a list of `(kind, old_state)` for windows that were *replaced*
+    /// (i.e. a rollover happened). Callers should use those to compute the
+    /// closing delta and feed it into per-window vol trackers. Windows loaded
+    /// for the first time produce no entry.
+    pub async fn refresh_all(&self) -> Result<Vec<(WindowKind, WindowState)>> {
         let now = chrono::Utc::now().timestamp();
+        let mut rolled: Vec<(WindowKind, WindowState)> = Vec::new();
         for kind in WindowKind::all() {
             let ts = kind.current_window_ts(now);
             let slug = kind.slug(ts);
-            let need_refresh = {
+            let (need_refresh, old_state) = {
                 let map = self.windows.read().await;
-                map.get(&kind).map_or(true, |w| w.slug != slug)
+                let existing = map.get(&kind);
+                let need = existing.map_or(true, |w| w.slug != slug);
+                (need, existing.cloned())
             };
             if !need_refresh {
                 continue;
@@ -118,11 +126,15 @@ impl WindowManager {
                 Ok(ws) => {
                     self.windows.write().await.insert(kind, ws);
                     info!("📥 Loaded window {:?}: {}", kind, slug);
+                    // Only report as "rolled" if we had a previous state to replace.
+                    if let Some(old) = old_state {
+                        rolled.push((kind, old));
+                    }
                 }
                 Err(e) => warn!("Failed to fetch {}: {:#}", slug, e),
             }
         }
-        Ok(())
+        Ok(rolled)
     }
 
     async fn fetch_window(

@@ -114,7 +114,7 @@ mod tests {
     #[tokio::test]
     async fn test_circuit_breaker_normal() {
         let limits = RiskLimits::default();
-        let risk_manager = Arc::new(RwLock::new(RiskManager::new(limits)));
+        let risk_manager = Arc::new(RwLock::new(fresh_manager(limits)));
         let mut breaker = CircuitBreaker::new(risk_manager);
 
         assert_eq!(breaker.state(), CircuitState::Closed);
@@ -127,7 +127,7 @@ mod tests {
             max_daily_loss: 10.0,
             ..Default::default()
         };
-        let risk_manager = Arc::new(RwLock::new(RiskManager::new(limits)));
+        let risk_manager = Arc::new(RwLock::new(fresh_manager(limits)));
         let mut breaker = CircuitBreaker::new(risk_manager.clone());
 
         // Record excessive loss
@@ -138,10 +138,17 @@ mod tests {
         assert!(breaker.tripped_at().is_some());
     }
 
+    fn fresh_manager(limits: RiskLimits) -> RiskManager {
+        let dir = tempfile::tempdir().expect("tempdir");
+        let path = dir.path().join("daily_pnl.json");
+        std::mem::forget(dir);
+        RiskManager::new_with_state_file(limits, path)
+    }
+
     #[tokio::test]
     async fn test_manual_halt() {
         let limits = RiskLimits::default();
-        let risk_manager = Arc::new(RwLock::new(RiskManager::new(limits)));
+        let risk_manager = Arc::new(RwLock::new(fresh_manager(limits)));
         let mut breaker = CircuitBreaker::new(risk_manager);
 
         breaker.manual_halt();
@@ -154,7 +161,7 @@ mod tests {
     #[tokio::test]
     async fn test_manual_resume() {
         let limits = RiskLimits::default();
-        let risk_manager = Arc::new(RwLock::new(RiskManager::new(limits)));
+        let risk_manager = Arc::new(RwLock::new(fresh_manager(limits)));
         let mut breaker = CircuitBreaker::new(risk_manager);
 
         breaker.manual_halt();
@@ -172,7 +179,7 @@ mod tests {
             max_daily_loss: 10.0,
             ..Default::default()
         };
-        let risk_manager = Arc::new(RwLock::new(RiskManager::new(limits)));
+        let risk_manager = Arc::new(RwLock::new(fresh_manager(limits)));
         let mut breaker = CircuitBreaker::new(risk_manager.clone());
 
         // Trip breaker

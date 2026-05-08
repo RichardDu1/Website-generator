@@ -56,7 +56,12 @@ pub struct RiskManager {
 impl RiskManager {
     pub fn new(limits: RiskLimits) -> Self {
         let state_file = PathBuf::from("state/daily_pnl.json");
+        Self::new_with_state_file(limits, state_file)
+    }
 
+    /// Constructor that takes an explicit state file path. Useful for tests
+    /// (each test should use a unique tempfile to avoid cross-test pollution).
+    pub fn new_with_state_file(limits: RiskLimits, state_file: PathBuf) -> Self {
         // Load persisted state
         let state = DailyPnlState::load_or_new(&state_file);
 
@@ -245,10 +250,20 @@ mod tests {
         }
     }
 
+    fn fresh_manager(limits: RiskLimits) -> RiskManager {
+        // Per-test tempfile so tests don't trample each other's persisted state.
+        let dir = tempfile::tempdir().expect("tempdir");
+        let path = dir.path().join("daily_pnl.json");
+        // Leak the dir so the file stays alive for the RiskManager's lifetime;
+        // the OS tempdir cleanup will eventually reclaim it.
+        std::mem::forget(dir);
+        RiskManager::new_with_state_file(limits, path)
+    }
+
     #[test]
     fn test_can_open_position() {
         let limits = RiskLimits::default();
-        let manager = RiskManager::new(limits);
+        let manager = fresh_manager(limits);
 
         assert!(manager.can_open_position(5, Asset::BTC).is_ok());
         assert!(manager.can_open_position(15, Asset::BTC).is_err()); // Exceeds max size
@@ -260,7 +275,7 @@ mod tests {
             max_concurrent_positions: 2,
             ..Default::default()
         };
-        let mut manager = RiskManager::new(limits);
+        let mut manager = fresh_manager(limits);
 
         manager.add_position(create_test_position("pos1", 5));
         manager.add_position(create_test_position("pos2", 5));
@@ -270,7 +285,7 @@ mod tests {
 
     #[test]
     fn test_total_exposure() {
-        let mut manager = RiskManager::new(RiskLimits::default());
+        let mut manager = fresh_manager(RiskLimits::default());
 
         manager.add_position(create_test_position("pos1", 10));
         manager.add_position(create_test_position("pos2", 15));
@@ -284,7 +299,7 @@ mod tests {
             max_daily_loss: 10.0,
             ..Default::default()
         };
-        let mut manager = RiskManager::new(limits);
+        let mut manager = fresh_manager(limits);
 
         manager.record_realized_pnl(-5.0);
         assert!(manager.can_open_position(5, Asset::BTC).is_ok());
@@ -299,7 +314,7 @@ mod tests {
             max_loss_per_position: 3.0,
             ..Default::default()
         };
-        let manager = RiskManager::new(limits);
+        let manager = fresh_manager(limits);
 
         let mut position = create_test_position("pos1", 5);
         position.unrealized_pnl = -4.0;

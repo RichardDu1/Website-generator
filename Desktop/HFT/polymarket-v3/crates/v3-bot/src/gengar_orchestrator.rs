@@ -25,7 +25,7 @@ use v3_strategy::{gengar, GengarConfig, VolTracker};
 use crate::binance_integration::BinanceFeed;
 use crate::clob_integration::{BookCache, ClobFeed};
 use crate::config::BotConfig;
-use crate::window_manager::{WindowKind, WindowManager};
+use crate::window_manager::{WindowKind, WindowManager, WindowState};
 
 /// An open Gengar position (single leg). We allow at most one per WindowKind.
 #[derive(Debug, Clone)]
@@ -184,12 +184,16 @@ impl GengarOrchestrator {
         }
 
         // --- 3. Refresh windows every 10s ---
+        //
+        // When a window rolls, `refresh_all` returns the OLD WindowState so
+        // we can compute its closing delta and feed the per-window VolTracker.
         let now = chrono::Utc::now().timestamp();
         let mut last_refresh = self.last_refresh_secs.write().await;
         if now - *last_refresh >= 10 {
             *last_refresh = now;
             drop(last_refresh);
-            self.window_manager.refresh_all().await?;
+            let rolled = self.window_manager.refresh_all().await?;
+            self.record_closing_deltas(&rolled).await;
             self.ensure_clob_subscriptions().await?;
         } else {
             drop(last_refresh);
@@ -221,10 +225,47 @@ impl GengarOrchestrator {
         Ok(())
     }
 
-    /// When a window's ts changes (rollover) we:
-    ///   - record the closing delta into VolTracker for the *old* window
-    ///   - clear opening_price tracking for the new window
-    /// Also: for windows without opening_price yet, anchor it from latest BTC.
+    /// Given the list of `(kind, old_state)` that just rolled over, compute
+    /// each one's closing `btc_delta_pct` (using the latest BTC spot as an
+    /// approximation for the close price) and push it into the per-window
+    /// VolTracker.
+    ///
+    /// Approximation note: Polymarket settles on the Binance 1m bar at window
+    /// end. Between rollover detection and this call, we may be a few hundred
+    /// ms late, so `latest_btc_price` is close-but-not-exact. Good enough for
+    /// a rolling vol estimate; the static fallback (0.12) covers any gap.
+    async fn record_closing_deltas(&self, rolled: &[(WindowKind, WindowState)]) {
+        if rolled.is_empty() {
+            return;
+        }
+        let latest = *self.latest_btc_price.read().await;
+        if latest <= 0.0 {
+            return;
+        }
+        let mut trackers = self.vol_trackers.write().await;
+        for (kind, old) in rolled {
+            let Some(open) = old.opening_price else { continue };
+            if open <= 0.0 {
+                continue;
+            }
+            let closing_delta_pct = (latest - open) / open * 100.0;
+            if let Some(t) = trackers.get_mut(kind) {
+                t.record_window_delta(closing_delta_pct);
+                info!(
+                    "↻ {:?} closed {:.4}% (opened={:.2} closed_at≈{:.2}); vol_buffer={}/{}",
+                    kind,
+                    closing_delta_pct,
+                    open,
+                    latest,
+                    t.len(),
+                    t.capacity()
+                );
+            }
+        }
+    }
+
+    /// Anchor the opening price for any window that doesn't have one yet.
+    /// Called every tick (cheap no-op when already anchored).
     async fn handle_rollovers_and_openings(&self) {
         let latest = *self.latest_btc_price.read().await;
         if latest <= 0.0 {
@@ -234,17 +275,11 @@ impl GengarOrchestrator {
             let Some(ws) = self.window_manager.get(kind).await else {
                 continue;
             };
+            // Track window_ts transitions purely for info-level logging.
             let mut last_ts_map = self.last_window_ts.write().await;
             let prev = last_ts_map.get(&kind).copied();
             if let Some(prev_ts) = prev {
                 if prev_ts != ws.window_ts {
-                    // Rollover detected. Record closing delta for the old window
-                    // if we have an opening_price for it (stored on the now-stale WindowState).
-                    // Note: window_manager already swapped to the new WindowState; we
-                    // don't have the old opening_price anymore. Best-effort: record
-                    // current delta against *new* opening — which is 0. So we skip
-                    // VolTracker updates on rollover and rely on delta between manual
-                    // snapshots. (See TODO below for improvement.)
                     info!("↻ Window {:?} rolled: {} → {}", kind, prev_ts, ws.window_ts);
                 }
             }
