@@ -77,9 +77,22 @@ impl Default for MarketMakingConfig {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SpreadCaptureConfig {
     pub enabled: bool,
-    pub min_spread_edge: f64,        // 0.01 = 1% minimum edge
-    pub position_size: u64,          // USDC
-    pub max_hold_time: u64,          // seconds
+    /// YES_ask + NO_ask must be < this to trigger Gabagool entry.
+    pub max_pair_cost: f64,
+    /// Per-leg notional size in USDC.
+    pub position_size_usdc: f64,
+    /// Force-close the pair if not both legs filled within this many seconds.
+    pub kill_switch_secs: u64,
+    /// Seconds to wait for the opposite leg to fill before we start hedging.
+    pub hedge_timeout_secs: u64,
+    /// Aggression used for hedge fallback orders (basis points vs leg price).
+    pub hedge_slippage_bps: u32,
+    /// Legacy single-leg threshold (unused by Gabagool path).
+    pub min_spread_edge: f64,
+    /// Max hold time for a pair position (seconds).
+    pub max_hold_time: u64,
+    /// Legacy per-leg share count (unused by Gabagool path, kept for compat).
+    pub position_size: u64,
 }
 
 impl Default for SpreadCaptureConfig {
@@ -92,9 +105,14 @@ impl Default for SpreadCaptureConfig {
 
         Self {
             enabled: true,
+            max_pair_cost: 0.975,
+            position_size_usdc: 5.0,
+            kill_switch_secs: 900,
+            hedge_timeout_secs: 3,
+            hedge_slippage_bps: 200,
             min_spread_edge: 0.01,
+            max_hold_time: 900,
             position_size,
-            max_hold_time: 60,
         }
     }
 }
