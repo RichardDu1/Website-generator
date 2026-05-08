@@ -1,0 +1,12 @@
+[package]
+name = "v3-mm-risk"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+v3-mm-core = { path = "../v3-mm-core" }
+rust_decimal = { workspace = true }
+chrono = { workspace = true }
+serde = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
