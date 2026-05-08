@@ -1,67 +1,33 @@
 use serde::{Deserialize, Serialize};
-use v3_core::{Market, MarketState};
 
-/// Complete signal snapshot for decision making
-#[derive(Debug, Clone, Serialize, Deserialize)]
+/// Which window kind the signal belongs to (kept as lightweight tag here to
+/// avoid v3-signal → v3-bot circular dep; the real `WindowKind` with methods
+/// lives in v3-bot::window_manager).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum WindowKind {
+    M5,
+    M15,
+    H1,
+}
+
+/// Gengar-style per-tick signal snapshot. All fields are consumed by
+/// `v3_strategy::gengar::evaluate`.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct SignalSnapshot {
-    pub market: Market,
-    pub market_state: MarketState,
+    pub window_kind: Option<WindowKind>,
+    /// Latest Binance BTC spot price.
     pub binance_price: f64,
-    pub binance_velocity: f64,
-    pub binance_acceleration: f64,
-    pub momentum_signal: MomentumSignalType,
-    pub volatility: f64,
-    pub has_arbitrage: bool,
-
-    /// Order book imbalance ratio: (bid_vol - ask_vol) / (bid_vol + ask_vol)
-    /// Range [-1.0, 1.0]. Positive = more bids (buy pressure), negative = more asks (sell pressure).
-    pub order_book_imbalance: f64,
-
-    /// Sum of top-3 bid levels in USDC (depth on buy side)
-    pub bid_depth_3: f64,
-
-    /// Sum of top-3 ask levels in USDC (depth on sell side)
-    pub ask_depth_3: f64,
-
-    /// Spread capture margin: 1.0 - (best_yes_ask + best_no_ask)
-    /// Positive value means risk-neutral arbitrage profit is available.
-    pub spread_capture_margin: f64,
-
-    /// True when Binance velocity spike detected — MM orders should be cancelled immediately.
-    pub binance_cancel_signal: bool,
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
-pub enum MomentumSignalType {
-    StrongUp,
-    WeakUp,
-    Neutral,
-    WeakDown,
-    StrongDown,
-}
-
-impl MomentumSignalType {
-    pub fn is_bullish(&self) -> bool {
-        matches!(self, MomentumSignalType::StrongUp | MomentumSignalType::WeakUp)
-    }
-
-    pub fn is_bearish(&self) -> bool {
-        matches!(self, MomentumSignalType::StrongDown | MomentumSignalType::WeakDown)
-    }
-
-    pub fn is_strong(&self) -> bool {
-        matches!(self, MomentumSignalType::StrongUp | MomentumSignalType::StrongDown)
-    }
-}
-
-impl From<crate::MomentumSignal> for MomentumSignalType {
-    fn from(signal: crate::MomentumSignal) -> Self {
-        match signal {
-            crate::MomentumSignal::StrongUp => MomentumSignalType::StrongUp,
-            crate::MomentumSignal::WeakUp => MomentumSignalType::WeakUp,
-            crate::MomentumSignal::Neutral => MomentumSignalType::Neutral,
-            crate::MomentumSignal::WeakDown => MomentumSignalType::WeakDown,
-            crate::MomentumSignal::StrongDown => MomentumSignalType::StrongDown,
-        }
-    }
+    /// The BTC price captured at the window's open (anchors delta).
+    pub opening_price: f64,
+    /// (binance_price - opening_price) / opening_price * 100
+    pub btc_delta_pct: f64,
+    /// Seconds until the window resolves.
+    pub seconds_remaining: f64,
+    /// Realized volatility from the window's VolTracker (falls back to
+    /// `static_vol_fallback` when the tracker is below capacity).
+    pub realized_vol: f64,
+    /// Best ask for UP token (what we'd pay to buy UP).
+    pub up_market_price: f64,
+    /// Best ask for DOWN token.
+    pub down_market_price: f64,
 }

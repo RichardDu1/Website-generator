@@ -297,69 +297,6 @@ impl BinanceMonitor {
         self.price_history.clear();
         debug!("Cleared Binance monitor history for {:?}", self.asset);
     }
-
-    /// Get signal snapshot for strategy decision
-    pub fn get_signal(&self) -> crate::signal_types::SignalSnapshot {
-        use crate::signal_types::{SignalSnapshot, MomentumSignalType};
-
-        let velocity = self.price_velocity();
-        let volatility = self.price_volatility();
-        let acceleration = self.price_acceleration();
-        let price = self.current_price().unwrap_or(0.0);
-
-        // Determine momentum signal based on volatility (price range) instead of velocity
-        // volatility > 0.0003 means price moved more than 0.03% in the last 30 seconds
-        let volatility_threshold = 0.0003; // 0.03% range in 30 seconds
-
-        let momentum_signal = if volatility > volatility_threshold && velocity > 0.0 {
-            // High volatility + positive direction = bullish momentum
-            if acceleration > self.acceleration_threshold {
-                MomentumSignalType::StrongUp
-            } else {
-                MomentumSignalType::WeakUp
-            }
-        } else if volatility > volatility_threshold && velocity < 0.0 {
-            // High volatility + negative direction = bearish momentum
-            if acceleration < -self.acceleration_threshold {
-                MomentumSignalType::StrongDown
-            } else {
-                MomentumSignalType::WeakDown
-            }
-        } else {
-            MomentumSignalType::Neutral
-        };
-
-        SignalSnapshot {
-            market: v3_core::Market::default(),
-            market_state: v3_core::MarketState {
-                market: v3_core::Market::default(),
-                best_bid_up: 0.48,
-                best_ask_up: 0.52,
-                best_bid_down: 0.48,
-                best_ask_down: 0.52,
-                spread_up: 0.04,
-                spread_down: 0.04,
-                mid_price_up: 0.50,
-                mid_price_down: 0.50,
-                volatility: volatility,
-                binance_price: price,
-                binance_velocity: velocity,
-            },
-            binance_price: price,
-            binance_velocity: velocity,
-            binance_acceleration: acceleration,
-            momentum_signal,
-            volatility: volatility,
-            has_arbitrage: false,
-            // These fields are populated by the orchestrator from BookCache
-            // (binance_monitor has no access to the order book)
-            order_book_imbalance: 0.0,
-            bid_depth_3: 0.0,
-            ask_depth_3: 0.0,
-            spread_capture_margin: 0.0,
-            binance_cancel_signal: self.cancel_signal(),
-        }
-    }
 }
 
 #[cfg(test)]
