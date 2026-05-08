@@ -13,7 +13,7 @@ use tracing::{info, error};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 use crate::config::BotConfig;
-use crate::orchestrator::Orchestrator;
+use crate::gengar_orchestrator::GengarOrchestrator;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -26,7 +26,7 @@ async fn main() -> Result<()> {
         .with(tracing_subscriber::fmt::layer())
         .init();
 
-    info!("🚀 Polymarket V3 Bot starting...");
+    info!("🚀 Polymarket V3 Bot starting (Gengar directional latency arb)");
 
     // Load configuration
     let config = match BotConfig::from_env_and_file("config/bot.toml") {
@@ -50,8 +50,15 @@ async fn main() -> Result<()> {
     info!("Configuration loaded successfully");
     info!("Mode: {}", if config.dry_run { "DRY-RUN" } else { "LIVE" });
 
+    // Bankroll: env var BANKROLL_USDC (defaults to 100.0 for dry-run)
+    let bankroll = std::env::var("BANKROLL_USDC")
+        .ok()
+        .and_then(|s| s.parse::<f64>().ok())
+        .unwrap_or(100.0);
+    info!("Bankroll: ${:.2}", bankroll);
+
     // Create orchestrator
-    let orchestrator = match Orchestrator::new(config).await {
+    let orchestrator = match GengarOrchestrator::new(config, bankroll).await {
         Ok(orch) => orch,
         Err(e) => {
             error!("Failed to create orchestrator: {}", e);
