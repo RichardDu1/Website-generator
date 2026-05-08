@@ -263,6 +263,21 @@ impl OrderExecutor {
         Arc::clone(&self.order_tracker)
     }
 
+    /// Query on-chain USDC.e balance (returns whole USDC, not raw wei).
+    /// Returns `None` in dry_run (we don't have a client — caller uses the
+    /// initial bankroll as-is). Errors from the RPC bubble up.
+    pub async fn usdc_balance(&self) -> Result<Option<f64>> {
+        if self.dry_run {
+            return Ok(None);
+        }
+        let client = self
+            .client
+            .as_ref()
+            .ok_or_else(|| anyhow::anyhow!("OrderClient not initialized"))?;
+        let bal = client.usdc_balance().await.context("usdc_balance")?;
+        Ok(Some(bal))
+    }
+
     /// Gengar-style BUY with maker-first priority.
     ///
     /// Tries `place_limit_order` (post-only GTC, maker = 0% fee) first. If the

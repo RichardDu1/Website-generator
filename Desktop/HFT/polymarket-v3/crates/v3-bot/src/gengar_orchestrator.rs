@@ -67,6 +67,7 @@ pub struct GengarOrchestrator {
     gengar_cfg: GengarConfig,
 
     last_refresh_secs: Arc<RwLock<i64>>,
+    last_bankroll_refresh_secs: Arc<RwLock<i64>>,
 }
 
 impl GengarOrchestrator {
@@ -133,6 +134,7 @@ impl GengarOrchestrator {
             positions: Arc::new(RwLock::new(HashMap::new())),
             latest_btc_price: Arc::new(RwLock::new(0.0)),
             last_refresh_secs: Arc::new(RwLock::new(0)),
+            last_bankroll_refresh_secs: Arc::new(RwLock::new(0)),
         })
     }
 
@@ -199,6 +201,18 @@ impl GengarOrchestrator {
             drop(last_refresh);
         }
 
+        // --- 3b. Refresh bankroll from on-chain USDC every 60s (live only) ---
+        if !self.config.dry_run {
+            let mut last_bk = self.last_bankroll_refresh_secs.write().await;
+            if now - *last_bk >= 60 {
+                *last_bk = now;
+                drop(last_bk);
+                self.refresh_bankroll().await;
+            } else {
+                drop(last_bk);
+            }
+        }
+
         // --- 4. Detect window roll-over + anchor opening price ---
         self.handle_rollovers_and_openings().await;
 
@@ -213,6 +227,40 @@ impl GengarOrchestrator {
         self.manage_positions().await?;
 
         Ok(())
+    }
+
+    /// Refresh bankroll from on-chain USDC.e balance. Live mode only.
+    ///
+    /// Locked-in capital (already in open Gengar positions) is subtracted from
+    /// the on-chain balance before writing. This gives Kelly a view of
+    /// *deployable* capital, not total wallet value. Without this subtraction
+    /// we'd double-size: new trades would size against the full balance, but
+    /// the balance already reflects spend on open positions too.
+    async fn refresh_bankroll(&self) {
+        let raw = match self.executor.usdc_balance().await {
+            Ok(Some(b)) => b,
+            Ok(None) => return, // dry_run path
+            Err(e) => {
+                warn!("usdc_balance refresh failed: {:#}", e);
+                return;
+            }
+        };
+        // Subtract locked capital (sum of open positions' notional).
+        let locked: f64 = self
+            .positions
+            .read()
+            .await
+            .values()
+            .map(|p| p.entry_price * p.shares as f64)
+            .sum();
+        let deployable = (raw - locked).max(0.0);
+        let mut bk = self.bankroll_usdc.write().await;
+        let prev = *bk;
+        *bk = deployable;
+        info!(
+            "💰 Bankroll refresh: wallet=${:.2} − locked=${:.2} = deployable=${:.2} (was ${:.2})",
+            raw, locked, deployable, prev
+        );
     }
 
     async fn ensure_clob_subscriptions(&self) -> Result<()> {
