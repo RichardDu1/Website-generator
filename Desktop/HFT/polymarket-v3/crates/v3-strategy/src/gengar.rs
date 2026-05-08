@@ -45,6 +45,15 @@ pub struct GengarConfig {
     pub preemptive_cancel_prob: f64,
     /// Used when the per-window VolTracker isn't full yet.
     pub static_vol_fallback: f64,
+    /// Assets to trade. Polymarket runs updown markets for
+    /// btc / eth / sol / xrp / (and bnb/doge/hype, not in v3_mm_core::Asset).
+    /// Default is BTC only — multi-asset is opt-in.
+    #[serde(default = "default_tracked_assets")]
+    pub tracked_assets: Vec<v3_mm_core::Asset>,
+}
+
+fn default_tracked_assets() -> Vec<v3_mm_core::Asset> {
+    vec![v3_mm_core::Asset::BTC]
 }
 
 impl Default for GengarConfig {
@@ -65,6 +74,7 @@ impl Default for GengarConfig {
             max_position_hold_secs: 900,
             preemptive_cancel_prob: 0.55,
             static_vol_fallback: 0.12,
+            tracked_assets: default_tracked_assets(),
         }
     }
 }

@@ -4,11 +4,17 @@
 //! where `window_ts = now - (now % period)`. This module encodes that math
 //! so we don't have to keep string-formatting slugs by hand.
 //!
+//! Multi-asset (I5): Polymarket runs the same scheme for `{btc,eth,sol,xrp,
+//! bnb,doge,hype}-updown-*`. `WindowKind::slug(asset, ts)` takes an Asset.
+//! The bot is configured to track a subset via GengarConfig.tracked_assets
+//! (default: [BTC]).
+//!
 //! Note: verified via live Gamma API on 2026-05-08 that Polymarket runs
 //!       5m / 15m / 4h for BTC (NOT 1h — `btc-updown-1h-*` returns empty).
 //!       If a 1h tier is added later, extend `WindowKind` with `H1`.
 
 use serde::{Deserialize, Serialize};
+use v3_mm_core::Asset;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum WindowKind {
@@ -40,9 +46,9 @@ impl WindowKind {
         (now_secs - now_secs.rem_euclid(p)) as u64
     }
 
-    /// Polymarket Gamma slug for a specific window ts.
-    pub fn slug(&self, window_ts: u64) -> String {
-        format!("btc-updown-{}-{}", self.slug_prefix(), window_ts)
+    /// Polymarket Gamma slug for a specific asset + window ts.
+    pub fn slug(&self, asset: Asset, window_ts: u64) -> String {
+        format!("{}-updown-{}-{}", asset.slug_prefix(), self.slug_prefix(), window_ts)
     }
 
     /// Remaining seconds in the window. Can be negative if `now_secs` has
@@ -59,6 +65,7 @@ impl WindowKind {
 /// Per-window state owned by `WindowManager`.
 #[derive(Debug, Clone)]
 pub struct WindowState {
+    pub asset: Asset,
     pub kind: WindowKind,
     pub window_ts: u64,
     pub slug: String,
@@ -85,7 +92,8 @@ const GAMMA_API: &str = "https://gamma-api.polymarket.com";
 
 pub struct WindowManager {
     http: Client,
-    windows: Arc<RwLock<HashMap<WindowKind, WindowState>>>,
+    /// Keyed by (asset, kind).
+    windows: Arc<RwLock<HashMap<(Asset, WindowKind), WindowState>>>,
 }
 
 impl WindowManager {
@@ -100,38 +108,42 @@ impl WindowManager {
         }
     }
 
-    /// For each `WindowKind`, compute the current slug and (re)load it from Gamma
-    /// if we haven't seen this slug before.
+    /// For each (asset, kind) in `tracked`, compute the current slug and
+    /// (re)load it from Gamma if we haven't seen this slug before.
     ///
-    /// Returns a list of `(kind, old_state)` for windows that were *replaced*
-    /// (i.e. a rollover happened). Callers should use those to compute the
-    /// closing delta and feed it into per-window vol trackers. Windows loaded
-    /// for the first time produce no entry.
-    pub async fn refresh_all(&self) -> Result<Vec<(WindowKind, WindowState)>> {
+    /// Returns a list of `(asset, kind, old_state)` for windows that were
+    /// *replaced* (rollover). Windows loaded for the first time produce no
+    /// entry.
+    pub async fn refresh_all(
+        &self,
+        tracked: &[Asset],
+    ) -> Result<Vec<(Asset, WindowKind, WindowState)>> {
         let now = chrono::Utc::now().timestamp();
-        let mut rolled: Vec<(WindowKind, WindowState)> = Vec::new();
-        for kind in WindowKind::all() {
-            let ts = kind.current_window_ts(now);
-            let slug = kind.slug(ts);
-            let (need_refresh, old_state) = {
-                let map = self.windows.read().await;
-                let existing = map.get(&kind);
-                let need = existing.map_or(true, |w| w.slug != slug);
-                (need, existing.cloned())
-            };
-            if !need_refresh {
-                continue;
-            }
-            match self.fetch_window(kind, ts, &slug).await {
-                Ok(ws) => {
-                    self.windows.write().await.insert(kind, ws);
-                    info!("📥 Loaded window {:?}: {}", kind, slug);
-                    // Only report as "rolled" if we had a previous state to replace.
-                    if let Some(old) = old_state {
-                        rolled.push((kind, old));
-                    }
+        let mut rolled: Vec<(Asset, WindowKind, WindowState)> = Vec::new();
+        for &asset in tracked {
+            for kind in WindowKind::all() {
+                let key = (asset, kind);
+                let ts = kind.current_window_ts(now);
+                let slug = kind.slug(asset, ts);
+                let (need_refresh, old_state) = {
+                    let map = self.windows.read().await;
+                    let existing = map.get(&key);
+                    let need = existing.map_or(true, |w| w.slug != slug);
+                    (need, existing.cloned())
+                };
+                if !need_refresh {
+                    continue;
                 }
-                Err(e) => warn!("Failed to fetch {}: {:#}", slug, e),
+                match self.fetch_window(asset, kind, ts, &slug).await {
+                    Ok(ws) => {
+                        self.windows.write().await.insert(key, ws);
+                        info!("📥 Loaded window {:?} {:?}: {}", asset, kind, slug);
+                        if let Some(old) = old_state {
+                            rolled.push((asset, kind, old));
+                        }
+                    }
+                    Err(e) => warn!("Failed to fetch {}: {:#}", slug, e),
+                }
             }
         }
         Ok(rolled)
@@ -139,6 +151,7 @@ impl WindowManager {
 
     async fn fetch_window(
         &self,
+        asset: Asset,
         kind: WindowKind,
         window_ts: u64,
         slug: &str,
@@ -197,6 +210,7 @@ impl WindowManager {
         }
 
         Ok(WindowState {
+            asset,
             kind,
             window_ts,
             slug: slug.to_string(),
@@ -207,13 +221,13 @@ impl WindowManager {
         })
     }
 
-    pub async fn get(&self, kind: WindowKind) -> Option<WindowState> {
-        self.windows.read().await.get(&kind).cloned()
+    pub async fn get(&self, asset: Asset, kind: WindowKind) -> Option<WindowState> {
+        self.windows.read().await.get(&(asset, kind)).cloned()
     }
 
     /// Set the opening price once (first write wins) for a window.
-    pub async fn set_opening_price(&self, kind: WindowKind, price: f64) {
-        if let Some(w) = self.windows.write().await.get_mut(&kind) {
+    pub async fn set_opening_price(&self, asset: Asset, kind: WindowKind, price: f64) {
+        if let Some(w) = self.windows.write().await.get_mut(&(asset, kind)) {
             if w.opening_price.is_none() {
                 w.opening_price = Some(price);
             }
@@ -223,7 +237,7 @@ impl WindowManager {
     /// Return all currently subscribed CLOB token IDs (UP + DOWN per window).
     pub async fn all_tokens(&self) -> Vec<String> {
         let map = self.windows.read().await;
-        let mut v = Vec::with_capacity(6);
+        let mut v = Vec::with_capacity(map.len() * 2);
         for w in map.values() {
             if !w.token_id_up.is_empty() {
                 v.push(w.token_id_up.clone());
@@ -264,16 +278,20 @@ mod tests {
     #[test]
     fn slug_format() {
         assert_eq!(
-            WindowKind::M5.slug(1_700_000_100),
+            WindowKind::M5.slug(Asset::BTC, 1_700_000_100),
             "btc-updown-5m-1700000100"
         );
         assert_eq!(
-            WindowKind::M15.slug(1_700_000_100),
-            "btc-updown-15m-1700000100"
+            WindowKind::M15.slug(Asset::ETH, 1_700_000_100),
+            "eth-updown-15m-1700000100"
         );
         assert_eq!(
-            WindowKind::H4.slug(1_700_000_100),
-            "btc-updown-4h-1700000100"
+            WindowKind::H4.slug(Asset::SOL, 1_700_000_100),
+            "sol-updown-4h-1700000100"
+        );
+        assert_eq!(
+            WindowKind::M5.slug(Asset::XRP, 1_700_000_100),
+            "xrp-updown-5m-1700000100"
         );
     }
 

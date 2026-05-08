@@ -62,6 +62,13 @@ preemptive_cancel_prob = 0.55
 # Used before the per-window VolTracker has 12 samples.
 static_vol_fallback = 0.12
 
+# Assets to trade. Polymarket runs `<asset>-updown-<period>-<ts>` markets
+# for btc/eth/sol/xrp. Default BTC-only; add others to opt in:
+#   tracked_assets = ["BTC", "ETH", "SOL", "XRP"]
+# Multi-asset roughly 4x's signal volume but concurrent positions
+# share bankroll / daily-loss limits (i.e. risk is cross-asset).
+tracked_assets = ["BTC"]
+
 [risk]
 max_position_size = 25             # USDC per position (Kelly cap)
 max_total_exposure = 100           # USDC total across all windows

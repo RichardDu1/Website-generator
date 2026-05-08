@@ -30,10 +30,11 @@ use crate::hourly_stats::HourlyStats;
 use crate::notifier::Notifier;
 use crate::window_manager::{WindowKind, WindowManager, WindowState};
 
-/// An open Gengar position (single leg). We allow at most one per WindowKind.
+/// An open Gengar position (single leg). We allow at most one per (asset, window).
 #[derive(Debug, Clone)]
 pub struct OpenPosition {
     pub pair_id: String,
+    pub asset: v3_mm_core::Asset,
     pub window_kind: WindowKind,
     /// Which side we bought (UP or DOWN).
     pub side: gengar::Side,
@@ -54,18 +55,18 @@ pub struct GengarOrchestrator {
     book_cache: Arc<RwLock<BookCache>>,
     executor: Arc<OrderExecutor>,
 
-    vol_trackers: Arc<RwLock<HashMap<WindowKind, VolTracker>>>,
-    /// Tracks the last closing price per WindowKind so we can record delta when
-    /// a window rolls over.
-    last_window_ts: Arc<RwLock<HashMap<WindowKind, u64>>>,
+    vol_trackers: Arc<RwLock<HashMap<(v3_mm_core::Asset, WindowKind), VolTracker>>>,
+    /// Tracks the last closing price per (asset, WindowKind) so we can record
+    /// delta when a window rolls over.
+    last_window_ts: Arc<RwLock<HashMap<(v3_mm_core::Asset, WindowKind), u64>>>,
 
     /// Kelly bankroll (USDC). Updated via balance snapshots.
     bankroll_usdc: Arc<RwLock<f64>>,
 
     positions: Arc<RwLock<HashMap<String, OpenPosition>>>,
 
-    /// Latest Binance spot we've seen (cached from ticks between polls).
-    latest_btc_price: Arc<RwLock<f64>>,
+    /// Latest Binance spot per asset (cached from ticks between polls).
+    latest_prices: Arc<RwLock<HashMap<v3_mm_core::Asset, f64>>>,
 
     gengar_cfg: GengarConfig,
 
@@ -121,8 +122,10 @@ impl GengarOrchestrator {
 
         let vol_trackers = {
             let mut m = HashMap::new();
-            for k in WindowKind::all() {
-                m.insert(k, VolTracker::new(12));
+            for asset in &config.strategies.gengar.tracked_assets {
+                for k in WindowKind::all() {
+                    m.insert((*asset, k), VolTracker::new(12));
+                }
             }
             Arc::new(RwLock::new(m))
         };
@@ -177,7 +180,7 @@ impl GengarOrchestrator {
             last_window_ts: Arc::new(RwLock::new(HashMap::new())),
             bankroll_usdc: Arc::new(RwLock::new(initial_bankroll_usdc)),
             positions: Arc::new(RwLock::new(positions_map)),
-            latest_btc_price: Arc::new(RwLock::new(0.0)),
+            latest_prices: Arc::new(RwLock::new(HashMap::new())),
             last_refresh_secs: Arc::new(RwLock::new(0)),
             last_bankroll_refresh_secs: Arc::new(RwLock::new(0)),
             event_log,
@@ -218,16 +221,18 @@ impl GengarOrchestrator {
     /// One tick: (1) drain Binance, (2) drain CLOB, (3) refresh windows,
     /// (4) roll-over bookkeeping, (5) per-window evaluate, (6) manage positions.
     async fn tick(&self) -> Result<()> {
-        // --- 1. Drain Binance ticks, keep latest price ---
+        // --- 1. Drain Binance ticks, keep latest price per asset ---
         {
             let mut feed = self.binance_feed.write().await;
+            let mut cache = self.latest_prices.write().await;
             while let Some(tick) = feed.next_tick().await {
-                if tick.asset == Asset::BTC {
-                    // Use mid of bid/ask as reference price.
-                    let mid = (tick.bid + tick.ask) / 2.0;
-                    if mid > 0.0 {
-                        *self.latest_btc_price.write().await = mid;
-                    }
+                // Only track assets in config.tracked_assets.
+                if !self.gengar_cfg.tracked_assets.contains(&tick.asset) {
+                    continue;
+                }
+                let mid = (tick.bid + tick.ask) / 2.0;
+                if mid > 0.0 {
+                    cache.insert(tick.asset, mid);
                 }
             }
         }
@@ -251,7 +256,10 @@ impl GengarOrchestrator {
         if now - *last_refresh >= 10 {
             *last_refresh = now;
             drop(last_refresh);
-            let rolled = self.window_manager.refresh_all().await?;
+            let rolled = self
+                .window_manager
+                .refresh_all(&self.gengar_cfg.tracked_assets)
+                .await?;
             self.record_closing_deltas(&rolled).await;
             self.ensure_clob_subscriptions().await?;
         } else {
@@ -273,10 +281,12 @@ impl GengarOrchestrator {
         // --- 4. Detect window roll-over + anchor opening price ---
         self.handle_rollovers_and_openings().await;
 
-        // --- 5. Per-window evaluate ---
-        for kind in WindowKind::all() {
-            if let Err(e) = self.tick_window(kind).await {
-                warn!("tick_window {:?}: {:#}", kind, e);
+        // --- 5. Per-(asset, window) evaluate ---
+        for &asset in &self.gengar_cfg.tracked_assets {
+            for kind in WindowKind::all() {
+                if let Err(e) = self.tick_window(asset, kind).await {
+                    warn!("tick_window {:?} {:?}: {:#}", asset, kind, e);
+                }
             }
         }
 
@@ -338,34 +348,39 @@ impl GengarOrchestrator {
         Ok(())
     }
 
-    /// Given the list of `(kind, old_state)` that just rolled over, compute
-    /// each one's closing `btc_delta_pct` (using the latest BTC spot as an
-    /// approximation for the close price) and push it into the per-window
-    /// VolTracker.
+    /// Given the list of `(asset, kind, old_state)` that just rolled over,
+    /// compute each one's closing `btc_delta_pct` using the per-asset Binance
+    /// spot as an approximation for the close price and push it into the
+    /// per-(asset, kind) VolTracker.
     ///
     /// Approximation note: Polymarket settles on the Binance 1m bar at window
-    /// end. Between rollover detection and this call, we may be a few hundred
-    /// ms late, so `latest_btc_price` is close-but-not-exact. Good enough for
-    /// a rolling vol estimate; the static fallback (0.12) covers any gap.
-    async fn record_closing_deltas(&self, rolled: &[(WindowKind, WindowState)]) {
+    /// end. Between rollover detection and this call we may be a few hundred
+    /// ms late, so `latest_prices` is close-but-not-exact. Good enough for a
+    /// rolling vol estimate; the static fallback (0.12) covers any gap.
+    async fn record_closing_deltas(
+        &self,
+        rolled: &[(v3_mm_core::Asset, WindowKind, WindowState)],
+    ) {
         if rolled.is_empty() {
             return;
         }
-        let latest = *self.latest_btc_price.read().await;
-        if latest <= 0.0 {
-            return;
-        }
+        let prices = self.latest_prices.read().await.clone();
         let mut trackers = self.vol_trackers.write().await;
-        for (kind, old) in rolled {
+        for (asset, kind, old) in rolled {
             let Some(open) = old.opening_price else { continue };
             if open <= 0.0 {
                 continue;
             }
+            let Some(&latest) = prices.get(asset) else { continue };
+            if latest <= 0.0 {
+                continue;
+            }
             let closing_delta_pct = (latest - open) / open * 100.0;
-            if let Some(t) = trackers.get_mut(kind) {
+            if let Some(t) = trackers.get_mut(&(*asset, *kind)) {
                 t.record_window_delta(closing_delta_pct);
                 info!(
-                    "↻ {:?} closed {:.4}% (opened={:.2} closed_at≈{:.2}); vol_buffer={}/{}",
+                    "↻ {:?} {:?} closed {:.4}% (opened={:.2} closed_at≈{:.2}); vol_buffer={}/{}",
+                    asset,
                     kind,
                     closing_delta_pct,
                     open,
@@ -377,57 +392,66 @@ impl GengarOrchestrator {
         }
     }
 
-    /// Anchor the opening price for any window that doesn't have one yet.
+    /// Anchor the opening price for any (asset, window) that doesn't have one yet.
     /// Called every tick (cheap no-op when already anchored).
     async fn handle_rollovers_and_openings(&self) {
-        let latest = *self.latest_btc_price.read().await;
-        if latest <= 0.0 {
+        let prices = self.latest_prices.read().await.clone();
+        if prices.is_empty() {
             return;
         }
-        for kind in WindowKind::all() {
-            let Some(ws) = self.window_manager.get(kind).await else {
+        for &asset in &self.gengar_cfg.tracked_assets {
+            let Some(&latest) = prices.get(&asset) else { continue };
+            if latest <= 0.0 {
                 continue;
-            };
-            // Track window_ts transitions purely for info-level logging.
-            let mut last_ts_map = self.last_window_ts.write().await;
-            let prev = last_ts_map.get(&kind).copied();
-            if let Some(prev_ts) = prev {
-                if prev_ts != ws.window_ts {
-                    info!("↻ Window {:?} rolled: {} → {}", kind, prev_ts, ws.window_ts);
-                }
             }
-            last_ts_map.insert(kind, ws.window_ts);
-            drop(last_ts_map);
+            for kind in WindowKind::all() {
+                let Some(ws) = self.window_manager.get(asset, kind).await else {
+                    continue;
+                };
+                // Track window_ts transitions purely for info-level logging.
+                let mut last_ts_map = self.last_window_ts.write().await;
+                let prev = last_ts_map.get(&(asset, kind)).copied();
+                if let Some(prev_ts) = prev {
+                    if prev_ts != ws.window_ts {
+                        info!(
+                            "↻ Window {:?} {:?} rolled: {} → {}",
+                            asset, kind, prev_ts, ws.window_ts
+                        );
+                    }
+                }
+                last_ts_map.insert((asset, kind), ws.window_ts);
+                drop(last_ts_map);
 
-            if ws.opening_price.is_none() {
-                self.window_manager.set_opening_price(kind, latest).await;
-                info!("⚓ Anchored opening price {:?} = {:.2}", kind, latest);
+                if ws.opening_price.is_none() {
+                    self.window_manager.set_opening_price(asset, kind, latest).await;
+                    info!("⚓ Anchored opening price {:?} {:?} = {:.2}", asset, kind, latest);
+                }
             }
         }
     }
 
-    async fn tick_window(&self, kind: WindowKind) -> Result<()> {
-        // Skip if we already hold a position in this window.
+    async fn tick_window(&self, asset: v3_mm_core::Asset, kind: WindowKind) -> Result<()> {
+        // Skip if we already hold a position in this (asset, window).
         let has_pos = self
             .positions
             .read()
             .await
             .values()
-            .any(|p| p.window_kind == kind);
+            .any(|p| p.asset == asset && p.window_kind == kind);
         if has_pos {
             return Ok(());
         }
 
-        let Some(ws) = self.window_manager.get(kind).await else {
+        let Some(ws) = self.window_manager.get(asset, kind).await else {
             return Ok(());
         };
         let Some(opening) = ws.opening_price else {
             return Ok(());
         };
-        let binance_price = *self.latest_btc_price.read().await;
-        if binance_price <= 0.0 {
-            return Ok(());
-        }
+        let binance_price = match self.latest_prices.read().await.get(&asset) {
+            Some(&p) if p > 0.0 => p,
+            _ => return Ok(()),
+        };
         let now = chrono::Utc::now().timestamp();
         let sec_rem = kind.seconds_remaining(ws.window_ts, now) as f64;
         if sec_rem <= 0.0 {
@@ -448,7 +472,7 @@ impl GengarOrchestrator {
         let vol = {
             let trackers = self.vol_trackers.read().await;
             trackers
-                .get(&kind)
+                .get(&(asset, kind))
                 .map(|t| t.realized_vol(self.gengar_cfg.static_vol_fallback))
                 .unwrap_or(self.gengar_cfg.static_vol_fallback)
         };
@@ -530,9 +554,10 @@ impl GengarOrchestrator {
                 .await?
         };
 
-        let pair_id = format!("{:?}-{}", kind, &order_id[..order_id.len().min(8)]);
+        let pair_id = format!("{:?}-{:?}-{}", asset, kind, &order_id[..order_id.len().min(8)]);
         let pos = OpenPosition {
             pair_id: pair_id.clone(),
+            asset,
             window_kind: kind,
             side: sig.side,
             token_id: token.clone(),
@@ -563,6 +588,7 @@ impl GengarOrchestrator {
         );
         self.event_log.log_entry(
             &pair_id,
+            &format!("{:?}", asset),
             kind,
             match sig.side {
                 gengar::Side::Up => "Up",
@@ -609,7 +635,7 @@ impl GengarOrchestrator {
                 continue;
             }
 
-            let Some(ws) = self.window_manager.get(pos.window_kind).await else {
+            let Some(ws) = self.window_manager.get(pos.asset, pos.window_kind).await else {
                 // window gone → release
                 info!("🏁 Window gone, release {}", pos.pair_id);
                 self.positions.write().await.remove(&pos.pair_id);
@@ -623,7 +649,10 @@ impl GengarOrchestrator {
                 continue;
             }
 
-            let binance_price = *self.latest_btc_price.read().await;
+            let binance_price = match self.latest_prices.read().await.get(&pos.asset) {
+                Some(&p) if p > 0.0 => p,
+                _ => continue,
+            };
             let Some(opening) = ws.opening_price else {
                 continue;
             };
@@ -634,7 +663,7 @@ impl GengarOrchestrator {
             let vol = {
                 let trackers = self.vol_trackers.read().await;
                 trackers
-                    .get(&pos.window_kind)
+                    .get(&(pos.asset, pos.window_kind))
                     .map(|t| t.realized_vol(self.gengar_cfg.static_vol_fallback))
                     .unwrap_or(self.gengar_cfg.static_vol_fallback)
             };
@@ -715,6 +744,7 @@ impl GengarOrchestrator {
                 );
                 self.event_log.log_exit(
                     &pos.pair_id,
+                    &format!("{:?}", pos.asset),
                     pos.window_kind,
                     match pos.side {
                         gengar::Side::Up => "Up",
@@ -780,6 +810,7 @@ impl GengarOrchestrator {
                 let pnl = (sell_price - pos.entry_price) * pos.shares as f64;
                 self.event_log.log_exit(
                     &pos.pair_id,
+                    &format!("{:?}", pos.asset),
                     pos.window_kind,
                     match pos.side {
                         gengar::Side::Up => "Up",

@@ -22,7 +22,7 @@ pub struct EventLogger {
 }
 
 const SIGNALS_HEADER: &str = "ts,window,btc_price,opening_price,delta_pct,sec_rem,vol,up_ask,down_ask,action,prob,edge,kelly_usdc,skip_reason";
-const TRADES_HEADER: &str = "ts,event,pair_id,window,side,token_id,price,shares,notional,initial_edge,current_edge,order_id,realized_pnl";
+const TRADES_HEADER: &str = "ts,event,pair_id,asset,window,side,token_id,price,shares,notional,initial_edge,current_edge,order_id,realized_pnl";
 
 impl EventLogger {
     /// Create (or reopen) the two log files under `dir`.
@@ -77,6 +77,7 @@ impl EventLogger {
     pub fn log_entry(
         &self,
         pair_id: &str,
+        asset: &str,
         window: WindowKind,
         side: &str,
         token_id: &str,
@@ -88,7 +89,7 @@ impl EventLogger {
         let ts = Utc::now().to_rfc3339();
         let notional = price * shares as f64;
         let line = format!(
-            "{ts},entry,{pair_id},{window:?},{side},{token_id},{price:.4},{shares},{notional:.4},{initial_edge:.6},,{order_id},\n"
+            "{ts},entry,{pair_id},{asset},{window:?},{side},{token_id},{price:.4},{shares},{notional:.4},{initial_edge:.6},,{order_id},\n"
         );
         if let Ok(mut f) = self.trades.lock() {
             let _ = f.write_all(line.as_bytes());
@@ -101,6 +102,7 @@ impl EventLogger {
     pub fn log_exit(
         &self,
         pair_id: &str,
+        asset: &str,
         window: WindowKind,
         side: &str,
         token_id: &str,
@@ -115,7 +117,7 @@ impl EventLogger {
         let ts = Utc::now().to_rfc3339();
         let notional = price * shares as f64;
         let line = format!(
-            "{ts},exit-{reason},{pair_id},{window:?},{side},{token_id},{price:.4},{shares},{notional:.4},{initial_edge:.6},{},{order_id},{}\n",
+            "{ts},exit-{reason},{pair_id},{asset},{window:?},{side},{token_id},{price:.4},{shares},{notional:.4},{initial_edge:.6},{},{order_id},{}\n",
             current_edge.map(|v| format!("{v:.6}")).unwrap_or_default(),
             realized_pnl.map(|v| format!("{v:.4}")).unwrap_or_default(),
         );
@@ -203,6 +205,7 @@ mod tests {
         let log = EventLogger::new(dir.path()).unwrap();
         log.log_entry(
             "pair1",
+            "BTC",
             WindowKind::M15,
             "Up",
             "0xdeadbeef",
@@ -213,6 +216,7 @@ mod tests {
         );
         log.log_exit(
             "pair1",
+            "BTC",
             WindowKind::M15,
             "Up",
             "0xdeadbeef",

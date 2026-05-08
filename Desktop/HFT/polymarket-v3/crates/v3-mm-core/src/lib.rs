@@ -30,6 +30,17 @@ impl Asset {
         }
     }
 
+    /// Lower-case prefix used in Polymarket updown slugs
+    /// (`<prefix>-updown-<period>-<ts>`).
+    pub fn slug_prefix(&self) -> &'static str {
+        match self {
+            Asset::BTC => "btc",
+            Asset::ETH => "eth",
+            Asset::SOL => "sol",
+            Asset::XRP => "xrp",
+        }
+    }
+
     pub fn all() -> &'static [Asset] {
         &[Asset::BTC, Asset::ETH, Asset::SOL, Asset::XRP]
     }
