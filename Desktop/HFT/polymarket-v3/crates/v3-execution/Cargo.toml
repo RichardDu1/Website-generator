@@ -19,3 +19,6 @@ tracing = { workspace = true }
 dashmap = { workspace = true }
 rust_decimal = { workspace = true }
 uuid = { version = "1.0", features = ["v4"] }
+
+[dev-dependencies]
+tempfile = "3"

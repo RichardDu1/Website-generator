@@ -64,23 +64,25 @@ impl TradeLog {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use tempfile::NamedTempFile;
+    use tempfile::tempdir;
 
     #[test]
     fn test_trade_log_creation() {
-        let temp_file = NamedTempFile::new().unwrap();
-        let log = TradeLog::new(temp_file.path()).unwrap();
+        let dir = tempdir().unwrap();
+        let path = dir.path().join("trade.csv");
+        let log = TradeLog::new(&path).unwrap();
         drop(log);
 
         // Verify header was written
-        let content = std::fs::read_to_string(temp_file.path()).unwrap();
+        let content = std::fs::read_to_string(&path).unwrap();
         assert!(content.contains("timestamp,market_id,outcome,side,price,size,value,pnl"));
     }
 
     #[test]
     fn test_log_fill() {
-        let temp_file = NamedTempFile::new().unwrap();
-        let mut log = TradeLog::new(temp_file.path()).unwrap();
+        let dir = tempdir().unwrap();
+        let path = dir.path().join("trade.csv");
+        let mut log = TradeLog::new(&path).unwrap();
 
         log.log_fill(
             "test_market",
@@ -91,7 +93,7 @@ mod tests {
             Some(0.5),
         ).unwrap();
 
-        let content = std::fs::read_to_string(temp_file.path()).unwrap();
+        let content = std::fs::read_to_string(&path).unwrap();
         assert!(content.contains("test_market"));
         assert!(content.contains("Up"));
         assert!(content.contains("BUY"));

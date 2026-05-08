@@ -352,7 +352,7 @@ impl OrderExecutor {
         match client.get_order_status(order_id).await {
             Ok((is_live, size_matched)) => {
                 use rust_decimal::prelude::ToPrimitive;
-                let matched = size_matched.to_f64().unwrap_or(0.0);
+                let matched: f64 = size_matched.to_f64().unwrap_or(0.0);
 
                 if !is_live && matched > 0.0 {
                     // Order is no longer live and has matched size -> FILLED
@@ -419,54 +419,19 @@ mod tests {
         ));
 
         let executor = OrderExecutor::new(
+            None, // private_key (dry_run)
             ttl_manager,
             cancel_monitor,
             order_tracker.clone(),
             true, // dry_run
-        );
+        )
+        .await
+        .expect("executor new");
 
         let order = create_test_order();
         let result = executor.execute_order(order).await;
 
         assert!(result.is_ok());
         assert_eq!(order_tracker.read().await.active_count(), 1);
-    }
-
-    /// Query order status from CLOB API
-    /// Returns: "FILLED", "OPEN", "CANCELLED", "EXPIRED", or "UNKNOWN"
-    pub async fn get_order_status(&self, order_id: &str) -> Result<String> {
-        if self.dry_run {
-            // In dry-run mode, simulate filled orders
-            return Ok("FILLED".to_string());
-        }
-
-        let client = self.client.as_ref()
-            .ok_or_else(|| anyhow::anyhow!("OrderClient not initialized"))?;
-
-        // Query order status via CLOB API
-        // OrderClient.get_order_status returns (is_live, size_matched)
-        match client.get_order_status(order_id).await {
-            Ok((is_live, size_matched)) => {
-                use rust_decimal::prelude::ToPrimitive;
-                let matched = size_matched.to_f64().unwrap_or(0.0);
-
-                if !is_live && matched > 0.0 {
-                    // Order is no longer live and has matched size -> FILLED
-                    Ok("FILLED".to_string())
-                } else if !is_live {
-                    // Order is no longer live but no matched size -> CANCELLED or EXPIRED
-                    Ok("CANCELLED".to_string())
-                } else if matched > 0.0 {
-                    // Order is still live but has partial fill
-                    Ok("PARTIALLY_FILLED".to_string())
-                } else {
-                    // Order is still live with no fills
-                    Ok("OPEN".to_string())
-                }
-            }
-            Err(e) => {
-                Err(anyhow::anyhow!("Failed to query order status for {}: {}", order_id, e))
-            }
-        }
     }
 }
