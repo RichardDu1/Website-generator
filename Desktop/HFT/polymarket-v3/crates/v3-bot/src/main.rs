@@ -1,5 +1,4 @@
 mod config;
-mod orchestrator;
 mod scanner_integration;
 mod binance_integration;
 mod rtds_integration;
