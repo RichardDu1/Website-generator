@@ -1,0 +1,21 @@
+[package]
+name = "v3-mm-exchange"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+v3-mm-core = { path = "../v3-mm-core" }
+tokio = { workspace = true }
+tokio-tungstenite = { workspace = true }
+futures-util = { workspace = true }
+reqwest = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+rust_decimal = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+alloy = { workspace = true }
+alloy-primitives = { workspace = true }
+polymarket-client-sdk = { workspace = true }
+hex = { workspace = true }
