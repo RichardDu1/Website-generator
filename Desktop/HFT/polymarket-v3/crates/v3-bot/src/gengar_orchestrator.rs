@@ -26,6 +26,7 @@ use crate::binance_integration::BinanceFeed;
 use crate::clob_integration::{BookCache, ClobFeed};
 use crate::config::BotConfig;
 use crate::event_logger::EventLogger;
+use crate::hourly_stats::HourlyStats;
 use crate::notifier::Notifier;
 use crate::window_manager::{WindowKind, WindowManager, WindowState};
 
@@ -73,6 +74,7 @@ pub struct GengarOrchestrator {
 
     event_log: Arc<EventLogger>,
     notifier: Notifier,
+    hourly_stats: Arc<HourlyStats>,
 }
 
 impl GengarOrchestrator {
@@ -151,6 +153,7 @@ impl GengarOrchestrator {
             last_bankroll_refresh_secs: Arc::new(RwLock::new(0)),
             event_log,
             notifier,
+            hourly_stats: Arc::new(HourlyStats::new()),
         })
     }
 
@@ -250,6 +253,14 @@ impl GengarOrchestrator {
 
         // --- 6. Manage open positions (profit lock, window-end cleanup) ---
         self.manage_positions().await?;
+
+        // --- 7. Hourly Telegram summary (flush once per wall-clock hour) ---
+        if self.hourly_stats.should_flush(chrono::Utc::now()) {
+            if let Some(msg) = self.hourly_stats.flush() {
+                info!("{}", msg);
+                self.notifier.notify(&msg).await;
+            }
+        }
 
         Ok(())
     }
@@ -532,6 +543,7 @@ impl GengarOrchestrator {
             sig.edge,
             &order_id,
         );
+        self.hourly_stats.record_entry(sig.edge);
         self.notifier
             .notify(&format!(
                 "✅ ENTRY {:?} {:?}\nprice=${:.4} x {} = ${:.2}\nedge={:.4} prob={:.3}\nvol={:.3} sec_rem={:.0}",
@@ -659,6 +671,7 @@ impl GengarOrchestrator {
                             Some(pnl),
                             "profit-lock",
                         );
+                        self.hourly_stats.record_exit("profit-lock", pnl);
                         self.notifier
                             .notify(&format!(
                                 "🔒 EXIT profit-lock {:?}\npnl=${:+.2} (entry {:.4} → {:.4})\ninitial_edge={:.4} current={:.4}",
@@ -720,6 +733,7 @@ impl GengarOrchestrator {
                     Some(pnl),
                     "force-sell",
                 );
+                self.hourly_stats.record_exit("force-sell", pnl);
                 self.notifier
                     .notify(&format!(
                         "⏱️ FORCE-SELL {:?}\npnl=${:+.2} (entry {:.4} → {:.4})\nreason=wall-clock max_hold",

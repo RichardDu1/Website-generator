@@ -8,6 +8,7 @@ mod window_manager;
 mod gengar_orchestrator;
 mod event_logger;
 mod notifier;
+mod hourly_stats;
 
 use anyhow::Result;
 use tracing::{info, error};
