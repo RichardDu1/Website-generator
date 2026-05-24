@@ -1,0 +1,56 @@
+---
+// Schema.org structured data for SEOplant
+const siteUrl = "https://seoplant.io";
+const siteName = "SEOplant";
+---
+
+<!-- Organization -->
+<script type="application/ld+json" set:html>
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SEOplant",
+  "applicationCategory": "SEOSoftware",
+  "operatingSystem": "Web, Linux, macOS, Windows",
+  "description": "AI Programmatic SEO Platform — from keyword to ranking website automatically.",
+  "url": "https://seoplant.io",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Open Source (MIT)"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "SEOplant",
+    "url": "https://seoplant.io"
+  }
+}
+</script>
+
+<!-- WebSite -->
+<script type="application/ld+json" set:html>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "SEOplant",
+  "url": "https://seoplant.io",
+  "description": "AI Programmatic SEO Platform — from keyword to ranking website.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://seoplant.io/docs?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- BreadcrumbList -->
+<script type="application/ld+json" set:html>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seoplant.io" }
+  ]
+}
+</script>

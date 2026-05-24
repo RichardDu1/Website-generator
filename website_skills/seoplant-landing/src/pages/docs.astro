@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Docs — SEOplant"
+  description="SEOplant documentation: quick start guide, CLI reference, API docs, deployment guide, and programmatic SEO tutorials."
+>
+
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+
+      <h1>Documentation</h1>
+
+      <p style="font-size:1.1rem; color:var(--color-text-muted); margin-bottom:var(--space-2xl);">
+        Everything you need to go from keyword to ranking website.
+      </p>
+
+      <h2>Quick Start</h2>
+      <div class="terminal">
+        <pre><code>git clone https://github.com/RichardDu1/seoplant.git
+cd seoplant
+pip install requests beautifulsoup4
+
+# Analyze competitors
+python scripts/competitor_intel.py report "your niche keyword"
+
+# Generate SEO plan
+python scripts/seo_engine.py plan "your niche keyword" --type website
+
+# Scaffold Astro site
+python scripts/site_builder.py scaffold ./my-site --name "My Site" --keyword "your niche"
+
+# Build & preview
+cd my-site && npm install && npm run dev</code></pre>
+      </div>
+
+      <h2>Pipeline Modules</h2>
+
+      <h3>1. Competitor Intelligence</h3>
+      <p>Discovers competitors via Jina Search, crawls their websites, analyzes SEO signals (titles, meta, headings, schema, content depth), checks social media presence, and generates a SWOT report.</p>
+      <div class="terminal"><pre><code>python scripts/competitor_intel.py report "best hiking boots"</code></pre></div>
+
+      <h3>2. SEO/GEO Engine</h3>
+      <p>Expands keywords with heuristic patterns (or DataForSEO real data), clusters by topic and intent, assesses difficulty, generates a 6-month content calendar, and produces GEO configuration (llms.txt, Schema.org templates).</p>
+      <div class="terminal"><pre><code>python scripts/seo_engine.py plan "scottish highlands travel" --type travel --langs en,zh</code></pre></div>
+
+      <h3>3. Design Intelligence</h3>
+      <p>Searches design galleries (Awwwards, SiteInspire, Godly, Land-book, Mobbin) for niche-relevant inspiration, extracts design tokens (colors, fonts, spacing) from real websites, and fuses multiple designs into a unified DESIGN.md.</p>
+      <div class="terminal"><pre><code>python scripts/design_intel.py search "travel website"
+python scripts/design_intel.py extract "https://example.com"
+python scripts/design_intel.py fuse --keywords "scotland travel" --type travel</code></pre></div>
+
+      <h3>4. Site Builder</h3>
+      <p>Scaffolds a complete Astro 5.x project: BaseLayout, SEOHead, Header/Footer components, global CSS from DESIGN.md tokens, i18n routing, Schema.org structured data, robots.txt, sitemap config.</p>
+      <div class="terminal"><pre><code>python scripts/site_builder.py scaffold ./my-site \
+  --name "My Travel Site" \
+  --keyword "scottish highlands travel" \
+  --url "https://mysite.com" \
+  --design DESIGN.md</code></pre></div>
+
+      <h3>5. Deployer</h3>
+      <p>Deploys built sites to: customer VPS (SSH push with Caddy/Nginx bootstrap), Vercel, Cloudflare Pages, or generates manual deployment packages.</p>
+      <div class="terminal"><pre><code># One-click VPS deploy
+python scripts/deployer.py deploy ./my-site mysite.com \
+  --host 12.34.56.78 --user root --caddy
+
+# Generate config files for manual setup
+python scripts/deployer.py package ./my-site mysite.com --analytics</code></pre></div>
+
+      <h2>DataForSEO Integration</h2>
+      <p>For real keyword data (search volume, CPC, competition, keyword difficulty), set environment variables:</p>
+      <div class="terminal"><pre><code>export DATAFORSEO_EMAIL="your@email.com"
+export DATAFORSEO_PASSWORD="your-api-password"
+
+# Now seo_engine.py automatically uses real data
+python scripts/seo_engine.py plan "best hiking boots" --type ecommerce</code></pre></div>
+      <p>The DataForSEO client also provides standalone CLI access:</p>
+      <div class="terminal"><pre><code>python scripts/dataforseo_client.py volume "hiking boots,trail shoes,camping gear"
+python scripts/dataforseo_client.py related "best hiking boots"
+python scripts/dataforseo_client.py serp "scottish highlands travel"
+python scripts/dataforseo_client.py competitors "rei.com"</code></pre></div>
+
+      <h2>Deployment Options</h2>
+      <table>
+        <thead><tr><th>Target</th><th>Command</th><th>Best For</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Own VPS (Caddy)</strong></td><td><code>deploy ./site domain.com --host IP --caddy</code></td><td>Full control, $5/mo</td></tr>
+          <tr><td><strong>Own VPS (Nginx)</strong></td><td><code>deploy ./site domain.com --host IP --nginx</code></td><td>Existing Nginx setups</td></tr>
+          <tr><td><strong>Vercel</strong></td><td><code>vercel ./site</code></td><td>Free tier, auto-SSL</td></tr>
+          <tr><td><strong>Cloudflare Pages</strong></td><td><code>cloudflare ./site</code></td><td>Global CDN, free tier</td></tr>
+          <tr><td><strong>Manual</strong></td><td><code>package ./site domain.com</code></td><td>Generate configs, DIY</td></tr>
+        </tbody>
+      </table>
+
+      <h2>More Resources</h2>
+      <ul>
+        <li><a href="https://github.com/RichardDu1/seoplant">GitHub Repository</a></li>
+        <li><a href="/blog">Blog & Tutorials</a></li>
+        <li><a href="/pricing">Pricing Plans</a></li>
+      </ul>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  h2 { margin-top: var(--space-3xl); margin-bottom: var(--space-md); }
+  h3 { margin-top: var(--space-xl); }
+  .terminal {
+    background: #0d1117;
+    border-radius: 8px;
+    padding: var(--space-md) var(--space-lg);
+    margin: var(--space-md) 0;
+    overflow-x: auto;
+  }
+  .terminal pre {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #c9d1d9;
+    font-family: var(--font-mono);
+  }
+  .terminal code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-md) 0;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+  th { background: var(--color-surface); }
+  code {
+    font-size: 0.85rem;
+    background: var(--color-surface);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+</style>

@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Pricing — SEOplant"
+  description="SEOplant pricing: free open-source CLI, Cloud plans from $29/mo for programmatic SEO at scale, and Agency plans for teams managing 10+ sites."
+>
+
+  <section class="section">
+    <div class="container">
+      <h1 style="text-align:center;">Simple, Transparent Pricing</h1>
+      <p style="text-align:center; max-width:600px; margin:0 auto var(--space-3xl); color:var(--color-text-muted);">
+        Start free with open source. Upgrade when you need real SEO data, programmatic scale, or multi-site management.
+      </p>
+
+      <div class="grid cols-3" style="align-items:stretch;">
+        <!-- Free -->
+        <div class="card price-card">
+          <h2>Open Source</h2>
+          <div class="price">Free</div>
+          <p class="desc">MIT License. Forever.</p>
+          <ul>
+            <li>5 pipeline modules (CLI)</li>
+            <li>Heuristic keyword analysis</li>
+            <li>Competitor crawling + SEO audit</li>
+            <li>Astro static site generation</li>
+            <li>VPS / Vercel / Cloudflare deploy</li>
+            <li>Design token extraction</li>
+            <li>Community GitHub support</li>
+          </ul>
+          <a href="https://github.com/RichardDu1/seoplant" class="btn btn-secondary" style="width:100%;">GitHub Repo</a>
+        </div>
+
+        <!-- Pro -->
+        <div class="card price-card featured">
+          <div class="featured-badge">Most Popular</div>
+          <h2>Cloud</h2>
+          <div class="price">$79<span>/mo</span></div>
+          <p class="desc">Real data. Real scale.</p>
+          <ul>
+            <li>Everything in Open Source</li>
+            <li>DataForSEO integration (real SV, KD, CPC)</li>
+            <li>Programmatic SEO engine (up to 5000 pages/site)</li>
+            <li>AI agent orchestration (LangGraph)</li>
+            <li>One-click VPS deployment</li>
+            <li>10 sites included</li>
+            <li>2,000 AI credits/month</li>
+            <li>llms.txt + GEO optimization</li>
+            <li>Email support</li>
+          </ul>
+          <a href="#" class="btn btn-primary" style="width:100%;">Coming Soon</a>
+        </div>
+
+        <!-- Agency -->
+        <div class="card price-card">
+          <h2>Agency</h2>
+          <div class="price">$199<span>/mo</span></div>
+          <p class="desc">For teams & agencies.</p>
+          <ul>
+            <li>Everything in Cloud</li>
+            <li>50 sites included</li>
+            <li>White-label reports & client dashboard</li>
+            <li>REST API access</li>
+            <li>5,000 AI credits/month</li>
+            <li>Multi-user team accounts</li>
+            <li>Autonomous rank monitoring</li>
+            <li>Content decay detection + auto-refresh</li>
+            <li>Priority support (Slack)</li>
+          </ul>
+          <a href="#" class="btn btn-secondary" style="width:100%;">Coming Soon</a>
+        </div>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="card" style="margin-top:var(--space-2xl);text-align:center;padding:var(--space-2xl);">
+        <h2>Enterprise</h2>
+        <p style="color:var(--color-text-muted);margin-bottom:var(--space-lg);">Custom deployment, dedicated infrastructure, SLAs, training.</p>
+        <p><strong>From $999/mo</strong> — <a href="mailto:hello@seoplant.io">Contact us</a></p>
+      </div>
+
+      <!-- FAQ -->
+      <div style="margin-top:var(--space-4xl);">
+        <h2 style="text-align:center;margin-bottom:var(--space-2xl);">Frequently Asked Questions</h2>
+        <div class="grid cols-2" style="gap:var(--space-2xl);">
+          <div>
+            <h4>What counts as a "site"?</h4>
+            <p style="color:var(--color-text-muted);font-size:0.9rem;">One domain with its own SEO strategy, design system, and deployment. Each site gets its own Astro project.</p>
+          </div>
+          <div>
+            <h4>What are AI credits?</h4>
+            <p style="color:var(--color-text-muted);font-size:0.9rem;">Credits cover LLM API costs (content generation, strategy, analysis). 2,000 credits = ~100 articles or ~500 programmatic pages.</p>
+          </div>
+          <div>
+            <h4>Can I export my site?</h4>
+            <p style="color:var(--color-text-muted);font-size:0.9rem;">Yes. The generated site is a standard Astro project. You own the code. No lock-in. No proprietary format.</p>
+          </div>
+          <div>
+            <h4>Do I need my own server?</h4>
+            <p style="color:var(--color-text-muted);font-size:0.9rem;">No. You can deploy to Vercel (free tier), Netlify, or Cloudflare Pages. If you want your own VPS, we support that too.</p>
+          </div>
+          <div>
+            <h4>What's the difference from Byword or Surfer?</h4>
+            <p style="color:var(--color-text-muted);font-size:0.9rem;">They generate content. We generate the entire site — SEO strategy, design, code, deployment — around that content.</p>
+          </div>
+          <div>
+            <h4>Is the open source version limited?</h4>
+            <p style="color:var(--color-text-muted);font-size:0.9rem;">No artificial limits. It just doesn't include the paid data APIs, agent orchestration, or SaaS dashboard. All code is MIT.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .cols-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .cols-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .price-card { text-align: center; padding: var(--space-2xl) var(--space-lg); }
+  .price-card.featured { border: 2px solid var(--color-primary); transform: scale(1.03); position: relative; }
+  .featured-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--color-primary); color: white; padding: 4px 20px;
+    border-radius: 100px; font-size: 0.85rem; font-weight: 600;
+  }
+  .price { font-size: 3rem; font-weight: 800; margin: var(--space-md) 0 var(--space-xs); }
+  .price span { font-size: 1rem; font-weight: 400; color: var(--color-text-muted); }
+  .desc { color: var(--color-text-muted); margin-bottom: var(--space-xl); }
+  .price-card ul { list-style: none; padding: 0; text-align: left; margin-bottom: var(--space-xl); }
+  .price-card li { padding: 5px 0; font-size: 0.9rem; }
+  .price-card li::before { content: "+ "; color: var(--color-primary); font-weight: 700; }
+  @media (max-width: 768px) {
+    .price-card.featured { transform: none; }
+  }
+</style>

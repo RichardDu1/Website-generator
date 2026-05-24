@@ -1,0 +1,21 @@
+---
+interface Props {
+  siteName?: string;
+}
+const { siteName = 'SEOplant' } = Astro.props;
+---
+
+<footer class="site-footer section">
+  <div class="container" style="text-align: center;">
+    <p style="color: var(--color-text-muted);">
+      &copy; {new Date().getFullYear()} {siteName}. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-xl);
+  }
+</style>

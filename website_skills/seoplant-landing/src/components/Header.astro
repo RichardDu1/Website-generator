@@ -1,0 +1,50 @@
+---
+interface Props {
+  siteName?: string;
+}
+const { siteName = 'SEOplant' } = Astro.props;
+---
+
+<header class="site-header">
+  <nav class="container flex" style="justify-content: space-between; align-items: center; padding-block: var(--space-md);">
+    <a href="/" class="site-logo" style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--color-text); text-decoration: none;">
+      {siteName}
+    </a>
+    <div class="nav-links flex" style="gap: var(--space-lg); align-items: center;">
+      <a href="/docs" class="nav-link">Docs</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="https://github.com/RichardDu1/seoplant" class="btn btn-secondary btn-sm">GitHub</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-background);
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+  .nav-link {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color var(--transition-fast);
+    text-decoration: none;
+  }
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+  .btn-sm {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+  @media (max-width: 640px) {
+    .nav-links { gap: var(--space-md); }
+    .nav-link { font-size: 0.85rem; }
+  }
+</style>

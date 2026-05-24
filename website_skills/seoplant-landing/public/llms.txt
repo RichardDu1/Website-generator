@@ -1,0 +1,26 @@
+# llms.txt for seoplant.io
+> SEOplant is the AI Programmatic SEO Platform that turns keywords into ranking websites.
+
+## About
+- SEOplant: https://seoplant.io
+- GitHub: https://github.com/RichardDu1/seoplant
+- Docs: https://seoplant.io/docs
+- Blog: https://seoplant.io/blog
+
+## Key Pages
+- Home: https://seoplant.io
+- Pricing: https://seoplant.io/pricing
+- Documentation: https://seoplant.io/docs
+- About: https://seoplant.io/about
+- Blog: https://seoplant.io/blog
+
+## Core Features
+- Competitor Intelligence Engine
+- SEO/GEO Strategy Generator
+- Programmatic SEO at Scale (5000+ pages)
+- Astro Static Site Factory
+- One-Click VPS Deployment
+
+## Contact
+- Email: hello@seoplant.io
+- GitHub Issues: https://github.com/RichardDu1/seoplant/issues

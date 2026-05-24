@@ -1,0 +1,492 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="From Keyword to Ranking Website — Automatically"
+  description="SEOplant is the AI Programmatic SEO Platform. Enter a keyword, get a fully SEO-optimized website with competitor analysis, topic clusters, and programmatic content. No coding required."
+>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="badge">Open Source + SaaS</span>
+        <h1>From <span class="highlight">Keyword</span> to <span class="highlight">Ranking Website</span></h1>
+        <p class="hero-sub">
+          SEOplant is the first AI platform that doesn't just build websites — it builds
+          <strong>SEO strategies</strong>, analyzes your <strong>competitors</strong>, and generates
+          <strong>programmatic content</strong> that actually ranks.
+        </p>
+        <div class="hero-cta">
+          <a href="https://github.com/RichardDu1/seoplant" class="btn btn-primary btn-lg">
+            Star on GitHub
+          </a>
+          <a href="#how-it-works" class="btn btn-secondary btn-lg">
+            See How It Works
+          </a>
+        </div>
+        <p class="hero-note">Open source under MIT. Or use <a href="/pricing">SEOplant Cloud</a> for one-click deployment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Statement -->
+  <section class="section problem">
+    <div class="container">
+      <h2>The Problem With Every AI Website Builder</h2>
+      <div class="grid cols-3">
+        <div class="card problem-card">
+          <div class="card-icon">A</div>
+          <h3>They Build, But Don't Think</h3>
+          <p>Durable, 10Web, Wix AI generate pretty pages. But they have <strong>zero SEO intelligence</strong> — no keyword research, no competitor analysis, no content strategy.</p>
+          <span class="tag">Pretty but invisible</span>
+        </div>
+        <div class="card problem-card">
+          <div class="card-icon">B</div>
+          <h3>They Write, But Don't Build</h3>
+          <p>Byword, Frase, Surfer SEO generate great content. But after you have the content, <strong>you still need to build, deploy, and maintain the site</strong>. Different tools, different bills.</p>
+          <span class="tag">Content without a home</span>
+        </div>
+        <div class="card problem-card">
+          <div class="card-icon">C</div>
+          <h3>They Lock You In</h3>
+          <p>Most AI builders host on their own servers. <strong>You can't export your code.</strong> If they raise prices or shut down, your site goes with them.</p>
+          <span class="tag">Vendor lock-in</span>
+        </div>
+      </div>
+      <p class="section-foot">SEOplant is different. <strong>SEO strategy + site factory + your own server.</strong></p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <h2>One Keyword. Five Minutes. A Complete SEO Website.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Enter a Keyword</h3>
+            <p>"Best hiking boots", "London dentist", "Scottish Highlands travel" — any niche, any language.</p>
+          </div>
+        </div>
+        <div class="step-arrow">-></div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>AI Analyzes the Market</h3>
+            <p>Scans top 20 competitors, extracts their URL structure, content strategy, schema, and keyword gaps.</p>
+          </div>
+        </div>
+        <div class="step-arrow">-></div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>SEO Strategy Generated</h3>
+            <p>Topic clusters, 6-month content calendar, keyword difficulty matrix, programmatic SEO templates.</p>
+          </div>
+        </div>
+        <div class="step-arrow">-></div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Site Built & Deployed</h3>
+            <p>Astro static site with Schema markup, llms.txt, i18n, and 50-5000 programmatic pages. One click to your VPS.</p>
+          </div>
+        </div>
+      </div>
+      <div class="terminal-preview">
+        <pre><code>$ python scripts/seo_engine.py plan "best hiking boots" --type ecommerce
+$ python scripts/site_builder.py scaffold ./my-site --name "Hiking Gear Pro" --keyword "best hiking boots"
+$ python scripts/deployer.py deploy ./my-site hikinggearpro.com --host 12.34.56.78 --caddy
+
+<span class="dim">// 5 minutes later...</span>
+Site is LIVE at https://hikinggearpro.com</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="section features">
+    <div class="container">
+      <h2>What Makes SEOplant Different</h2>
+      <div class="grid cols-2">
+        <div class="card feature-card">
+          <h3>Competitor Teardown Engine</h3>
+          <p>Automatically crawls competitor sites, analyzes their URL structure, content depth, schema markup, and internal linking — then builds a better version.</p>
+        </div>
+        <div class="card feature-card">
+          <h3>Programmatic SEO at Scale</h3>
+          <p>One keyword becomes 5000 pages. City pages, product variants, comparison pages, FAQ sections — all generated from templates + structured data.</p>
+        </div>
+        <div class="card feature-card">
+          <h3>SEO-First, Not Design-First</h3>
+          <p>Every page is built for ranking: clean URLs, proper heading hierarchy, Schema.org structured data, llms.txt for AI search engines, and automatic internal linking.</p>
+        </div>
+        <div class="card feature-card">
+          <h3>Bring Your Own VPS</h3>
+          <p>No platform lock-in. Deploy to your own $5/month server via SSH. Or use Vercel, Netlify, or Cloudflare Pages. Your code, your server, your data.</p>
+        </div>
+        <div class="card feature-card">
+          <h3>GEO Built-In (AI Search Optimization)</h3>
+          <p>Optimized for ChatGPT, Perplexity, Gemini, and Google AI Overviews. Auto-generated llms.txt, structured data for AI citation, and AI visibility tracking.</p>
+        </div>
+        <div class="card feature-card">
+          <h3>100% Open Source Core</h3>
+          <p>All 5 pipeline modules are MIT licensed. Fork it, modify it, integrate it. The paid cloud version adds real SEO data, multi-site management, and autonomous monitoring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- vs Competitors -->
+  <section class="section compare">
+    <div class="container">
+      <h2>How We Compare</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Capability</th><th class="us">SEOplant</th><th>Byword</th><th>Surfer</th><th>Durable</th><th>10Web</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Competitor Analysis</td><td class="yes">Auto</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>SEO Strategy Generation</td><td class="yes">Auto</td><td class="no">No</td><td class="partial">Manual</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>Website Building</td><td class="yes">Astro SSG</td><td class="no">No</td><td class="no">No</td><td class="yes">AI templates</td><td class="yes">WordPress</td></tr>
+            <tr><td>Programmatic SEO (5000+ pages)</td><td class="yes">Template engine</td><td class="yes">Template engine</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>Code Export (no lock-in)</td><td class="yes">Full export</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="partial">WP export</td></tr>
+            <tr><td>Own VPS Deploy</td><td class="yes">SSH one-click</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>GEO (AI Search) Optimization</td><td class="yes">Built-in</td><td class="no">No</td><td class="partial">Add-on</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>Open Source</td><td class="yes">MIT</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>Starting Price</td><td class="yes">Free / $29</td><td>$99/mo</td><td>$79/mo</td><td>$15/mo</td><td>$10/mo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Teaser -->
+  <section class="section pricing-teaser">
+    <div class="container">
+      <h2>Start Building SEO Websites Today</h2>
+      <div class="grid cols-3">
+        <div class="card price-card">
+          <h3>Open Source</h3>
+          <div class="price">Free</div>
+          <p class="price-desc">Self-hosted, MIT license</p>
+          <ul>
+            <li>All 5 pipeline modules</li>
+            <li>Heuristic SEO analysis</li>
+            <li>Astro site generation</li>
+            <li>VPS/Cloud deployment</li>
+            <li>Community support</li>
+          </ul>
+          <a href="https://github.com/RichardDu1/seoplant" class="btn btn-secondary">GitHub Repo</a>
+        </div>
+        <div class="card price-card featured">
+          <div class="featured-tag">Most Popular</div>
+          <h3>Cloud</h3>
+          <div class="price">$79<span>/mo</span></div>
+          <p class="price-desc">Everything included</p>
+          <ul>
+            <li>Everything in Open Source</li>
+            <li>Real SEO data (DataForSEO)</li>
+            <li>Programmatic SEO engine</li>
+            <li>AI agent orchestration</li>
+            <li>One-click VPS deploy</li>
+            <li>Autonomous rank monitoring</li>
+          </ul>
+          <a href="/pricing" class="btn btn-primary">See Plans</a>
+        </div>
+        <div class="card price-card">
+          <h3>Agency</h3>
+          <div class="price">$199<span>/mo</span></div>
+          <p class="price-desc">For teams managing 10+ sites</p>
+          <ul>
+            <li>Everything in Cloud</li>
+            <li>50 sites included</li>
+            <li>White-label reports</li>
+            <li>Multi-client dashboard</li>
+            <li>API access</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="/pricing" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta">
+    <div class="container">
+      <h2>Stop Building Websites. Start Building Traffic.</h2>
+      <p>AI website builders give you a pretty site with no strategy. SEO tools give you strategy with no site. <strong>SEOplant gives you both.</strong></p>
+      <div class="cta-buttons">
+        <a href="https://github.com/RichardDu1/seoplant" class="btn btn-primary btn-lg">Star on GitHub</a>
+        <span class="cta-or">or</span>
+        <code>pip install seoplant && python -m seoplant new "your niche"</code>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    padding-block: var(--space-4xl) var(--space-3xl);
+    text-align: center;
+  }
+  .hero-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    padding: 4px 16px;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+  }
+  .hero h1 {
+    font-size: 3.2rem;
+    line-height: 1.15;
+    margin-bottom: var(--space-lg);
+  }
+  .highlight {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-2xl);
+  }
+  .hero-cta {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+  }
+  .btn-lg {
+    padding: 12px 28px;
+    font-size: 1.1rem;
+  }
+  .hero-note {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Problem section */
+  .problem {
+    background: var(--color-surface);
+  }
+  .problem h2, .features h2, .how-it-works h2, .compare h2, .pricing-teaser h2, .cta h2 {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.2rem;
+    margin-bottom: var(--space-md);
+  }
+  .problem-card:nth-child(1) .card-icon { background: #fee2e2; color: #dc2626; }
+  .problem-card:nth-child(2) .card-icon { background: #fef3c7; color: #d97706; }
+  .problem-card:nth-child(3) .card-icon { background: #dbeafe; color: #2563eb; }
+  .tag {
+    display: inline-block;
+    margin-top: var(--space-md);
+    font-size: 0.8rem;
+    padding: 2px 10px;
+    border-radius: 4px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+  .section-foot {
+    text-align: center;
+    margin-top: var(--space-xl);
+    font-size: 1.1rem;
+  }
+
+  /* Steps */
+  .steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-2xl);
+  }
+  .step {
+    text-align: center;
+    max-width: 180px;
+  }
+  .step-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    margin: 0 auto var(--space-sm);
+  }
+  .step-arrow {
+    color: var(--color-text-muted);
+    font-size: 1.5rem;
+    align-self: center;
+    margin-top: -20px;
+  }
+  .step-body h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-xs);
+  }
+  .step-body p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Terminal */
+  .terminal-preview {
+    background: #0d1117;
+    border-radius: 12px;
+    padding: var(--space-lg);
+    max-width: 700px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+  .terminal-preview pre {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #c9d1d9;
+    font-family: var(--font-mono);
+  }
+  .terminal-preview .dim {
+    color: #6e7681;
+  }
+
+  /* Grids */
+  .cols-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .cols-2 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
+
+  /* Compare table */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+  th {
+    background: var(--color-surface);
+    font-weight: 600;
+  }
+  th.us {
+    color: var(--color-primary);
+  }
+  td.yes { color: #059669; font-weight: 600; }
+  td.no { color: var(--color-text-muted); }
+  td.partial { color: #d97706; }
+
+  /* Pricing */
+  .price-card {
+    text-align: center;
+    padding: var(--space-2xl) var(--space-lg);
+    position: relative;
+  }
+  .price-card.featured {
+    border: 2px solid var(--color-primary);
+    transform: scale(1.03);
+  }
+  .featured-tag {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    padding: 4px 16px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: var(--space-md) 0 var(--space-xs);
+  }
+  .price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+  .price-desc {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    font-size: 0.9rem;
+  }
+  .price-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-xl);
+    text-align: left;
+  }
+  .price-card li {
+    padding: 6px 0;
+    font-size: 0.9rem;
+  }
+  .price-card li::before {
+    content: "+ ";
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  /* CTA */
+  .cta {
+    background: var(--color-surface);
+    text-align: center;
+  }
+  .cta p {
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+  }
+  .cta-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+  .cta-or {
+    color: var(--color-text-muted);
+  }
+  .cta-buttons code {
+    padding: 8px 16px;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.2rem; }
+    .steps { flex-direction: column; align-items: center; }
+    .step-arrow { transform: rotate(90deg); }
+    .price-card.featured { transform: none; }
+    table { font-size: 0.8rem; }
+  }
+</style>
