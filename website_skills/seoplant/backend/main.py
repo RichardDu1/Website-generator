@@ -1,11 +1,7 @@
 """
 SEOplant Backend — FastAPI application entry point.
 """
-import sys
 from pathlib import Path
-
-# Ensure backend dir is importable
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,9 +9,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi import Request
 
-from backend.config import DEBUG, HOST, PORT, SECRET_KEY
-from backend.database import init_db
-from backend.routes import auth, projects, seo, billing
+from .config import DEBUG, HOST, PORT, SECRET_KEY
+from .database import init_db
+from .routes import auth, projects, seo, billing
 
 app = FastAPI(
     title="SEOplant API",

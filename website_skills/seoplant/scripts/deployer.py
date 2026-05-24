@@ -16,11 +16,12 @@ Dependencies: none required (paramiko optional, falls back to subprocess ssh)
 import json
 import os
 import re
+import secrets
 import shutil
 import subprocess
 import sys
-import tarfile
-import tempfile
+import time
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
@@ -1186,6 +1187,173 @@ def deploy_to_cloudflare(
 
 
 # ===================================================================
+# 7b. Backend Deploy — FastAPI to VPS with Caddy + systemd
+# ===================================================================
+
+def deploy_backend(
+    backend_dir: str,
+    domain: str,
+    host: str,
+    user: str = "root",
+    port: int = 22,
+    key_path: str = None,
+    password: str = None,
+    python_bin: str = "python3",
+    dataforseo_email: str = "",
+    dataforseo_password: str = "",
+    secret_key: str = "",
+    dry_run: bool = False,
+) -> dict:
+    """Deploy the FastAPI backend to a VPS with Caddy reverse proxy + systemd.
+
+    Sets up:
+      - /www/seoplant-backend/ — application code
+      - /etc/systemd/system/seoplant-api.service — auto-start service
+      - /etc/caddy/sites/api.{domain}.caddy — reverse proxy + auto SSL
+    """
+    deployer = VPSDeployer(host, user, port, key_path, password)
+    actions = []
+
+    app_dir = "/www/seoplant-backend"
+    api_domain = f"api.{domain}"
+    backend_src = Path(backend_dir)
+
+    if not (backend_src / "main.py").exists():
+        return {"error": f"backend/main.py not found in {backend_dir}"}
+
+    # Step 1: Bootstrap — ensure Python + Caddy
+    deployer._on_progress("Checking server environment...")
+    info = deployer.check_environment()
+
+    if not info.get("has_caddy"):
+        deployer._on_progress("Installing Caddy...")
+        if not dry_run:
+            deployer.bootstrap(web_server="caddy")
+        actions.append({"step": "install_caddy", "status": "dry_run" if dry_run else "ok"})
+
+    # Step 2: Upload backend code
+    deployer._on_progress(f"Uploading backend to {host}:{app_dir}/...")
+    if dry_run:
+        actions.append({"step": "upload_backend", "from": str(backend_src), "to": f"{user}@{host}:{app_dir}/", "status": "dry_run"})
+    else:
+        deployer._run(f"mkdir -p {app_dir}", sudo=True)
+        deployer._put_directory(str(backend_src), app_dir)
+        actions.append({"step": "upload_backend", "status": "ok"})
+
+    # Step 3: Install Python dependencies
+    deployer._on_progress("Installing Python dependencies...")
+    if dry_run:
+        actions.append({"step": "pip_install", "status": "dry_run"})
+    else:
+        ec, out, err = deployer._run(
+            f"{python_bin} -m pip install -r {app_dir}/requirements.txt -q",
+            sudo=True,
+        )
+        actions.append({"step": "pip_install", "status": "ok" if ec == 0 else "failed", "stderr": err[:300] if ec != 0 else ""})
+
+    # Step 4: Create .env file
+    env_content = f"""SEOPLANT_HOST=127.0.0.1
+SEOPLANT_PORT=8800
+SEOPLANT_DEBUG=false
+SEOPLANT_SECRET={secret_key}
+DATAFORSEO_EMAIL={dataforseo_email}
+DATAFORSEO_PASSWORD={dataforseo_password}
+"""
+    if dry_run:
+        actions.append({"step": "create_env", "status": "dry_run"})
+    else:
+        deployer._run(f"cat > {app_dir}/.env <<'ENVEOF'\n{env_content}\nENVEOF", sudo=True)
+        deployer._run(f"chmod 600 {app_dir}/.env", sudo=True)
+        actions.append({"step": "create_env", "status": "ok"})
+
+    # Step 5: Create systemd service
+    service_unit = f"""[Unit]
+Description=SEOplant API Backend
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+WorkingDirectory={app_dir}
+EnvironmentFile={app_dir}/.env
+ExecStart={python_bin} -m backend.main
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+"""
+    if dry_run:
+        actions.append({"step": "create_systemd", "status": "dry_run"})
+    else:
+        deployer._run(
+            f"cat > /etc/systemd/system/seoplant-api.service <<'SVC'\n{service_unit}\nSVC",
+            sudo=True,
+        )
+        deployer._run("systemctl daemon-reload", sudo=True)
+        deployer._run("systemctl enable seoplant-api", sudo=True)
+        deployer._run("systemctl restart seoplant-api", sudo=True)
+        actions.append({"step": "create_systemd", "status": "ok"})
+
+    # Step 6: Caddy reverse proxy
+    caddy_conf = f"""{api_domain} {{
+    reverse_proxy 127.0.0.1:8800
+    header {{
+        X-Frame-Options "SAMEORIGIN"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }}
+}}
+"""
+    if dry_run:
+        actions.append({"step": "configure_caddy", "status": "dry_run"})
+    else:
+        deployer._run("mkdir -p /etc/caddy/sites", sudo=True)
+        deployer._run(
+            f"cat > /etc/caddy/sites/{api_domain}.caddy <<'CADDY'\n{caddy_conf}\nCADDY",
+            sudo=True,
+        )
+        # Include sites dir if not already
+        ec, _, _ = deployer._run("grep -q 'import /etc/caddy/sites/' /etc/caddy/Caddyfile")
+        if ec != 0:
+            deployer._run(
+                "sed -i '1i import /etc/caddy/sites/*.caddy' /etc/caddy/Caddyfile",
+                sudo=True,
+            )
+        deployer._run("caddy fmt --overwrite /etc/caddy/Caddyfile || true", sudo=True)
+        deployer._run("caddy reload", sudo=True)
+        actions.append({"step": "configure_caddy", "status": "ok"})
+
+    # Step 7: Wait and verify
+    if not dry_run:
+        deployer._on_progress("Waiting for API to start...")
+        import time
+        time.sleep(3)
+        deployer._on_progress(f"Verifying https://{api_domain}/api/auth/me ...")
+        try:
+            import urllib.request
+            req = urllib.request.Request(
+                f"https://{api_domain}/api/auth/me",
+                headers={"User-Agent": "SEOplant-Deployer/1.0"},
+            )
+            resp = urllib.request.urlopen(req, timeout=20)
+            if resp.status in (200, 403):  # 403 = working, just not authenticated
+                actions.append({"step": "verify", "status": "ok", "http": resp.status})
+            else:
+                actions.append({"step": "verify", "status": "unexpected", "http": resp.status})
+        except Exception as e:
+            actions.append({"step": "verify", "status": "failed", "error": str(e)[:200]})
+
+    return {
+        "api_url": f"https://{api_domain}",
+        "dashboard_url": f"https://{api_domain}/dashboard",
+        "server": f"{user}@{host}",
+        "app_dir": app_dir,
+        "actions": actions,
+    }
+
+
+# ===================================================================
 # 8. Environment check formatter
 # ===================================================================
 
@@ -1247,6 +1415,8 @@ def _parse_vps_args(argv: list[str]) -> dict:
             args["key"] = argv[i + 1]
         elif arg == "--password" and i + 1 < len(argv):
             args["password"] = argv[i + 1]
+        elif arg == "--password" and i + 1 < len(argv):
+            args["password"] = argv[i + 1]
     return args
 
 
@@ -1259,12 +1429,13 @@ def main():
 SEOplant Deployer — multi-target deployment for Astro static sites.
 
 Commands:
-  check      Check a VPS environment before deployment
-  bootstrap  Install web server + SSL tools on a fresh VPS
-  deploy     One-click deploy to VPS (SSH push)
-  package    Generate deployment config files (manual setup)
-  vercel     Deploy to Vercel
-  cloudflare Deploy to Cloudflare Pages
+  check          Check a VPS environment before deployment
+  bootstrap      Install web server + SSL tools on a fresh VPS
+  deploy         One-click deploy Astro static site to VPS
+  deploy-backend Deploy FastAPI backend to VPS with systemd + Caddy
+  package        Generate deployment config files (manual setup)
+  vercel         Deploy to Vercel
+  cloudflare     Deploy to Cloudflare Pages
   nginx      Print Nginx configuration
   caddy      Print Caddy configuration
   docker     Print Docker Compose configuration
@@ -1274,6 +1445,8 @@ Usage:
   python deployer.py bootstrap --host 12.34.56.78 [--caddy|--nginx] [--docker]
   python deployer.py deploy ./project example.com \\
       --host 12.34.56.78 --user root [--caddy|--nginx] [--cms] [--analytics]
+  python deployer.py deploy-backend ./backend example.com \\
+      --host 12.34.56.78 [--dfseo-email hi@site.io] [--dfseo-password xxx]
   python deployer.py package ./project example.com [--cms] [--analytics]
   python deployer.py vercel ./project [--token xxx]
   python deployer.py nginx example.com [--ssl] [--cms]
@@ -1284,9 +1457,13 @@ Examples:
   # First time: bootstrap a fresh Ubuntu VPS with Caddy
   python deployer.py bootstrap --host 12.34.56.78 --caddy --docker
 
-  # Deploy a site
+  # Deploy a static Astro site
   python deployer.py deploy ./scottish-highlands-travel scottish-highlands.com \\
       --host 12.34.56.78 --caddy --analytics
+
+  # Deploy the backend API to a VPS
+  python deployer.py deploy-backend ./backend seoplant.io \\
+      --host 12.34.56.78 --dfseo-email hi@seoplant.io --dfseo-password ba6caffc26729445
 
   # Check what's on a VPS
   python deployer.py check --host 12.34.56.78
@@ -1381,6 +1558,73 @@ Examples:
             print(f"\nSite URL: {result['url']}")
             if not dry_run and result.get("verified"):
                 print("Verification: Site is LIVE")
+
+        except ConnectionError as e:
+            print(f"Connection failed: {e}")
+        except Exception as e:
+            print(f"Error: {e}")
+
+    # ----------------------------------------------------------------
+    # deploy-backend — FastAPI backend to VPS
+    # ----------------------------------------------------------------
+    elif command == "deploy-backend":
+        if len(sys.argv) < 4:
+            print("Usage: python deployer.py deploy-backend <backend_dir> <domain> --host <ip> [options]")
+            return
+
+        backend_dir = sys.argv[2]
+        domain = sys.argv[3]
+        args = _parse_vps_args(sys.argv)
+        if not args["host"]:
+            print("ERROR: --host required"); return
+
+        # Parse optional flags
+        dfseo_email = ""
+        dfseo_password = ""
+        secret = ""
+        for i, arg in enumerate(sys.argv):
+            if arg == "--dfseo-email" and i + 1 < len(sys.argv):
+                dfseo_email = sys.argv[i + 1]
+            elif arg == "--dfseo-password" and i + 1 < len(sys.argv):
+                dfseo_password = sys.argv[i + 1]
+            elif arg == "--secret" and i + 1 < len(sys.argv):
+                secret = sys.argv[i + 1]
+
+        if not secret:
+            import secrets
+            secret = secrets.token_hex(32)
+            print(f"[INFO] Generated random SECRET_KEY: {secret[:16]}...")
+
+        dry_run = "--dry-run" in sys.argv
+
+        try:
+            result = deploy_backend(
+                backend_dir=backend_dir,
+                domain=domain,
+                host=args["host"],
+                user=args["user"],
+                port=args["port"],
+                key_path=args["key"],
+                password=args["password"],
+                dataforseo_email=dfseo_email,
+                dataforseo_password=dfseo_password,
+                secret_key=secret,
+                dry_run=dry_run,
+            )
+
+            if "error" in result:
+                print(f"Deploy failed: {result['error']}")
+                return
+
+            print(f"\nBackend deployment {'(dry-run)' if dry_run else 'complete'}!")
+            for action in result["actions"]:
+                icon = "OK" if action["status"] == "ok" else "?" if action["status"] in ("dry_run",) else "FAIL"
+                detail = f" (HTTP {action.get('http')})" if action.get("http") else ""
+                err = f" — {action.get('error', '')[:100]}" if action.get("error") else ""
+                print(f"  [{icon}] {action['step']}{detail}{err}")
+            if not dry_run:
+                print(f"\nAPI: {result['api_url']}")
+                print(f"Dashboard: {result['dashboard_url']}")
 
         except ConnectionError as e:
             print(f"Connection failed: {e}")
