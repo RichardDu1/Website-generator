@@ -1,0 +1,1 @@
+"""SEOplant Backend — FastAPI application."""
