@@ -371,7 +371,7 @@ def cluster_keywords(keywords: list[dict]) -> list[dict]:
         name = cluster_names.get(intent, f"Cluster: {intent}")
 
         # Sort by search volume (highest first) for pillar selection
-        sorted_kws = sorted(kw_list, key=lambda x: x.get("search_volume", 0), reverse=True)
+        sorted_kws = sorted(kw_list, key=lambda x: x.get("search_volume") or 0, reverse=True)
         pillar = sorted_kws[0]["keyword"] if sorted_kws else ""
 
         # Intent distribution
@@ -905,7 +905,7 @@ Based on three SEO skill frameworks:
             plan += (f"| {cluster['pillar_keyword'][:40]} "
                     f"| {pillar_data.get('search_volume', '-')} "
                     f"| {pillar_data.get('keyword_difficulty', '-')} "
-                    f"| ${pillar_data.get('cpc', 0):.2f} "
+                    f"| ${pillar_data.get('cpc') or 0:.2f} "
                     f"| {pillar_assessed['priority_stars']} |\n")
         else:
             plan += f"| {cluster['pillar_keyword'][:40]} | {pillar_assessed['difficulty']} | {pillar_assessed['priority_stars']} |\n"
@@ -915,7 +915,7 @@ Based on three SEO skill frameworks:
                 kw_str = kw_entry.get("keyword", "")
                 kw_kd = kw_entry.get("keyword_difficulty")
                 kw_vol = kw_entry.get("search_volume", 0)
-                kw_cpc = kw_entry.get("cpc", 0)
+                kw_cpc = kw_entry.get("cpc") or 0
             else:
                 kw_str = kw_entry
                 kw_kd = None
