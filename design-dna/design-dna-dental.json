@@ -1,0 +1,235 @@
+{
+  "industry": "dental",
+  "extracted_from": [
+    { "url": "https://www.seattledentalco.com", "style": "warm-professional", "date": "2026-05-29" },
+    { "url": "https://www.burkettfamilydentistry.com", "style": "minimal-bold", "date": "2026-05-29" },
+    { "url": "https://www.northbeachdentalcare.com", "style": "clinical-friendly", "date": "2026-05-29" },
+    { "url": "https://www.aspendental.com", "style": "warm-hospitality", "date": "2026-06-02" },
+    { "url": "https://www.hellotend.com", "style": "lifestyle-boutique", "date": "2026-06-02", "note": "Cloudflare-blocked; brand identity researched via Red Dot Design Award case study + brand agency sources" },
+    { "url": "https://www.dentistlakehills.com", "style": "blue-professional", "date": "2026-06-02" },
+    { "url": "https://www.aderdent.com/en/", "style": "sophisticated-navy", "date": "2026-06-02", "note": "Awwwards Nominee" }
+  ],
+  "reference_brands": [
+    {
+      "name": "Aspen Dental",
+      "url": "https://www.aspendental.com",
+      "style": "warm-hospitality",
+      "key_tokens": {
+        "bg": "#f4eddf",
+        "text": "#0a0a0a",
+        "cta": "#ff8633",
+        "cta_radius": "32px",
+        "font": "PPRightGrotesk",
+        "h1": "56px / 700",
+        "h2": "35.2px"
+      },
+      "notable": "Deviates from clinical-cool norm: warm cream background, orange CTA buttons, custom grotesk font. Feels like a hospitality brand, not a dentist. Anxiety-reduction through warmth."
+    },
+    {
+      "name": "Tend Dental",
+      "url": "https://www.hellotend.com",
+      "style": "lifestyle-boutique",
+      "key_tokens": {
+        "palette": "green-based, warm muted tones",
+        "primary_font": "Nantes (serif — wordmark/logotype)",
+        "secondary_font": "Founders Grotesk (sans-serif — body/UI)",
+        "logo_feature": "all-lowercase wordmark, tilted 'e' reads as smiling"
+      },
+      "notable": "Red Dot Design Award winner. Brand identity by Mythology (NYC). Positions dentistry as lifestyle/wellness experience — spa-like photography, warm woods, green tiles. Serif+sans pairing uncommon in dental. Green chosen for century-old medical authority association."
+    },
+    {
+      "name": "Lake Hills Dental",
+      "url": "https://www.dentistlakehills.com",
+      "style": "blue-professional",
+      "key_tokens": {
+        "bg": "#ffffff",
+        "text": "#363636",
+        "cta": "#0077bd",
+        "cta_radius": "50px",
+        "font": "Roboto",
+        "h1": "50px / 600",
+        "h2": "64px"
+      },
+      "notable": "Built by DIGI Search on Sage design framework. Pill-shaped blue CTAs (50px radius), large h2 (64px) for visual hierarchy, warm dark-gray text on white. Card radius 20px. Standard dental approachability with Google's Roboto for broad rendering compatibility."
+    },
+    {
+      "name": "Ader Dent",
+      "url": "https://www.aderdent.com/en/",
+      "style": "sophisticated-navy",
+      "key_tokens": {
+        "bg": "#ffffff",
+        "text": "#000000",
+        "accent": "#211551",
+        "cta_style": "transparent + #211551 text, 24px radius",
+        "font": "Gotham",
+        "h1": "40.4px / 700",
+        "section_accent_bg": "#faf9f6 (warm off-white, review section)"
+      },
+      "notable": "Awwwards Nominee (Turkey-based clinic). Gotham typeface creates editorial/premium feel. Deep navy (#211551) used as marquee section background and accent color. Warm off-white (#faf9f6) review section with 'bg-mint' class. Transparent buttons with navy text — understated CTA approach."
+    }
+  ],
+  "smiledirectclub": { "status": "failed", "reason": "Domain offline — company filed Chapter 11 bankruptcy 2023, brand dissolved" },
+  "byte": { "status": "failed", "reason": "Domain offline — shutdown notice: 'Byte has concluded its operations'" },
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0e384c", "#004a62", "#3b5e6f", "#211551"],
+      "primary_role": "Headings, navigation, trust signals, brand identity",
+      "accent": ["#f0d17d", "#1e84b5", "#54afca", "#ff8633", "#0077bd"],
+      "accent_role": "CTA buttons, highlights, links, interaction states",
+      "neutral": ["#252525", "#3a3a3a", "#527282", "#363636", "#0a0a0a"],
+      "neutral_role": "Body text, secondary text, paragraph content",
+      "background": ["#ffffff", "#f4f4f4", "#eff8ff", "#f4eddf", "#faf9f6"],
+      "background_role": "Page background, card backgrounds, section alternation",
+      "semantic": {
+        "success": "#2d6a4f",
+        "warning": "#f0d17d",
+        "error": "#c1121f"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Poppins", "Montserrat", "Lato", "PPRightGrotesk", "Gotham", "Founders Grotesk"],
+      "body_fonts": ["Poppins", "Montserrat", "Lato", "Roboto", "PPRightGrotesk", "Founders Grotesk"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "serif_use": ["Nantes — Tend wordmark only (lifestyle/anxiety-reduction strategy)"],
+      "scale": {
+        "h1": { "min": 40, "max": 92, "unit": "px" },
+        "h2": { "min": 20, "max": 76, "unit": "px" },
+        "h3": { "min": 14, "max": 53, "unit": "px" },
+        "body": { "min": 16, "max": 28, "unit": "px" },
+        "small": { "min": 11, "max": 16, "unit": "px" }
+      },
+      "line_height": { "body": 1.6, "heading": 1.2 },
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": { "min": 40, "max": 200, "unit": "px" },
+      "section_gap": { "typical": 80, "unit": "px" },
+      "content_max_width": { "typical": 1200, "unit": "px" },
+      "card_padding": { "typical": "24px 32px" }
+    },
+    "border_radius": {
+      "sharp": "2px - 5px",
+      "rounded": "6px - 8px",
+      "soft_card": "20px",
+      "near_pill": "24px - 32px",
+      "pill": "50px - 99px",
+      "typical_cta": "3px, 24px, 32px, or 50px (varies widely by brand personality)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta_solid",
+        "bg": "accent",
+        "color": "white or near-black",
+        "border_radius": "pill (32-50px) or sharp (3px)",
+        "text": "action-oriented (BOOK NOW, Schedule Online, Find a Dentist)",
+        "font_size": "14-18px",
+        "font_weight": 600
+      },
+      {
+        "variant": "primary_cta_outline",
+        "bg": "transparent",
+        "color": "primary accent",
+        "border_radius": "24-32px (near-pill)",
+        "text": "discover, learn more, contact",
+        "font_size": "11-16px",
+        "note": "Observed on Ader Dent — understated luxury CTA; transparent with deep navy text"
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent",
+        "color": "primary",
+        "border_radius": "sharp (3-5px)",
+        "text": "Learn more, read more, see services",
+        "font_size": "15-16px"
+      }
+    ]
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, transparent or dark bg, often with insurance/patient info banner)",
+      "hero (full-width image + h1 + subtitle + primary CTA + trust badges/stats)",
+      "services (3-6 cards with icon/image + title + description + price/link)",
+      "about_team (photo + bio + credentials + personal philosophy)",
+      "testimonials (cards or carousel with star ratings, smiling patient photos)",
+      "location_hours (address + map + hours table)",
+      "before_after_gallery (smile transformations, slider or grid)",
+      "insurance_financing (accepted plans, payment options, membership plans)",
+      "booking_cta (time slot picker + form or external booking link)",
+      "footer (logo + contact + hours + accreditations + legal links)"
+    ],
+    "hero_variants": [
+      "split_screen (image left, text right)",
+      "full_bleed (image background, overlay text)",
+      "minimal (large typography, no image)",
+      "warm_background (solid warm color, typography-focused, no photo — Aspen Dental)"
+    ],
+    "service_card_variants": [
+      "image_top + title + price",
+      "icon + title + description + link",
+      "image + overlay title",
+      "text_only + large number/count (Aspen Dental stats cards)"
+    ],
+    "marquee_banner": "Deep accent background with scrolling text, observed on Ader Dent (#211551 bg)"
+  },
+  "tone_profile": {
+    "keywords": ["trustworthy", "professional", "warm", "clinical", "caring", "premium", "approachable", "judgment-free", "lifestyle"],
+    "headline_style": "benefit-driven or emotional (e.g., 'The Architecture of the London Smile', 'Dentistry you'll actually look forward to')",
+    "cta_style": "direct action verbs (Book, Schedule, Call, Find a Dentist)",
+    "trust_signals": ["star ratings", "years of experience", "patient count", "accreditations", "before/after gallery", "accepted insurance logos", "real patient photos", "team credentials + personal stories"],
+    "anxiety_reduction": ["soft colors", "nature imagery", "no dental tool closeups", "comforting language", "warm hospitality palette", "spa-like photography", "green medical authority signals", "judgment-free messaging"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "warm_gold (Seattle Dental: #f0d17d + dark charcoal)",
+      "clinical_teal (Burkett: #004a62 + light teal)",
+      "friendly_blue (North Beach: #0e384c + sky blue)",
+      "hospitality_warm (Aspen Dental: #f4eddf cream + #ff8633 orange)",
+      "lifestyle_green (Tend: green-based warm muted palette, spa aesthetic)",
+      "professional_blue (Lake Hills: #0077bd + white, Roboto font)",
+      "sophisticated_navy (Ader Dent: #211551 + #faf9f6, Gotham font)"
+    ],
+    "typography_mood": [
+      "modern_geometric (Poppins — friendly, round)",
+      "elegant_grotesk (Montserrat — minimal, refined)",
+      "classic_humanist (Lato — warm, readable)",
+      "accessible_standard (Roboto — broad compatibility, Google system font)",
+      "editorial_premium (Gotham — assertive, modern, Awwwards-grade)",
+      "custom_hospitality (PPRightGrotesk — warm grotesk, Aspen Dental proprietary)",
+      "serif_lifestyle (Nantes — Tend wordmark, anxiety-reduction through elegance)",
+      "balanced_sans (Founders Grotesk — Tend body, modern elegance)"
+    ],
+    "layout_density": [
+      "spacious (Burkett: 92px h1, lots of whitespace)",
+      "balanced (Seattle Dental: standard proportions)",
+      "compact (North Beach: more content per viewport)",
+      "warm_open (Aspen Dental: 56px h1 on cream, breathing room)",
+      "editorial (Ader Dent: 40px h1/h2, tight rhythm, navy marquee breaks)"
+    ],
+    "cta_philosophy": [
+      "high_contrast_pill (Lake Hills: blue #0077bd on white, 50px radius — impossible to miss)",
+      "warm_inviting (Aspen Dental: orange #ff8633 on cream, 32px radius — approachable not aggressive)",
+      "understated_luxury (Ader Dent: transparent + navy text, 24px radius — confident, not pushy)",
+      "gold_accent (Seattle Dental: gold #f0d17d, sharp radius — premium signal)"
+    ],
+    "background_strategy": [
+      "solid_white_all (Lake Hills, Ader Dent main sections)",
+      "warm_cream_immersive (Aspen Dental: entire page one warm tone)",
+      "section_alternation (Ader Dent: white → navy marquee → white → warm off-white review)",
+      "light_blue_tint (North Beach, some Burkett sections)"
+    ]
+  },
+  "new_patterns_discovered": {
+    "warm_immersive_background": "Aspen Dental uses a single warm cream (#f4eddf) across the entire page — no white at all. Creates a hospitality feel that directly counteracts clinical anxiety. Orange (#ff8633) CTA contrasts against warm background instead of white.",
+    "serif_wordmark_anxiety_play": "Tend uses a serif typeface (Nantes) exclusively for the brand wordmark — tilting the 'e' to evoke a smile. This is a deliberate anxiety-reduction strategy: serif = elegance = 'this won't hurt.' Paired with sans-serif body for readability.",
+    "navy_marquee_section_breaks": "Ader Dent uses a deep navy (#211551) full-width marquee section as a dramatic visual break. After three white sections, the dark bar creates rhythm and signals importance. A pattern to replicate for premium positioning.",
+    "green_medical_authority": "Tend's choice of green as core brand color is intentional — green = medicine = safety = 100+ years of medical association. More emotionally warm than blue while retaining clinical credibility.",
+    "transparent_cta_confidence": "Ader Dent's primary buttons are transparent with navy text — no filled background. This communicates confidence ('you'll click because you want to, not because we shouted'). Only works in premium-positioned brands.",
+    "oversized_h2_hierarchy": "Lake Hills Dental uses h2 at 64px (larger than 50px h1). This inverted hierarchy uses h1 for brand/identity and h2 for section headlines that dominate visually."
+  }
+}

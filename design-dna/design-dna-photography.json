@@ -1,0 +1,165 @@
+{
+  "industry": "photography",
+  "subtypes": ["wedding-photographer", "portrait-studio", "commercial-photography", "fine-art-photographer", "real-estate-photography", "event-photographer", "photo-editor-retoucher"],
+  "extracted_from": [
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.magnumphotos.com", "style": "minimal-editorial"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.500px.com", "style": "image-first-grid"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.format.com", "style": "portfolio-minimal"}
+  ],
+  "reference_brands": ["Magnum Photos", "500px", "Format", "SmugMug", "Jose Villa", "Annie Leibovitz", "Peter McKinnon", "Unsplash", "Flickr", "ShootProof"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#ffffff", "#fafafa", "#f5f5f5", "#0a0a0a"],
+      "primary_role": "Page background (white/off-white dominant to let images breathe, dark option for editorial)",
+      "accent": ["#000000", "#1a1a1a", "#c9a96e", "#8b7355", "#d4a574"],
+      "accent_role": "Text and UI elements (black dominant), subtle gold/copper for pricing and premium touches",
+      "surface": ["#ffffff", "#f8f8f8", "#f0f0f0", "#1a1a1a", "#222222"],
+      "surface_role": "Card backgrounds (white/light gray, optional dark for editorial), gallery overlays",
+      "neutral": ["#6b6b6b", "#8c8c8c", "#a0a0a0", "#bdbdbd", "#d4d4d4"],
+      "neutral_role": "Secondary text, captions, metadata, navigation, subtle dividers",
+      "border": ["#e5e5e5", "#eeeeee", "#d9d9d9", "#333333"],
+      "border_role": "Gallery image borders, card borders, input fields (ultra-subtle, nearly invisible)",
+      "semantic": {
+        "success": "#2d6a4f",
+        "warning": "#e9c46a",
+        "error": "#d32f2f",
+        "info": "#6b7c8e"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Cormorant Garamond", "Playfair Display", "Jost", "Bodoni Moda", "system-ui"],
+      "body_fonts": ["Jost", "Lato", "Work Sans", "Inter", "system-ui"],
+      "mono_fonts": ["JetBrains Mono", "SF Mono", "Consolas"],
+      "heading_weight": 300,
+      "body_weight": 300,
+      "scale": {
+        "h1": {"min": 36, "max": 60, "unit": "px"},
+        "h2": {"min": 26, "max": 40, "unit": "px"},
+        "h3": {"min": 18, "max": 26, "unit": "px"},
+        "body": {"min": 14, "max": 16, "unit": "px"},
+        "small": {"min": 11, "max": 13, "unit": "px"}
+      },
+      "line_height": {"body": 1.7, "heading": 1.2},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 80, "max": 160, "unit": "px"},
+      "section_gap": {"typical": 96, "unit": "px"},
+      "content_max_width": {"typical": 1400, "unit": "px"},
+      "card_padding": {"typical": "0px (image cards typically borderless, text cards 24px padding)"}
+    },
+    "border_radius": {
+      "sharp": "0px",
+      "rounded": "2px - 6px",
+      "pill": "9999px",
+      "typical_button": "0px (sharp, minimal) or pill (for subtle CTAs)",
+      "typical_card": "0px - 2px (images should not have rounded corners that crop composition)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "black",
+        "color": "white",
+        "border_radius": "0px (sharp minimal)",
+        "text": "Book a Session, Inquire, View Portfolio, Contact Me",
+        "font_size": "13-15px",
+        "font_weight": 400
+      },
+      {
+        "variant": "secondary_outline",
+        "bg": "transparent",
+        "color": "black",
+        "border_radius": "0px",
+        "text": "View Gallery, See Pricing, About Me",
+        "font_size": "13-15px"
+      },
+      {
+        "variant": "text_link",
+        "bg": "transparent",
+        "color": "dark gray",
+        "border_radius": "none",
+        "text": "Navigation, category filters, social links"
+      }
+    ],
+    "elevation": {
+      "shadows": "none to ultra-minimal",
+      "approach": "Avoid shadows that compete with imagery. When needed, barely-there shadows. Images themselves are the hero — UI recedes.",
+      "typical_values": ["none", "0 1px 2px rgba(0,0,0,0.04)", "0 2px 8px rgba(0,0,0,0.06)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (minimal: logo/name center or left, nav with thin text links, transparent or white bg, no sticky unless essential)",
+      "hero (full-bleed hero photograph + photographer name + tagline + subtle 'View Portfolio' CTA — text minimal)",
+      "portfolio_grid (masonry or clean grid of best work, 3-4 columns, lightbox on click, category filters: weddings/portraits/commercial)",
+      "services (minimal icon-free cards: photography type + short description + starting price, 3 columns)",
+      "about_photographer (split layout: photographer portrait left, story/approach right, warm personal tone)",
+      "testimonials (minimal quote cards: 'Client Name — Event/Location', elegant serif quotes, carousel or spaced grid)",
+      "booking_cta (centered, generous whitespace, 'Let's Create Something Beautiful' + contact form or 'Inquire' button)",
+      "footer (minimal: name/logo, Instagram grid preview, contact email, social icons, copyright — understated)"
+    ],
+    "hero_variants": [
+      "full_bleed_single (Magnum style — one breathtaking full-viewport photo, photographer name bottom-center, minimal text)",
+      "slideshow_carousel (portfolio style — auto-advancing full-bleed images, subtle dot navigation, no text overlay)",
+      "split_portrait (personal brand style — photographer portrait right, name + tagline left, clean white bg)",
+      "grid_intro (500px style — grid of 6 best images tiled above fold, logo centered on white)"
+    ],
+    "feature_card_variants": [
+      "portfolio_thumbnail (image only with overlay on hover: title + category, lightbox trigger, no border)",
+      "service_card (thin-bordered or shadowless card: service name + brief description + starting price, minimal)",
+      "testimonial_quote (no photo card: centered italic quote + client name, editorial typography, generous padding)",
+      "pricing_tier (3-column: package name + hours + deliverables list + price, minimalist table style)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["minimal", "elegant", "artistic", "personal", "light", "airy", "timeless", "editorial"],
+    "headline_style": "poetic and personal, 4-7 words (e.g., 'Capturing Light. Preserving Moments.', 'Timeless Imagery for Modern Love.')",
+    "cta_style": "gentle, invitational (Inquire, Book a Session, Let's Connect, View Portfolio, Get in Touch)",
+    "trust_signals": ["featured publication logos (Vogue, The Knot, etc.)", "Instagram follower count", "client count (300+ weddings)", "award badges", "press features", "behind-the-scenes content", "full gallery access (transparency)"],
+    "anti_patterns": ["heavy borders on images", "loud CTA buttons that compete with photos", "busy backgrounds", "stock photography", "auto-play music", "cluttered navigation", "colored overlays on hero images"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "pure_white_minimal (#ffffff bg, #000000 text, #f5f5f5 secondary — gallery-first, no distraction)",
+      "warm_editorial (#faf8f5 warm white, #2c2416 sepia text, #c9a96e gold accent — film photography, fine art)",
+      "dark_gallery (#0a0a0a bg, #f0f0f0 text, #ffffff — editorial dark mode, dramatic imagery)",
+      "soft_cream (#fdfbf7 cream, #3a3a3a charcoal, #d4a574 copper — wedding/portrait photographers, romantic)",
+      "mono_contrast (#ffffff bg, #000000 text, #e5e5e5 borders — stark, modern, fashion/editorial)"
+    ],
+    "typography_mood": [
+      "cormorant_timeless (Cormorant Garamond headings, Jost body — editorial, wedding, fine art photography)",
+      "playfair_classic (Playfair Display headings, Lato body — polished, traditional, portrait photographers)",
+      "jost_modern (Jost headings and body — clean geometric, modern commercial/architecture photographers)"
+    ],
+    "layout_density": [
+      "gallery_maximal (dense image grid, minimal text, images do all the talking — 500px/Unsplash style)",
+      "editorial_airy (generous whitespace, large type, one image per screen — fine art/editorial photographers)",
+      "business_balanced (clear service sections, pricing visible, booking accessible — working commercial photographers)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "portfolio_grid", "services", "about_photographer", "testimonials", "booking_cta", "footer"],
+      "curated_stack": "photography_portfolio_landing"
+    },
+    "portfolio_page": {
+      "sections": ["header", "category_filter", "image_grid", "lightbox", "pagination", "footer"],
+      "best_practices": "Masonry or clean grid, category filters (All/Weddings/Portraits/Commercial), lazy loading with blur-up placeholders, lightbox with keyboard navigation"
+    },
+    "gallery_detail_page": {
+      "sections": ["header", "hero_image", "gallery_navigation", "image_metadata", "related_galleries", "footer"]
+    },
+    "pricing_page": {
+      "sections": ["header", "packages", "add_ons", "faq", "inquiry_cta", "footer"],
+      "best_practices": "3-4 package tiers, clear deliverables list, starting price, FAQ accordion, no hard sell"
+    },
+    "about_page": {
+      "sections": ["header", "photographer_portrait", "philosophy", "press_features", "equipment_note (optional)", "instagram_embed", "contact_cta", "footer"]
+    }
+  }
+}

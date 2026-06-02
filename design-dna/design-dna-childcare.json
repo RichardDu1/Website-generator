@@ -1,0 +1,364 @@
+{
+  "industry": "childcare",
+  "extracted_from": [
+    {
+      "source": "官网分析",
+      "brand": "Bright Horizons",
+      "url": "https://www.brighthorizons.com",
+      "date": "2026-06-02",
+      "status": "blocked_by_bot_protection"
+    },
+    {
+      "source": "官网分析",
+      "brand": "KinderCare",
+      "url": "https://www.kindercare.com",
+      "date": "2026-06-02",
+      "status": "cloudflare_blocked"
+    },
+    {
+      "source": "官网CSS提取 + 页面结构分析",
+      "brand": "The Learning Experience",
+      "url": "https://www.thelearningexperience.com",
+      "date": "2026-06-02",
+      "status": "full_extraction_successful",
+      "extracted": {
+        "font_family": "\"Gotham Rounded\", arial, sans-serif",
+        "hero_bg": "#e7f7fd",
+        "testimonial_section_bg": "#943885",
+        "h1_size": "42px",
+        "h1_weight": "700",
+        "h2_size": "36px",
+        "body_text_color": "#333333",
+        "section_padding": "60px 0px",
+        "sections": ["home-banner", "parent-stories", "preschool-programs", "safe-place", "four-steps", "section-banner", "customer-reviews", "thank-you-banner"]
+      }
+    },
+    {
+      "source": "官网CSS提取 + 页面结构分析",
+      "brand": "Primrose Schools",
+      "url": "https://www.primroseschools.com",
+      "date": "2026-06-02",
+      "status": "full_extraction_successful",
+      "extracted": {
+        "font_family": "Poppins, \"Poppins Fallback\"",
+        "brand_green_bg": "#5e6738",
+        "h1_size": "48px",
+        "h1_weight": "400",
+        "h2_size": "30px",
+        "body_text_color": "#212529",
+        "section_padding": "60px 0px",
+        "sections": ["HeroBlock", "WysiwygEditor", "FeaturedTabsBlock", "CardCarouselBlock", "WayfindingCardsBlock"],
+        "css_framework": "Tailwind CSS"
+      }
+    },
+    {
+      "source": "品牌标识分析 (PRINT Magazine / Design Bridge)",
+      "brand": "KinderCare",
+      "url": "https://www.printmag.com/branding-identity-design/design-bridge-s-kindercare-brand-identity-builds-confidence-for-life/",
+      "date": "2026-06-02",
+      "status": "brand_identity_article_extracted",
+      "extracted": {
+        "typeface": "Castledown",
+        "design_system": "Five geometric building block shapes from bell tower logo, stamped together with hand-drawn marker pen doodles",
+        "palette_description": "playful and colorful",
+        "tagline": "Confidence for Life",
+        "design_firm": "Design Bridge (New York)"
+      }
+    }
+  ],
+  "reference_brands": ["Bright Horizons", "KinderCare", "The Learning Experience", "Primrose Schools"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#1976D2", "#1E88E5", "#1565C0"],
+      "primary_role": "主色 — 信任蓝，表示安全、专业、可信赖。幼儿园行业中蓝色是最常见的主色，传递父母的安心感",
+      "accent": ["#F9A825", "#43A047", "#E53935", "#8E24AA"],
+      "accent_role": "强调色 — 阳光黄、成长绿、活泼红、创意紫。用于按钮、图标、高亮元素，增加童趣但不刺眼",
+      "surface": ["#FFFFFF", "#E7F7FD", "#F5F0E8", "#FFF8E1"],
+      "surface_role": "背景色 — 纯白 + 柔和天蓝 + 温暖奶油 + 淡黄。分段背景可用浅色交替，创造温馨层次",
+      "neutral": ["#212121", "#616161", "#9E9E9E"],
+      "neutral_role": "文字颜色 — 深灰近黑(标题) + 中灰(正文) + 浅灰(辅助信息)",
+      "border": ["#E0E0E0", "#BDBDBD"],
+      "border_role": "边框 — 柔和圆角边框，可用彩色边框增加活力",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#2563eb"
+      },
+      "observed_brand_specific": {
+        "the_learning_experience": {
+          "hero_banner_bg": "#e7f7fd",
+          "testimonial_purple": "#943885",
+          "note": "使用明亮的浅蓝作为主背景，紫色用于客户评价区以突出社交证明"
+        },
+        "primrose_schools": {
+          "brand_green": "#5e6738",
+          "note": "橄榄绿/鼠尾草绿是Primrose的独特品牌色，传递自然与成长"
+        },
+        "kindercare": {
+          "note": "多色几何积木系统，手绘涂鸦风格，Castledown字体，活泼但不幼稚"
+        },
+        "bright_horizons": {
+          "note": "暖橙色/金黄色日出主题，搭配信任蓝，强调家庭温暖与专业"
+        }
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Poppins", "Gotham Rounded", "Castledown", "Nunito", "Fredoka One"],
+      "heading_fonts_role": "标题字体 — 圆润/友好/童趣风格优先。Poppins(现代干净)、Gotham Rounded(圆润友好)、Castledown(手写学习感)、Nunito(圆体)、Fredoka One(童趣粗圆体)",
+      "body_fonts": ["Poppins", "Segoe UI", "Inter", "Open Sans"],
+      "body_fonts_role": "正文字体 — 干净的高可读性无衬线字体，不要用衬线体",
+      "heading_weight": 600,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 28, "max": 56, "unit": "px", "observed": "42-48px on desktop"},
+        "h2": {"min": 22, "max": 40, "unit": "px", "observed": "30-36px on desktop"},
+        "h3": {"min": 16, "max": 28, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 40, "max": 100, "unit": "px", "observed": "60px 0px on both TLE and Primrose"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px", "observed": "24-32px on Primrose card modules"},
+      "hero_padding": {"observed": "25px 0px (TLE)"}
+    },
+    "border_radius": {
+      "buttons": "8-50px — 圆角矩形到完全胶囊形。幼儿园行业偏好更圆润的按钮(16-24px或pill)，传递友好安全的感觉",
+      "cards": "12-24px — 圆角卡片，不要尖角",
+      "inputs": "8-12px — 柔和圆角输入框",
+      "observed": "Primrose使用4px导航圆角(较保守)，但行业趋势是更大圆角"
+    },
+    "elevation": {
+      "shadows": "柔和阴影 — 不刺眼，无强对比。使用低透明度、大模糊半径的阴影营造卡片浮起感",
+      "typical_values": [
+        "0 2px 8px rgba(0,0,0,0.08)",
+        "0 4px 16px rgba(0,0,0,0.06)",
+        "0 8px 24px rgba(0,0,0,0.05)"
+      ],
+      "observed": "Primrose卡片的box-shadow为none，TLE未检测到明显卡片阴影"
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      {
+        "position": 1,
+        "name": "header",
+        "description": "明亮页头 — 左侧logo(通常是彩色图标+品牌名)，居中导航链接(Programs/Curriculum/Safety/Locations)，右侧醒目CTA('Find a Center'/'Schedule a Tour') + 电话号码",
+        "observed_at": ["The Learning Experience", "Primrose Schools"]
+      },
+      {
+        "position": 2,
+        "name": "hero",
+        "description": "英雄区 — 大幅真实儿童活动照片(不是库存图!)，温暖标题强调学习/成长/安全，副标题简短说明价值主张，显眼CTA按钮'Find a Location'/'Schedule a Tour'。背景常见浅蓝(#e7f7fd)或浅色渐变",
+        "observed_at": ["The Learning Experience: home-banner section, bg=#e7f7fd, padding=60px 0px"]
+      },
+      {
+        "position": 3,
+        "name": "programs_by_age",
+        "description": "年龄段课程 — 卡片网格排列: Infant/Toddler/Preschool/Pre-K/School Age。每张卡片含年龄范围图标/插图 + 简短描述 + 'Learn More'链接。这是家长最关心的信息层级",
+        "observed_at": ["The Learning Experience: preschool-programs section"]
+      },
+      {
+        "position": 4,
+        "name": "curriculum_approach",
+        "description": "教育理念/课程方法 — 说明他们的教学方法(蒙台梭利/STEAM/游戏式学习等)。通常图文并排，或图标+文字布局",
+        "observed_at": ["Primrose Schools: WysiwygEditor + FeaturedTabsBlock modules"]
+      },
+      {
+        "position": 5,
+        "name": "safety_and_security",
+        "description": "安全与健康 — 非协商必须存在的区域! 展示: 安全门禁系统、健康检查流程、员工培训认证、清洁卫生标准、实时视频监控。这是家长决策的核心焦虑点，必须充分沟通",
+        "observed_at": ["The Learning Experience: safe-place section (explicitly named)"]
+      },
+      {
+        "position": 6,
+        "name": "location_finder",
+        "description": "位置搜索 — 按ZIP/城市搜索附近中心，通常带交互式地图或搜索框。这是家长转化漏斗的关键步骤(就近原则)",
+        "observed_at": ["Primrose Schools: WayfindingCardsBlock"]
+      },
+      {
+        "position": 7,
+        "name": "testimonials",
+        "description": "家长评价 — 真实家长+孩子的照片和引言。TLE使用紫色背景(#943885)突出此区域。通常包含星级评分、家长名字、孩子年龄",
+        "observed_at": ["The Learning Experience: parent-stories + customer-reviews sections, review bg=#943885"]
+      },
+      {
+        "position": 8,
+        "name": "virtual_tour_or_gallery",
+        "description": "虚拟参观/照片画廊 — 教室、户外活动区、餐厅等真实照片。视频虚拟参观越来越常见(COVID后趋势)",
+        "observed_at": ["Primrose Schools: CardCarouselBlock"]
+      },
+      {
+        "position": 9,
+        "name": "enrollment_info",
+        "description": "入学信息/定价 — 入学流程步骤(咨询→参观→注册→入学)、费用结构说明、常见问题",
+        "observed_at": ["The Learning Experience: four-steps section"]
+      },
+      {
+        "position": 10,
+        "name": "footer",
+        "description": "页脚 — 各地分校列表、课程链接、关于我们、职业机会、联系方式、认证徽章、社交媒体链接",
+        "observed_at": ["both sites standard footer patterns"]
+      }
+    ],
+    "hero_variants": [
+      {
+        "type": "快乐儿童大图+文字+CTA",
+        "description": "大幅背景图(快乐的儿童活动场景)+ 半透明遮罩 + 大标题 + CTA按钮",
+        "used_by": "常见于大多数幼儿园网站"
+      },
+      {
+        "type": "视频背景+寻找中心搜索框",
+        "description": "自动播放的静音视频背景 + 居中的ZIP搜索框 + 标题文字",
+        "used_by": "较现代的品牌"
+      },
+      {
+        "type": "轮播多张儿童活动照片",
+        "description": "多张高质量照片轮流展示不同年龄段和活动",
+        "used_by": "展现多样性"
+      },
+      {
+        "type": "浅色背景+大文字+插图",
+        "description": "不依赖大图，用浅蓝/浅黄背景+大标题+品牌插图/吉祥物",
+        "used_by": "The Learning Experience (bg=#e7f7fd)"
+      }
+    ],
+    "card_variants": [
+      {
+        "type": "年龄段卡片",
+        "content": "icon/photo + age range + program name + short description + CTA",
+        "observed_at": "行业标准模式"
+      },
+      {
+        "type": "地点卡片",
+        "content": "photo + address + phone + tour CTA button",
+        "observed_at": "Primrose Schools WayfindingCardsBlock"
+      },
+      {
+        "type": "课程特色卡片",
+        "content": "icon/illustration + title + 2-3 line description",
+        "observed_at": "Primrose Schools FeaturedTabsBlock"
+      },
+      {
+        "type": "评价轮播卡片",
+        "content": "parent photo + quote + name + child age + star rating",
+        "observed_at": "The Learning Experience customer-reviews section"
+      }
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["nurturing", "educational", "safe", "joyful", "developmental", "trusted", "loving", "growth", "discovery", "confidence"],
+    "headline_style": "温暖、令人放心的标题风格，聚焦于儿童发展和家长安心感。示例: 'Where Learning Comes to Life' / 'Confidence for Life' / 'Nurturing Curiosity, Building Character'。避免过于销售化的语言，应该像教育者而不是销售员在说话",
+    "cta_style": "行动号召风格 — 'Find a Center', 'Schedule a Tour', 'Enroll Today', 'Book a Visit'。按钮文案以动词开头，强调行动但不制造紧迫感(不要'Limited Spots!')。颜色使用品牌主色或强调色，pill或大圆角形状",
+    "trust_signals": [
+      "安全认证和资质徽章(NAEYC、州执照等)",
+      "员工资质和培训背景(CPR/急救认证、早教专业学位)",
+      "真实家长评价和推荐(带照片和全名)",
+      "办学年限(如'40+ Years of Excellence')",
+      "师生比例(1:4 for infants等)",
+      "安全设施说明(安全门禁、实时视频监控、背景调查)",
+      "健康和安全协议(COVID后的重点)",
+      "课程认证或教育合作伙伴logo",
+      "媒体报道和奖项",
+      "Google/Facebook评价星级"
+    ],
+    "anti_patterns": [
+      "避免深色/保守色系(黑、深灰、海军蓝过多) — 看起来像律师事务所或银行",
+      "避免企业/无菌的语调 — 不要用大量行业术语和正式商务语言",
+      "避免库存照片(特别是过度摆拍、不自然的儿童照片) — 家长一眼能识别",
+      "避免制造焦虑或恐惧(不要'Your child will fall behind if...')",
+      "避免把价格放在第一位 — 安全、质量、信任必须先建立",
+      "避免过于卡通/幼稚 — 虽然是儿童行业，但信任感的建立需要专业感",
+      "避免自动播放带声音的视频 — 烦人且可能吓到孩子",
+      "避免拥挤的布局 — 留白是温馨感的来源"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      {
+        "name": "bright_primary_colors",
+        "description": "明亮原色 — 红蓝黄为主，像TLE和KinderCare。高能量、活泼、适合0-5岁阶段",
+        "palette": ["#E53935", "#1E88E5", "#FDD835"],
+        "best_for": "面向婴幼儿的托育中心，强调玩乐和活力"
+      },
+      {
+        "name": "soft_pastels",
+        "description": "柔和的粉彩 — 浅蓝、粉红、薄荷绿、淡紫。温柔、安抚、适合新生儿和婴儿阶段",
+        "palette": ["#E7F7FD", "#FCE4EC", "#E8F5E9", "#F3E5F5"],
+        "best_for": "强调温柔护理和早期发展的蒙特梭利式中心"
+      },
+      {
+        "name": "nature_inspired_greens",
+        "description": "自然绿色系 — 鼠尾草绿、橄榄绿、大地色、天空蓝。像Primrose Schools。强调户外活动和自然教育",
+        "palette": ["#5E6738", "#81C784", "#A5D6A7", "#FFF9C4"],
+        "best_for": "强调户外教育、自然探索的幼儿园"
+      },
+      {
+        "name": "warm_sunrise_tones",
+        "description": "温暖日出系 — 橙色、金黄色、奶油色、温暖棕。像Bright Horizons。传递家庭温暖和希望",
+        "palette": ["#F57C00", "#FFB74D", "#FFF3E0", "#FFE0B2"],
+        "best_for": "强调家庭氛围和情感发展的托育中心"
+      }
+    ],
+    "typography_mood": [
+      {
+        "name": "rounded_playful_headings",
+        "description": "圆润童趣标题体 — Gotham Rounded, Fredoka One, Nunito, Baloo 2。友好、可接近、适合儿童",
+        "example": "The Learning Experience uses 'Gotham Rounded'"
+      },
+      {
+        "name": "clean_modern_sans_serif",
+        "description": "干净现代无衬线 — Poppins, Montserrat, Inter。专业但不冰冷，现代感强",
+        "example": "Primrose Schools uses 'Poppins'"
+      },
+      {
+        "name": "handwriting_educational",
+        "description": "手写/教育感 — Castledown, Quicksand, Patrick Hand。唤起学习写字的记忆，温暖人性化",
+        "example": "KinderCare uses 'Castledown'"
+      }
+    ],
+    "layout_density": [
+      {
+        "name": "photo_rich_spacious",
+        "description": "大幅照片+充分留白 — 每个区域大量使用真实照片，间距宽敞(60-100px padding)，让照片说话",
+        "example": "Primrose Schools (HeroBlock + CardCarouselBlock, 60px padding)"
+      },
+      {
+        "name": "information_dense_with_text",
+        "description": "信息密集+文字说明 — 更多文字描述课程理念、教学方法细节、研究支持。适合教育导向的品牌",
+        "example": "较学术化的幼儿园品牌"
+      },
+      {
+        "name": "illustration_led",
+        "description": "插画驱动 — 使用品牌插画和吉祥物而非大量照片，创造独特的品牌世界",
+        "example": "KinderCare (几何积木+手绘涂鸦)"
+      }
+    ]
+  },
+  "photo_guidelines": {
+    "critical_rules": [
+      "必须使用真实儿童和真实教室照片 — 家长能一眼识别库存图",
+      "儿童必须看起来自然、快乐、投入活动 — 不要摆拍直视镜头假笑",
+      "展示多样性 — 不同种族、能力的儿童",
+      "照片光线明亮、自然光为主 — 暗沉照片传递不安全信号",
+      "展示师生互动 — 老师蹲下与儿童平视交流",
+      "展示干净的教室环境和安全的户外空间",
+      "避免使用闪光灯拍摄 — 不自然",
+      "分辨率高但不过度锐化 — 保持温暖柔和的视觉"
+    ],
+    "avoid": [
+      "库存照片(特别是过度笑容、完美发型、过于整洁的衣服)",
+      "孤独的儿童(不要展示独自一人的孩子)",
+      "成人不在场的照片(传递监管缺失的信号)",
+      "食物杂乱、玩具散落一地的照片(传递无序感)"
+    ]
+  },
+  "accessibility_notes": {
+    "color_contrast": "确保所有文字与背景的对比度达到WCAG AA级别(正文4.5:1，大标题3:1)。浅色背景上的中灰色文字(rgb(95,99,104))可能对比度不足",
+    "cta_clarity": "CTA按钮颜色应与背景有强烈对比，不能依赖颜色唯一传达信息",
+    "mobile_navigation": "大多数家长在手机上搜索幼儿园，移动端体验至关重要。汉堡菜单+显眼的电话号码+一键拨号"
+  },
+  "data_collection_notes": "Bright Horizons和KinderCare官网因反爬/Cloudflare防护无法直接访问CSS提取。数据通过以下方式补充: KinderCare通过PRINT Magazine品牌标识分析文章获取字体和设计系统信息; Bright Horizons通过行业知识和公开品牌资料推断。The Learning Experience和Primrose Schools的CSS数据通过Playwright浏览器直接提取并验证。"
+}

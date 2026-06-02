@@ -1,0 +1,407 @@
+{
+  "industry": "education",
+  "subtypes": ["online_course", "university", "bootcamp", "tutoring", "k12", "language_school", "professional_certification"],
+  "extracted_from": [
+    {"url": "https://www.coursera.org", "style": "bright-learning-blue", "date": "2026-06-02", "region": "zh-CN"},
+    {"url": "https://www.udemy.com", "style": "marketplace-purple", "date": "2026-06-02", "region": "zh-TW"},
+    {"url": "https://www.masterclass.com", "style": "dark-cinematic-luxury", "date": "2026-06-02", "region": "en-GB"},
+    {"url": "https://www.khanacademy.org", "style": "green-growth-free", "date": "2026-06-02", "region": "en-US"},
+    {"url": "https://generalassemb.ly", "style": "bold-career-red", "date": "2026-05-30"},
+    {"style": "synthesized from industry research", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Coursera", "Udemy", "edX", "Khan Academy", "General Assembly", "Lambda School (BloomTech)", "Pluralsight", "Duolingo", "MasterClass", "Brilliant.org"],
+
+  "brand_detail": {
+    "coursera": {
+      "url": "https://www.coursera.org",
+      "style": "bright-learning-blue",
+      "primary_hex": "#0056d2",
+      "body_font": "\"Source Sans Pro\", Arial, sans-serif",
+      "heading_font": "\"Source Sans Pro\", Arial, sans-serif",
+      "h1_size": "48px",
+      "h1_weight": 600,
+      "h1_color": "#0f1114",
+      "body_bg": "#ffffff",
+      "body_color": "#0f1114",
+      "nav_bg": "transparent",
+      "cta_primary": {"bg": "#0056d2", "color": "#ffffff", "borderRadius": "8px", "fontSize": "14px", "fontWeight": 600, "padding": "8px 16px"},
+      "cta_secondary": {"bg": "#ffffff", "color": "#0056d2", "borderRadius": "8px", "fontSize": "14px", "fontWeight": 700, "border": "1px solid #0056d2"},
+      "search_bar": true,
+      "segment_nav": ["For Individuals", "For Business", "For Universities", "For Government"],
+      "headline_style": "aspirational career transformation (e.g., 'Unlimited learning', 'Start, switch, or advance your career')",
+      "key_sections": ["career certificates", "AI/tech courses", "trending courses grid", "university partner logos", "degree programs"],
+      "trust_signals": ["university partnerships", "professional certificates", "industry-recognized credentials", "enrollment counts"],
+      "pricing_model": "free to join, pay per course/specialization, subscription for Coursera Plus"
+    },
+    "udemy": {
+      "url": "https://www.udemy.com",
+      "style": "marketplace-purple",
+      "primary_hex": "#a435f0",
+      "primary_oklch": "oklch(0.4841 0.2342 293.93)",
+      "body_font": "\"Udemy Sans\", \"Noto Sans JP\", Vazirmatn, \"SF Pro Text\", -apple-system, BlinkMacSystemFont, Roboto, \"Segoe UI\", Helvetica, Arial, sans-serif",
+      "heading_font": "\"Udemy Sans\", system-ui, sans-serif",
+      "h1_size": "none (uses H2 as primary heading)",
+      "h2_size": "31px",
+      "h2_weight": 500,
+      "h2_color": "oklch(0.2974 0.0362 281.74)",
+      "body_bg": "#ffffff",
+      "body_color": "oklch(0.2974 0.0362 281.74)",
+      "nav_bg": "transparent",
+      "cta_primary": {"bg": "oklch(0.4841 0.2342 293.93)", "color": "#ffffff", "borderRadius": "8px", "fontSize": "14px", "fontWeight": 700, "padding": "0px 12px"},
+      "cta_secondary": {"bg": "#ffffff", "color": "oklch(0.2974 0.0362 281.74)", "borderRadius": "1000px", "fontSize": "14px", "fontWeight": 700, "padding": "0px 10px"},
+      "search_bar": true,
+      "headline_style": "skill-based, career-outcome focused (e.g., 'Learn essential career and life skills', 'Reshape your career in the AI era')",
+      "key_sections": ["browse by goal", "popular courses grid", "trending topics", "AI career transformation", "category browse", "pricing/promo"],
+      "course_card_elements": ["thumbnail", "title (long-form)", "instructor name", "rating (e.g., 4.9)", "price (e.g., £99.99)", "bestseller badge"],
+      "trust_signals": ["star ratings", "review counts", "student enrollment numbers", "30-day money-back guarantee", "bestseller badges"],
+      "pricing_model": "per-course purchase, frequent discounts/sales, personal subscription plan available",
+      "unique_patterns": ["no traditional H1 on landing page", "flat card design (no shadows/borders)", "pill-shaped secondary buttons", "custom brand font (Udemy Sans)", "uses oklch() color space throughout", "long-form course titles in cards"]
+    },
+    "masterclass": {
+      "url": "https://www.masterclass.com",
+      "style": "dark-cinematic-luxury",
+      "primary_hex": "#e32652",
+      "body_font": "\"Sohne\", Helvetica, Arial, sans-serif",
+      "heading_font": "\"Sohne Schmal\", Impact-fallback, Helvetica, Arial, sans-serif",
+      "h1_size": "80px",
+      "h1_weight": 500,
+      "h1_color": "#ffffff",
+      "h1_family": "Sohne Schmal (condensed, cinematic)",
+      "h2_size": "32px",
+      "body_bg": "#000000",
+      "body_color": "#ffffff",
+      "nav_bg": "#0d0d0e",
+      "nav_color": "#ffffff",
+      "cta_primary": {"bg": "#e32652", "color": "#ffffff", "borderRadius": "8px", "fontSize": "16px", "fontWeight": 600, "padding": "12px 24px"},
+      "cta_secondary": {"bg": "#222326", "color": "#ffffff", "borderRadius": "8px", "fontSize": "16px", "fontWeight": 600},
+      "card_radius": "16px",
+      "max_width": "1264px",
+      "search_bar": true,
+      "headline_style": "cinematic, aspirational, all-caps condensed (e.g., 'LEARN FROM THE BEST, BE YOUR BEST.')",
+      "key_sections": ["celebrity instructor carousel", "personalization quiz ('What brings you to MasterClass?')", "membership features list", "category browse with icons", "trending courses carousel", "testimonials carousel (long-form quotes)", "accelerator bundle promo", "certificates promo", "B2B/team section", "email capture", "FAQ accordion"],
+      "trust_signals": ["celebrity instructor credibility", "200+ classes count", "30-day money back guarantee", "member testimonials with verifiable identities", "new classes added monthly"],
+      "pricing_model": "annual subscription (3 tiers), starting at ~£10/month billed annually",
+      "unique_patterns": ["entire site is dark theme (body bg #000000)", "custom condensed typeface for cinematic feel", "bold crimson CTA against black", "personalization quiz in hero (checkbox-based)", "celebrity-focused instructor marketing", "carousel-heavy layout", "custom font files (.woff2 self-hosted, not Google Fonts)", "securely styled (SSL badge in footer)", "multi-product bundle (Accelerator: MasterClass + Certificates + On Call)"],
+      "category_pills": ["Trending", "Acting & Performing Arts", "Art & Design", "Business & Entrepreneurship", "Community & Government", "Film & TV", "Food & Drink", "Games & Digital Media", "Health & Wellness", "Music", "Outdoor Adventures & Events", "Science & Technology", "Sports & Athletics", "Writing"]
+    },
+    "khan_academy": {
+      "url": "https://www.khanacademy.org",
+      "style": "green-growth-free",
+      "primary_hex": "#1865f2",
+      "body_font": "\"Lato\", \"Noto Sans\", Helvetica, Corbel, sans-serif",
+      "heading_font": "\"Inter\", sans-serif",
+      "h1_size": "40px",
+      "h1_weight": 600,
+      "h1_color": "#ffffff (on dark/colored hero background)",
+      "h2_size": "28px",
+      "body_bg": "#ffffff",
+      "body_color": "#21242c",
+      "nav_bg": "transparent",
+      "section_bgs": ["#f7f7f7", "#f5f7f9", "#ffffff"],
+      "search_bar": true,
+      "headline_style": "mission-driven, inclusive (e.g., 'Khan Academy boosts scores!', 'You can learn anything.', 'Every child deserves the chance to learn.')",
+      "key_sections": ["mega category navigation (accordion-style: Math, Science, Computing, ELA, Test Prep, etc.)", "Why Khan Academy works (3-column: personalized, trusted, empowering)", "Teacher differentiation CTA", "Learner CTA ('You can learn anything')", "testimonial (personal story)", "donation CTA (nonprofit mission)", "join CTA (Learner/Teacher/Parent personas)", "key supporters logos (Bank of America, Gates Foundation, etc.)"],
+      "trust_signals": ["90% of US teachers found Khan Academy effective", "501(c)(3) nonprofit status", "expert-created content", "always free messaging", "major foundation/institutional supporters", "617 million children statistic"],
+      "pricing_model": "completely free (nonprofit, donation-supported)",
+      "unique_patterns": ["persona-based CTAs: Learner / Teacher / Parent", "massive expandable course category navigation", "prominent Donate button alongside Sign up", "mission-first copywriting", "key supporters section with foundation logos", "cookie consent banner (EU-style)", "combines K-12 + college + life skills in one nav"],
+      "course_categories": ["Math: Pre-K - 8th grade", "Math: High school & college", "Math: Get ready courses", "English language arts (ELA)", "Life skills", "Science", "Test prep", "Computing", "Social studies", "Economics", "Math: Multiple grades", "Partner courses"]
+    }
+  },
+
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0056d2", "#1865f2", "#a435f0", "#e32652", "#002f6c", "#1a3a8a", "#003d80"],
+      "primary_role": "Header, navigation, links, trust elements, footer (blue conveys trust, knowledge, authority; purple for marketplace accessibility; crimson for cinematic luxury)",
+      "accent": ["#00a86b", "#f5a623", "#e63946", "#7c3aed", "#ff6b35", "#00b4d8"],
+      "accent_role": "CTA buttons, course category badges, progress indicators, highlights, sale badges",
+      "surface": ["#ffffff", "#f8f9fb", "#f4f6fa", "#f7f7f7", "#f5f7f9", "#eef1f7", "#fafbfc", "#000000", "#0d0d0e"],
+      "surface_role": "Page backgrounds, card backgrounds, alternating sections; #000000/#0d0d0e for dark-themed luxury education brands",
+      "neutral": ["#0f1114", "#1a1a2e", "#21242c", "#2d3436", "#555555", "#636e72", "#8a8f94", "#b2bec3"],
+      "neutral_role": "Body text, secondary text, metadata, course details, instructor info",
+      "border": ["#e0e4ea", "#d1d5db", "#c8ccd0", "#e4e8ec"],
+      "border_role": "Card borders, input fields, dividers, course cards",
+      "semantic": {
+        "success": "#00a86b",
+        "warning": "#f5a623",
+        "error": "#e63946",
+        "info": "#0056d2",
+        "beginner": "#00a86b",
+        "intermediate": "#f5a623",
+        "advanced": "#e63946",
+        "enrolled": "#7c3aed",
+        "completed": "#00a86b",
+        "certificate": "#f5a623",
+        "free": "#00a86b",
+        "bestseller": "#f5a623",
+        "new": "#e63946"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Inter", "Poppins", "Montserrat", "Source Serif 4", "DM Sans", "Source Sans Pro", "Sohne Schmal", "Udemy Sans"],
+      "body_fonts": ["Inter", "Source Sans Pro", "Source Sans 3", "Open Sans", "Lato", "Nunito Sans", "Sohne", "Udemy Sans"],
+      "heading_weight": 650,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 34, "max": 80, "unit": "px", "typical": 48},
+        "h2": {"min": 26, "max": 40, "unit": "px", "typical": 31},
+        "h3": {"min": 18, "max": 26, "unit": "px", "typical": 20},
+        "body": {"min": 14, "max": 18, "unit": "px", "typical": 16},
+        "small": {"min": 12, "max": 14, "unit": "px", "typical": 13},
+        "price": {"min": 16, "max": 32, "unit": "px", "typical": 22}
+      },
+      "line_height": {"body": 1.65, "heading": 1.25},
+      "observed_font_sources": {
+        "google_fonts": ["Inter", "Lato", "Source Sans Pro", "Open Sans", "Poppins", "Montserrat", "Source Serif 4", "Nunito Sans"],
+        "self_hosted_woff2": ["Sohne (MasterClass)", "Sohne Schmal (MasterClass)", "Udemy Sans (Udemy)", "Equinox Sans (used by Coursera CDN)"],
+        "system_fallbacks": ["Arial", "Helvetica", "sans-serif", "-apple-system", "BlinkMacSystemFont", "Roboto", "Segoe UI"]
+      },
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 96, "unit": "px"},
+      "section_gap": {"typical": 64, "unit": "px"},
+      "content_max_width": {"typical": 1200, "observed": "1264px (MasterClass), 1200px typical", "unit": "px"},
+      "card_padding": {"typical": "20px 24px", "observed_flat": "0px (Udemy flat cards)"},
+      "course_card_gap": {"typical": 24, "unit": "px"}
+    },
+    "border_radius": {
+      "sharp": "0-4px",
+      "rounded": "8px (industry standard for buttons and cards)",
+      "large_rounded": "16px (MasterClass cards)",
+      "pill": "1000px (Udemy secondary buttons), 9999px",
+      "typical_button": "8px (most brands), 1000px pill (Udemy secondary)",
+      "typical_card": "8px - 16px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "primary blue (#0056d2) or purple (#a435f0) or crimson (#e32652)",
+        "color": "white",
+        "border_radius": "8px",
+        "text": "action-oriented (Enroll Now, Start Learning, Get Started Free, Join Course, Begin Your Journey, Get MasterClass)",
+        "font_size": "14-16px",
+        "font_weight": 600,
+        "padding": "8px-12px 16px-24px",
+        "observed_on": "Coursera, MasterClass, Udemy"
+      },
+      {
+        "variant": "secondary_outline",
+        "bg": "transparent or white",
+        "color": "primary blue (#0056d2) or body color",
+        "border": "1.5px solid #0056d2 (Coursera) or none (Udemy pill)",
+        "border_radius": "8px or 1000px (pill)",
+        "text": "Browse Courses, View Curriculum, Meet Instructors, Learn More, Log In",
+        "font_size": "14-16px",
+        "font_weight": "500-700",
+        "observed_on": "Coursera, Udemy"
+      },
+      {
+        "variant": "ghost_text",
+        "bg": "transparent",
+        "color": "primary or neutral",
+        "border": "none",
+        "text": "Navigation, View All, See More, FAQ, Explore",
+        "text_decoration": "underline on hover",
+        "font_weight": 400,
+        "observed_on": "all brands"
+      },
+      {
+        "variant": "success_badge",
+        "bg": "#e6f7ee (light green)",
+        "color": "#00a86b",
+        "border_radius": "9999px",
+        "text": "Enrolled, Completed, Certified, Free",
+        "font_size": "12-13px",
+        "font_weight": 600
+      },
+      {
+        "variant": "dark_surface_button",
+        "bg": "#222326",
+        "color": "#ffffff",
+        "border_radius": "8px",
+        "text": "Category chips, filter options, quiz answers",
+        "font_size": "16px",
+        "font_weight": 600,
+        "observed_on": "MasterClass (category buttons, personalization quiz)"
+      },
+      {
+        "variant": "pill_secondary",
+        "bg": "#ffffff",
+        "color": "body text color",
+        "border_radius": "1000px",
+        "text": "Category filters, topic chips",
+        "font_size": "14px",
+        "font_weight": 700,
+        "observed_on": "Udemy"
+      }
+    ],
+    "elevation": {
+      "shadows": "clean, moderate; some brands (Udemy) use flat design with no shadows",
+      "typical_values": [
+        "0 1px 3px rgba(0,0,0,0.06)",
+        "0 4px 12px rgba(0,0,0,0.08)",
+        "0 8px 24px rgba(0,0,0,0.1)"
+      ],
+      "flat_design_values": [
+        "none (Udemy course cards — borderless, shadowless)"
+      ]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, white/transparent/dark bg, logo left, nav center with courses/categories, 'Sign In' + 'Get Started' CTA right)",
+      "hero (headline + subtitle + primary CTA + secondary CTA + hero image/illustration + social proof: 'Join 10M+ learners')",
+      "partner_logos_or_stats (university logos or stat counters: students, courses, graduation rate, job placement rate)",
+      "courses_grid (3-4 columns: course card with thumbnail, title, instructor, rating, price/duration, level badge, CTA)",
+      "how_it_works (numbered steps: Browse -> Enroll -> Learn -> Certificate, or platform walkthrough illustration)",
+      "instructors (photo cards: headshot, name, credentials, courses taught, rating, bio link)",
+      "curriculum (accordion or tabbed: module/section breakdown with lesson titles, duration, preview availability)",
+      "testimonials (student photo + quote + name + course taken + outcome: 'Got a job at Google', 'Doubled my salary')",
+      "pricing (tier cards or simple table: plan name, price, features, CTA, 'Most Popular' badge)",
+      "faq (accordion: cost, prerequisites, time commitment, certificate value, refund policy)",
+      "enrollment_cta (centered: 'Ready to start learning?' + primary CTA + 'No risk, money-back guarantee' reassurance)",
+      "footer (4-column: about/platform/courses/support + copyright + social links + accreditation logos)"
+    ],
+    "hero_variants": [
+      "illustration_right (text left + educational illustration/graphic right -- Coursera, edX style)",
+      "search_centered (large course search bar: 'What do you want to learn?' -- Udemy style)",
+      "video_hero (background video of classroom/students + overlay text + CTA -- university style)",
+      "stat_banner (large headline + counter stats: '500+ courses, 50K+ students, 98% satisfaction')",
+      "minimal_text (clean, centered headline + subtitle + CTA, no image -- bootcamp style)",
+      "cinematic_dark (all-caps condensed headline on black, celebrity imagery, crimson CTA -- MasterClass style)",
+      "personalization_quiz_hero (dark bg + headline + multi-checkbox quiz: 'What brings you here today?' + disabled Continue until selection -- MasterClass style)",
+      "mission_hero (large headline on colored/illustrated bg + persona CTAs: Learner/Teacher/Parent + search bar -- Khan Academy style)",
+      "segment_nav_hero (top banner nav for different segments: Individual/Business/University/Government + headline below -- Coursera style)"
+    ],
+    "course_card_variants": [
+      "thumbnail_badge (course image top, level badge corner, title + instructor + rating + price + CTA below)",
+      "list_detail (horizontal: small thumbnail left, title + metadata right, price + CTA right -- compact)",
+      "curriculum_card (module count, hours of content, projects included, certificate badge -- bootcamp style)",
+      "cinematic_card (instructor photo prominent, class title, duration, 'new' badge, watch trailer CTA -- MasterClass style)",
+      "flat_marketplace_card (no shadow, no border, thumbnail + long title + instructor + rating stars + price with currency -- Udemy style)"
+    ],
+    "navigation_variants": [
+      "sticky_top_bar (logo left, center nav links, right auth CTAs -- Coursera, Khan Academy)",
+      "dark_top_bar (all-dark header with search bar, browse menu, CTA -- MasterClass)",
+      "mega_category_nav (large expandable accordion with 12+ subject areas, each with 5-20 sublinks -- Khan Academy)",
+      "segment_switcher (top banner with For Individuals / For Business / For University / For Government tabs -- Coursera)",
+      "search_heavy_nav (search bar central to header -- Udemy style)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["trustworthy", "empowering", "knowledgeable", "accessible", "supportive", "transformative", "structured", "aspirational", "cinematic"],
+    "headline_style": "aspirational, benefit-driven (e.g., 'Learn the skills to shape your future', 'Advance your career with expert-led courses', 'From curious to career-ready', 'LEARN FROM THE BEST, BE YOUR BEST.')",
+    "cta_style": "encouraging, low-risk (Start Learning Free, Enroll Now, Begin Your Journey, Try for Free, Join Today, Get MasterClass)",
+    "tone_by_brand_type": {
+      "mooc_platform": "trustworthy, academic, institutional (Coursera/edX: 'Advance your career with courses from top universities')",
+      "marketplace": "accessible, skill-focused, practical (Udemy: 'Learn essential career and life skills')",
+      "nonprofit_k12": "mission-driven, inclusive, warm (Khan Academy: 'You can learn anything. Every child deserves the chance to learn.')",
+      "luxury_celebrity": "cinematic, aspirational, exclusive-feeling (MasterClass: 'LEARN FROM THE BEST, BE YOUR BEST.')",
+      "career_bootcamp": "bold, urgent, outcome-focused (General Assembly: 'Change your career in 12 weeks')"
+    },
+    "trust_signals": [
+      "university/institutional partnerships and logos",
+      "instructor credentials (PhD, industry experience, published authors, celebrities)",
+      "student enrollment count ('Join 10M+ learners')",
+      "course ratings and review counts (star ratings 4.0-4.9)",
+      "job placement rates / career outcomes",
+      "accreditation and industry recognition",
+      "money-back guarantee or free trial (30-day money-back standard)",
+      "certificate of completion / CEU credits",
+      "student testimonials with verifiable outcomes",
+      "featured in media (Forbes, TechCrunch, EdSurge)",
+      "financial aid / scholarship options",
+      "corporate training partnerships",
+      "nonprofit status (Khan Academy: 501(c)(3))",
+      "major foundation supporters (Gates Foundation, Bank of America, etc.)",
+      "bestseller badges on popular courses"
+    ],
+    "anti_patterns": [
+      "fake urgency ('Only 2 spots left!' when course is self-paced)",
+      "overly aggressive sales tactics",
+      "missing instructor credentials",
+      "hidden fees after enrollment",
+      "vague learning outcomes ('you will learn a lot')",
+      "stock photos of 'students' in unnatural poses",
+      "auto-play video with sound"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "blue_trust (Coursera/edX: #0056d2 primary, white bg, blue links, clean sans -- academic, trustworthy)",
+      "purple_creative (Udemy/Brilliant: #a435f0 primary, white/light bg, creative-purple accent -- marketplace, approachable)",
+      "green_growth (Khan Academy/Duolingo: #00a86b primary, white bg, playful illustrations -- friendly, growth)",
+      "dark_career (General Assembly/BloomTech: #1a1a2e primary, #ff6b35 orange accent, bold, career-focused)",
+      "gold_tradition (university: #002f6c navy, #f5a623 gold accent, Source Serif headings -- traditional, prestigious)",
+      "dark_cinematic (MasterClass: #000000 bg, #e32652 crimson CTA, #ffffff text, Sohne Schmal condensed headings -- luxurious, exclusive, celebrity-driven)"
+    ],
+    "typography_mood": [
+      "modern_sans (Inter/Poppins/Source Sans Pro -- contemporary edtech, accessible, clean)",
+      "academic_serif (Source Serif 4 headings + Inter body -- university/traditional, scholarly)",
+      "bold_display (Montserrat bold -- bootcamp, career-focused, high-impact)",
+      "friendly_rounded (Nunito Sans/Lato -- K-12, tutoring, approachable and warm)",
+      "cinematic_condensed (Sohne Schmal/Impact -- luxury education, celebrity-focused, dramatic)",
+      "custom_brand_sans (Udemy Sans/Equinox Sans -- proprietary brand identity, unique recognition)"
+    ],
+    "layout_density": [
+      "spacious_academic (university/MOOC: large hero, generous whitespace, curated feel)",
+      "marketplace_dense (Udemy: category grid, many course cards, search prominent, filter-heavy)",
+      "conversion_focused (bootcamp: longer pages, strong outcome stats, enrollment CTA repeated)",
+      "cinematic_spread (MasterClass: full-bleed dark backgrounds, large hero type, carousel-driven, high visual drama)",
+      "nonprofit_mission (Khan Academy: clear hierarchy, persona branching, donation integrated, supporter logos)"
+    ],
+    "pricing_display": [
+      "per_course (Udemy: individual course prices with frequent discounts, e.g., £99.99)",
+      "subscription_annual (MasterClass: 3 tiers, starting at ~£10/month, billed annually)",
+      "free_plus_pay (Coursera: free to audit, pay for certificate/specialization)",
+      "completely_free (Khan Academy: donation-supported nonprofit, 'Always free for learners and teachers')",
+      "subscription_monthly (Pluralsight/Skillshare: flat monthly fee for full library)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "partner_logos_or_stats", "courses_grid", "how_it_works", "instructors", "testimonials", "pricing", "faq", "enrollment_cta", "footer"],
+      "curated_stack": "education_trust_landing",
+      "landing_variants": {
+        "mooc_trust": ["header (segment nav)", "hero (illustration_right)", "university_logos", "trending_courses_grid", "career_outcomes", "testimonials", "pricing", "faq", "enrollment_cta", "footer"],
+        "marketplace_skills": ["header (search prominent)", "hero (search_centered)", "browse_by_goal", "popular_courses_grid", "category_browse", "ai_career_section", "pricing_promo", "footer"],
+        "nonprofit_mission": ["header", "hero (mission + persona CTAs)", "mega_category_nav", "why_it_works", "teacher_section", "learner_section", "testimonial", "donation_cta", "supporter_logos", "join_cta", "footer"],
+        "luxury_celebrity": ["header (dark)", "hero (cinematic + personalization quiz)", "instructor_carousel", "membership_features", "category_browse_pills", "trending_carousel", "coming_soon", "testimonials_carousel", "pricing", "bundle_promo", "certificates_promo", "b2b_section", "email_capture", "faq_accordion", "footer"]
+      }
+    },
+    "course_detail": {
+      "sections": ["header", "course_hero", "what_youll_learn", "curriculum_breakdown", "instructor_bio", "student_reviews", "faq", "enrollment_cta", "footer"],
+      "best_practices": "Clear learning objectives, syllabus/module breakdown, preview video, prerequisites, time commitment, certificate details, instructor credentials"
+    },
+    "instructor_profile": {
+      "sections": ["header", "instructor_bio", "credentials_experience", "courses_taught", "student_reviews", "footer"]
+    },
+    "pricing_page": {
+      "sections": ["header", "pricing_tiers", "feature_comparison", "faq", "money_back_guarantee", "enrollment_cta", "footer"],
+      "best_practices": "Clear tier differentiation, annual/monthly toggle if applicable, enterprise/team plan, financial aid info"
+    },
+    "blog_resource": {
+      "sections": ["header", "article_header", "content", "author_bio", "related_courses", "newsletter_cta", "footer"]
+    }
+  },
+
+  "observed_2026_06_02_trends": {
+    "color_spaces": "Udemy has fully adopted oklch() color space for all colors, replacing hex/rgb throughout CSS",
+    "custom_fonts": "Both MasterClass and Udemy use self-hosted custom brand fonts (.woff2) rather than Google Fonts -- growing trend for brand differentiation",
+    "dark_theme": "MasterClass uses a full dark theme (body bg #000000) as a differentiator -- rare in education, more common in entertainment/streaming",
+    "personalization_quiz": "MasterClass uses an interactive checkbox quiz in the hero to personalize the experience before showing CTAs",
+    "flat_design": "Udemy has moved to a flat card design with no shadows and no borders on course cards",
+    "persona_branching": "Khan Academy splits CTAs by persona (Learner/Teacher/Parent) both in header and throughout the page",
+    "segment_navigation": "Coursera uses a top-level segment switcher (Individual/Business/University/Government) as primary navigation",
+    "ai_positioning": "Coursera and Udemy both prominently feature AI-related courses and career transformation in AI era messaging",
+    "nonprofit_trust": "Khan Academy prominently displays its 501(c)(3) status and major foundation supporters as trust signals",
+    "carousel_heavy": "MasterClass relies heavily on carousels (instructors, trending, testimonials, coming soon) rather than static grids"
+  }
+}

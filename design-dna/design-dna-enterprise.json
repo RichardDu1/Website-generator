@@ -1,0 +1,176 @@
+{
+  "industry": "enterprise",
+  "subtypes": ["infrastructure", "cloud-platform", "networking", "cybersecurity", "b2b-software"],
+  "extracted_from": [
+    {"source": "DESIGN.md library", "brand": "ibm", "style": "carbon-structured-blue", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "cisco", "style": "dark-trust-infrastructure", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "enterprise", "style": "clean-high-contrast", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["IBM", "Cisco", "Enterprise"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#161616", "#0f1720", "#072c2c", "#ffffff"],
+      "primary_role": "Dark near-black for text and dark surfaces. IBM uses Gray 100 (#161616) — not pure black, a warmer dark. Cisco recommends charcoal-navy blends (#0f1720 to #1b2530). Enterprise uses deep teal-black (#072c2c). White (#ffffff) for light surfaces. Enterprise brands tint their 'black' toward their brand color.",
+      "accent": ["#0f62fe", "#049fd9", "#ff5f03"],
+      "accent_role": "Single high-signal blue as the primary interactive color. IBM Blue 60 (#0f62fe) — the one blue to rule them all. Cisco Blue (#049fd9) — bright, electric trust signal. Enterprise uses orange (#ff5f03) as a secondary accent against dark teal. Blue is the enterprise trust color across the board.",
+      "surface": ["#ffffff", "#f4f4f4", "#e0e0e0", "#39393b", "#1b2530", "#262626"],
+      "surface_role": "White and gray layered surfaces for information hierarchy. IBM uses Gray 10 (#f4f4f4) for elevated cards — background-color layering instead of shadows. Cisco uses Dark Gray (#39393b) for dark-theme cards. Enterprise uses warm off-white (#edeade).",
+      "neutral": ["#525252", "#6f6f6f", "#8d8d8d", "#9e9ea2", "#c6c6c6"],
+      "neutral_role": "Gray scale from dark to light for text hierarchy, borders, and disabled states. IBM's Gray 70 (#525252) for secondary text. Cisco's Medium Gray 2 (#9e9ea2) for muted labels. Enterprise uses standard gray scale.",
+      "border": ["#c6c6c6", "#e0e0e0", "#58585b", "#39393b"],
+      "border_role": "Subtle borders for data-heavy interfaces. IBM uses Gray 30 (#c6c6c6) for standard borders and bottom-border inputs. Cisco uses Dark Gray 2 (#58585b) for dark-theme borders. Borders are functional, never decorative.",
+      "semantic": {
+        "success": "#24a148",
+        "warning": "#f1c21b",
+        "error": "#da1e28",
+        "info": "#0f62fe"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["IBM Plex Sans", "CiscoSansTT", "Oswald", "Ubuntu", "Inter", "Helvetica Neue", "system-ui"],
+      "body_fonts": ["IBM Plex Sans", "CiscoSansTT", "Ubuntu", "Inter", "system-ui"],
+      "mono_fonts": ["IBM Plex Mono", "SF Mono", "Ubuntu Mono", "ui-monospace"],
+      "heading_weight": 300,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 32, "max": 72, "unit": "px"},
+        "h2": {"min": 24, "max": 56, "unit": "px"},
+        "h3": {"min": 20, "max": 32, "unit": "px"},
+        "body": {"min": 14, "max": 16, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.5, "heading": 1.17},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 32, "max": 96, "unit": "px"},
+      "section_gap": {"typical": 48, "unit": "px"},
+      "content_max_width": {"typical": 1584, "unit": "px"},
+      "card_padding": {"typical": "16px"}
+    },
+    "border_radius": {
+      "sharp": "0px (buttons, cards, inputs — the Carbon signature, the enterprise default)",
+      "rounded": "2px - 4px (rarely used — enterprise is fundamentally rectangular)",
+      "pill": "24px (tags/labels only — the sole rounded exception in IBM Carbon)",
+      "typical_button": "0px — sharp rectangle is the enterprise identity (IBM, Cisco, Enterprise)",
+      "typical_card": "0px - 16px (IBM tiles at 0px, Cisco cards at 16-20px for dark theme)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_rectangular",
+        "bg": "brand blue (#0f62fe or #005073)",
+        "color": "white",
+        "border_radius": "0px (sharp rectangle)",
+        "text": "Get started, Contact sales, Learn more, Deploy now",
+        "font_size": "14-16px",
+        "font_weight": 400,
+        "padding": "14px 63px 14px 15px (asymmetric for trailing icon)"
+      },
+      {
+        "variant": "secondary_gray",
+        "bg": "#393939 or gray",
+        "color": "white",
+        "border_radius": "0px",
+        "text": "Secondary action, Cancel",
+        "font_size": "14px"
+      },
+      {
+        "variant": "tertiary_ghost",
+        "bg": "transparent",
+        "color": "brand blue",
+        "border_radius": "0px",
+        "text": "Tertiary navigation",
+        "font_size": "14px",
+        "border": "1px solid brand blue"
+      },
+      {
+        "variant": "signal_outline_pill (Cisco only)",
+        "bg": "transparent",
+        "color": "Cisco Blue (#049fd9)",
+        "border_radius": "full pill",
+        "text": "Secondary actions on dark Cisco surfaces",
+        "border": "1.5px solid #049fd9"
+      }
+    ],
+    "elevation": {
+      "shadows": "shadow-averse — depth from background-color layering, not simulated light",
+      "approach": "IBM Carbon is deliberately shadow-averse — depth achieved through progressively darker surface grays (white -> #f4f4f4 -> #e0e0e0). Cisco uses minimal shadow on dark surfaces, with surface contrast for depth. Enterprise uses standard minimal elevation. Shadows are reserved for floating elements (dropdowns, tooltips, modals) where genuine overlap occurs.",
+      "typical_values": ["none (flat background-color layering)", "0 2px 6px rgba(0,0,0,0.3) (dropdowns and tooltips only)", "0 2px 6px rgba(0,0,0,0.3) + dark scrim (modals)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (dark masthead 48px tall, logo left, horizontal nav links, search trigger right)",
+      "hero (white or dark bg, 60px IBM Plex Sans weight 300, left-aligned headline, blue CTA with arrow icon, product illustration right)",
+      "content_blocks (alternating white/gray-10 background bands, each a self-contained statement — headline + body + CTA + image)",
+      "tile_grid (clickable card grid on gray-10 bg, 0px radius, background-shift hover, arrow icon reveal)",
+      "data_statistics (large numbers in light display weight, supporting captions, minimal decoration)",
+      "product_modules (dashboard screenshots, network diagrams, data visualizations with brand-blue highlights)",
+      "customer_logos (enterprise client logos in grayscale, 'Trusted by' headline)",
+      "case_studies (metric-driven, problem-solution-results format, client industry tags)",
+      "cta (full-width blue or dark section, centered, primary rectangular CTA)",
+      "footer (dark Gray 100 bg, white/gray text, multi-column: product, solutions, support, company, legal + copyright)"
+    ],
+    "hero_variants": [
+      "light_display (IBM style — white bg, 60px IBM Plex Sans weight 300, line-height 1.17, Gray 100 text, blue rectangular CTA)",
+      "dark_infrastructure (Cisco style — dark navy-charcoal bg, 72px CiscoSansTT weight 500, white text, Cisco Blue signal CTA)",
+      "clean_structured (Enterprise style — #edeade warm surface, #072c2c dark text, clean hierarchy, data-driven layout)"
+    ],
+    "feature_card_variants": [
+      "tile (gray-10 bg, 0px radius, 16px padding, title + description + arrow icon on hover — IBM signature)",
+      "dashboard_card (dark bg, subtle border, white text, blue chart highlights, metric + sparkline — Cisco signature)",
+      "data_module (dense information card, compact spacing, clear hierarchy, blue accent for key metrics)",
+      "case_study_card (client logo + quote + metric outcome, structured layout)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["authoritative", "structured", "technical", "trustworthy", "enterprise-grade", "mission-critical", "systems-thinking", "no-nonsense"],
+    "headline_style": "platform positioning, outcome-oriented, 4-8 words (e.g., 'AI for business. AI for the world.', 'The bridge between possible and practical', 'Infrastructure that scales with you')",
+    "cta_style": "professional and direct (Contact sales, Talk to an expert, Get started, Deploy now, Explore solutions — enterprise buyers research before committing)",
+    "trust_signals": ["Fortune 500 customer logos", "Gartner Magic Quadrant positions", "SOC2/ISO 27001/FedRAMP certifications", "uptime SLAs (99.99%+)", "global region coverage", "case studies with ROI metrics", "analyst reports and white papers", "partner ecosystem certifications"],
+    "anti_patterns": ["casual/playful language", "rounded playful buttons", "lifestyle photography", "pastel color palettes", "fake urgency", "consumer-focused design patterns", "decorative animations", "shadow-heavy elevation"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "carbon_blue (IBM: #ffffff canvas, #161616 text, #0f62fe lone accent, #f4f4f4 surfaces — structured monochrome + one blue)",
+      "dark_infrastructure (Cisco: #0f1720 to #1b2530 charcoal-navy canvas, #049fd9 electric blue signal, white text — serious global platform)",
+      "clean_teal (Enterprise: #edeade warm off-white canvas, #072c2c deep teal text, #ff5f03 orange accent pop — structured but approachable)"
+    ],
+    "typography_mood": [
+      "carbon_light_display (IBM: IBM Plex Sans weight 300 at display sizes, 0.16px letter-spacing at 14px, 0.32px at 12px — micro-tracking precision)",
+      "infrastructure_decisive (Cisco: CiscoSansTT weight 500, compressed display tracking, practical body copy — platform authority)",
+      "enterprise_expressive (Enterprise: Oswald display for headlines, Ubuntu for body — distinctive but professional)"
+    ],
+    "layout_density": [
+      "productive_dense (IBM Carbon: tight sections, 48px rhythm, background-color alternation for visual separation — enterprise information density)",
+      "dark_spacious (Cisco: large dark fields with one blue focal point, generous spacing between data modules, cinematic restraint)",
+      "clean_balanced (Enterprise: comfortable density, clear content blocks, obvious hierarchy)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "content_blocks", "tile_grid", "data_statistics", "product_modules", "customer_logos", "case_studies", "cta", "footer"],
+      "curated_stack": "enterprise_structured_landing"
+    },
+    "solutions_page": {
+      "sections": ["header", "hero", "industry_grid", "solution_cards", "case_studies", "cta", "footer"],
+      "best_practices": "Industry-specific solution cards, role-based navigation (by industry, by challenge, by technology), case study links with client logos"
+    },
+    "product_page": {
+      "sections": ["header", "hero", "product_overview", "features", "technical_specs", "integrations", "pricing_cta", "footer"],
+      "best_practices": "Architecture diagrams, technical specifications, API documentation links, enterprise feature comparison, 'Talk to sales' for pricing"
+    },
+    "docs_page": {
+      "sections": ["sidebar_nav", "content", "toc", "code_examples", "api_reference"],
+      "best_practices": "Structured documentation with code blocks in IBM Plex Mono, API reference tables, version selectors, search with autocomplete"
+    },
+    "about_page": {
+      "sections": ["header", "mission", "leadership", "history_timeline", "global_presence", "careers_cta", "footer"]
+    }
+  }
+}

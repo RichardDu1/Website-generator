@@ -1,0 +1,166 @@
+{
+  "industry": "ecommerce",
+  "subtypes": ["fashion-retail", "marketplace", "luxury-goods", "direct-to-consumer", "travel-booking"],
+  "extracted_from": [
+    {"source": "DESIGN.md library", "brand": "shopify", "style": "dark-cinematic", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "nike", "style": "monochrome-athletic", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "airbnb", "style": "photography-warm", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Shopify", "Nike", "Airbnb"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#111111", "#000000", "#ffffff", "#02090a"],
+      "primary_role": "Text and backgrounds — spans dark-first (Shopify: #000000 void) to light-first (Nike: #ffffff canvas, Airbnb: #ffffff canvas). Black/near-black dominates as text color across all brands.",
+      "accent": ["#36f4a4", "#ff385c", "#d30005", "#007d48", "#1151ff"],
+      "accent_role": "Singular brand accent used sparingly — Shopify Neon Green for focus rings only, Airbnb Rausch coral for primary CTA only, Nike Red for sale/error badges. Color is precious and never decorative.",
+      "surface": ["#ffffff", "#f7f7f7", "#f5f5f5", "#fafafa", "#02090a", "#061a1c"],
+      "surface_role": "Light surfaces (white, off-white, snow) for product-card contexts; dark teal surfaces for immersive brand moments (Shopify). Airbnb's Soft Cloud (#f7f7f7) for footer/subsection backgrounds. Nike's Light Gray (#f5f5f5) for input backgrounds.",
+      "neutral": ["#707072", "#6a6a6a", "#a1a1aa", "#71717a", "#dddddd", "#cacacb"],
+      "neutral_role": "Secondary text, metadata, borders. Gray scale carries hierarchy below the accent color. Airbnb's Hairline Gray (#dddddd) is the universal 1px divider. Nike's secondary text (#707072) is the standard muted voice.",
+      "border": ["#dddddd", "#cacacb", "#e5e5e5", "#1e2c31", "#3f3f46"],
+      "border_role": "Hairline borders for card separation, input outlines, dividers. Dark variants for dark-theme contexts (Shopify's #1e2c31). All brands use subtle borders rather than heavy strokes.",
+      "semantic": {
+        "success": "#007d48",
+        "warning": "#d33918",
+        "error": "#d30005",
+        "info": "#1151ff"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["NeueHaasGrotesk", "Nike Futura ND", "Helvetica Now Display Medium", "Airbnb Cereal VF", "system-ui"],
+      "body_fonts": ["Inter Variable", "Helvetica Now Text", "Airbnb Cereal VF", "system-ui"],
+      "mono_fonts": ["ui-monospace", "SF Mono", "Consolas"],
+      "heading_weight": 500,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 48, "max": 96, "unit": "px"},
+        "h2": {"min": 28, "max": 55, "unit": "px"},
+        "h3": {"min": 20, "max": 32, "unit": "px"},
+        "body": {"min": 14, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.56, "heading": 1.15},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 128, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1280, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "sharp": "0px - 4px (product imagery — full-bleed, no radius on Nike/Airbnb hero photos)",
+      "rounded": "8px - 14px (standard cards, listing cards, feature containers)",
+      "pill": "30px - 9999px (all CTA buttons — full pill is universal across e-commerce)",
+      "typical_button": "30px (Nike) to 9999px (Shopify) — always pill-shaped",
+      "typical_card": "8px - 14px (Airbnb listing cards at 14px, Shopify feature cards at 8-12px)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "accent or black",
+        "color": "white",
+        "border_radius": "pill (30px - 9999px)",
+        "text": "action-oriented (Shop now, Reserve, Start free trial, Get started)",
+        "font_size": "14-16px",
+        "font_weight": 500
+      },
+      {
+        "variant": "secondary_ghost",
+        "bg": "transparent",
+        "color": "primary text or white",
+        "border_radius": "pill",
+        "text": "Learn more, Sign in, Watch demo",
+        "font_size": "14-16px",
+        "border": "1.5px - 2px solid (matching text color)"
+      },
+      {
+        "variant": "icon_circular",
+        "bg": "#f2f2f2 or rgba(255,255,255,0.2)",
+        "color": "primary text",
+        "border_radius": "50%",
+        "text": "Icon-only (back, share, favorite, cart)"
+      }
+    ],
+    "elevation": {
+      "shadows": "ranges from flat (Nike — zero shadows) to multi-layer stacked (Shopify, Airbnb)",
+      "approach": "Nike is flat with zero shadows; Airbnb uses 3-layer stacked shadows for sticky panels; Shopify uses multi-layer shadows with inset white glow on dark cards",
+      "typical_values": ["0 0 0.5px rgba(0,0,0,0.14), 0 1px 1px rgba(0,0,0,0.24)", "rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px, rgba(0,0,0,0.1) 0 4px 8px", "none (flat — Nike approach)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, logo left, nav center/right, CTA pill right, cart/account icons)",
+      "hero (full-bleed photography or dark cinematic bg + h1 + subtitle + primary CTA + secondary CTA)",
+      "category_navigation (horizontal scroll of category pills or image cards — 'Shop Men', 'Shop Women', 'New Arrivals')",
+      "product_grid (3-6 column grid of product/listing cards with photography, name, price, rating)",
+      "featured_collection (curated product showcase with lifestyle photography, brand story)",
+      "benefits (free shipping, returns, sustainability — icon + short text in a row)",
+      "testimonials (customer reviews, ratings, user-generated content)",
+      "promotional_banner (full-width dark strip with promo code, sale announcement, limited-time offer)",
+      "newsletter_cta (email signup, often with discount incentive)",
+      "cta (app download or loyalty program signup)",
+      "footer (4-6 column: shop categories, help, about, legal, social, payment methods)"
+    ],
+    "hero_variants": [
+      "full_bleed_photography (Nike style — edge-to-edge product/lifestyle photo, text overlay with dark gradient scrim)",
+      "dark_cinematic (Shopify style — black/teal void bg, ultra-light 96px headline, neon accent, product screenshot centered)",
+      "search_centered (Airbnb style — large destination search pill as hero focal point, background photography carousel)",
+      "split_image_right (text left 60%, product photo right 40% on warm background)"
+    ],
+    "feature_card_variants": [
+      "listing_card (photography top 4:3, no shadow, text metadata below — city/name, type, price)",
+      "product_card (square 1:1 photography, tight 4-12px grid gaps, name + price below)",
+      "category_image_card (full-bleed photography with text overlay, large touch target)",
+      "bento_product_grid (modular cards of varying sizes for featured collections)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["photography-first", "confident", "aspirational", "product-driven", "high-contrast", "retail-energy", "lifestyle"],
+    "headline_style": "benefit-driven or product-assertion, 3-8 words (e.g., 'The global commerce platform', 'Just Do It', 'Find your next adventure')",
+    "cta_style": "direct action verbs (Shop, Buy, Reserve, Book, Get started, Start free trial, Explore)",
+    "trust_signals": ["customer reviews with star ratings", "free shipping / returns badges", "secure checkout icons", "payment method logos", "size/fit guarantees", "price match promises", "loyalty program stats", "customer count (150M+ buyers)"],
+    "anti_patterns": ["generic stock photography", "no product photos above the fold", "too many competing CTAs", "text-heavy without product imagery", "cold corporate tone", "non-brand colors in UI chrome"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "dark_cinematic (Shopify: #000000 bg, deep teal surfaces, #36f4a4 neon accent, white text — luxury product-reveal aesthetic)",
+      "monochrome_athletic (Nike: #ffffff bg, #111111 text, zero UI color — product photography is the only color source)",
+      "warm_photography (Airbnb: #ffffff bg, #ff385c coral accent, soft gray borders, photography-driven warmth)"
+    ],
+    "typography_mood": [
+      "ultra_light_display (Shopify: NeueHaasGrotesk weight 330 at 96px — ethereal, cinematic headlines)",
+      "athletic_condensed (Nike: Nike Futura ND uppercase, 0.90 line-height — stadium-scoreboard bold)",
+      "single_family_warm (Airbnb: Airbnb Cereal VF weight 500 throughout — confident, friendly, single-voice)"
+    ],
+    "layout_density": [
+      "theatrical (Shopify: vast dark space between sections, 80-120px gaps, each section is a 'slide')",
+      "dense_retail (Nike: tight 4-12px product grid gaps, packed with product, maximalist choice display)",
+      "magazine_information (Airbnb: 24px card gutters, 4-8px internal metadata gaps, photography breathes, data is dense)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "category_navigation", "product_grid", "featured_collection", "benefits", "testimonials", "promotional_banner", "newsletter_cta", "cta", "footer"],
+      "curated_stack": "ecommerce_modern_landing"
+    },
+    "product_detail_page": {
+      "sections": ["header", "breadcrumb", "product_hero (image gallery + product info + price + size/color selector + add_to_cart)", "product_description", "specifications", "reviews", "related_products", "footer"],
+      "best_practices": "Image gallery with thumbnails, sticky add-to-cart on mobile, size guide modal, free shipping threshold indicator"
+    },
+    "category_page": {
+      "sections": ["header", "category_hero", "filter_bar", "product_grid", "pagination", "footer"],
+      "best_practices": "Horizontal filter pills, sort dropdown, grid/list toggle, quick-add to cart from grid"
+    },
+    "checkout_page": {
+      "sections": ["header (minimal)", "progress_steps", "cart_summary", "shipping_form", "payment_form", "order_review", "footer (minimal)"],
+      "best_practices": "Single page or 3-step, trust badges prominent, guest checkout option, mobile-optimized inputs"
+    },
+    "about_page": {
+      "sections": ["header", "brand_story", "mission", "team", "sustainability", "careers_cta", "footer"]
+    }
+  }
+}

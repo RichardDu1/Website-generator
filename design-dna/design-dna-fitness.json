@@ -1,0 +1,283 @@
+{
+  "industry": "fitness",
+  "subtypes": ["gym", "yoga", "personal_training", "crossfit", "pilates", "boxing_mma", "boutique_fitness", "connected_fitness", "functional_training", "luxury_fitness"],
+  "extracted_from": [
+    {"url": "https://www.equinox.com", "style": "dark-luxury-fitness", "date": "2026-06-02", "method": "browser_css_evaluation", "notes": "Custom Equinox Sans font, Next.js + Contentful, theme:dark, 64px white H1, black header, sharp 0px buttons"},
+    {"url": "https://www.barrys.com", "style": "bold-red-energy", "date": "2026-05-30"},
+    {"url": "https://www.crossfit.com", "style": "raw-industrial", "date": "2026-05-30"},
+    {"url": "https://www.onepeloton.com", "style": "tech-modern-fitness", "date": "2026-06-02", "method": "browser_css_evaluation", "notes": "Inter body + custom agrandir-tight-bold headings, styled-components, red accent #D00C2A, light gray sections #F5F7F9, dark hero sections #181A1D"},
+    {"url": "https://www.orangetheory.com", "style": "clean-orange-energy", "date": "2026-06-02", "method": "browser_css_evaluation", "notes": "White bg, iconic orange #F26922, blue pill CTA buttons 50px radius, Roboto font, WordPress/Divi"},
+    {"url": "https://f45training.com", "style": "vibrant-functional-training", "date": "2026-06-02", "method": "browser_css_evaluation_html", "notes": "White bg, Source Sans Pro, multi-color accents (red/blue/yellow/green/purple/pink), Bootstrap, Glofox booking, 8px button radius"},
+    {"style": "synthesized from industry research", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Equinox", "Peloton", "CrossFit", "Barry's", "Orangetheory Fitness", "CorePower Yoga", "F45 Training", "SoulCycle", "Gold's Gym", "Nike Training"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0a0a0a", "#111111", "#1a1a1a", "#0d0d0d", "#141414", "#181A1D", "#000000"],
+      "primary_role": "Page backgrounds, header, footer (dark dominant — energy, intensity, results). Equinox uses pure #000000 header. Peloton uses #181A1D for dark hero sections. F45/Orangetheory flip to white dominant.",
+      "accent": ["#ff4500", "#e63946", "#00c853", "#ff6b35", "#f72585", "#ffd60a", "#D00C2A", "#DF1C2F", "#F26922", "#cf2e2e", "#ff6900", "#0693e3", "#fcb900", "#0077BD", "#ff5a5a"],
+      "accent_role": "CTA buttons, class type badges, pricing highlights, timer/urgency elements, progress indicators. Peloton: #D00C2A red. Orangetheory: #F26922 orange (iconic). F45: #cf2e2e red + #fcb900 yellow. Equinox: minimal accent usage.",
+      "surface": ["#1a1a1a", "#222222", "#2a2a2a", "#f5f5f5", "#ffffff", "#F5F7F9", "#F7F7F7", "#E4E6E7"],
+      "surface_role": "Card backgrounds (dark on dark, or white cards on dark BG for contrast). Peloton: #F5F7F9 and #F7F7F7 light gray sections.",
+      "neutral": ["#aaaaaa", "#8a8a8a", "#6c6c6c", "#b0b0b0", "#cccccc", "#65666A", "#697180", "#888B93", "#A8ACB1", "#333333", "#555555", "#32373c", "#abb8c3"],
+      "neutral_role": "Body text on dark backgrounds, secondary info, class times, trainer details. Equinox: #333333 body text. Peloton: #181A1D text. F45: #32373c + #abb8c3 gray.",
+      "border": ["#333333", "#3a3a3a", "#444444", "#e0e0e0"],
+      "border_role": "Card borders, input fields, dividers (subtle on dark bg)",
+      "semantic": {
+        "success": "#00c853",
+        "warning": "#ffd60a",
+        "error": "#ff1744",
+        "info": "#448aff",
+        "high_intensity": "#ff4500",
+        "recovery": "#00c853",
+        "strength": "#e63946",
+        "cardio": "#ff6b35",
+        "flexibility": "#7c4dff",
+        "peloton_red": "#D00C2A",
+        "orangetheory_orange": "#F26922",
+        "f45_red": "#cf2e2e",
+        "f45_blue": "#0693e3",
+        "f45_yellow": "#fcb900",
+        "equinox_black": "#000000",
+        "equinox_dark_gray": "#333333"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Bebas Neue", "Montserrat", "Oswald", "Anton", "Rajdhani", "Fjalla One", "Equinox Sans", "agrandir-tight-bold"],
+      "body_fonts": ["Inter", "Montserrat", "Roboto", "Poppins", "Source Sans 3", "Source Sans Pro", "Equinox Sans"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "custom_fonts": {
+        "Equinox Sans": {"weights": ["Regular", "Medium", "Semi-Bold", "Bold"], "source": "assets.cdn-equinox.com/fonts", "format": "woff2", "note": "Proprietary luxury brand font, paired with Messina Sans Mono for accents"},
+        "agrandir-tight-bold": {"weights": ["Bold", "Black"], "source": "self-hosted (Peloton)", "format": "woff2", "note": "Custom condensed heading font for Peloton, paired with Inter for body"}
+      },
+      "scale": {
+        "h1": {"min": 42, "max": 80, "unit": "px", "observed": [{"brand": "Equinox", "value": 64}, {"brand": "Peloton", "value": 56}, {"brand": "Orangetheory", "value": 50}, {"brand": "F45", "value": 48}]},
+        "h2": {"min": 28, "max": 64, "unit": "px", "observed": [{"brand": "Orangetheory", "value": 64}, {"brand": "Equinox", "value": 32}, {"brand": "Peloton", "value": 32}, {"brand": "F45", "value": 28}]},
+        "h3": {"min": 20, "max": 28, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"},
+        "display": {"min": 56, "max": 120, "unit": "px"}
+      },
+      "line_height": {"body": 1.6, "heading": 1.1},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 64, "max": 120, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px"},
+      "class_card_gap": {"typical": 20, "unit": "px"}
+    },
+    "border_radius": {
+      "sharp": "0px - 2px (industrial/raw style, Equinox luxury - 0px consistently)",
+      "rounded": "4px - 8px (F45: 8px)",
+      "pill": "50px (Orangetheory: 50px on CTA buttons - fully rounded pill)",
+      "large_rounded": "20px (Orangetheory card border-radius)",
+      "typical_button": "0px (Equinox, Peloton: sharp minimal) or 4px or 8px (F45) or 50px pill (Orangetheory)",
+      "typical_card": "4px - 20px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "accent (#ff4500 orange-red, #e63946, #F26922 orange, #D00C2A red)",
+        "color": "white",
+        "border_radius": "0px (sharp/Equinox), 4px, 8px (F45), or 50px pill (Orangetheory)",
+        "text": "high-energy action (Start Free Trial, Join Now, Book a Class, Get Started, Claim Your Pass, Home Trial)",
+        "font_size": "15-18px (Orangetheory: 18px, Peloton: 16px, F45: 14px)",
+        "font_weight": "500-700 (Orangetheory: 500, Peloton: 300-400 minimal)",
+        "padding": "14px 36px",
+        "text_transform": "uppercase (Bebas Neue / Oswald) or sentence case (boutique, Equinox, Peloton)"
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent",
+        "color": "white or accent or dark (#333333 on light, white on dark)",
+        "border": "2px solid white or accent",
+        "border_radius": "matches primary",
+        "text": "View Schedule, Learn More, See Trainers, Class Details, Visit a Club",
+        "font_size": "14-18px",
+        "font_weight": "400-600"
+      },
+      {
+        "variant": "inverse_light",
+        "bg": "white",
+        "color": "#0a0a0a or accent color",
+        "border_radius": "matches primary",
+        "text": "Used on dark backgrounds for secondary emphasis",
+        "font_weight": 600
+      },
+      {
+        "variant": "minimal_transparent",
+        "bg": "transparent",
+        "color": "#181A1D or #333333 (dark text on light bg)",
+        "border_radius": "0px",
+        "text": "Navigation CTAs, secondary links, 'Apparel', 'Visit a Club'",
+        "font_size": "14-18px",
+        "font_weight": "300-400",
+        "text_transform": "none",
+        "observed_on": ["Peloton", "Equinox"]
+      }
+    ],
+    "elevation": {
+      "shadows": "dramatic on dark bg, minimal on light (Orangetheory: none on cards, Equinox: minimal/flat)",
+      "typical_values": [
+        "0 2px 8px rgba(0,0,0,0.3)",
+        "0 4px 16px rgba(0,0,0,0.4)",
+        "0 8px 32px rgba(0,0,0,0.5)",
+        "none (Orangetheory, some Equinox sections — flat design)"
+      ]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, dark or transparent bg, logo left, nav center, CTA right)",
+      "hero (full-bleed action photo or video + bold headline + subheadline + primary CTA + secondary CTA)",
+      "classes (grid: class type cards with name, intensity level, duration, description, schedule link)",
+      "about_philosophy (mission statement, gym culture, differentiators — 'Not just a gym, a community')",
+      "trainers (photo cards: action shot, name, specialties, certifications, Instagram/social, bio)",
+      "results_transformations (before/after photos + client name + story + time period + trainer)",
+      "membership_pricing (2-4 tier cards: basic/membership/premium, monthly rate, features, CTA per tier)",
+      "schedule (weekly class timetable grid or list with filters: day, class type, trainer, time)",
+      "facilities_amenities (photo grid: equipment, locker rooms, lounge, parking, showers, pro shop)",
+      "trial_cta (centered: 'First class free' or '7-day trial' or 'Home Trial' + form or button)",
+      "app_download (centered: App Store + Google Play badges, phone mockup, Peloton/Equinox+ app promotion)",
+      "equipment_shop (product grid: bikes, treadmills, accessories — Peloton-specific ecommerce section)",
+      "footer (3-column: about/hours/social + quick_links + newsletter + address + 'Join Now' CTA)"
+    ],
+    "hero_variants": [
+      "full_bleed_action (athlete/group workout photo, dark overlay, huge heading — CrossFit, gym, Equinox PageHero)",
+      "video_loop (high-intensity workout clips, slow-mo lifts, group class energy — Equinox, Barry's)",
+      "split_bold (text left, CTA, + action photo right — PT, boutique, Peloton product+copy split)",
+      "serene_ambient (yoga: natural light, calm pose, minimal overlay, soft typography — CorePower, yoga studios)",
+      "counter_hero (animated stat counters overlay: members, classes/week, trainers — F45, Orangetheory)",
+      "dark_minimal_luxury (Equinox: black bg, white 64px custom font headline, photo background, sharp corners, 'SUMMER BY EQUINOX' style)",
+      "product_hero (Peloton: dark bg with equipment photo, white headline + deal pricing, ecommerce-focused — 'Refurbished Original Bikes. Get yours for as low as $695.*')",
+      "brand_orange_hero (Orangetheory: white bg, large orange-accented text, clean photography, blue pill CTA)"
+    ],
+    "class_card_variants": [
+      "intensity_badge (class photo + name + intensity color badge + duration + 'Book' button)",
+      "icon_grid (icon per class type, name, description, schedule link — compact)",
+      "timetable_card (time slot, class name, trainer, spots remaining, book CTA — schedule-focused)",
+      "explore_club_card (Equinox: ExploreClubs section, location-based cards with club name, address, amenities)"
+    ],
+    "pricing_variants": [
+      "tier_cards (2-4 columns: monthly price, features checklist, CTA per tier, 'Most Popular' highlight)",
+      "simple_single (one price, all-access, 'Join Now' — boutique/simple gyms, Equinox 'One Membership' approach)",
+      "class_pack (buy credits/packs: 5/10/20 class packs, no monthly commitment, Orangetheory class packs)",
+      "equipment_pricing (Peloton: equipment purchase + separate membership, financing options, refurbished deals)",
+      "initiation_waiver (Equinox: '$0 initiation' + complimentary services package — luxury incentive pattern)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["energetic", "empowering", "bold", "motivational", "community", "results-driven", "intense", "luxury", "premium", "transformative", "connected"],
+    "headline_style": "bold, motivational, short (e.g., 'FIND YOUR STRONG', 'BECOME UNSTOPPABLE', 'THIS IS YOUR COMEBACK', 'STRENGTH IN COMMUNITY', 'SUMMER BY EQUINOX', 'One Membership. Limitless Potential.')",
+    "cta_style": "urgent, action-driven (Start Free Trial, Join Now, Book Your First Class, Claim Your Pass, Get Started Today, Home Trial, Visit a Club)",
+    "brand_voices": {
+      "equinox": {"tone": "luxury, aspirational, exclusive", "headline_example": "SUMMER BY EQUINOX", "subheadline_example": "Join now to unlock $0 initiation and a complimentary suite of services valued at $500+.", "tagline": "It's Not Fitness. It's Life."},
+      "peloton": {"tone": "connected, motivational, tech-forward", "headline_example": "Refurbished Original Bikes. Get yours for as low as $695.*", "focus": "equipment + membership, home fitness, instructor-led"},
+      "orangetheory": {"tone": "science-backed, energetic, approachable", "headline_example": "Group Fitness Class & Interval Training", "focus": "heart-rate based training, results tracking, community"},
+      "f45": {"tone": "high-energy, team-driven, functional", "headline_example": "Life Changing Group Fitness & Functional Training", "focus": "45-minute HIIT, team training, global community"}
+    },
+    "trust_signals": [
+      "trainer certifications (NASM, ACE, CSCS, Yoga Alliance, etc.)",
+      "before/after client transformations with real photos",
+      "member count ('Join 5,000+ members')",
+      "Google/Yelp rating and review count",
+      "years in business",
+      "cleanliness and equipment maintenance standards",
+      "free trial / first class free (risk reversal)",
+      "no long-term contract options",
+      "community events and challenges",
+      "partnerships with brands (Nike, Lululemon, Rogue, etc.)",
+      "app store ratings (Peloton: 4.9+ stars, Equinox+ app)",
+      "studio count ('1,750+ studios worldwide' — F45)",
+      "science-backed methodology (Orangetheory heart-rate zones)",
+      "financing options (Peloton: 'as low as $X/month')",
+      "celebrity/influencer endorsements (Equinox)"
+    ],
+    "anti_patterns": [
+      "unrealistic body standards or aggressive body-shaming language",
+      "stock photos of models instead of real members/trainers",
+      "hidden fees or bait-and-switch pricing",
+      "auto-play music on website",
+      "overly complex membership tiers (analysis paralysis)",
+      "missing class schedule or 'Call for pricing'",
+      "generic 'fitness' stock imagery without brand personality"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "dark_orange_energy (CrossFit/gym: #0a0a0a bg, #ff4500 accent, Bebas Neue, sharp edges, raw industrial)",
+      "dark_red_intensity (Barry's/ HIIT: #111111 bg, #e63946 red accent, bold sans, high contrast)",
+      "black_lime_explosive (Nike Training: #000000 bg, #00c853 neon green, dynamic angles, performance)",
+      "dark_white_zen (yoga/Pilates: #f5f5f5 or white bg, #7c4dff or sage accent, light typography, breathable)",
+      "dark_yellow_bold (F45: white bg, #cf2e2e red + #fcb900 yellow + #0693e3 blue multi-accent, Source Sans Pro, high-energy)",
+      "clean_orange_energy (Orangetheory: #FFFFFF bg, #F26922 orange accent, #0077BD blue CTA, Roboto, pill buttons, approachable)",
+      "tech_modern_dark (Peloton: #181A1D dark sections, #F5F7F9 light sections, #D00C2A red accent, Inter + agrandir, minimal sharp edges)",
+      "luxury_black_minimal (Equinox: #000000 header, #FFFFFF headings, custom Equinox Sans, 0px radius, aspirational photography, 'dark' theme)"
+    ],
+    "typography_mood": [
+      "bold_industrial (Bebas Neue headings, all caps, tight letter-spacing — CrossFit, strength gyms)",
+      "modern_athletic (Montserrat bold headings, clean body — boutique, Equinox-style luxury)",
+      "tech_futuristic (Rajdhani + Inter — Peloton-style, digital/connected fitness)",
+      "serene_wellness (light serif or thin sans headings — yoga, Pilates, meditation)",
+      "custom_luxury (Equinox Sans proprietary — exclusive, high-end, not available on Google Fonts)",
+      "clean_system (Inter headings + Inter body — Peloton, coherent design system, Google Fonts)",
+      "classic_web (Roboto — Orangetheory, widely available, familiar, accessible)",
+      "functional_clean (Source Sans Pro — F45, readable, works with Bootstrap)"
+    ],
+    "layout_density": [
+      "bold_spacious (Equinox: large photos, minimalist cards, luxury feel, custom fonts, negative space)",
+      "high_energy_dense (CrossFit box: more info per viewport, class times visible, raw aesthetic)",
+      "community_grid (boutique: member photos, social proof, Instagram-feed-style gallery)",
+      "ecommerce_hybrid (Peloton: product pages meet fitness content, equipment + membership dual focus)",
+      "schedule_forward (Orangetheory/F45: class booking prominent, location finder, timetable-driven)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "classes", "about_philosophy", "trainers", "results_transformations", "membership_pricing", "schedule", "trial_cta", "app_download", "footer"],
+      "curated_stack": "fitness_energy_landing"
+    },
+    "class_detail": {
+      "sections": ["header", "hero (class photo)", "class_description", "what_to_expect", "trainer_profiles", "schedule_times", "booking_cta", "footer"],
+      "best_practices": "Video preview, intensity level clearly marked, duration, what to bring, suitable for beginners/pros"
+    },
+    "trainer_profile": {
+      "sections": ["header", "trainer_bio", "certifications", "class_schedule", "client_results", "booking_cta", "footer"]
+    },
+    "membership_page": {
+      "sections": ["header", "pricing_tiers", "comparison_table", "amenities_list", "faq", "trial_cta", "footer"],
+      "best_practices": "Transparent pricing, no hidden fees, clear cancelation policy, risk-reversal trial offer"
+    },
+    "schedule_page": {
+      "sections": ["header", "filters", "weekly_grid", "class_details_on_click", "booking_cta", "footer"],
+      "best_practices": "Filter by day/class type/trainer, show spots remaining, one-click booking (Glofox integration common)"
+    },
+    "equipment_page": {
+      "sections": ["header", "product_hero", "product_details", "specs_comparison", "financing_options", "reviews", "buy_cta", "footer"],
+      "best_practices": "High-quality product photography, specs table, financing calculator, membership upsell, home trial offer",
+      "note": "Specific to connected fitness brands like Peloton"
+    },
+    "location_finder": {
+      "sections": ["header", "search", "map", "location_cards", "club_details", "footer"],
+      "best_practices": "Mapbox/Google Maps integration, geolocation, club amenities per location, 'Visit a Club' CTA per location",
+      "note": "Used by Equinox (ExploreClubs), Orangetheory, F45 with studio locator"
+    }
+  },
+  "tech_stack_observations": {
+    "equinox": {"framework": "Next.js", "cms": "Contentful", "fonts": "Self-hosted Equinox Sans + Messina Sans Mono", "css": "CSS Modules (scoped class names)", "theme": "dark"},
+    "peloton": {"framework": "Next.js", "cms": "Contentful", "fonts": "Google Fonts (Inter) + self-hosted agrandir", "css": "styled-components", "theme": "mixed light/dark sections"},
+    "orangetheory": {"framework": "WordPress (Divi theme)", "fonts": "Google Fonts (Roboto)", "css": "Divi builder CSS", "booking": "Glofox"},
+    "f45": {"framework": "WordPress + Bootstrap", "fonts": "Google Fonts (Source Sans Pro)", "css": "Bootstrap + Emotion CSS-in-JS", "booking": "Glofox", "map": "Mapbox"}
+  }
+}

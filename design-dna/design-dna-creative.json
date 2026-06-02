@@ -1,0 +1,174 @@
+{
+  "industry": "creative",
+  "subtypes": ["design-tool", "portfolio", "creative-agency", "artist-studio", "website-builder"],
+  "extracted_from": [
+    {"source": "DESIGN.md library", "brand": "figma", "style": "monochrome-variable", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "framer", "style": "dark-cinematic-blue", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "creative", "style": "playful-expressive", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "artistic", "style": "high-contrast-bold", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Figma", "Framer", "Creative", "Artistic"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#000000", "#ffffff", "#111827"],
+      "primary_role": "Black and white are the core binary. Figma uses ONLY #000000 and #ffffff for all interface chrome — color comes from product content. Framer uses pure black (#000000) as a void canvas. Creative/Artistic use near-black (#111827) for text on white.",
+      "accent": ["#0099ff", "#3b82f6", "#8b5cf6", "#10a37f"],
+      "accent_role": "Single electric accent for interactive highlights. Framer Blue (#0099ff) is the sole accent in an otherwise monochrome system. Creative uses vibrant blue (#3b82f6) and purple (#8b5cf6) for playful emphasis. The accent is always a tool/creative color — blue, purple, or teal.",
+      "surface": ["#ffffff", "#000000", "#090909", "rgba(255,255,255,0.1)"],
+      "surface_role": "Pure white or pure black surfaces. Framer uses frosted glass effects (rgba(255,255,255,0.1)) on dark. Figma uses monochrome exclusively. Creative/Artistic use white cards on white backgrounds.",
+      "neutral": ["#a6a6a6", "#6e6e6e", "#9b9b9b", "rgba(255,255,255,0.6)"],
+      "neutral_role": "Muted silvers and grays for secondary text on dark surfaces. Ghost white (rgba(255,255,255,0.6)) for tertiary text on black. Always cool-toned — never warm grays in creative tool brands.",
+      "border": ["rgba(0,153,255,0.15)", "#e5e5e5", "#c4c4c4"],
+      "border_role": "Minimal borders. Framer uses blue ring shadows as borders. Figma uses near-invisible separators. Creative/Artistic use standard hairline borders.",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#3b82f6"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["figmaSans", "GT Walsheim Framer Medium", "Bangers", "Limelight", "Inter", "system-ui"],
+      "body_fonts": ["figmaSans", "Inter Variable", "Inter", "system-ui"],
+      "mono_fonts": ["figmaMono", "Azeret Mono", "IBM Plex Mono", "JetBrains Mono"],
+      "heading_weight": 500,
+      "body_weight": 340,
+      "scale": {
+        "h1": {"min": 36, "max": 110, "unit": "px"},
+        "h2": {"min": 24, "max": 85, "unit": "px"},
+        "h3": {"min": 20, "max": 36, "unit": "px"},
+        "body": {"min": 14, "max": 20, "unit": "px"},
+        "small": {"min": 10, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.4, "heading": 0.95},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 120, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "sharp": "2px - 4px (minimal elements, code blocks)",
+      "rounded": "6px - 12px (cards, images, containers)",
+      "pill": "50px - 100px (all buttons, CTAs, tabs — creative tools love the pill)",
+      "typical_button": "50px (Figma) to 100px (Framer) — always full pill or close to it",
+      "typical_card": "8px - 12px (or near-zero for Mistral-like architectural sharpness)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_solid_pill",
+        "bg": "#000000 or accent color",
+        "color": "white",
+        "border_radius": "50px - 100px (pill)",
+        "text": "Get started, Try free, Start designing, Sign up",
+        "font_size": "16px",
+        "font_weight": 400
+      },
+      {
+        "variant": "frosted_glass",
+        "bg": "rgba(255,255,255,0.1)",
+        "color": "white or black",
+        "border_radius": "40px - 100px (pill)",
+        "text": "Secondary actions on dark surfaces",
+        "font_size": "14-16px"
+      },
+      {
+        "variant": "glass_circular",
+        "bg": "rgba(0,0,0,0.08) or rgba(255,255,255,0.16)",
+        "color": "primary text",
+        "border_radius": "50% (circle)",
+        "text": "Icon-only (play, arrow, close)",
+        "size": "32-48px"
+      },
+      {
+        "variant": "dashed_focus",
+        "bg": "transparent",
+        "color": "inherit",
+        "border_radius": "matches parent",
+        "focus": "dashed 2px outline (Figma signature)"
+      }
+    ],
+    "elevation": {
+      "shadows": "whisper to blue-tinted ring shadows — creative brands treat shadows as design elements",
+      "approach": "Figma uses minimal shadow — depth from monochrome contrast. Framer uses blue ring shadows (rgba(0,153,255,0.15) 0px 0px 0px 1px) as a signature border-replacement. Creative/Artistic use standard surface shadows sparingly.",
+      "typical_values": ["rgba(0,153,255,0.15) 0px 0px 0px 1px (Framer blue ring)", "rgba(255,255,255,0.1) 0px 0.5px 0px 0.5px, rgba(0,0,0,0.25) 0px 10px 30px", "0 4px 16px rgba(0,0,0,0.06)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, dark or white, logo left, product tabs center, CTA pill right)",
+      "hero (full-width gradient or dark void, massive display headline with extreme negative tracking, product screenshot as hero art, primary pill CTA)",
+      "product_tabs (horizontal pill tabs for product areas — 'Design', 'Prototype', 'Develop', 'Publish')",
+      "features (alternating text+screenshot sections, each product area as its own 'exhibit')",
+      "product_showcase (full-width embedded product screenshots/demos with subtle shadows, the tool markets itself)",
+      "customer_logos (creative teams and companies who use the tool)",
+      "testimonials (designer quotes, often with work examples)",
+      "pricing (clean tier cards, monthly/yearly)",
+      "cta (dark full-width section, bold headline, primary pill button)",
+      "footer (clean multi-column, dark bg, minimal decoration)"
+    ],
+    "hero_variants": [
+      "gradient_explosion (Figma style — vibrant multi-color gradient bg, 86px figmaSans weight 400, -1.72px tracking, white text)",
+      "void_dark (Framer style — pure black #000000 canvas, 110px GT Walsheim weight 500, -5.5px extreme tracking, product screenshots as hero)",
+      "playful_bold (Creative style — bright colors, Bangers display font, character-driven illustrations)",
+      "high_contrast_artistic (Artistic style — Limelight display, bold color choices, striking visual presence)"
+    ],
+    "feature_card_variants": [
+      "product_screenshot_card (embedded UI screenshot in card, subtle shadow, dark bg, pill button)",
+      "monochrome_card (white bg, black text, 8px radius, minimal decoration — Figma style)",
+      "blue_ring_card (dark bg, blue ring shadow border, frosted elements — Framer style)",
+      "playful_card (colorful accents, expressive typography, bold borders — Creative/Artistic style)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["design-forward", "tool-obsessed", "bold", "precise", "creative-confidence", "dark-luxury", "unapologetic"],
+    "headline_style": "bold declarations, compressed and kinetic, 3-6 words (e.g., 'Where design happens', 'Design, publish, and scale', 'Nothing great is made alone')",
+    "cta_style": "invitation to create (Start designing, Try free, Get started, Explore — creative tools invite, never demand)",
+    "trust_signals": ["customer logos (design-forward companies)", "designer community stats", "product screenshots as proof", "used-by design teams at top companies", "G2 badges", "template marketplace counts", "plugin/ecosystem numbers"],
+    "anti_patterns": ["generic corporate tone", "stock photography instead of product screenshots", "warm/beige color palettes", "conservative typography", "no product demo above the fold", "complex navigation that buries the product"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "monochrome_gallery (Figma: #000000 + #ffffff only for interface, color from product content — tool as gallery wall)",
+      "void_blue (Framer: #000000 pure black canvas, #0099ff electric accent, white frosted glass — nightclub for designers)",
+      "playful_vibrant (Creative: #3b82f6 blue + #8b5cf6 purple, Bangers display font, character-driven — fun creative energy)",
+      "bold_artistic (Artistic: high-contrast, Limelight display, bold palette, striking visuals)"
+    ],
+    "typography_mood": [
+      "variable_precision (Figma: figmaSans at weights 320/330/340/450/480/540/700 — micro-weight control only designers would notice)",
+      "compressed_cinematic (Framer: GT Walsheim at -5.5px tracking, 0.85 line-height, OpenType maximalism — spring-loaded headlines)",
+      "expressive_playful (Creative: Bangers display at large sizes, fun personality)",
+      "high_contrast_artistic (Artistic: Limelight display, dramatic presence)"
+    ],
+    "layout_density": [
+      "gallery_spacing (Figma: each product section breathes as its own exhibit, generous whitespace, colorful sections as visual relief)",
+      "dark_void (Framer: black background means whitespace manifests as void, dramatic pauses, dense-within-spacious-between)",
+      "compact_creative (Creative/Artistic: tighter spacing, more visual density, bold graphics filling available space)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "product_tabs", "features", "product_showcase", "customer_logos", "testimonials", "pricing", "cta", "footer"],
+      "curated_stack": "creative_tool_landing"
+    },
+    "pricing_page": {
+      "sections": ["header", "pricing", "comparison", "faq", "cta", "footer"],
+      "best_practices": "3-tier with free tier prominently featured, monthly/yearly toggle, team/enterprise options, feature comparison table"
+    },
+    "portfolio_page": {
+      "sections": ["header", "hero (designer intro)", "work_grid", "project_detail_cards", "testimonials", "contact_cta", "footer"],
+      "best_practices": "Full-bleed work examples, minimal text, let the work speak, bold typography for project names, dark or white canvas"
+    },
+    "docs_page": {
+      "sections": ["sidebar_nav", "content", "toc", "code_examples", "feedback"],
+      "best_practices": "Clean typography, code examples in mono, interactive demos where possible, figmaMono or Azeret Mono for labels"
+    }
+  }
+}

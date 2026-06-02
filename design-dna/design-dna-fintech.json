@@ -1,0 +1,167 @@
+{
+  "industry": "fintech",
+  "subtypes": ["digital-banking", "payment-infrastructure", "crypto-exchange", "personal-finance", "investing"],
+  "extracted_from": [
+    {"source": "DESIGN.md library", "brand": "stripe", "style": "purple-gradient-elegance", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "coinbase", "style": "blue-trust-institutional", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "revolut", "style": "dark-precision-pill", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Stripe", "Coinbase", "Revolut"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#061b31", "#0a0b0d", "#191c1f", "#ffffff"],
+      "primary_role": "Deep navy/near-black for headings and dark sections (Stripe #061b31, Coinbase #0a0b0d, Revolut #191c1f). Pure white for light surfaces. The dark color is always a warm or blue-tinted near-black, never pure #000.",
+      "accent": ["#533afd", "#0052ff", "#494fdf", "#635bff"],
+      "accent_role": "Blue-to-purple spectrum as the fintech trust color. Stripe's purple (#533afd) is warm and premium; Coinbase blue (#0052ff) is institutional; Revolut blue (#494fdf) is modern. Used for primary CTAs, links, and interactive highlights.",
+      "surface": ["#ffffff", "#f4f4f4", "#eef0f3", "#1c1e54", "#282b31"],
+      "surface_role": "White primary canvas. Light gray (#f4f4f4, #eef0f3) for secondary surfaces and button backgrounds. Dark indigo (#1c1e54 Stripe) or charcoal (#282b31 Coinbase) for immersive brand sections alternating with white.",
+      "neutral": ["#64748d", "#5b616e", "#505a63", "#8d969e", "#273951"],
+      "neutral_role": "Body text and secondary labels. Stripe uses slate (#64748d) for body. Coinbase uses muted blue-gray (#5b616e). Revolut uses mid-slate (#505a63). All are cool-toned neutrals that signal precision.",
+      "border": ["#e5edf5", "#c9c9cd", "#b9b9f9", "rgba(91,97,110,0.2)"],
+      "border_role": "Soft blue-tinted borders for cards and inputs. Subtle that reads clean and financial-grade, never heavy or decorative.",
+      "semantic": {
+        "success": "#15be53",
+        "warning": "#ec7e00",
+        "error": "#e23b4a",
+        "info": "#0667d0"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["sohne-var", "CoinbaseDisplay", "Aeonik Pro", "Inter", "system-ui"],
+      "body_fonts": ["sohne-var", "CoinbaseText", "Inter", "system-ui"],
+      "mono_fonts": ["SourceCodePro", "SF Mono", "JetBrains Mono"],
+      "heading_weight": 400,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 36, "max": 136, "unit": "px"},
+        "h2": {"min": 28, "max": 64, "unit": "px"},
+        "h3": {"min": 20, "max": 40, "unit": "px"},
+        "body": {"min": 14, "max": 18, "unit": "px"},
+        "small": {"min": 10, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.5, "heading": 1.15},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 120, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "sharp": "4px - 6px (Stripe conservative — financial precision reads in tight radii)",
+      "rounded": "8px - 20px (cards and containers)",
+      "pill": "56px (Coinbase), 9999px (Revolut) — full pill for all CTAs",
+      "typical_button": "4px (Stripe) to 9999px (Revolut) — fintech splits between conservative tight-radius and confident full-pill",
+      "typical_card": "8px - 16px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "accent (blue/purple)",
+        "color": "white",
+        "border_radius": "4px (Stripe precision) or 56px-9999px (Coinbase/Revolut pill)",
+        "text": "Start now, Get started, Sign up, Contact sales",
+        "font_size": "14-16px",
+        "font_weight": 400
+      },
+      {
+        "variant": "secondary_outlined",
+        "bg": "transparent",
+        "color": "accent or primary text",
+        "border_radius": "matches primary",
+        "text": "Learn more, Talk to sales, View docs",
+        "font_size": "14-16px",
+        "border": "1px solid accent or 2px solid primary"
+      },
+      {
+        "variant": "ghost_dark",
+        "bg": "rgba(244,244,244,0.1)",
+        "color": "white or light gray",
+        "border_radius": "9999px (Revolut style)",
+        "text": "Secondary action on dark sections",
+        "border": "2px solid rgba(244,244,244,0.5)"
+      }
+    ],
+    "elevation": {
+      "shadows": "ranges from flat zero-shadow (Revolut) to blue-tinted multi-layer (Stripe)",
+      "approach": "Stripe uses brand-colored shadows (rgba(50,50,93,0.25)) for atmospheric depth. Revolut uses zero shadows — depth from color contrast only. Coinbase uses minimal shadow — depth from dark/light section alternation.",
+      "typical_values": ["rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px", "rgba(23,23,23,0.08) 0px 15px 35px 0px", "none (Revolut flat approach)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, white or transparent bg, logo left, nav links center/right, CTA button right)",
+      "hero (centered or split layout, massive headline + subtitle + primary CTA + secondary CTA + maybe product screenshot or abstract gradient)",
+      "trust_bar (customer logos or stats: 'Trusted by X companies', 'Y million users', G2 badges)",
+      "features (3-column grid, icon + title + description, often with product UI screenshots)",
+      "how_it_works (numbered steps — '1. Connect 2. Configure 3. Launch')",
+      "dark_feature_section (full-width dark navy/indigo bg + product screenshot + white text)",
+      "stats (counter animation: transactions processed, uptime, countries, etc.)",
+      "testimonials (quote cards with company logos, role-specific, often with headshots)",
+      "pricing (3-4 tier cards, monthly/yearly toggle, enterprise custom option, feature comparison)",
+      "faq (accordion, 2-column layout)",
+      "cta (centered, gradient or dark bg, 'Start now' + 'No commitment')",
+      "footer (4-5 column: product, company, resources, legal, region selector + copyright)"
+    ],
+    "hero_variants": [
+      "weight_300_elegance (Stripe style — 56px sohne-var weight 300, -1.4px tracking, deep navy heading, gradient decoration)",
+      "billboard_scale (Revolut style — 136px Aeonik Pro weight 500, -2.72px tracking, massive declaration)",
+      "blue_trust_centered (Coinbase style — 80px CoinbaseDisplay, 1.00 line-height, centered on white, blue accent)"
+    ],
+    "feature_card_variants": [
+      "icon_top_3col (standard fintech pattern — icon + title + description)",
+      "dashboard_preview (product UI screenshot in card with blue-tinted shadow)",
+      "dark_section_card (white text on dark indigo bg, translucent borders)",
+      "numbered_step (large number + title + description for how-it-works)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["trustworthy", "precise", "confident", "modern", "financial-grade", "premium", "developer-friendly"],
+    "headline_style": "benefit-driven, confident but not hyperbolic, 4-8 words (e.g., 'Financial infrastructure for the internet', 'The future of money', 'One app, all things money')",
+    "cta_style": "direct, commitment-light (Start now, Get started, Sign up free, Contact sales, See prices)",
+    "trust_signals": ["customer logos (Fortune 500, major tech companies)", "security certifications (SOC2, PCI-DSS, ISO 27001)", "uptime stats (99.99%)", "transaction volume counters", "G2 / TrustRadius badges", "regulatory compliance mentions", "enterprise case studies with metrics"],
+    "anti_patterns": ["fake urgency or countdown timers", "excessive animations", "casual or playful language", "stock photos of people shaking hands", "vague claims without numbers", "too many competing CTAs above the fold"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "purple_premium (Stripe: white bg, deep navy headings, #533afd accent, blue-tinted shadows — warmth through color choice)",
+      "blue_institutional (Coinbase: white + #0052ff, near-black dark sections, cool gray surfaces — trust through restraint)",
+      "dark_binary (Revolut: white + #191c1f, zero shadows, massive typography — confidence through simplicity)"
+    ],
+    "typography_mood": [
+      "weight_300_elegance (Stripe: sohne-var at featherweight 300, ss01 OpenType, negative tracking — whispered authority)",
+      "geometric_display (Revolut: Aeonik Pro weight 500, billboard scale, aggressive negative tracking — stadium fintech)",
+      "proprietary_trust (Coinbase: four-font system Display/Sans/Text/Icons — institutional completeness)"
+    ],
+    "layout_density": [
+      "precision (Stripe: measured, purposeful whitespace, dense financial data in generous chrome)",
+      "billboard (Revolut: huge headlines, generous spacing, pill buttons, zero decoration)",
+      "alternating (Coinbase: white sections alternating with dark sections, clean separation)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "trust_bar", "features", "how_it_works", "dark_feature_section", "stats", "testimonials", "pricing", "faq", "cta", "footer"],
+      "curated_stack": "fintech_trust_landing"
+    },
+    "pricing_page": {
+      "sections": ["header", "pricing", "comparison_table", "faq", "enterprise_cta", "footer"],
+      "best_practices": "3-4 tier with monthly/yearly toggle, feature comparison table, enterprise custom option with 'Contact sales', transparent pricing with no hidden fees messaging"
+    },
+    "docs_page": {
+      "sections": ["sidebar_nav", "content", "toc", "code_examples", "feedback"],
+      "best_practices": "API reference with code examples in SourceCodePro, tabular data with tnum OpenType feature, interactive API explorer"
+    },
+    "about_page": {
+      "sections": ["header", "mission", "leadership", "investors", "careers_cta", "footer"]
+    },
+    "blog_index": {
+      "sections": ["header", "hero (minimal)", "category_filter", "article_grid", "newsletter_cta", "footer"]
+    }
+  }
+}

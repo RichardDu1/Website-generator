@@ -1,0 +1,133 @@
+{
+  "industry": "medical",
+  "subtypes": ["hospital", "clinic", "dental", "specialist", "telehealth"],
+  "extracted_from": [
+    {"url": "https://www.hopkinsmedicine.org", "style": "clinical-blue", "date": "2026-05-30"},
+    {"url": "design-dna-dental.json", "style": "dental-professional", "date": "2026-05-29"}
+  ],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#002c77", "#0056b3", "#006dc7", "#0e384c"],
+      "primary_role": "Header, navigation, trust elements, links",
+      "accent": ["#f0d17d", "#1e84b5", "#54afca", "#bee4e4"],
+      "accent_role": "CTA buttons, highlights, badges",
+      "surface": ["#ffffff", "#f5f5f5", "#f4f4f4", "#eff8ff", "#fafaf8"],
+      "surface_role": "Background, card backgrounds, alternating sections",
+      "neutral": ["#333333", "#3a3a3a", "#527282", "#6c7278"],
+      "neutral_role": "Body text, secondary text",
+      "semantic": {
+        "success": "#2d6a4f",
+        "warning": "#f0d17d",
+        "error": "#c1121f",
+        "emergency": "#dc3545"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Noto Serif", "Playfair Display", "Poppins", "Montserrat"],
+      "body_fonts": ["Noto Sans", "Inter", "Poppins", "Lato"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 36, "max": 60, "unit": "px"},
+        "h2": {"min": 28, "max": 44, "unit": "px"},
+        "h3": {"min": 20, "max": 28, "unit": "px"},
+        "body": {"min": 14, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.7, "heading": 1.25},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 96, "unit": "px"},
+      "section_gap": {"typical": 64, "unit": "px"},
+      "content_max_width": {"typical": 1140, "unit": "px"},
+      "card_padding": {"typical": "20px 24px"}
+    },
+    "border_radius": {
+      "sharp": "2px - 4px",
+      "rounded": "6px - 8px",
+      "pill": "50px - 99px (pill buttons for CTAs)",
+      "typical_button": "3px - 6px",
+      "typical_card": "4px - 8px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "accent or primary blue",
+        "color": "white",
+        "border_radius": "3px or 99px",
+        "text": "direct action (Schedule Appointment, Book Now, Find a Doctor)",
+        "font_size": "14-16px",
+        "font_weight": 600
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent with primary border",
+        "color": "primary",
+        "border_radius": "3px",
+        "text": "Learn more, Our services, Patient info"
+      }
+    ]
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (logo left, emergency CTA right, phone number visible)",
+      "hero (image + headline + subheadline + primary CTA + search/find-a-doctor bar)",
+      "services (3-6 icon/image cards: specialties, treatments)",
+      "stats/about (years of experience, patients served, awards/rankings)",
+      "team/doctors (photo cards with name, specialty, credentials)",
+      "testimonials/patient stories (photo + quote + name)",
+      "locations (address cards + map + hours)",
+      "insurance/accepted (logo grid of insurance providers)",
+      "appointment_cta (booking form or button + phone number)",
+      "footer (4-column: about/contact/services/patient-resources + accreditations)"
+    ],
+    "hero_variants": [
+      "image_bg (hospital/clinic photo + overlay text)",
+      "split_left (image left, text + CTA right)",
+      "search_centered (large 'Find a Doctor' search bar)"
+    ],
+    "service_card_variants": [
+      "icon_top (medical icon + title + short description)",
+      "image_top (service photo + title + link)",
+      "list_with_prices (dental-style: service name + price + book button)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["trustworthy", "professional", "caring", "clean", "accessible", "expert"],
+    "headline_style": "reassuring and direct (e.g., 'Your health, our priority')",
+    "cta_style": "help-oriented (Schedule, Find a Doctor, Book Appointment, Call Now)",
+    "trust_signals": ["board certifications", "hospital rankings", "years of experience", "patient satisfaction scores", "accreditation logos (JCAHO, etc.)", "insurance accepted"],
+    "anxiety_reduction": ["soft colors", "human photography", "no clinical/sterile imagery", "clear pricing when possible", "easy-to-find phone numbers"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "clinical_blue (Hopkins: #002c77 primary, white bg, professional)",
+      "warm_teal (Burkett: #004a62, light teal accent, minimal)",
+      "friendly_gold (Seattle Dental: #f0d17d accent, dark charcoal text)",
+      "clean_sky (North Beach: #0e384c, #1e84b5, Poppins)"
+    ],
+    "typography_mood": [
+      "serif_trust (Noto Serif headings — traditional, established)",
+      "modern_sans (Poppins — friendly, approachable)",
+      "minimal_grotesk (Montserrat — clean, contemporary)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "services", "stats", "team", "testimonials", "locations", "appointment_cta", "footer"]
+    },
+    "service_page": {
+      "sections": ["header", "hero (condition-specific)", "treatment_overview", "why_choose_us", "doctors_specializing", "testimonials", "appointment_cta", "footer"]
+    },
+    "doctor_profile": {
+      "sections": ["header", "doctor_bio", "specialties", "locations", "patient_reviews", "appointment_cta", "footer"]
+    },
+    "contact_page": {
+      "sections": ["header", "contact_form", "locations_map", "hours", "insurance_info", "footer"]
+    }
+  }
+}

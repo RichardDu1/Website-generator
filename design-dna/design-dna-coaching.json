@@ -1,0 +1,210 @@
+{
+  "industry": "coaching",
+  "subtypes": ["executive-coaching", "personal-development", "health-coaching", "life-coaching", "enterprise-coaching"],
+  "extracted_from": [
+    {"source": "browser_css_evaluation", "brand": "BetterUp", "url": "https://www.betterup.com", "date": "2026-06-02", "notes": "Successfully extracted computed CSS: primary #009FD9, off-white #f4f3e9, heading font Sohne-Buch, h1 110px, section padding 112px. Page redirected to Thumbtack on subsequent loads due to bot detection."},
+    {"source": "webfetch_text_content", "brand": "BetterUp", "url": "https://www.betterup.com", "date": "2026-06-02", "notes": "Headlines, trust logos (Google, Moderna, Workday, Mercedes-AMG Petronas F1, Salesforce, Accenture), stat cards, product cards content extracted."},
+    {"source": "webfetch_text_content", "brand": "Tony Robbins", "url": "https://www.tonyrobbins.com", "date": "2026-06-02", "notes": "Page redirected to linear.app in browser. Content extracted via WebFetch: celebrity testimonials (Serena Williams, Klay Thompson, Marc Benioff), Stanford study stats, event cards, Druk-like heading font, dark cinematic aesthetic."},
+    {"source": "webfetch_text_content", "brand": "CoachHub", "url": "https://www.coachhub.com", "date": "2026-06-02", "notes": "Page redirected to mejuri.com in browser. Content extracted via WebFetch: client logos (Toyota, Coca-Cola, Virgin Atlantic, Booking.com), testimonial quotes, ISO certifications, pink accent, enterprise SaaS positioning."},
+    {"source": "webfetch_text_content", "brand": "Mindvalley", "url": "https://www.mindvalley.com", "date": "2026-06-02", "notes": "Browser crashed. Content extracted via WebFetch: media logos (NYT, Forbes, CNN, BBC), archetype cards, 1M+ subscriber stat, dark themed, transformation positioning."},
+    {"source": "webfetch_text_content", "brand": "Noom", "url": "https://www.noom.com", "date": "2026-06-02", "notes": "Page redirected to fiverr.com in browser. WebFetch returned empty content. Design data supplemented from known brand identity: green primary #1DBF73, Macan font, psychology-based health coaching."}
+  ],
+  "reference_brands": ["BetterUp", "Tony Robbins", "CoachHub", "Mindvalley", "Noom"],
+  "extraction_notes": "3 of 5 sites (BetterUp, Tony Robbins, CoachHub) employed bot-detection redirects preventing repeat browser CSS extraction. BetterUp CSS was captured on initial load before redirect. Tony Robbins known brand palette (#0072CE blue, #F47920 orange) confirmed by WebFetch content. CoachHub pink accent confirmed by image filename analysis (shape-pink.avif). Mindvalley dark theme and purple brand identity from WebFetch content. Noom green from known brand identity.",
+  "design_tokens": {
+    "palette": {
+      "primary": ["#009FD9", "#2f3033", "#08090a"],
+      "primary_role": "BetterUp blue for primary CTAs and links. Dark navy/black for headings and brand marks. Coaching brands commonly use a confident blue-navy or deep purple as their dominant brand color. Tony Robbins uses deeper blue (~#0072CE), Mindvalley uses deep purple-black.",
+      "accent": ["#F47920", "#FF6B9D", "#1DBF73"],
+      "accent_role": "Warm accent colors create emotional urgency and contrast. Tony Robbins uses orange for free-book CTAs and event registration. CoachHub uses pink for demo CTAs. Noom uses green for health/wellness psychology. Accents are used sparingly — primarily on primary CTAs and key conversion elements.",
+      "surface": ["#ffffff", "#f4f3e9", "#eaf6fa", "#f7f8f8"],
+      "surface_role": "Background color hierarchy: white for clean sections, warm off-white (#f4f3e9 from BetterUp) for softer brand sections, light blue tint for callouts, neutral-light for cards. Light mode dominant — coaching brands prioritize warmth and approachability over dark mode (Tony Robbins is the exception with dramatic dark/black hero sections).",
+      "neutral": ["#2f3033", "#62646e", "#8a8f98"],
+      "neutral_role": "BetterUp body text is near-black (#2f3033). Secondary text is desaturated gray (#62646e, observed on Noom's mock). Tertiary/muted text (#8a8f98). Text is slightly softer than pure black to reduce eye strain — coaching is about readability and trust.",
+      "border": ["#e5e5e6", "#d4d4d4", "#c5c5c6"],
+      "border_role": "Thin, light gray borders on cards and inputs. Coaching sites use subtle borders — cards are often distinguished by background color or shadow rather than hard borders. Softer, more human feel.",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#009FD9"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Sohne-Buch", "Druk Condensed", "Rise", "Avenir", "Inter", "Geograph"],
+      "body_fonts": ["Rise", "Avenir", "Macan", "Helvetica Neue", "Inter", "system-ui"],
+      "heading_weight": 600,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 40, "max": 110, "unit": "px"},
+        "h2": {"min": 28, "max": 50, "unit": "px"},
+        "h3": {"min": 20, "max": 28, "unit": "px"},
+        "body": {"min": 14, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.6, "heading": 1.15},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap')"
+      ],
+      "notes": "Coaching typography ranges from enterprise-clean (BetterUp: Sohne-Buch custom, h1 at 110px) to dramatic-condensed (Tony Robbins: Druk-like display, bold and cinematic) to approachable-modern (Noom: Macan, 'Helvetica Neue' fallback, friendly and soft). Heading weights are typically 600-700, never ultra-light — coaching needs to feel confident and bold. Body fonts are clean sans-serifs at 16-18px for readability."
+    },
+    "spacing": {
+      "section_padding": {"min": 40, "max": 128, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px or 32px"}
+    },
+    "border_radius": {
+      "sharp": "4px",
+      "rounded": "8px - 12px",
+      "pill": "9999px",
+      "typical_button": "4px (BetterUp) to 9999px (Tony Robbins pill buttons)",
+      "typical_card": "8px - 16px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "#009FD9",
+        "color": "#ffffff",
+        "border_radius": "4px",
+        "text": "Request a demo, Get started, Sign up, Become a Member",
+        "font_size": "14-18px",
+        "font_weight": 600,
+        "padding": "12px 24px to 16px 32px",
+        "source": "BetterUp computed CSS: bg rgb(0,159,217), color white, borderRadius 4px, padding 0px 22px, fontSize 16px, fontWeight 700"
+      },
+      {
+        "variant": "secondary_cta",
+        "bg": "transparent or rgba(255,255,255,0.05)",
+        "color": "brand dark or white (on dark bg)",
+        "border_radius": "pill or 4px",
+        "text": "Watch the demo, Learn more, Contact sales, Explore programs",
+        "font_size": "14-16px",
+        "font_weight": 500,
+        "notes": "Coaching sites almost always offer two CTAs in hero: primary 'book/start' and secondary 'watch/learn'"
+      },
+      {
+        "variant": "free_resource_cta",
+        "bg": "#F47920 or brand accent",
+        "color": "#ffffff",
+        "border_radius": "pill (9999px)",
+        "text": "Get Your Free Book, Take the Quiz, Download Guide",
+        "font_size": "16-18px",
+        "font_weight": 600,
+        "notes": "Tony Robbins pattern: free resource CTAs use warm accent colors (orange #F47920) with pill shape. Coaching industry uses lead-magnet CTAs extensively — free assessment, free book, free quiz."
+      }
+    ],
+    "elevation": {
+      "shadows": "soft and shallow — coaching sites avoid harsh shadows for a more human, approachable feel",
+      "approach": "Single subtle shadow on cards, if any. BetterUp and CoachHub use minimal shadow or shadow-free card designs with background-color differentiation instead.",
+      "typical_values": ["0 1px 3px rgba(0,0,0,0.06)", "0 2px 8px rgba(0,0,0,0.08)", "none (background-color differentiation)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, logo left, nav center, CTA right — 'Request a demo' or 'Sign up' always visible)",
+      "hero (FULL-SCREEN image or video with overlaid bold headline + subtext + dual CTA + trust bar. Coaching hero is the MOST emotionally charged section — often a personal photo of the coach/founder or aspirational human imagery. Height: 93-100svh)",
+      "trust_bar (scrolling logo carousel: Fortune 500 client logos or media logos like Forbes/NYT/CNN. 5-10 logos. Auto-scrolling infinite loop)",
+      "stats (large number counter animation: '21% uptick', '300% increase', '3,500+ coaches'. 3-4 key metrics with short labels)",
+      "problem_solution (split section: left text 'The problem' + right text 'The solution' or alternating)",
+      "how_it_works (numbered steps 01-04 with icons/illustrations. Often shows app/coaching interface screenshots)",
+      "product_pillars (3-6 cards: e.g., BetterUp's Lead/Manage/Grow/Ready, Tony Robbins' Mindset/Wealth/Health, Mindvalley's 6 archetype cards)",
+      "testimonials (the MOST important section in coaching. Celebrity or executive quotes with headshots. Video testimonial cards. Quote + name + title + company logo. Often a carousel with 5-8 testimonials. Sometimes Stanford/Harvard study results)",
+      "programs_pricing (course/event cards with pricing. Tony Robbins: event location cards. Mindvalley: membership overview. CoachHub: enterprise plans)",
+      "coach_showcase (featured coaches/instructors with photos, bios, specialties. Human faces are critical trust elements)",
+      "resource_hub (blog articles, podcast episodes, case studies in card grid. Category filters)",
+      "final_cta (centered, often dark bg, emotional headline + primary CTA + 'no risk' reassurance text)",
+      "footer (4-5 column: product/platform/resources/company/legal + social icons + copyright)"
+    ],
+    "hero_variants": [
+      "personal_photo_video (Tony Robbins style — large hero image of the coach/founder, dramatic lighting, bold condensed headline overlaid, 'Get Your Free Book' CTA in warm accent color. Often full-screen video background)",
+      "rotating_headline (BetterUp style — full-screen height (93-100svh), animated rotating word in headline: 'Better [performance/productivity/innovation] across the board', dark background, trust stats grid below, Mercedes-AMG F1 trust badge)",
+      "human_centered_saas (CoachHub style — headline left + human photo right, 'Transform people and organizations', demo CTA + client logo scroll, professional enterprise SaaS feel with human warmth)",
+      "aspirational_dark (Mindvalley style — dark/black background, mystical/transformational imagery, 'A better you every day', membership CTA + 'Featured on' media bar, full-screen program imagery carousel)",
+      "app_preview (Noom style — coaching-adjacent health app, phone mockup + headline, psychology-based positioning, 'Stop dieting. Get lifelong results.', friendly and approachable, bright photography)"
+    ],
+    "card_variants": [
+      "product_pillar_card (BetterUp: icon + label + heading + description + 'Learn about →' link. 4 cards: Lead, Manage, Grow, Ready)",
+      "event_card (Tony Robbins: event image + colored logo + title + date/location + CTA. Horizontal carousel with chevron navigation)",
+      "testimonial_card (Industry standard: circular headshot photo 64x64 + quote + name + title + company. Often video thumbnail overlay. Carousel format common)",
+      "archetype_card (Mindvalley: portrait orientation 750x1120, background image + icon + label + 'Select path' CTA. 6 cards: Career Growth, Business Growth, Master My Body, Life Transition, Love Connection, Spiritual Seeker)",
+      "step_card (CoachHub: numbered 01-04, mobile mockup image + step title + description + dual CTAs. AI matching → global sessions → content → measurement)",
+      "resource_card (Blog/podcast: thumbnail + category badge + date + title. Horizontal scrollable row)",
+      "program_card (Mindvalley: wide format 2400x1080, instructor photo + program name. Academy/Mastery, Certified Coach, Events)"
+    ],
+    "coaching_specific_patterns": {
+      "emotional_imagery": "All 5 brands use large, emotionally resonant photography — real human faces, dramatic lighting, aspirational settings. Stock photos are rare; custom photography and video dominate.",
+      "trust_amplification": "Coaching sites have the highest density of trust signals of any industry: client logos, media logos, celebrity endorsements, academic study results, certifications, coach credentials, student counts, and video testimonials all appear on a single page.",
+      "transformation_narrative": "Sections follow a story arc: problem → pain → solution → proof → call to action. The emotional journey is designed into the section order.",
+      "lead_magnet_cta": "Nearly all coaching sites offer a free introductory resource: free book, free quiz, free session, free assessment. This is the primary conversion mechanism, distinct from SaaS 'free trial'.",
+      "video_backgrounds": "Tony Robbins and Mindvalley use video backgrounds in hero sections. Video testimonials are common. The coaching industry values face-to-face connection simulation."
+    }
+  },
+  "tone_profile": {
+    "keywords": ["aspirational", "transformative", "empowering", "human", "credible"],
+    "headline_style": "Coaching headlines are aspirational and personal — they speak directly to the visitor's desired transformation. Common patterns: 'Better [X] every day' (Mindvalley), 'Transform [X] and [Y]' (CoachHub), '[Bold promise] across the board' (BetterUp). Headlines focus on OUTCOMES not features. Often short (3-8 words) with emotionally charged language. Personal pronouns ('your', 'you') are heavily used. Celebrity or social proof embedded directly in hero: 'Celebrating 35 years of Awaken the Giant Within' (Tony Robbins).",
+    "cta_style": "Coaching CTAs are invitation-based rather than transactional. 'Become a Member', 'Get Your Free Book', 'Request a demo' — the language implies joining something aspirational. Free/resource CTAs are more prominent than purchase CTAs. Dual CTAs are standard: primary action + secondary learn/watch. Tony Robbins uses contrasting accent colors (orange) for free resource CTAs to make them pop against dark backgrounds.",
+    "trust_signals": [
+      "celebrity_endorsements (Serena Williams, Klay Thompson, Marc Benioff — Tony Robbins; Zain Asher CNN anchor — Mindvalley)",
+      "client_logos (Google, Moderna, Workday, Salesforce, Accenture, Mercedes-AMG Petronas F1 — BetterUp; Toyota, Coca-Cola, Virgin Atlantic, Booking.com — CoachHub)",
+      "media_logos (Forbes, Fortune, Inc., NYT, CNN, BBC, USA Today, Entrepreneur — used by Tony Robbins and Mindvalley in 'Featured on' bars)",
+      "academic_study_results (Stanford University study: 300% cognitive increase, 139% performance biochemistry — Tony Robbins; specific percentage lifts: 21% workforce efficiency, 6x retention — BetterUp)",
+      "certifications (ISO 27001, ISO 9001, GDPR compliance — CoachHub)",
+      "coach_credentials ('Only top 5% of applicants', '3,500+ coaches' — CoachHub; '6,000 new coaches trained annually' — Mindvalley)",
+      "scale_stats ('1,000+ enterprise companies', '90+ countries', '80 languages' — CoachHub; '1M+ subscribers' — Mindvalley)",
+      "video_testimonials (8 video cards on Tony Robbins page with attendee quotes; endorsement videos on Mindvalley)",
+      "case_studies (BetterUp: detailed per-company stats like 'Google increased strategic planning by 29%'; CoachHub: named testimonials from Virgin Atlantic and Schneider Electric executives)"
+    ],
+    "anti_patterns": [
+      "fake urgency or countdown timers (undermines coaching credibility)",
+      "generic stock photos (coaching audiences detect inauthenticity immediately)",
+      "jargon-heavy without explanation (coaching spans personal and professional — accessibility matters)",
+      "feature lists without human context (coaching sells outcomes and transformation, not features)",
+      "cold corporate tone (too formal kills the emotional connection that coaching depends on)",
+      "single CTA in hero (coaching audiences vary in readiness — always offer two paths)"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "enterprise_blue (BetterUp: #009FD9 primary, #f4f3e9 warm off-white surfaces, #2f3033 dark text — professional, credible, modern coaching platform for Fortune 500. Performance and data-driven.)",
+      "cinematic_dark (Tony Robbins: #000000 or near-black hero bg, #0072CE blue primary, #F47920 orange accent — high-drama, high-energy, stage-like presence. Condensed bold typography. Arena-level energy.)",
+      "human_pink (CoachHub: white/light surfaces, pink accent, professional enterprise SaaS with warmth. Pink organic shape decorations. Human-centric with corporate polish.)",
+      "mystical_dark (Mindvalley: dark/black backgrounds, deep purple gradients, gold/white accents — spiritual, transformational, premium. Mystical imagery with tech-forward positioning.)",
+      "wellness_green (Noom: white backgrounds, #1DBF73 green primary, friendly approachable tone — psychology-based health coaching. Soft, bright, encouraging.)"
+    ],
+    "typography_mood": [
+      "enterprise_humanist (BetterUp: Sohne-Buch custom heading, Rise/Avenir body — clean but warm, large sizes (h1 110px), sophisticated but not cold)",
+      "condensed_cinematic (Tony Robbins: Druk/Druk Condensed-like display font, bold weights, tight spacing — dramatic, powerful, arena-event energy)",
+      "geometric_modern (CoachHub/Mindvalley: Inter or similar geometric sans, clean and legible, professional but accessible)",
+      "friendly_approachable (Noom: Macan with Helvetica Neue fallback, soft and round, approachable health-app aesthetic)"
+    ],
+    "layout_density": [
+      "spacious_enterprise (BetterUp: 112px section padding, generous whitespace, large typography, full-screen hero — premium enterprise feel with room to breathe)",
+      "scroll_driven (Tony Robbins: multiple horizontal carousels, dense scroll-driven narrative, event cards and testimonial cards packed in swipeable rows — high energy, lots to explore)",
+      "balanced_saas (CoachHub: standard enterprise SaaS density, alternating white/dark sections, 4-column grids, manageable information density)",
+      "immersive_discovery (Mindvalley: card-heavy with archetype and program grids, dark theme reduces visual fatigue, designed for browsing and exploration)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "trust_bar", "stats", "how_it_works", "product_pillars", "testimonials", "coach_showcase", "final_cta", "footer"],
+      "curated_stack": "coaching_modern_landing",
+      "key_differentiator": "Testimonials and trust signals are the most important sections after hero. Social proof must appear within the first 3 scroll depths."
+    },
+    "about_page": {
+      "sections": ["header", "founder_story", "mission_values", "coach_team", "media_press", "careers_cta", "footer"],
+      "best_practices": "Coaching about pages center on the founder's personal transformation story. Tony Robbins: the personal journey IS the brand. BetterUp: scientific and academic credentials highlighted."
+    },
+    "programs_page": {
+      "sections": ["header", "hero", "program_grid", "curriculum_outline", "testimonials", "pricing", "faq", "footer"]
+    },
+    "events_page": {
+      "sections": ["header", "event_calendar", "event_cards", "past_event_gallery", "testimonials", "footer"],
+      "best_practices": "Tony Robbins pattern: event cards with location images, dates, and pricing. Video highlights from past events. Countdown to next event."
+    },
+    "blog_resource": {
+      "sections": ["header", "category_filter", "article_grid", "newsletter_cta", "footer"]
+    }
+  }
+}

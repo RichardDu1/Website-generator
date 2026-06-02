@@ -1,0 +1,139 @@
+{
+  "industry": "coworking",
+  "extracted_from": [
+    {"source": "官网分析 (WebFetch HTML structure)", "brand": "WeWork", "url": "https://www.wework.com", "date": "2026-06-02", "status": "structural_only", "note": "Page loaded via WebFetch. CSS tokens not capturable — styles in external Next.js CSS Modules. Structural data (headings, CTAs, sections, trust signals) fully captured."},
+    {"source": "官网分析 (Playwright browser + HTML extraction)", "brand": "Industrious", "url": "https://www.industriousoffice.com", "date": "2026-06-02", "status": "full_css", "note": "Browser evaluate captured computed CSS: body font, h1/h2 sizes/weights/colors, card shadows/radius, section backgrounds, button styles. HTML extraction yielded 4 hex colors and Tailwind class tokens (teal-*, ocean-*)."},
+    {"source": "官网分析 (incapsula-blocked)", "brand": "Regus", "url": "https://www.regus.com", "date": "2026-06-02", "status": "blocked", "note": "Incapsula/Imperva bot protection. Curl returns challenge page (212 bytes). StealthyFetcher + DynamicFetcher both fail with timeout. Design tokens supplemented from known brand identity."},
+    {"source": "官网分析 (incapsula-blocked)", "brand": "Spaces", "url": "https://www.spacesworks.com", "date": "2026-06-02", "status": "blocked", "note": "Same Incapsula protection as Regus (both IWG-owned). Curl returns challenge page (212 bytes). Design tokens supplemented from known brand identity and IWG family design language."}
+  ],
+  "reference_brands": ["WeWork", "Industrious", "Regus", "Spaces"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#115D51", "#1a3a3a", "#0d4a42"],
+      "primary_role": "主色 — dark teal/green. Used for primary buttons (filled on hover), nav CTAs, brand identity. Conveys premium, calm, established trust.",
+      "accent": ["#eab308", "#FDD344"],
+      "accent_role": "强调色 — warm gold/amber. Used for star ratings, checkmark icons (SVG), promotional badges. Adds warmth against cool teal/navy palette.",
+      "surface": ["#FFFFFF", "#F5F7F9", "#F7F7F7", "#181A1D"],
+      "surface_role": "背景色层次 — white (cards/hero text), light gray-blue #F5F7F9 (content sections), warm gray #F7F7F7 (alternating sections), near-black #181A1D (dark value-prop sections, footer areas). Coworking sites use a dark section for contrast — usually the testimonial or 'why us' section.",
+      "neutral": ["#181A1D", "#65666A"],
+      "neutral_role": "文字颜色 — near-black #181A1D for body text (never pure #000), medium gray #65666A for secondary/link text. On dark sections: white #FFFFFF.",
+      "border": ["#E5E7EB", "#D1D5DB"],
+      "border_role": "边框颜色 — light gray for card borders, form inputs. Outlined buttons use the teal primary as border color.",
+      "semantic": {"success": "#16a34a", "warning": "#d97706", "error": "#dc2626", "info": "#2563eb"}
+    },
+    "typography": {
+      "heading_fonts": ["Inter", "system-ui", "sans-serif"],
+      "body_fonts": ["Inter", "system-ui", "sans-serif"],
+      "heading_weight": 600,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 32, "max": 64, "unit": "px", "typical": 48, "note": "Hero H1: 48px on Industrious, WeWork similar range. Often white on dark overlay/image background."},
+        "h2": {"min": 18, "max": 36, "unit": "px", "typical": 24, "note": "Section H2: 18px on Industrious (unusually small — used as subhead). Typical coworking H2 is 28-36px."},
+        "h3": {"min": 16, "max": 24, "unit": "px", "typical": 20, "note": "Card headings, feature titles."},
+        "body": {"min": 14, "max": 18, "unit": "px", "typical": 16, "note": "16px on Inter is the coworking standard."},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 40, "max": 120, "unit": "px", "typical_vertical": 80, "typical_horizontal": 32, "note": "Standard section: 80px top/bottom, 32-40px horizontal on desktop."},
+      "content_max_width": {"typical": 1200, "unit": "px", "note": "Most coworking sites use max-width 1200-1280px containers. Industrious uses full-bleed sections with internal padding."},
+      "card_padding": {"typical": "24px", "note": "Solution/plan cards typically 24-32px padding. Feature cards lean toward 24px."}
+    },
+    "border_radius": {
+      "buttons": "9999px (pill / rounded-full)",
+      "cards": "3px (subtle — Industrious measured value. Other sites may use 8-12px for a softer feel)",
+      "inputs": "8px",
+      "note": "Pill buttons (border-radius: 9999px) are the dominant CTA pattern in coworking. Cards use subtle 3-12px radius. Location search inputs typically 8px."
+    },
+    "elevation": {
+      "shadows": "Soft, diffuse shadows with very low opacity. Coworking avoids harsh shadows — the aesthetic is airy, open, light-filled.",
+      "typical_values": [
+        "rgba(0,0,0,0.05) 0px 16px 40px 4px (Industrious card — large blur, minimal opacity)",
+        "0 1px 3px rgba(0,0,0,0.08) (subtle card)",
+        "0 4px 12px rgba(0,0,0,0.06) (hover state)"
+      ]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky nav, transparent on hero, solid on scroll. Logo left, links center-right, CTA button far right)",
+      "promo_banner (optional — thin strip above nav with discount/offer. WeWork uses this prominently)",
+      "hero (full-width interior photo with dark overlay + white H1 + H2 subhead + embedded city/location search input + 2-4 product selector cards)",
+      "client_logo_bar (grayscale/monochrome enterprise logos — 5-8 brands — Pfizer, Microsoft, Salesforce, Amazon, Samsung, Hyatt, etc.)",
+      "solutions_grid (3-4 cards: Private Office, Coworking, Meeting Rooms, Enterprise. Icon + H3 + description + 'Learn more' CTA)",
+      "value_propositions (2-3 alternating image+text rows — 'Why choose us' narrative with large interior photos)",
+      "amenities_section (icon grid — 24/7 access, WiFi, meeting rooms, printing, events, coffee, etc.)",
+      "testimonials (carousel or grid of 3-5 member quotes with 5-star ratings, headshots, company names)",
+      "news_or_blog (3-4 article cards with thumbnails, category tags, 'Read more')",
+      "newsletter_signup (simple email capture, often on brand-color background)",
+      "footer (5+ columns: Company, Solutions, Locations, Partners, Support/Contact + social icons + legal + language selector)"
+    ],
+    "hero_variants": [
+      "Location-search hero (WeWork, Regus): H1 + city dropdown/autocomplete + product selector cards. The hero IS a conversion tool — not just a headline.",
+      "Statement hero (Industrious): Bold H1 with italic emphasis + subhead + CTA button + solution cards. More brand-forward, less search-centric."
+    ],
+    "card_variants": [
+      "Solution/product cards: Icon + H3 + description + feature checklist (checkmark icons) + 'Learn more' CTA. Used in hero area and solutions grid.",
+      "Location cards (if present): Large photo + city name + address + 'View location' CTA.",
+      "Testimonial cards: Quote text + 5 gold stars + name + company. Often linked to Google Maps reviews for authenticity.",
+      "Article/blog cards: Thumbnail image + category pill/badge + H3 title + excerpt + 'Read more' link.",
+      "Plan/membership cards (if pricing page): Plan name + price + feature list + primary CTA. Often 3-column layout with middle column highlighted."
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["professional", "aspirational", "flexible", "premium", "human"],
+    "headline_style": "Confident, definitive, benefit-forward. Uses italic emphasis on key differentiator words ('The *best* workplace and member experience, period.' — Industrious). WeWork: 'Discover a smarter way to work.' Short, declarative, never passive. Avoids jargon — speaks to business outcomes not real estate terms.",
+    "cta_style": "Imperative verbs, action-first, benefit-adjacent. Primary: 'Join Now', 'Get Started', 'Book a Tour', 'Find Your Space'. Secondary: 'Learn More', 'Explore', 'View Locations'. Tertiary: 'Read More', 'Read Case Study'. All primary CTAs are 2-3 words max. Never 'Submit' or 'Click here'. The CTA hierarchy is: Book/Join > Explore/Learn > Read/View.",
+    "trust_signals": [
+      "Enterprise client logos (Microsoft, Pfizer, Salesforce, Amazon, Samsung, Visa — grayscale treatment)",
+      "Location count ('600+ locations', '250+ locations in 85+ cities')",
+      "Member count ('half a million members')",
+      "Star ratings (5-star Google Maps reviews with real names and photos)",
+      "Press logos (WSJ, CNBC, Commercial Observer — 'IN THE NEWS' section)",
+      "Case studies with named company + real quote + headshot",
+      "Security/enterprise-grade language for corporate buyers",
+      "Awards and certifications"
+    ],
+    "anti_patterns": [
+      "DON'T use 'cheap', 'affordable', 'budget' — coworking sells value and experience, not price",
+      "DON'T use 'office space' as primary language — say 'workplace', 'workspace', 'space'",
+      "DON'T use passive CTAs like 'Submit', 'Click here', 'Find out more'",
+      "DON'T use pure black (#000) — use near-black (#181A1D, #1a1a1a)",
+      "DON'T use hard shadows — coworking aesthetic is airy and light",
+      "DON'T hide pricing completely — even if enterprise-focused, have a 'starting at' somewhere"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "Warm + Professional (Industrious): Teal primary + gold accents + warm grays. Feels established, premium, human-centered. Best for targeting corporate decision-makers who want quality signals.",
+      "Bold + Tech-forward (WeWork): Black/white primary + vibrant cyan accent. Minimalist, modern, urban. Best for targeting startups, freelancers, tech companies."
+    ],
+    "typography_mood": [
+      "Geometric sans (Inter/SF Pro): Clean, modern, professional. Used by Industrious. Best for enterprise/trust-focused positioning.",
+      "Grotesk/neo-grotesk (Apercu/Galano-style): Slightly more personality, wider proportions. Historically WeWork. Best for community/culture-focused positioning.",
+      "Mixed serif headings + sans body: Could differentiate a boutique coworking brand. Untapped in major players."
+    ],
+    "layout_density": [
+      "Full-bleed + generous whitespace (Industrious): Sections fill viewport width, internal content has breathing room. Feels premium and unhurried.",
+      "Contained + card-dense (WeWork/Regus): Max-width containers, tightly packed cards, information-rich. Feels comprehensive and utilitarian."
+    ]
+  },
+  "coworking_specific_patterns": {
+    "location_search": {
+      "description": "The defining UX pattern of coworking sites. A city/address autocomplete input embedded directly in the hero section — often the most prominent interactive element after the headline.",
+      "typical_implementation": "Text input with dropdown autocomplete listing 50-200+ cities. Commonly paired with a 'Find locations' or 'Search' submit button. The input often has a map-pin or search icon prefix.",
+      "design": "Large input (height 48-56px), border-radius 8px, white background, subtle border, prominent placeholder text like 'Find a workplace near you' or 'Search by city, address, or ZIP'."
+    },
+    "amenity_icons": {
+      "description": "Grid of 4-8 icons representing key amenities. Almost always monochrome line icons (not filled).",
+      "common_icons": ["24/7 access (clock)", "High-speed WiFi", "Meeting rooms (door/people)", "Printing/scanning", "Free coffee/tea", "Community events", "Phone booths", "Bike storage", "Pet-friendly", "Outdoor space"]
+    },
+    "membership_cards": {
+      "description": "When present, membership/plan cards follow a 3-column pattern: Coworking (hot desk), Dedicated Desk, Private Office. Each card has: plan name, per-month price, feature checklist, and a 'Get started' or 'Book a tour' CTA. The middle or rightmost column is often visually highlighted (filled background vs outlined)."
+    },
+    "interior_photography": {
+      "description": "Coworking sites are photography-heavy. Hero images are large, bright interior shots showing natural light, people working (candid, not staged), plants, modern furniture. Images are warm-toned with medium contrast. Typical treatments: slight warmth added, no heavy filters, natural saturation.",
+      "sizes": "Hero images typically 1600-2000px wide, 900-1100px tall. Content images 600-900px wide. All delivered as WebP with quality=80-100."
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "industry": "wedding",
+  "subtypes": ["wedding-planner", "wedding-venue", "bridal-boutique", "florist-wedding", "wedding-catering", "wedding-photography-video", "wedding-rentals"],
+  "extracted_from": [
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.theknot.com", "style": "romantic-elegant"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.zola.com", "style": "soft-modern"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.stylemepretty.com", "style": "editorial-romance"}
+  ],
+  "reference_brands": ["The Knot", "Zola", "Style Me Pretty", "BHLDN", "Minted Weddings", "David's Bridal", "Vera Wang", "Crate & Barrel Wedding", "Joy", "Rifle Paper Co."],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#fdf8f5", "#faf4ef", "#f7ede2", "#fef9f3"],
+      "primary_role": "Page background (soft blush/cream, warm white — never stark white, always with warmth)",
+      "accent": ["#d4a574", "#c9a96e", "#b8860b", "#e8c4b8", "#d4a0a0", "#c49b7c"],
+      "accent_role": "CTA buttons (gold/copper/champagne), decorative elements, price highlights, section dividers",
+      "surface": ["#ffffff", "#fefaf7", "#fdf7f2", "#fff8f0", "#fbf5f0"],
+      "surface_role": "Card backgrounds (warm white with blush undertones), modal backgrounds, form fields",
+      "neutral": ["#6b5b5b", "#8c7373", "#9e8a8a", "#b8a0a0", "#5c4c4c"],
+      "neutral_role": "Body text (warm taupe/rose-gray, never pure black which is too harsh), secondary info",
+      "border": ["#f0e4d8", "#ead9c8", "#e8d5c0", "#f2e2d0", "#e5d5c5"],
+      "border_role": "Card borders, input borders, dividers (soft warm beige, barely visible — delicate)",
+      "semantic": {
+        "success": "#7d9b76",
+        "warning": "#d4a574",
+        "error": "#c4736e",
+        "info": "#9b9baa"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Cormorant Garamond", "Playfair Display", "Lora", "Bodoni Moda", "system-ui"],
+      "body_fonts": ["Lato", "Jost", "Nunito Sans", "Work Sans", "system-ui"],
+      "mono_fonts": ["JetBrains Mono", "SF Mono", "Consolas"],
+      "heading_weight": 400,
+      "body_weight": 300,
+      "scale": {
+        "h1": {"min": 36, "max": 58, "unit": "px"},
+        "h2": {"min": 26, "max": 40, "unit": "px"},
+        "h3": {"min": 18, "max": 26, "unit": "px"},
+        "body": {"min": 15, "max": 17, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.7, "heading": 1.25},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 72, "max": 140, "unit": "px"},
+      "section_gap": {"typical": 88, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "32px"}
+    },
+    "border_radius": {
+      "sharp": "none (avoid angular — feels cold)",
+      "rounded": "8px - 16px",
+      "pill": "9999px",
+      "typical_button": "8px (soft) or 9999px (pill)",
+      "typical_card": "10px - 16px (soft, organic, never angular)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "gold/copper accent or soft blush",
+        "color": "white or dark warm text",
+        "border_radius": "8px (soft, romantic)",
+        "text": "Schedule a Tour, Inquire Now, Book Your Date, Request Pricing, Start Planning",
+        "font_size": "14-16px",
+        "font_weight": 500
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent with gold border",
+        "color": "warm taupe/gold",
+        "border_radius": "8px",
+        "text": "View Gallery, Learn More, See Packages, Read Our Story",
+        "font_size": "14-16px"
+      },
+      {
+        "variant": "text_link",
+        "bg": "transparent",
+        "color": "gold or warm taupe",
+        "border_radius": "none",
+        "text": "Navigation, social links, fine print, vendor directory"
+      }
+    ],
+    "elevation": {
+      "shadows": "ultra-soft, romantic, diffused",
+      "approach": "Shadows should feel like soft candlelight — barely there, warm-toned if possible. Nothing harsh or angular.",
+      "typical_values": ["0 1px 2px rgba(180,140,120,0.06)", "0 4px 16px rgba(180,140,120,0.08)", "0 8px 30px rgba(180,140,120,0.1)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (transparent over hero or soft cream bg, logo/name center, nav below, subtle gold accents, thin font)",
+      "hero (full-bleed couple photo or venue photo + couple names or venue name + tagline + subtle CTA + scroll indicator)",
+      "services (elegant 3-column cards: planning, design, coordination, florals, catering — icon optional but delicate)",
+      "gallery (masonry or justified grid of wedding photos, soft lightbox on click, category filter: ceremonies/receptions/details)",
+      "packages (3-tier packages: name + price + inclusions list, elegant table or card layout, 'Most Popular' badge)",
+      "testimonials (quote cards: italic quote + couple names + wedding date + photo, carousel with soft fade)",
+      "inquiry_form (centered, generous whitespace, soft bg, 'Let's Start Planning' + name/email/date/venue fields + submit)",
+      "footer (centered: venue/planner name, Instagram grid, contact info, social icons, copyright — elegant and minimal)"
+    ],
+    "hero_variants": [
+      "couple_portrait (romantic — full-bleed couple photo, names centered in elegant serif, soft warm overlay, 'Our Story' CTA)",
+      "venue_panorama (venue style — wide shot of ceremony or reception space, venue name, 'Schedule a Tour' CTA)",
+      "detail_collage (florist/decorator style — collage of close-up detail shots: flowers, table settings, rings, fabric)",
+      "video_background (cinematic — slow-motion wedding highlight reel, minimal text, emotional connection first)"
+    ],
+    "feature_card_variants": [
+      "service_card (delicate icon or photo + service title + poetic description + 'Learn More' link, soft border, 3-column)",
+      "package_card (package name + price + feature list with checkmarks, highlighted recommended tier, gold border accent)",
+      "gallery_thumbnail (image-only card with soft hover overlay showing caption/category, masonry layout)",
+      "testimonial_card (centered italic quote + couple name + date, generous padding, decorative quote marks, optional small photo)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["romantic", "elegant", "soft", "dreamy", "intimate", "timeless", "graceful", "personal"],
+    "headline_style": "romantic and evocative, 5-8 words (e.g., 'Where Forever Begins.', 'Love Stories, Beautifully Told.')",
+    "cta_style": "gentle, invitational (Inquire, Schedule a Visit, Let's Connect, Start Planning Your Dream, Book Your Date)",
+    "trust_signals": ["featured in publications (The Knot, Martha Stewart Weddings)", "5-star reviews", "years of experience", "portfolio galleries", "vendor partnerships", "insurance/licensed badge", "Instagram following", "real wedding features"],
+    "anti_patterns": ["stark white backgrounds", "bold heavy fonts", "neon/bright colors", "aggressive sales language", "cluttered layouts", "stock photos of rings", "countdown timers", "popup chat widgets"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "blush_romance (#fdf8f5 blush cream, #d4a0a0 dusty rose, #c9a96e champagne gold, #6b5b5b warm taupe — classic romantic)",
+      "garden_botanical (#f7f3e8 warm white, #8b9d7d sage green, #d4a574 copper, #5c4c3c bark — outdoor/garden weddings)",
+      "coastal_breeze (#f5f8fa cool white, #a3b5c8 dusty blue, #c9a96e sand gold, #6b7c8e slate — beach/destination weddings)",
+      "modern_luxe (#faf9f8 clean cream, #2c2416 espresso, #d4a574 champagne, #e5e0d8 stone — modern minimalist)",
+      "vintage_rose (#fdf4f0 antique blush, #c4736e vintage rose, #b8860b dark gold, #5c4c4c cocoa — vintage/rustic weddings)"
+    ],
+    "typography_mood": [
+      "cormorant_romance (Cormorant Garamond headings, Lato body — timeless, editorial, most versatile wedding font pairing)",
+      "playfair_elegance (Playfair Display headings, Jost body — polished, luxury venues and high-end planners)",
+      "bodoni_glamour (Bodoni Moda headings, Work Sans body — high-contrast, dramatic, fashion-forward bridal)"
+    ],
+    "layout_density": [
+      "editorial_airy (large imagery, poetic text, generous whitespace — high-end planners and venues)",
+      "portfolio_grid (gallery-heavy, image-first browsing, minimal text — photographers and florists)",
+      "planner_structured (clear packages, pricing visible, form accessible — working wedding planners and venues)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "services", "gallery", "packages", "testimonials", "inquiry_form", "footer"],
+      "curated_stack": "wedding_elegant_landing"
+    },
+    "gallery_page": {
+      "sections": ["header", "category_filter", "image_grid", "lightbox", "pagination", "footer"],
+      "best_practices": "Masonry or justified grid, soft category filters, lazy loading with elegant fade-in, lightbox with swipe on mobile"
+    },
+    "packages_page": {
+      "sections": ["header", "package_tiers", "add_ons", "faq", "inquiry_form", "footer"],
+      "best_practices": "3-4 tiers, clear inclusions/exclusions, 'Most Popular' highlight, FAQ accordion, no hard sell — weddings don't respond to pressure"
+    },
+    "about_page": {
+      "sections": ["header", "couple_story (venue) or founder_story (planner)", "philosophy", "team", "featured_weddings", "press", "contact_cta", "footer"]
+    },
+    "contact_page": {
+      "sections": ["header", "inquiry_form", "faq", "map_location", "social_links", "footer"]
+    }
+  }
+}

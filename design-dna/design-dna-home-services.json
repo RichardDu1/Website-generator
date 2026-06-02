@@ -1,0 +1,128 @@
+{
+  "industry": "home-services",
+  "extracted_from": [
+    {"source": "官网直接CSS提取", "brand": "TaskRabbit", "url": "https://www.taskrabbit.com", "date": "2026-06-02", "status": "完整提取"},
+    {"source": "官网直接CSS提取", "brand": "Thumbtack", "url": "https://www.thumbtack.com", "date": "2026-06-02", "status": "完整提取"},
+    {"source": "官网直接CSS提取", "brand": "Merry Maids", "url": "https://www.merrymaids.com", "date": "2026-06-02", "status": "完整提取"},
+    {"source": "WebFetch结构提取 (bot保护导致CSS不可用)", "brand": "Mr. Rooter", "url": "https://www.mrrooter.com", "date": "2026-06-02", "status": "部分提取(无CSS值)"},
+    {"source": "不可访问 (HTTP 403 Forbidden)", "brand": "Angi", "url": "https://www.angi.com", "date": "2026-06-02", "status": "无法访问"}
+  ],
+  "reference_brands": ["TaskRabbit", "Thumbtack", "Merry Maids", "Mr. Rooter", "Angi"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0d7a5f", "#009fd9", "#78be21"],
+      "primary_role": "主色用于主CTA按钮和关键交互元素。TaskRabbit用深青绿#0d7a5f传达专业可靠; Thumbtack用天蓝#009fd9表达可访问和科技感; Merry Maids用鲜绿#78be21传达清新和环保。三个品牌均避免使用过于工业化的颜色(如纯黑、深灰), 选择明亮但沉稳的品牌色。",
+      "accent": ["#ce0058", "#0a5ac2", "#101820"],
+      "accent_role": "强调色用于次要CTA、悬停状态和装饰元素。Thumbtack用中蓝#0a5ac2作搜索按钮色; Merry Maids用深色#101820作CTA文字色形成高对比度。",
+      "surface": ["#ffffff", "#f9fafb", "#fafafa", "#eaf6fa"],
+      "surface_role": "背景色层次: 主背景白色, 次级背景极浅灰#f9fafb/#fafafa(提升可读性), 特色区块用浅蓝#eaf6fa或浅绿做区分。避免纯灰色带来的冰冷感。",
+      "neutral": ["#242a30", "#2f3033", "#4e4b48"],
+      "neutral_role": "文字颜色: 正文使用偏暖的深灰色(非纯黑#000), 降低视觉疲劳。TaskRabbit #242a30, Thumbtack #2f3033, Merry Maids #4e4b48。均保持较高对比度以确保可读性。",
+      "border": ["#e5e7eb", "#d1d5db"],
+      "border_role": "边框色使用极淡灰, 不抢夺内容注意力。卡片和输入框统一使用细边框分割。",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#2563eb"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Inter", "Rise", "Alexandria", "Avenir", "Helvetica", "Arial", "sans-serif"],
+      "body_fonts": ["Inter", "Rise", "Alexandria", "Helvetica", "Arial", "sans-serif"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 40, "max": 72, "unit": "px"},
+        "h2": {"min": 30, "max": 50, "unit": "px"},
+        "h3": {"min": 16, "max": 28, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 40, "max": 120, "unit": "px"},
+      "content_max_width": {"typical": 1440, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "buttons": "4px-50px (TaskRabbit 8px, Thumbtack 4px, Merry Maids 50px pill)",
+      "cards": "8px-16px",
+      "inputs": "4px-8px"
+    },
+    "elevation": {
+      "shadows": "轻阴影为主, 避免重阴影制造距离感。卡片使用 0 1px 3px rgba(0,0,0,0.08) 级别, 保持扁平友好。hero区域几乎无阴影。",
+      "typical_values": ["0 1px 3px rgba(0,0,0,0.08)", "0 2px 8px rgba(0,0,0,0.06)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, logo左, nav中/右, 主CTA右, 电话号可见)",
+      "hero (大标题 + 副标题 + 搜索框/地址输入 + 主CTA + 真实场景图)",
+      "trust bar (评分星级 + 评论数 + App Store评分 + 完成数统计)",
+      "services category grid/tabs (6-12项服务图标+名称, 可点击)",
+      "why choose us / trust pillar (3-4列 图标+标题+简述, 背景色微变)",
+      "how it works (3步骤 编号+说明, 配合图片)",
+      "testimonials carousel (真实姓名+5星+长文本+服务链接)",
+      "guarantee / promise section (大标题+图标+简短承诺文字)",
+      "popular projects / service detail cards (价格+描述, 链接到预订页)",
+      "partner logos / social proof strip (合作品牌logo轮播)",
+      "resources / blog / FAQ (3列卡片 或 手风琴)",
+      "locations / find near me (搜索框 + 城市列表 + 地图)",
+      "final CTA section (大标题 + 地址输入 + CTA按钮, 背景色区分)",
+      "footer (4-5列: 品牌信息+发现+公司+支持+App下载, 法律信息底栏)"
+    ],
+    "hero_variants": [
+      "变体1 (TaskRabbit/Thumbtack): 左侧大标题+副标题+搜索/分类输入+CTA, 右侧真实场景图, 白底",
+      "变体2 (Merry Maids): 左侧大标题+CTA按钮, 右侧大图, 深色渐变背景, 标题白色",
+      "变体3 (Mr. Rooter): 内联表单型hero, 标题+评分+服务类型Tab+立即致电表单, 背景大图"
+    ],
+    "card_variants": [
+      "服务分类卡片: 图标+服务名称+价格起价, 白底细边框, 8-16px圆角, hover提升阴影",
+      "信任支柱卡片: 图标+短标题+1-2句描述, 浅色背景, 无边框, 3-4列网格",
+      "评价卡片: 星级+长文本引用+真实人名, 白底/浅灰底, 软阴影, 轮播展示",
+      "FAQ手风琴卡片: +/−图标+问题文本, 点击展开, 无卡片外形仅分隔线"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["trustworthy", "helpful", "clean", "warm", "professional", "local", "friendly", "reliable"],
+    "headline_style": "直接利益导向, 动词开头或形容词+服务名, 5-8词。如'Book trusted help for home tasks', 'Exceptional Home Cleaning Services', 'Expert Plumbing Contractors You Can Trust'。强调信任、专业、便捷。",
+    "cta_style": "行动动词: Book/Get/Start/Find/Schedule/Request + 目标。无修饰副词, 最短路径。如'Free Quote', 'Book Online', 'Sign up', 'Get help Today'。",
+    "trust_signals": [
+      "星级评分 + 评论总数 (Trustpilot/App Store/Google)",
+      "背景核查/持证/保险标识 (Background Checked, Licensed, Bonded, Insured)",
+      "经营年限 ('40 years of experience')",
+      "服务完成数量统计 ('3.4 million+ assemblies')",
+      "满意度保证/承诺 ('Happiness Pledge', 'Done Right Promise', 'Guaranteed')",
+      "真实客户评价 (全名+具体场景描述+5星)",
+      "行业认证/奖项 (Women's Choice Award, Consumer Affairs Accredited)",
+      "知名合作伙伴logo (IKEA, Redfin, Alexa, Nextdoor)",
+      "免费用/免承诺 (Free quote, No commitment)"
+    ],
+    "anti_patterns": [
+      "不要使用企业体/官腔语言 — 保持温暖、对话式",
+      "不要隐藏定价或让用户必须注册才能看到价格 — 起价应前置",
+      "不要使用小于14px的正文字体 — 目标用户包括中老年人",
+      "不要使用暗色/沉重配色 — 保持明亮、干净、亲和",
+      "不要在CTA附近缺少信任信号 — 每次行动召唤旁必须有信任元素",
+      "不要把电话号码埋藏起来 — 顶部和底部均应可见",
+      "不要使用抽象的插画替代真实场景照片 — 真实人物和真实场景建立信任",
+      "不要在hero中使用自动播放的大视频 — 加载速度影响跳出率",
+      "不要让表单字段超过4个 — 降低预约摩擦"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "蓝绿色调 (Trust/Calm): 青绿#0d7a5f + 天蓝#009fd9, 适合强调专业+可信赖的品牌定位",
+      "暖绿色调 (Fresh/Warm): 鲜绿#78be21 + 暖灰#4e4b48, 适合强调清洁+环保+家庭友好的定位"
+    ],
+    "typography_mood": [
+      "现代几何风: Inter/Rise等现代无衬线, 高x-height, 开放字形, 适合科技平台类(TaskRabbit/Thumbtack)",
+      "温暖人文风: Alexandria等略带手写感的无衬线, 圆润字形, 适合强调个人服务的品牌(Merry Maids)"
+    ],
+    "layout_density": [
+      "高信息密度 (平台型): TaskRabbit/Thumbtack 多区块堆叠, 每区块信息量丰富, 适合高互动产品",
+      "呼吸感布局 (品牌型): Merry Maids 更大留白 + 更大字号 + 更少区块, 适合建立品牌情感连接"
+    ]
+  }
+}

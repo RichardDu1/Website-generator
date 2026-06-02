@@ -1,0 +1,311 @@
+{
+  "industry": "landing-page",
+  "version": "1.0.0",
+  "extracted_from": [
+    {"source": "官网实时分析", "brand": "Linear", "url": "https://linear.app", "date": "2026-06-02", "mode": "dark"},
+    {"source": "官网实时分析", "brand": "Vercel", "url": "https://vercel.com", "date": "2026-06-02", "mode": "light"},
+    {"source": "网页快照分析", "brand": "Notion", "url": "https://www.notion.com/", "date": "2026-06-02", "mode": "dark"},
+    {"source": "官网实时分析", "brand": "Stripe", "url": "https://stripe.com", "date": "2026-06-02", "mode": "light"},
+    {"source": "官网实时分析", "brand": "Figma", "url": "https://www.figma.com", "date": "2026-06-02", "mode": "light"},
+    {"source": "官网实时分析", "brand": "Loom", "url": "https://www.loom.com", "date": "2026-06-02", "mode": "light"}
+  ],
+  "reference_brands": ["Linear", "Vercel", "Notion", "Stripe", "Figma", "Loom"],
+
+  "design_tokens": {
+    "palette": {
+      "primary": ["#08090A", "#000000", "#533AFD", "#1868DB", "#FFFFFF"],
+      "primary_role": "主色 — landing pages use ONE dominant color for maximum impact. Dark-mode brands (Linear, Notion) use near-black #08090A as surface with white UI as the 'primary' contrast element. Light-mode brands use either bold accent (Stripe purple #533AFD, Loom blue #1868DB) or pure black #000000 as the dominant color. The primary color should be unmistakable and consistent across the entire page.",
+      "accent": ["#533AFD", "#1868DB", "#5E6AD2", "#E5E5E6", "#FF6B35"],
+      "accent_role": "强调色 — used SPARINGLY for the single most important CTA on the page. Stripe uses purple #533AFD only for interactive elements. Loom uses blue #1868DB exclusively for the 'Get Loom for free' button. Notion uses vibrant multi-color (orange, blue, green, pink) only in illustrations, never on CTAs. The accent must create a clear visual hierarchy: 'this is the ONE thing you should click.'",
+      "surface": ["#08090A", "#FAFAFA", "#FFFFFF", "#F7F8F8", "#0D0D0D"],
+      "surface_role": "背景色 — extreme high contrast. Landing pages are either stark white (#FAFAFA / #FFFFFF as on Vercel, Stripe, Figma, Loom) or deep near-black (#08090A as on Linear, Notion). No middle grays as page backgrounds. The surface must maximize text readability and make the primary CTA impossible to miss. Dark-mode landing pages use #08090A-#0D0D0D range. Light-mode uses #FAFAFA-#FFFFFF range.",
+      "neutral": ["#F7F8F8", "#171717", "#292A2E", "#4D4D4D", "#E5E5E6", "#000000"],
+      "neutral_role": "文字颜色 — high contrast against surface. Dark-mode body text is #F7F8F8 (near-white, NOT pure white to reduce eye strain). Light-mode body text ranges from #000000 (Figma/Stripe) to #171717 (Vercel) to #292A2E (Loom). Secondary/muted text is 30-50% lighter than body. Landing pages avoid gray text — everything is either near-black or near-white.",
+      "border": ["rgba(255,255,255,0.08)", "rgba(0,0,0,0.08)", "transparent"],
+      "border_role": "边框 — extremely subtle or nonexistent. Modern landing pages prefer elevation/shadow separation over visible borders. When borders exist, they are 8% opacity on either black or white. Many landing pages use no visible borders at all between sections, relying on whitespace and background color shifts.",
+      "semantic": {"success": "#16a34a", "warning": "#d97706", "error": "#dc2626", "info": "#2563eb"}
+    },
+    "gradients": {
+      "usage": "landing pages use gradients sparingly — primarily for hero backgrounds or feature cards to create depth and visual interest",
+      "common_patterns": [
+        "dark radial gradient from center for depth (Linear hero area)",
+        "subtle mesh gradient on feature cards (Vercel, Notion)",
+        "bottom-of-section gradient fades to transition between sections",
+        "CTA section: dark gradient background to frame the final ask"
+      ],
+      "anti_pattern": "NEVER use rainbow or multi-stop gradients on CTAs — they look dated and reduce conversion"
+    },
+    "typography": {
+      "heading_fonts": [
+        "Inter Variable (Linear) — geometric sans-serif, modern, highly legible at large sizes",
+        "Geist (Vercel) — custom geometric sans-serif by Vercel, sharp and technical",
+        "Inter / custom variant (Notion) — clean sans-serif, approachable but professional",
+        "Sohne (Stripe) — custom humanist sans-serif, distinctive and warm",
+        "FigmaSans (Figma) — custom geometric sans-serif, design-forward",
+        "Charlie Text (Loom) — custom rounded sans-serif, friendly and approachable"
+      ],
+      "heading_fonts_synthesis": "Landing pages overwhelmingly use custom or modified sans-serif fonts. The font choice is a BRAND SIGNATURE — 5 out of 6 sites use a custom/proprietary font, not a standard Google Font. Inter/Inter-like is the most common base. The font should feel distinctive within 1 second of landing.",
+      "body_fonts": [
+        "Inter Variable (Linear)",
+        "Geist (Vercel)",
+        "Sohne (Stripe)",
+        "FigmaSans (Figma)",
+        "Charlie Text (Loom)"
+      ],
+      "body_fonts_synthesis": "Body font is ALWAYS the same family as headings — landing pages use a single typeface throughout. System font fallback stack always includes 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto.",
+      "heading_weight": 700,
+      "heading_weight_range": "300-700. Two strategies: (1) Light weight + large size for premium/elegant feel (Stripe h1 at 300 weight, 43px), (2) Bold weight at large size for confident/impactful feel (Loom h1 at 700 weight, 56px). Most common: 600-700.",
+      "body_weight": 400,
+      "body_weight_note": "Body text is always 400 weight. Some brands use 510 for UI labels (Linear). Landing pages maintain clear weight hierarchy: h1 heaviest/lightest (depending on strategy), h2-h3 medium, body regular.",
+      "scale": {
+        "h1": {"min": 40, "max": 96, "typical": "48-64", "unit": "px — landing page h1 is MASSIVE. From Stripe's 43px to Linear/Figma's 64px. This is 2-4x larger than a typical content website h1. The h1 MUST dominate the viewport. Brand examples: Stripe 43px (light weight strategy), Vercel 48px, Loom 56px, Linear 64px, Figma 64px. No brand goes below 40px for the hero h1."},
+        "h2": {"min": 28, "max": 56, "typical": "32-48", "unit": "px — section headings. Loom pushes h2 to 56px (almost as large as their h1), showing the trend toward massive typography. Vercel uses 32px for section labels, Stripe uses 32px. Range is wide because some brands treat h2 as sub-headlines, others as section titles."},
+        "h3": {"min": 18, "max": 32, "typical": "24-26", "unit": "px — card titles and feature headings. Stripe uses 26px, Vercel uses 24px. Smaller h3 sizes (16-18px) appear as eyebrow labels or nav items."},
+        "body": {"min": 16, "max": 20, "typical": "16-18", "unit": "px — landing pages use slightly larger body text than content sites. 16px is the absolute minimum. Figma uses 18px for nav links. Loom uses ~15px for body due to their rounded font appearing larger optically."},
+        "small": {"min": 12, "max": 14, "typical": "13-14", "unit": "px — used for captions, legal text, and secondary metadata. Linear uses 13px for nav items."}
+      },
+      "line_height": {
+        "h1": 1.1,
+        "h2": 1.2,
+        "h3": 1.3,
+        "body": 1.5,
+        "note": "Tight line-height on headings creates visual impact. Body text needs generous line-height for readability at larger font sizes."
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 80, "max": 200, "typical": "120-160", "unit": "px — landing pages use DRAMATIC vertical spacing. Sections are separated by 80-200px of padding. This is 2-3x more than a typical web app. The whitespace creates visual rest between messages and signals premium quality. Linear uses ~160px section padding. Vercel uses generous spacing between all sections."},
+      "content_max_width": {"typical": 1200, "range": "1100-1400", "unit": "px — standard max-width keeps text lines readable. Some brands use narrower content columns (~800px) for text-heavy sections and full-width for feature showcases."},
+      "card_padding": {"typical": "32px", "range": "24-48px"},
+      "hero_padding_top": {"typical": "120-200px", "note": "Hero top padding includes nav height. The headline should appear roughly centered vertically in the viewport on a 1440px screen."},
+      "section_gap": {"typical": "120px", "note": "The gap BETWEEN sections (margin-bottom of one section + margin-top of next) is what creates the landing page's signature airy feel."}
+    },
+    "border_radius": {
+      "buttons": "Two dominant patterns: (1) Pill buttons with 9999px radius (Linear, Loom) — friendly, modern, impossible to miss. (2) Slightly rounded with 4-6px radius (Vercel 6px, Stripe 4px) — professional, understated. (3) Sharp 0px (Figma nav) — rare, used only by design tools. Recommendation: use 9999px for the primary CTA (maximum contrast with other elements), 6-8px for secondary buttons.",
+      "cards": "8-16px — rounded enough to feel modern but not so rounded they feel like buttons. Notion uses generous card rounding for their bento-grid layouts. Linear uses 8-12px. Recommendation: 12px as default, 16px for feature cards.",
+      "inputs": "6-8px — standard for forms if a signup form appears on the landing page. Most landing pages link to a separate signup page rather than embedding forms.",
+      "note": "Border radius is a key brand differentiator. Pill shapes (9999px) signal 'friendly/consumer.' Subtle rounding (4-8px) signals 'professional/enterprise.' Never mix pill and sharp on the same page."
+    },
+    "elevation": {
+      "shadows": "Modern landing pages use layered depth rather than heavy drop shadows. Shadows are subtle, often colored (using the brand primary at low opacity), and used to create a sense of layering between stacked elements.",
+      "typical_values": [
+        "Card shadow: 0 1px 3px rgba(0,0,0,0.08) — barely visible, just enough to lift off background",
+        "Hover elevation: 0 4px 12px rgba(0,0,0,0.1) — noticeable lift on interaction",
+        "Hero depth: radial gradient or layered illustrations rather than shadows",
+        "Modal/overlay: 0 20px 60px rgba(0,0,0,0.3) — deep, dramatic (if modals are used)",
+        "Dark mode shadows: rgba(255,255,255,0.05) — white glow instead of black shadow"
+      ],
+      "anti_pattern": "Avoid heavy drop shadows (box-shadow: 0 10px 30px) on cards — they create visual noise and look dated. Prefer subtle elevation changes and border-based separation."
+    }
+  },
+
+  "section_patterns": {
+    "typical_order": [
+      "header (minimal: logo left, 2-5 nav links center or right, primary CTA right, often transparent/semi-transparent on hero, sticky on scroll)",
+      "hero (THE critical section: bold benefit-driven headline + concise subheadline + primary CTA + secondary CTA + product visual OR abstract illustration OR video embed. Hero occupies 70-100% of viewport height.)",
+      "social proof (customer/partner logos row with heading like 'Trusted by teams at...' or 'Millions of people across 400,000+ companies'. Often a marquee/scrolling animation. Appears within first 2 scroll positions on 5/6 analyzed sites.)",
+      "value proposition / key benefits (3-4 columns: icon + short title + 1-2 sentence description. Sometimes called 'Why X' or 'Everything you need to...'. Cards are visually light — icon is the hero of each card.)",
+      "product demo / screenshot / interactive embed (show, don't tell. Full-width product screenshot, often with browser chrome. Notion uses layered parallax-style mockups. Linear embeds interactive product views. This section proves the value prop visually.)",
+      "features deep-dive (alternating left-right layout: screenshot on one side, feature title + description + bullet points on the other. 3-5 rows. Each row tells one feature story. Visual is ALWAYS shown, never just described.)",
+      "use cases / who it's for (card grid: 4-6 cards, each with illustration/icon, role/title, short description. 'For designers', 'For engineers', 'For product managers' etc. Helps visitors self-identify.)",
+      "testimonials / case studies (quote + avatar photo + name + role + company logo. May include case study cards with metrics. Notion uses 6 customer story cards + an auto-scrolling stats ticker. Loom embeds video testimonials.)",
+      "pricing (simple, often 3 tiers with one highlighted/recommended. Or a single CTA with 'starts at $X'. Pricing section is OPTIONAL on landing pages — many push users to a separate pricing page. Stripe and Notion omit pricing from homepage.)",
+      "final CTA section (dark/colored full-width band: repeated headline + primary CTA button + trust signal like 'No credit card required'. This is the 'closer' — the last chance to convert. Nearly universal — appears on 5/6 analyzed sites.)",
+      "footer (multi-column: Product, Solutions, Resources, Company, Legal. Plus social icons, language selector, copyright. Full mega-footer with 4-5 columns and 20-40 links.)"
+    ],
+    "hero_variants": [
+      {
+        "name": "Center-bold-visual",
+        "description": "居中大标题 + 简短副标题 + 双CTA按钮 + 下方产品截图或抽象图形。最经典的landing page英雄区布局，5/6分析站点使用此模式或其变体。",
+        "examples": ["Vercel: 'Build and deploy on the AI Cloud.' centered, CTA below, product UI below that"],
+        "headline_length": "5-12 words, typically 6-8 words ideal"
+      },
+      {
+        "name": "Split-text-visual",
+        "description": "左侧文字(标题+副标题+CTA)，右侧产品图或插画。分屏布局。适合需要展示复杂产品的场景。",
+        "examples": ["Older Stripe designs, some Figma landing page variants"]
+      },
+      {
+        "name": "Fullscreen-dark-immersive",
+        "description": "全屏深色背景 + 白色/亮色文字 + 产品动画或浮动插画。营造沉浸式品牌体验。",
+        "examples": ["Linear: dark bg #08090A with subtle gradients", "Notion: 'Meet the night shift' with floating animated icons on dark bg"]
+      },
+      {
+        "name": "Video-hero",
+        "description": "视频或动画背景 + 最小文字叠加 + CTA悬浮在视频上方。Loom使用视频嵌入展示产品功能。",
+        "examples": ["Loom: embedded product demo video", "Notion: play button suggesting product walkthrough"]
+      }
+    ],
+    "card_variants": [
+      {
+        "type": "功能卡片 (Feature Card)",
+        "structure": "icon (top) + title (h3, 18-24px) + short description (1-2 sentences, body size) + optional learn-more link",
+        "count_per_row": "3-4 columns on desktop, stack on mobile",
+        "examples": ["Vercel's 'Agents / AI Apps / Web Apps' cards", "Linear's feature cards"]
+      },
+      {
+        "type": "用例卡片 (Use Case Card)",
+        "structure": "illustration or icon + role title + benefit description + CTA link",
+        "count_per_row": "4-6 cards, often in a bento-grid or masonry layout",
+        "examples": ["Notion's 'triage product feedback / resolve support tickets / security alerts / weekly reporting' cards"]
+      },
+      {
+        "type": "定价卡片 (Pricing Card)",
+        "structure": "tier name + price (large) + period + feature list (checkmarks) + primary CTA button",
+        "count_per_row": "3 columns, middle one highlighted/elevated",
+        "examples": ["Loom pricing section"]
+      },
+      {
+        "type": "评价卡片 (Testimonial Card)",
+        "structure": "quote (prominent) + avatar photo + name + role + company logo",
+        "count_per_row": "2-3 columns, sometimes a carousel",
+        "examples": ["Notion's 6 customer story cards", "Stripe's customer quotes"]
+      },
+      {
+        "type": "统计卡片 (Stat Card)",
+        "structure": "large number/stat + short label below",
+        "count_per_row": "4-6 across",
+        "examples": ["Notion's stats ticker: '100M+ users', '62% of Fortune 100'"]
+      }
+    ]
+  },
+
+  "tone_profile": {
+    "keywords": ["bold", "concise", "benefit-driven", "modern", "confident", "action-oriented"],
+    "headline_style": "标题风格 — SHORT, punchy, benefit-first. 5-10 words maximum. States the core value proposition in the simplest possible terms. Measured headlines from analyzed sites: 'The product development system for teams and agents' (Linear, 10 words), 'Build and deploy on the AI Cloud.' (Vercel, 7 words), 'Meet the night shift.' (Notion, 4 words - ultra-short), 'Financial infrastructure to grow your revenue.' (Stripe, 6 words), 'Make anything possible, all in Figma' (Figma, 7 words), 'One video is worth a thousand words' (Loom, 7 words). Average: 6.8 words. The headline TELLS YOU WHAT THE PRODUCT DOES in plain language — no marketing fluff, no questions, no 'Welcome to...'.",
+    "subheadline_style": "副标题风格 — 1-2 sentences expanding on the headline. Adds context or specifics. Stripe: 'Accept payments, offer financial services and implement custom revenue models – from your first transaction to your billionth.' Notion: 'Notion agents keep work moving 24/7. They capture knowledge, answer questions, and push projects forward—all while you sleep.' Always concrete, never abstract.",
+    "cta_style": "CTA风格 — action verbs ONLY. Patterns observed: 'Get [Product] free' (Notion, Loom), 'Sign Up' (Vercel), 'Start building', 'Contact sales' (Stripe — enterprise-focused). Primary CTA is ALWAYS visible without scrolling. Secondary CTA is always lower-contrast: 'Request a demo', 'See pricing', 'Talk to sales'. Never more than 2 CTAs in the hero section. The primary CTA button text should complete the sentence 'I want to ___' in the user's mind.",
+    "trust_signals": [
+      "Customer/partner logos immediately after hero ('Trusted by 98% of the Forbes Cloud 100' + 15+ logos — Notion)",
+      "User count ('Millions of people across 400,000 companies' — Loom, 'Over 100M users worldwide' — Notion)",
+      "G2/Capterra ratings and badges ('#1 knowledge base 3 years running' — Notion)",
+      "Free emphasis in CTA ('Get Loom for free', 'Get Notion free')",
+      "No-credit-card-required note (near CTA, reduces friction)",
+      "Fortune 500 / enterprise customer mentions",
+      "Security/compliance badges (SOC2, GDPR — typically in footer or near pricing)"
+    ],
+    "anti_patterns": [
+      "NEVER use vague headlines: 'Welcome to our site', 'We make things better', 'Innovative solutions for tomorrow' — these say nothing and kill conversion instantly",
+      "NEVER hide the CTA: the primary CTA must be visible above the fold without scrolling. Sticky nav CTA is a plus",
+      "NEVER have more than 2 CTAs in the hero: one primary (filled/high-contrast) + one secondary (outline/low-contrast) maximum. More choices = less action",
+      "NEVER write paragraphs of text in the hero: headline + subheadline + CTAs only. Save details for below the fold",
+      "AVOID carousels/sliders in the hero: they kill conversion rates. Show one clear message",
+      "AVOID autoplaying video with sound: use muted autoplay or click-to-play",
+      "NEVER use generic stock photography: product screenshots, custom illustrations, or abstract brand graphics only",
+      "AVOID 'Learn More' as primary CTA: always use action verbs that describe the outcome"
+    ]
+  },
+
+  "variation_space": {
+    "color_mood": [
+      {
+        "name": "dark mode dramatic",
+        "description": "Deep near-black backgrounds (#08090A-#0D0D0D), white/light text, glowing accents, immersive and premium feel. Creates strong brand presence and signals a modern, tech-forward product.",
+        "best_for": "Developer tools, AI products, design tools, any product targeting technical audiences",
+        "examples": ["Linear", "Notion (current)", "Vercel (dark variant available)"]
+      },
+      {
+        "name": "clean white minimal",
+        "description": "Stark white (#FAFAFA-#FFFFFF) backgrounds, near-black text (#171717), single accent color for CTAs. Maximum contrast, maximum readability, timeless.",
+        "best_for": "SaaS platforms, enterprise tools, any product where clarity and trust are paramount",
+        "examples": ["Vercel", "Stripe (light sections)", "Figma"]
+      },
+      {
+        "name": "gradient modern",
+        "description": "White/light base with subtle mesh gradients, colored accent sections, gradient CTAs. Adds visual interest to minimal layouts without being overwhelming.",
+        "best_for": "Consumer apps, creative tools, products targeting non-technical audiences",
+        "examples": ["Loom (with blue accent)", "Stripe (purple gradient accents)"]
+      }
+    ],
+    "typography_mood": [
+      {
+        "name": "custom display font (brand distinctive)",
+        "description": "A proprietary or heavily customized typeface that is unique to the brand. Creates instant recognition. Requires font licensing or custom development.",
+        "best_for": "Established brands, products with design team resources",
+        "examples": ["Sohne (Stripe)", "FigmaSans (Figma)", "Charlie Text (Loom)", "Geist (Vercel)"]
+      },
+      {
+        "name": "geometric sans-serif (modern/clean)",
+        "description": "Inter, SF Pro, or similar geometric sans-serif. Highly legible at all sizes, works everywhere, zero licensing cost. The safe, proven choice.",
+        "best_for": "Startups, MVPs, products shipping quickly",
+        "examples": ["Inter Variable (Linear)", "Inter-like (Notion)"]
+      },
+      {
+        "name": "approachable rounded (warm/consumer)",
+        "description": "Rounded, friendly sans-serif with soft edges. Creates warmth and approachability. Works well for consumer and collaboration tools.",
+        "best_for": "Consumer apps, team collaboration tools, education products",
+        "examples": ["Charlie Text (Loom)"]
+      }
+    ],
+    "layout_density": [
+      {
+        "name": "airy with massive spacing",
+        "description": "160-200px section padding, 1200px max-width with generous internal whitespace. Each section tells one story. The whitespace IS the design. Signals premium quality.",
+        "best_for": "Premium/enterprise products, design-forward brands",
+        "examples": ["Linear", "Stripe"]
+      },
+      {
+        "name": "dense feature-packed",
+        "description": "80-120px section padding, more cards per row, bento-grid layouts. Shows maximum product capability quickly. Good for complex products that need to prove depth.",
+        "best_for": "Platform products, multi-feature SaaS",
+        "examples": ["Notion (feature-rich pages)", "Vercel (many product cards)"]
+      },
+      {
+        "name": "story-driven with long scroll",
+        "description": "Narrative flow from top to bottom: problem -> solution -> how it works -> proof -> call to action. Alternating layouts, progressive disclosure of complexity.",
+        "best_for": "Products that need education/explanation, category-creating products",
+        "examples": ["Loom (story-driven feature reveals)", "Stripe (narrative product sections)"]
+      }
+    ],
+    "cta_strategy": [
+      {
+        "name": "free-first (product-led growth)",
+        "description": "Primary CTA: 'Get X free' or 'Start for free'. No credit card required. Secondary: 'See pricing' or 'Request demo'. Focus on getting users into product immediately.",
+        "best_for": "Self-serve SaaS, consumer apps, products with free tier",
+        "examples": ["Notion: 'Get Notion free'", "Loom: 'Get Loom for free'"]
+      },
+      {
+        "name": "enterprise-first (sales-led)",
+        "description": "Primary CTA: 'Contact sales' or 'Get a demo'. Secondary: 'Sign up' or 'Start free trial'. Focus on qualifying leads for sales team.",
+        "best_for": "Enterprise SaaS, high-ACV products, complex B2B tools",
+        "examples": ["Stripe: 'Contact sales' primary, with secondary startup program CTA"]
+      },
+      {
+        "name": "signup-direct (hybrid)",
+        "description": "Primary CTA: 'Sign up' or 'Get started'. Directs to signup flow. Pricing page accessible from nav. Most common for mid-market SaaS.",
+        "best_for": "Mid-market SaaS, products with clear self-serve path",
+        "examples": ["Vercel: 'Sign Up'", "Figma: 'Get started'"]
+      }
+    ]
+  },
+
+  "field_guide": {
+    "quick_reference": {
+      "hero_headline_words": "5-10 words, benefit-first, no fluff",
+      "hero_cta_count": "1 primary + 1 secondary MAXIMUM",
+      "above_fold_height": "70-100% of viewport",
+      "section_count": "10-17 sections including header and footer",
+      "section_padding": "120-160px vertical between sections",
+      "h1_size": "48-64px on desktop",
+      "body_size": "16-18px",
+      "content_max_width": "1100-1400px",
+      "primary_cta_color": "One bold, unmistakable color. Fill-style button.",
+      "social_proof_position": "Immediately after hero (within first 2 scroll depths)",
+      "final_cta_section": "Required — dark/colored band before footer",
+      "font_family": "Single custom sans-serif throughout, or Inter as default"
+    },
+    "checklist": [
+      "Is the headline 10 words or fewer and benefit-driven?",
+      "Is there exactly ONE primary CTA visible above the fold?",
+      "Is the h1 at least 40px on desktop?",
+      "Are there customer logos within the first 2 sections?",
+      "Is there a product visual (screenshot/video/illustration) on the page?",
+      "Is there a final CTA section before the footer?",
+      "Is the primary CTA a pill or clearly-styled button (not a text link)?",
+      "Is body text at least 16px?",
+      "Are there fewer than 3 CTAs in the hero section?",
+      "Is there a 'no credit card required' note near the CTA?",
+      "Is vertical section spacing at least 80px?",
+      "Does the page avoid carousels/sliders in the hero?"
+    ]
+  }
+}

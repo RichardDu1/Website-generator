@@ -1,0 +1,172 @@
+{
+  "industry": "ai-platform",
+  "subtypes": ["llm-provider", "ai-research", "ai-tool", "model-hosting", "ai-api"],
+  "extracted_from": [
+    {"source": "DESIGN.md library", "brand": "openai", "style": "editorial-teal-minimal", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "claude", "style": "warm-literary-terracotta", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "mistral-ai", "style": "golden-amber-french", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["OpenAI", "Claude (Anthropic)", "Mistral AI"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0d0d0d", "#141413", "#1f1f1f", "#ffffff"],
+      "primary_role": "Near-black text and white canvas. All three brands use a warm or teal-tinted near-black for text — never pure #000000. OpenAI uses #0d0d0d (teal undertone), Claude uses #141413 (olive undertone), Mistral uses #1f1f1f. White predominates as the primary background.",
+      "accent": ["#10a37f", "#c96442", "#fa520f"],
+      "accent_role": "Singular brand accent used extremely sparingly. OpenAI teal (#10a37f) — the lone color in a neutral system. Claude terracotta (#c96442) — earthy, deliberately un-tech. Mistral orange (#fa520f) — vivid European confidence. Each represents a different temperature: cool-teal, warm-earth, hot-amber.",
+      "surface": ["#ffffff", "#fafafa", "#f5f5f5", "#f5f4ed", "#faf9f5", "#fffaeb", "#fff0c2"],
+      "surface_role": "Light canvases dominate, but each brand tints differently. OpenAI: true white with pearl (#f5f5f5) cards. Claude: parchment (#f5f4ed) evokes premium paper. Mistral: warm ivory (#fffaeb) radiates golden warmth. The surface color IS the brand temperature.",
+      "neutral": ["#3c3c3c", "#6e6e6e", "#5e5d59", "#87867f", "#4d4c48", "#9b9b9b"],
+      "neutral_role": "Secondary text and metadata. All three use warm or neutral grays — Claude's are exclusively warm-toned (olive-gray), OpenAI's are neutral, Mistral's lean warm. No cool blue-grays in any brand.",
+      "border": ["#e5e5e5", "#ededed", "#f0eee6", "#e8e6dc", "#30302e"],
+      "border_role": "Hairline borders used sparingly. Claude uses warm cream borders. OpenAI uses neutral #e5e5e5. Mistral uses minimal borders — separation through background color instead.",
+      "semantic": {
+        "success": "#10a37f",
+        "warning": "#f5a623",
+        "error": "#ef4146",
+        "info": "#2563eb"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Signifier", "Anthropic Serif", "Georgia", "Söhne", "Inter", "system-ui"],
+      "body_fonts": ["Söhne", "Anthropic Sans", "Inter", "Arial", "system-ui"],
+      "mono_fonts": ["Söhne Mono", "Anthropic Mono", "JetBrains Mono", "ui-monospace"],
+      "heading_weight": 500,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 40, "max": 82, "unit": "px"},
+        "h2": {"min": 28, "max": 56, "unit": "px"},
+        "h3": {"min": 20, "max": 36, "unit": "px"},
+        "body": {"min": 14, "max": 18, "unit": "px"},
+        "small": {"min": 10, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.6, "heading": 1.15},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 128, "unit": "px"},
+      "section_gap": {"typical": 96, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px-32px"}
+    },
+    "border_radius": {
+      "sharp": "0px - 4px (Mistral uses near-zero radius — sharp, architectural geometry)",
+      "rounded": "8px - 16px (standard cards and containers)",
+      "pill": "9999px (OpenAI chips and tags)",
+      "typical_button": "8px (Claude warm sand) to 12px (OpenAI rectangular CTAs), 9999px for chips",
+      "typical_card": "8px (Claude) to 16px (OpenAI)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "near-black or brand accent",
+        "color": "white or ivory",
+        "border_radius": "8px - 12px (soft rectangular, never pill for primary CTAs)",
+        "text": "Try ChatGPT, Start building, Get started, Sign in",
+        "font_size": "16px",
+        "font_weight": 400
+      },
+      {
+        "variant": "secondary_warm",
+        "bg": "warm surface (#e8e6dc Claude) or transparent",
+        "color": "dark warm text",
+        "border_radius": "8px - 12px",
+        "text": "Learn more, Read docs, View research",
+        "font_size": "14-16px"
+      },
+      {
+        "variant": "brand_accent",
+        "bg": "brand color (teal, terracotta, or orange)",
+        "color": "white or ivory",
+        "border_radius": "8px - 12px",
+        "text": "Upgrade, Start trial, Sign up",
+        "font_size": "16px"
+      },
+      {
+        "variant": "ghost_dark",
+        "bg": "transparent with slight dark overlay",
+        "color": "near-black",
+        "border_radius": "8px",
+        "text": "Tertiary navigation, secondary actions"
+      }
+    ],
+    "elevation": {
+      "shadows": "whisper-soft to warm golden — AI brands avoid heavy shadows",
+      "approach": "OpenAI uses hover shadows only (0 4px 16px rgba(13,13,13,0.06)). Claude uses ring shadows (0px 0px 0px 1px warm gray) instead of drop shadows. Mistral uses dramatic 5-layer warm golden shadows (amber-tinted rgba) for a unique golden-hour effect.",
+      "typical_values": ["0 4px 16px rgba(13,13,13,0.06)", "0px 0px 0px 1px #d1cfc5 (ring shadow)", "rgba(127,99,21,0.12) -8px 16px 39px + 4 deeper layers (Mistral golden cascade)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, clean, logo left, nav links center/right, minimal CTAs)",
+      "hero (editorial layout — serif or large sans headline + subtitle + primary CTA + secondary link, often with subtle illustration or product screenshot)",
+      "model_showcase (card grid comparing models/tiers — names, capabilities, badges, 'Try' links)",
+      "features (2-3 column cards, editorial descriptions, soft borders, product UI screenshots)",
+      "dark_section (alternating — dark bg with white text, product demo, warm or cool depending on brand)",
+      "capabilities (icon + title + description grid, research-paper-like presentation)",
+      "testimonials (quote cards, developer/user quotes, company logos)",
+      "blog_highlights (recent research, announcements, essays — editorial card grid)",
+      "cta (centered, warm or neutral bg, brand accent CTA)",
+      "footer (clean multi-column: product, research, company, legal + copyright)"
+    ],
+    "hero_variants": [
+      "editorial_serif (OpenAI — Signifier serif 56px, weight 400, -0.02em tracking, teal accent, clean white bg)",
+      "literary_warm (Claude — Anthropic Serif 64px, weight 500, line-height 1.10, parchment bg, terracotta CTA)",
+      "billboard_warm (Mistral — 82px Arial weight 400, -2.05px tracking, line-height 1.00, warm ivory bg, golden ambient)"
+    ],
+    "feature_card_variants": [
+      "editorial_card (white bg, 1px border #ededed, 16px radius, serif or sans title, relaxed body)",
+      "ring_shadow_card (warm surface, 0px 0px 0px 1px ring shadow instead of border — Claude signature)",
+      "golden_shadow_card (warm cream surface, 5-layer amber-tinted shadow cascade — Mistral signature)",
+      "model_comparison_card (bordered card, name + description + capability badges, clean grid)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["intellectual", "editorial", "warm", "research-driven", "restrained", "literary", "confident-without-shouting"],
+    "headline_style": "essay-like, declarative but unhurried, 4-8 words (e.g., 'Creating safe AGI that benefits all of humanity', 'Frontier AI for everyone', 'Model performance at the frontier')",
+    "cta_style": "invitations, not demands (Try, Explore, Start building, Read research, Sign in — never 'Buy now' or 'Limited time')",
+    "trust_signals": ["research papers and citations", "benchmark results", "safety commitments and frameworks", "model cards with capabilities", "academic/enterprise partnerships", "privacy and security standards", "open-source contributions and GitHub stars"],
+    "anti_patterns": ["hype-driven marketing language", "fake urgency or scarcity", "cold/clinical tech aesthetic", "generic stock photography", "aggressive sales CTAs", "overly complex navigation", "bright saturated colors in large surfaces"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "teal_neutral (OpenAI: #ffffff canvas, #0d0d0d ink, #10a37f lone accent, mist/pearl surfaces — clinical restraint)",
+      "warm_terracotta (Claude: #f5f4ed parchment, #141413 warm black, #c96442 earthy accent, warm cream borders — literary warmth)",
+      "golden_amber (Mistral: #fffaeb warm ivory, #1f1f1f dark, #fa520f vivid orange, amber shadow cascade — European confidence)"
+    ],
+    "typography_mood": [
+      "serif_editorial (OpenAI: Signifier serif for display, Söhne sans for UI — literary announcement tone)",
+      "serif_literary (Claude: Anthropic Serif weight 500 for all headlines, Anthropic Sans for body — book-title gravitas)",
+      "single_weight_billboard (Mistral: weight 400 everywhere, hierarchy through size 82px->16px, uppercase CTAs — French declaration)"
+    ],
+    "layout_density": [
+      "generous_editorial (all three: large section spacing 96-128px, 1.60 line-height for body, each section breathes like a magazine spread)",
+      "light_dark_alternation (Claude: parchment/ivory sections alternate with near-black, creating chapter-like rhythm)",
+      "golden_warmth_throughout (Mistral: no alternation — every surface is warm-toned, from ivory through cream to amber)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "model_showcase", "features", "dark_section", "capabilities", "testimonials", "blog_highlights", "cta", "footer"],
+      "curated_stack": "ai_editorial_landing"
+    },
+    "pricing_page": {
+      "sections": ["header", "pricing", "model_comparison", "faq", "enterprise_cta", "footer"],
+      "best_practices": "Per-token or per-seat pricing with clear tiers, model capability comparison table, enterprise/API volume options"
+    },
+    "docs_page": {
+      "sections": ["sidebar_nav", "content", "toc", "code_examples", "interactive_playground"],
+      "best_practices": "API reference with code blocks in mono font, interactive examples, model capability documentation, rate limits clearly displayed"
+    },
+    "research_page": {
+      "sections": ["header", "hero (minimal)", "paper_grid", "category_filter", "newsletter_cta", "footer"],
+      "best_practices": "Academic paper listing with abstract previews, author credits, date badges, PDF/arXiv links, topic categories"
+    },
+    "about_page": {
+      "sections": ["header", "mission", "research_approach", "safety", "team", "careers_cta", "footer"]
+    }
+  }
+}

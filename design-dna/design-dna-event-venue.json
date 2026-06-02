@@ -1,0 +1,132 @@
+{
+  "industry": "event-venue",
+  "extracted_from": [
+    {"source": "官网分析", "brand": "Peerspace", "url": "https://www.peerspace.com", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "The Knot", "url": "https://www.theknot.com/marketplace/wedding-reception-venues", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Eventbrite", "url": "https://www.eventbrite.com", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Splacer", "url": "https://www.splacer.co", "date": "2026-06-02", "status": "unreachable", "error": "ERR_SSL_PROTOCOL_ERROR — site appears defunct or rebranded"}
+  ],
+  "reference_brands": ["Peerspace", "The Knot", "Eventbrite", "Splacer (unreachable)"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#121212", "#1e0a3c", "#341a4a"],
+      "primary_role": "Dark backgrounds for hero sections and footers — Peerspace uses #121212 (near-black) for nav/hero/CTA sections and #341a4a (deep purple) for accent bands; Eventbrite uses #1e0a3c for dark headings. The Knot uses pure #000 for nav and CTA buttons.",
+      "accent": ["#ff44cb", "#8559ec", "#3659e3"],
+      "accent_role": "Peerspace uses #8559ec (soft purple) for links and interactive elements. The Knot uses #ff44cb (hot pink) as primary brand color for signup/search CTAs and brand accents. Eventbrite uses #3659e3 (blue) for links. Venue sites lean warm/pink/purple for emotional appeal.",
+      "surface": ["#ffffff", "#f9f1e1", "#f5f7f9", "#1e0a3c"],
+      "surface_role": "White (#ffffff) as default card and content bg. Peerspace uses warm cream (#f9f1e1) for content sections and light gray (#f5f7f9). Eventbrite uses 18 distinct warm background colors for category/event cards — cream (#e9e0b7), lavender (#eeeaef), sage (#b7d0e6), blush (#feedeb), warm gray (#b4af9c). The Knot uses white (#ffffff) exclusively.",
+      "neutral": ["#121212", "#39364f", "#37393f"],
+      "neutral_role": "Peerspace body text #121212 (same as primary — very dark). Eventbrite body #39364f (warm dark gray-purple). The Knot body #37393f (medium gray). All three avoid pure #000 for body text.",
+      "border": ["#6a6e7a", "#c2c2cc", "#cacce0"],
+      "border_role": "Peerspace uses #6a6e7a and #aeafbd for secondary text and borders. Eventbrite uses #c2c2cc. The Knot uses #cacce0. All muted grays — borders are understated in venue sites.",
+      "semantic": {"success": "#16a34a", "warning": "#d97706", "error": "#dc2626", "info": "#2563eb"}
+    },
+    "typography": {
+      "heading_fonts": ["ABC Social (Peerspace)", "ods-font-secondary (The Knot)", "Neue Plak (Eventbrite)"],
+      "body_fonts": ["ABC Social / Helvetica Neue (Peerspace)", "ods-font-secondary / system-ui (The Knot)", "Neue Plak / Roboto / Helvetica (Eventbrite)"],
+      "heading_weight": 400,
+      "body_weight": 400,
+      "note": "Peerspace uses weight 400 for all headings — even at 160px. The Knot uses 700 for headings. Eventbrite uses 600-700. Most venue sites use custom brand fonts with web-font loading.",
+      "scale": {
+        "h1": {"min": 18, "max": 160, "unit": "px", "typical_mobile": 32, "typical_desktop": 56},
+        "h2": {"min": 24, "max": 160, "unit": "px", "typical_mobile": 24, "typical_desktop": 48},
+        "h3": {"min": 16, "max": 40, "unit": "px", "typical": 18},
+        "body": {"min": 14, "max": 18, "unit": "px", "typical": 16},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "heading_style": "Venue sites mix two heading modes: (1) large decorative display headings at 88-160px with tight or zero letter-spacing used as section markers (Peerspace 'Why / Peerspace' at 160px), and (2) functional section headings at 24-56px. The Knot is more restrained at 34-48px. Eventbrite headings are compact at 18-24px."
+    },
+    "spacing": {
+      "section_padding": {"min": 36, "max": 140, "unit": "px", "typical_top": 80, "typical_bottom": 80, "typical_horizontal": 48},
+      "content_max_width": {"typical": 1440, "unit": "px", "note": "Peerspace uses ps-container-md with 48px horizontal padding. Eventbrite and The Knot use full-width layouts with internal grid constraints."},
+      "card_padding": {"typical": "16px 12px (Eventbrite event card), 0px 32px (The Knot list items), 8px 16px (Peerspace buttons as card-like elements)"},
+      "nav_padding": {"typical": "8px 24px (Eventbrite), 0px 80px (Peerspace)"}
+    },
+    "border_radius": {
+      "buttons": "2px (Peerspace — sharp rectangles), 25px (The Knot — pills), 100px (Eventbrite — full pills)",
+      "cards": "0-8px (Peerspace — sharp), 0px (The Knot — no radius on listing items), varied (Eventbrite event cards — sharp to 8px)",
+      "inputs": "2px (The Knot), 0px (Eventbrite — borderless)"
+    },
+    "elevation": {
+      "shadows": "Minimal to none across all three brands. Peerspace uses rgba(0,0,0,0.05) 0px 16px 40px 4px on some elements. The Knot and Eventbrite use flat design with no card shadows — relying on borders and spacing for separation.",
+      "typical_values": ["none", "0px 16px 40px 4px rgba(0,0,0,0.05)"],
+      "style": "Flat design dominant. Event venue sites prioritize large photography over card elevation. Cards are often borderless with image-first layouts."
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky/fixed nav with logo, search trigger, locations dropdown, Sign Up / Log In)",
+      "hero (full-bleed venue photography, large display heading over image, prominent search bar with location + date + guest count, CTA 'Find your space' / 'Search')",
+      "category/activity grid (icon + label cards — Photo Shoot, Meeting, Party, Wedding, Workshop)",
+      "featured venues / top picks (image-heavy cards with name + location + capacity + price)",
+      "popular locations / cities grid (image tiles with city name overlay)",
+      "how it works (3-step: Search → Book → Enjoy — icon + short description)",
+      "trust/social proof (ratings, review counts, 'Best of' awards, host badges, press logos)",
+      "venue type taxonomy (House, Bar, Loft, Gallery, Warehouse — image + label)",
+      "inspiration / blog / ideas section (article cards with images)",
+      "host CTA (dark background section — 'Earn income as a host' with secondary CTA)",
+      "footer (dark background, 4-5 column link grid, social icons, copyright)"
+    ],
+    "hero_variants": [
+      "Full-bleed venue photo with overlay text + floating search bar (Peerspace: dark overlay on photo, white text, 88px heading, search bar below)",
+      "Search-first hero (Eventbrite: large search input with autocomplete as primary hero element, minimal heading text)",
+      "Directory/search header (The Knot: category-style hero with filtering sidebar, less dramatic photography, more utilitarian)"
+    ],
+    "card_variants": [
+      "Venue card: large photo (60-70% of card height) + venue name + location + capacity + price/hourly rate + rating stars + favorite/bookmark icon",
+      "Category card: icon in circle (50% border-radius) + category name centered below (Eventbrite: 80px icon circles)",
+      "Location tile: full-bleed city image + city name overlay text + venue count",
+      "Event/date card: date badge + event title + venue name + price from + category tag"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["aspirational", "photography-forward", "experiential", "warm", "confident"],
+    "headline_style": "Short, declarative, emotionally evocative. Peerspace: 'Find a space. Fulfill your vision.' / 'Where extraordinary begins.' The Knot: 'Wedding Venues on The Knot' (more functional). Eventbrite: 'Browsing events in [City]' (contextual/personalized). Style: sentence case or title case, never ALL CAPS. Concise — typically 3-7 words.",
+    "cta_style": "Action-oriented first person or imperative. Peerspace: 'Find your space', 'Browse all activities', 'Discover the possibilities'. The Knot: 'Search', 'Sign up', 'Log in'. Eventbrite: 'Find Events', 'Sign in', 'Find my tickets'. CTA copy avoids 'Submit' or 'Click here' — uses aspirational or benefit-oriented language. Buttons alternate between dark (#121212) and white (#ffffff) for contrast.",
+    "trust_signals": [
+      "Star ratings and review counts on venue cards",
+      "'Best of' / 'Top Rated' badges on listings",
+      "Verified host / venue badges",
+      "Number of bookings or events hosted",
+      "Press logos / 'As seen in' banners",
+      "Security assurances (secure payment, cancellation policy)",
+      "Host profiles with photos and response rates",
+      "Real guest reviews with dates"
+    ],
+    "anti_patterns": [
+      "Avoid stock photography that doesn't show real venues",
+      "Avoid dense text walls — venue pages are visual-first",
+      "Avoid generic CTAs like 'Submit' or 'Learn more'",
+      "Avoid cold/sterile color palettes (blues, grays) — warm tones preferred",
+      "Avoid complex navigation — search should be prominent and always accessible",
+      "Avoid hiding pricing — venue sites show prices upfront on cards"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "Warm + editorial (Peerspace: near-black + cream + deep purple accents — gallery-like sophistication)",
+      "Romantic + soft (The Knot: hot pink accent + clean white + dark gray — wedding-focused warmth)",
+      "Vibrant + energetic (Eventbrite: warm multicolor backgrounds — mustard, lavender, sage, blush — festival/community energy)"
+    ],
+    "typography_mood": [
+      "Editorial minimal (Peerspace: custom sans at weight 400, very large display sizes, tight letter-spacing)",
+      "Friendly bold (The Knot: custom rounded sans at weight 700, pill buttons, approachable)",
+      "Modern geometric (Eventbrite: Neue Plak, 600-700 weight, pill buttons, compact)"
+    ],
+    "layout_density": [
+      "Photography-first sparse (Peerspace: minimal text, large images, generous whitespace — 140px section padding)",
+      "Grid-dense functional (The Knot: multi-column link grids, sidebar filters, tighter content density)",
+      "Card-feed balanced (Eventbrite: scrollable card feed, moderate density, image + details pattern)"
+    ]
+  },
+  "ui_patterns_unique_to_venue": {
+    "search_bar_prominence": "Venue sites universally feature a prominent search bar — often in the hero or just below the nav. The search typically includes: location (city/zip), date picker, guest count / capacity selector, and venue type dropdown. It is the primary interaction point.",
+    "date_picker": "Present on Peerspace (date input detected). Critical for venue booking flow. Typically inline calendar or date range picker.",
+    "capacity_display": "Venue cards show capacity (e.g. 'Up to 50 guests') as a key decision factor alongside price.",
+    "price_display": "Hourly rate is standard ('$150/hr') rather than total price. Eventbrite shows 'from $X'. Peerspace shows hourly rates.",
+    "photo_gallery": "Venue detail pages universally feature masonry or carousel photo galleries. Card thumbnails are typically 4:3 or 16:9 aspect ratio.",
+    "map_integration": "Location is critical — many venue sites embed maps or show 'nearby' suggestions.",
+    "favorite_save": "Heart/bookmark icon on venue cards for saving to wishlists.",
+    "inquiry_cta": "Venue cards often have dual CTAs: 'Book now' (instant) and 'Message host' / 'Request pricing' (inquiry-based)."
+  }
+}

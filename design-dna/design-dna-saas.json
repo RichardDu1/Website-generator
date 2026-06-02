@@ -1,0 +1,162 @@
+{
+  "industry": "saas",
+  "subtypes": ["dev-tool", "productivity", "platform", "ai-tool"],
+  "extracted_from": [
+    {"url": "https://linear.app", "style": "minimal-dark", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Linear", "Vercel", "Stripe", "Notion", "Figma", "GitHub"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#08090a", "#0d1117", "#1a1a2e"],
+      "primary_role": "Page background, header bg (dark mode dominant)",
+      "accent": ["#5e6ad2", "#6366f1", "#0070f3", "#6c5ce7"],
+      "accent_role": "CTA buttons, links, brand highlights",
+      "surface": ["#ffffff", "#f7f8f8", "#fafafa", "#0d1117"],
+      "surface_role": "Card backgrounds, sections (light: white/off-white, dark: near-black)",
+      "neutral": ["#6c7278", "#8a8f98", "#8b949e", "#9ca3af"],
+      "neutral_role": "Body text, secondary text, muted elements",
+      "border": ["#e5e5e6", "#e4e8ec", "#21262d", "#30363d"],
+      "border_role": "Card borders, input borders, dividers",
+      "semantic": {
+        "success": "#238636",
+        "warning": "#d29922",
+        "error": "#da3633",
+        "info": "#58a6ff"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Inter", "Inter Variable", "SF Pro Display", "system-ui"],
+      "body_fonts": ["Inter", "Inter Variable", "system-ui"],
+      "mono_fonts": ["JetBrains Mono", "SF Mono", "Consolas"],
+      "heading_weight": 510,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 48, "max": 72, "unit": "px"},
+        "h2": {"min": 32, "max": 48, "unit": "px"},
+        "h3": {"min": 20, "max": 28, "unit": "px"},
+        "body": {"min": 14, "max": 16, "unit": "px"},
+        "small": {"min": 12, "max": 13, "unit": "px"}
+      },
+      "line_height": {"body": 1.6, "heading": 1.15},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 64, "max": 128, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "sharp": "4px - 6px",
+      "rounded": "8px - 12px",
+      "pill": "9999px",
+      "typical_button": "6px or 9999px (pill)",
+      "typical_card": "8px - 12px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "accent",
+        "color": "white",
+        "border_radius": "pill or 6px",
+        "text": "action-oriented (Start free trial, Get started, Sign up)",
+        "font_size": "13-15px",
+        "font_weight": 500
+      },
+      {
+        "variant": "secondary",
+        "bg": "surface border",
+        "color": "primary text",
+        "border_radius": "pill or 6px",
+        "text": "Watch demo, Learn more, Documentation",
+        "font_size": "13-15px"
+      },
+      {
+        "variant": "ghost",
+        "bg": "transparent",
+        "color": "neutral gray",
+        "border_radius": "pill",
+        "text": "Navigation, secondary actions"
+      }
+    ],
+    "elevation": {
+      "shadows": "subtle, layered",
+      "approach": "Multiple stacked shadows rather than single large drop shadow",
+      "typical_values": ["0 1px 2px rgba(0,0,0,0.04)", "0 4px 12px rgba(0,0,0,0.08)", "0 8px 24px rgba(0,0,0,0.12)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, glass/blur bg, logo left, nav center, CTA right)",
+      "hero (product screenshot/mockup + h1 + subtitle + primary CTA + secondary CTA + social proof logos)",
+      "logo_cloud (customer/integration logos: 'Trusted by...')",
+      "features (bento grid or 3/6 column, icon + title + description, often with product screenshots)",
+      "benefits / how-it-works (numbered steps or split sections)",
+      "stats (counter animation: users, uptime, savings, etc.)",
+      "testimonials (cards or carousel, role-specific quotes + company logos)",
+      "pricing (3-tier toggle monthly/yearly, feature comparison table)",
+      "faq (accordion, 2-column layout)",
+      "cta (centered, gradient bg, 'Start free trial' + 'No credit card required')",
+      "footer (4-column: product/company/resources/legal + copyright)"
+    ],
+    "hero_variants": [
+      "product_screenshot_centered (Linear style — app UI in hero)",
+      "gradient_bg (Vercel style — black bg + subtle gradient orbits)",
+      "split_image_right (Notion style — text left, illustration right)",
+      "terminal_demo (dev-tool style — code block animation)"
+    ],
+    "feature_card_variants": [
+      "bento_grid (modular cards of different sizes)",
+      "icon_top_3col (standard SaaS pattern)",
+      "screenshot_card (product UI inside card)",
+      "numbered_list (how-it-works steps)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["modern", "polished", "confident", "minimal", "developer-friendly", "trustworthy"],
+    "headline_style": "benefit-driven, under 8 words (e.g., 'The system for product development')",
+    "cta_style": "direct action verbs (Start, Build, Deploy, Get started)",
+    "trust_signals": ["customer logos (OpenAI, Figma, etc.)", "G2 badges", "uptime stats", "security certifications", "case studies with metrics", "GitHub stars (dev tools)"],
+    "anti_patterns": ["fake urgency", "too many CTAs", "generic stock photos", "feature lists without screenshots"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "dark_minimal (Linear: #08090a bg, #5e6ad2 accent, no gradients)",
+      "gradient_dark (Vercel: black bg, subtle mesh gradients, white accent)",
+      "gradient_light (Stripe: white bg, blue-purple mesh, #635bff accent)",
+      "warm_light (Notion: off-white bg, black text, minimal decoration)"
+    ],
+    "typography_mood": [
+      "inter_variable (Linear: modern geometric, weight 510)",
+      "geist (Vercel: custom geometric, developer-focused)",
+      "whyte_inktrap (Figma: distinctive, playful)"
+    ],
+    "layout_density": [
+      "spacious (Stripe: large sections, lots of whitespace)",
+      "balanced (Vercel: standard SaaS density)",
+      "dense (GitHub: more information per viewport)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "logo_cloud", "features", "stats", "testimonials", "pricing", "faq", "cta", "footer"],
+      "curated_stack": "saas_modern_landing"
+    },
+    "pricing_page": {
+      "sections": ["header", "pricing", "comparison", "faq", "cta", "footer"],
+      "best_practices": "3-tier with monthly/yearly toggle, feature comparison table, enterprise custom option"
+    },
+    "blog_index": {
+      "sections": ["header", "hero (minimal)", "category_filter", "article_grid", "newsletter_cta", "footer"]
+    },
+    "about_page": {
+      "sections": ["header", "story", "team", "investors", "careers_cta", "footer"]
+    },
+    "docs_page": {
+      "sections": ["sidebar_nav", "content", "toc", "feedback"]
+    }
+  }
+}

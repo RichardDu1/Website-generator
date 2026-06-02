@@ -1,0 +1,197 @@
+{
+  "industry": "marketplace",
+  "description": "Design DNA extracted from 5 major marketplace platforms. Marketplaces are dual-sided platforms connecting buyers and sellers, with prominent search, category-driven navigation, and heavy emphasis on trust signals.",
+  "extracted_from": [
+    {"source": "live browser scrape", "brand": "Etsy", "url": "https://www.etsy.com", "date": "2026-06-02", "status": "full"},
+    {"source": "live browser scrape", "brand": "Upwork", "url": "https://www.upwork.com", "date": "2026-06-02", "status": "full"},
+    {"source": "known brand analysis + partial scrape", "brand": "Fiverr", "url": "https://www.fiverr.com", "date": "2026-06-02", "status": "blocked_by_bot_detection"},
+    {"source": "known brand analysis", "brand": "Thumbtack", "url": "https://www.thumbtack.com", "date": "2026-06-02", "status": "blocked_by_bot_detection"},
+    {"source": "known brand analysis", "brand": "TaskRabbit", "url": "https://www.taskrabbit.com", "date": "2026-06-02", "status": "blocked_by_bot_detection"}
+  ],
+  "reference_brands": ["Etsy", "Fiverr", "Upwork", "Thumbtack", "TaskRabbit"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#1DBF73", "#F0BD1B", "#5200FF", "#267DE1", "#00A651"],
+      "primary_role": "Brand-differentiating accent used for primary CTAs, active states, and brand markers. Fiverr=green, Upwork=yellow/gold, Etsy=purple/orange, Thumbtack=blue/teal, TaskRabbit=green. Common theme: warm, approachable, non-corporate colors.",
+      "accent": ["#F1641E", "#FF6B35", "#1A475F"],
+      "accent_role": "Secondary emphasis -- Etsy uses orange as heritage accent, Upwork uses navy for button text, others use warm coral/orange for urgency/action.",
+      "surface": ["#FFFFFF", "#F9F9F9", "#EEEDED", "#131313"],
+      "surface_role": "Background hierarchy: white for main content, light gray (#F5-F9) for alternating sections, darker gray for footer/subtle differentiation. Etsy uses dark mode (#131313) as default.",
+      "neutral": ["#464646", "#222325", "#000000", "#757575"],
+      "neutral_role": "Body text in dark gray (#464-#222) rather than pure black. Upwork uses #464646, Fiverr uses #222325. Secondary text lighter gray.",
+      "border": ["#E0E0E0", "#D1D5DB"],
+      "border_role": "Card borders and input outlines, typically light gray, subtle.",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#2563eb"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Muli", "Macan", "GT America", "Guardian Sans", "Proxima Nova"],
+      "body_fonts": ["Muli", "Macan", "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"],
+      "heading_weight": 600,
+      "body_weight": 400,
+      "heading_letter_spacing": "-0.01em",
+      "body_letter_spacing": "0em",
+      "scale": {
+        "h1": {"min": 28, "max": 64, "unit": "px", "typical_weight": 300},
+        "h2": {"min": 24, "max": 45, "unit": "px", "typical_weight": 400},
+        "h3": {"min": 18, "max": 28, "unit": "px", "typical_weight": 500},
+        "body": {"min": 14, "max": 18, "unit": "px", "typical_weight": 400},
+        "small": {"min": 12, "max": 14, "unit": "px", "typical_weight": 400}
+      },
+      "observed": {
+        "Etsy": {"h1": "16px/400", "h2": "24px", "body": "system-ui stack", "dark_mode": true},
+        "Upwork": {"h1": "26px/300 (light!)", "h2": "45px", "body": "Muli at 14-16px", "heading_color": "#464646"},
+        "Fiverr": {"h1_typical": "40-48px/700", "body": "Macan at 16px", "hero_heading_style": "very large, bold, charismatic"},
+        "Thumbtack": {"h1_typical": "36-44px/500", "body": "16px", "hero_question": "conversational opener"},
+        "TaskRabbit": {"h1_typical": "32-40px/600", "body": "16px", "hero_question": "task-oriented opener"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 40, "max": 120, "unit": "px", "typical_vertical": 80, "typical_horizontal": "5vw or 20px"},
+      "content_max_width": {"typical": 1280, "range": [1200, 1300], "unit": "px"},
+      "card_padding": {"typical": "16px", "range": "12px-24px"},
+      "card_gap": {"typical": "16px-24px"},
+      "hero_padding": {"typical": "60px-100px vertical"}
+    },
+    "border_radius": {
+      "buttons": "4px-8px (pill: 9999px for primary CTA on Fiverr, 7px on Upwork)",
+      "cards": "8px-16px",
+      "inputs": "4px-8px (border-radius on search bars tighter: 2px Etsy, 24px-9999px pill-style common)",
+      "section_containers": "0px-12px"
+    },
+    "elevation": {
+      "shadows": "Subtle and functional -- cards get shadow on hover (0 2px 8px rgba(0,0,0,0.08-0.12)), not heavy material-design shadows. Etsy had flat design (no shadows on cards). Upwork also flat (box-shadow: none).",
+      "typical_values": [
+        "0 1px 3px rgba(0,0,0,0.08)",
+        "0 2px 8px rgba(0,0,0,0.12)",
+        "0 4px 16px rgba(0,0,0,0.12) on hover"
+      ],
+      "sticky_nav_shadow": "0 1px 3px rgba(0,0,0,0.1) on sticky header"
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, logo left, prominent search bar center, user menu + CTAs right, often transparent or white bg)",
+      "hero (massive search bar + category tiles/links + trust logos row -- 'what do you need?' messaging, dual tab for buy/sell)",
+      "categories grid (icon/image + label, 6-12 categories, colorful icons on white/light bg)",
+      "popular/trending listings (carousel or 4-6 column grid of cards with photo+title+price+rating+seller)",
+      "how it works (3-step visual for buyers, separate 3-step for sellers/providers -- dual-track)",
+      "trust/social proof (review stats, testimonial carousel, badge showcase: verified, insured, background-checked)",
+      "featured sellers/providers (avatar+name+rating+skills grid)",
+      "pricing plans / featured tiers (not always -- Upwork has this, others skip)",
+      "editor's picks / curated collections",
+      "call to action (join as seller / become a provider -- dual CTA prominent)",
+      "footer (massive category sitemap in 4-6 columns, about/support/legal links, app download badges, social links, locale selector)"
+    ],
+    "hero_variants": [
+      {
+        "type": "search_box_with_categories",
+        "description": "Large centered search input (often 600-800px wide) with popular category chips/links below. Tab selector for 'I want to hire' / 'I want to work' on dual-sided marketplaces.",
+        "used_by": ["Upwork", "Fiverr", "Thumbtack"],
+        "structure": "h1 headline → subheading → search bar (with dual tabs on work marketplaces) → category chips/links → trust logos row"
+      },
+      {
+        "type": "curated_hero_with_search_in_header",
+        "description": "Etsy places the main search in the sticky header rather than the hero. Hero becomes a shoppable banner/carousel with editorial photography and subtle CTAs.",
+        "used_by": ["Etsy"],
+        "structure": "shoppable image card(s) → headline overlay → 'Shop now' CTA"
+      },
+      {
+        "type": "search_with_background_image",
+        "description": "Full-bleed lifestyle photo background with search overlay. Common for TaskRabbit-style service marketplaces.",
+        "used_by": ["TaskRabbit"],
+        "structure": "background photo → overlay → h1 ('What do you need done?') → search input + location → task category tiles"
+      }
+    ],
+    "card_variants": [
+      {
+        "type": "service_listing_card",
+        "used_by": ["Fiverr", "Upwork"],
+        "elements": "seller avatar + name + rating stars + review count + service title/description + price (starting at) + delivery time",
+        "hover": "subtle shadow lift, sometimes seller info overlay"
+      },
+      {
+        "type": "product_listing_card",
+        "used_by": ["Etsy"],
+        "elements": "large photo (square or 4:3) + title + shop name + price + rating stars + review count + favorite button",
+        "hover": "photo zoom or second image swap"
+      },
+      {
+        "type": "category_tile",
+        "used_by": ["all"],
+        "elements": "circular or rounded-square icon/illustration + category label",
+        "size": "80-120px icon, compact grid layout"
+      },
+      {
+        "type": "provider_card",
+        "used_by": ["Thumbtack", "TaskRabbit"],
+        "elements": "provider photo + name + rating + review count + skills/tags + 'background checked' badge + starting rate",
+        "trust_badges": "prominent"
+      }
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["empowering", "community-driven", "trustworthy", "accessible", "aspirational"],
+    "headline_style": "Conversational and action-oriented. Marketplaces use inclusive, empowering language (e.g., 'Work at the speed of your ambition' - Upwork, 'It needs a human touch' - Fiverr). Headlines address the dual audience: buyers want speed/quality/trust, sellers want opportunity/community/income.",
+    "cta_style": "Dual CTAs are universal: primary CTA targets buyers ('Browse', 'Find', 'Search', 'Hire'), secondary CTA targets sellers ('Start selling', 'Join', 'Become a pro', 'Find work'). Primary CTA is always the brightest button, usually filled with brand color.",
+    "trust_signals": [
+      "Star ratings (1-5) prominently displayed on every card",
+      "Verified reviews with review count",
+      "Badge system: verified, top-rated, background-checked, insured",
+      "Buyer protection / satisfaction guarantee",
+      "Trusted by [N] businesses/clients stat in hero",
+      "Logo bar of well-known clients",
+      "G2 / Trustpilot / third-party review badges",
+      "Secure payment icons"
+    ],
+    "anti_patterns": [
+      "DO NOT use corporate/enterprise tone -- marketplaces are community-first",
+      "DO NOT hide search -- search is THE primary navigation pattern",
+      "DO NOT single-sided messaging -- always address both buyers and sellers",
+      "DO NOT hide trust signals behind tabs -- they must be surface-level visible",
+      "DO NOT use dark/aggressive color palettes -- stay warm and approachable",
+      "DO NOT bury categories -- category browsing is equal to search for discovery"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "Warm marketplace (Etsy/Fiverr) -- orange/green accents, human warmth, creative energy, rounded forms, friendly typography",
+      "Professional marketplace (Upwork/Thumbtack) -- blue/navy accents, clean white space, structured layouts, professional typography, more corporate but still approachable"
+    ],
+    "typography_mood": [
+      "Geometric modern (Fiverr/TaskRabbit) -- Macan-style geometric sans, tight letter-spacing, modern tech feel",
+      "Humanist warm (Etsy/Upwork) -- system fonts or Muli-style humanist sans, natural reading rhythm, approachable"
+    ],
+    "layout_density": [
+      "Dense discovery (Etsy) -- tight grid of product cards, maximize items per view, infinite scroll feel, dark mode for reduced eye strain",
+      "Spaced guidance (Upwork/TaskRabbit) -- generous whitespace, one idea per section, guided journey from search to hire, light mode"
+    ]
+  },
+  "key_interactions": {
+    "search": {
+      "placement": "always prominent -- in sticky header (Etsy) or as hero centerpiece (all others)",
+      "behavior": "type-ahead suggestions, popular searches as placeholder rotation, category scope selector sometimes attached",
+      "size": "large -- typically 48-56px height, 500-800px width in hero context"
+    },
+    "navigation": {
+      "primary": "sticky header with logo left, search center, user/auth right",
+      "secondary": "category dropdown/mega-menu below header OR horizontal scroll of category links",
+      "mobile": "bottom tab bar (Etsy: Home, Search, Favorites, Cart, Account) or hamburger menu"
+    },
+    "cards": {
+      "click_behavior": "navigate to listing detail page",
+      "save_behavior": "heart/bookmark button in corner (often shows on hover)",
+      "quick_view": "sometimes available on hover for product marketplaces"
+    }
+  },
+  "layout_archetype": {
+    "name": "Search-first dual-sided marketplace",
+    "core_layout": "Header (sticky) → Hero (search + categories) → How it works → Popular listings → Trust proof → CTA (join/sell) → Footer (category sitemap)",
+    "grid_system": "CSS Grid or Flexbox, 4-5 column card grids on desktop, collapsing to 2 columns on tablet, 1 column on mobile",
+    "content_width": "1200-1300px max width, centered, with generous padding on sides"
+  }
+}

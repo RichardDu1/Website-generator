@@ -1,0 +1,189 @@
+{
+  "industry": "ecommerce-home",
+  "version": "1.0",
+  "extracted_from": [
+    {"source": "官网分析", "brand": "Casper", "url": "https://casper.com", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Article", "url": "https://www.article.com", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Parachute", "url": "https://www.parachutehome.com", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Burrow", "url": "https://burrow.com", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Floyd", "url": "https://floydhome.com", "date": "2026-06-02"}
+  ],
+  "reference_brands": ["Casper", "Article", "Parachute", "Burrow", "Floyd"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#1e306e", "#262626", "#3b3b3b", "#231e1e", "#2e2e2e"],
+      "primary_role": "主色 — Deep navy or dark charcoal used for text, headers, and primary CTAs. Home brands gravitate toward sophisticated darks rather than pure black.",
+      "accent": ["#cb372a", "#eb6950", "#1351ee", "#0e775d"],
+      "accent_role": "强调色 — sparingly used: Casper uses red for sale badges, Floyd uses electric blue for announcement bar, Burrow uses coral/warm orange for accents.",
+      "surface": ["#ffffff", "#f1eee9", "#f8f6ed", "#f5f7fd", "#f9f9f9", "#f5f3f1", "#f7eee3"],
+      "surface_role": "背景色 — warm whites, cream, light beige, soft gray predominate. Floyd and Parachute lean warm (cream/beige). Casper uses clean white with cool blue-gray sections.",
+      "neutral": ["#1e306e", "#262626", "#3b3b3b", "#231e1e", "#2e2e2e", "#777574", "#696969"],
+      "neutral_role": "文字颜色 — dark navy or charcoal for body text, medium gray for secondary/metadata text.",
+      "border": ["#e6e6e6", "#d8d8d8"],
+      "border_role": "边框 — minimal. Most brands use spacing/whitespace instead of borders. When used, borders are very light (rgba with 0.12 alpha or light gray).",
+      "semantic": {"success": "#16a34a", "warning": "#d97706", "error": "#dc2626", "info": "#2563eb"}
+    },
+    "typography": {
+      "heading_fonts": [
+        "Suisse Intl (Burrow, Parachute — warm geometric sans, weights Regular/Medium)",
+        "Floyd Gothic (Floyd — custom geometric sans, very light weight 200-300)",
+        "NewKansas-Medium (Casper — custom serif-adjacent, elegant)",
+        "Petrona (Parachute — Google Fonts serif, used for editorial headings)",
+        "Proxima Nova (Article — clean modern sans)"
+      ],
+      "body_fonts": [
+        "Calibre, sans-serif (Casper)",
+        "Proxima Nova, -apple-system, BlinkMacSystemFont (Article)",
+        "Suisse Intl, sans-serif (Parachute)",
+        "Suisse Intl, Helvetica, system-ui (Burrow)",
+        "Floyd Gothic, Arial, Helvetica, sans-serif (Floyd)"
+      ],
+      "heading_weight": 400,
+      "body_weight": 400,
+      "heading_letter_spacing": "-0.02em to -0.05em for large headings (Floyd uses -3.2px on 64px H1)",
+      "scale": {
+        "h1": {"min": 18, "max": 64, "unit": "px", "typical_range": "32-64px on desktop, lighter weight (300-500)"},
+        "h2": {"min": 24, "max": 40, "unit": "px", "typical_range": "24-40px, weight 400-600"},
+        "h3": {"min": 15, "max": 25, "unit": "px", "typical_range": "15-25px, weight 200-500"},
+        "body": {"min": 14, "max": 18, "unit": "px", "typical": "16px"},
+        "small": {"min": 12, "max": 14, "unit": "px", "typical": "12-14px for metadata, product details"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 120, "unit": "px", "typical": "60-100px vertical on desktop"},
+      "content_max_width": {"typical": 1280, "unit": "px", "note": "Most brands use fluid or wide containers. Floyd uses 100% width with inner padding."},
+      "card_padding": {"typical": "0-16px", "note": "Product cards often have minimal or no padding — the image fills the card, text sits below."},
+      "hero_padding": {"typical": "varies widely", "note": "Hero sections often use minimal padding (0-30px) as the background image fills the space."}
+    },
+    "border_radius": {
+      "buttons": "0-10px (Parachute: 10px most rounded, Casper: 0px, Burrow: 2px, Floyd: 3px)",
+      "cards": "0px (universally — home brands favor sharp corners on cards, relying on image content for visual interest)",
+      "inputs": "2-4px (typical ecommerce pattern, minimal rounding)"
+    },
+    "elevation": {
+      "shadows": "None or extremely subtle. All 5 brands use box-shadow: none on product cards. Home/decor favors flat, clean design over material elevation.",
+      "typical_values": ["none", "0 0 0 0 transparent", "0 1px 3px rgba(0,0,0,0.05) — very rare"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "announcement_bar (promo: 'Free Shipping' / 'Summer Sale — Save up to 60%' / 'Memorial Day Sale')",
+      "header (logo left or center, nav: Shop / Categories / Collections / About / Stories, icons: search + account + cart, sticky on scroll)",
+      "hero (full-bleed lifestyle photo, headline overlaid or beside image, 1-2 CTAs)",
+      "category_browse (by room or product type: Bedroom / Living / Dining / Office — large photo tiles with overlay text)",
+      "featured_collections / best_sellers (product grid: 2-4 columns, photo-forward, name + price below)",
+      "product_spotlight (single product deep-dive, multiple photos, specs, color/material options)",
+      "brand_story / craftsmanship (materials, sustainability, 'designed in ___', about the makers)",
+      "benefits_bar (free shipping, easy returns, warranty, trial period — icon + short text per benefit)",
+      "reviews / press_quotes (Architectural Digest, Dwell, New York Times, etc. — carousel format)",
+      "room_inspiration / lookbook (Instagram-style grid, UGC photos, lifestyle imagery, 'shop the look')",
+      "newsletter_signup (simple email input, often on brand-color background)",
+      "footer (shop by category, about, support, social links, copyright)"
+    ],
+    "hero_variants": [
+      "single_full_bleed_room_photo (most common — hero is one large lifestyle image with heading + CTA overlaid)",
+      "split_layout (left product photo, right headline/CTA — seen on product category pages)",
+      "video_background (Casper, Burrow, Floyd all have video — lifestyle video loop in hero area)",
+      "carousel_slider (Parachute uses splide carousel in hero area with multiple lifestyle slides)"
+    ],
+    "card_variants": [
+      "product_card (full-bleed product photo in room context, product name below, price, color swatch dots, no card shadow, no border — image IS the card)",
+      "category_card (large photo tile with room/category name overlaid in white text, clickable to collection)",
+      "inspiration_card (lifestyle photo, no visible text or minimal overlay, 'shop the look' on hover, Instagram-aesthetic)"
+    ],
+    "observed_section_sizes": {
+      "Casper": "tight spacing, Shopify sections, announcement bar (navy bg) + shop-by-category carousel + product cards + benefits bar + footer",
+      "Article": "SPA React app, minimal DOM structure, image-heavy, category-forward layout",
+      "Parachute": "Shopify with custom sections, mega-menu nav, carousel hero, product bundles, editorial content blocks",
+      "Burrow": "React SPA (Oxygen/Headless), modular product configurator, video backgrounds, swiper carousels for materials/colors",
+      "Floyd": "Shopify custom theme, announcement bar (bright blue), 'Systems for Living' product ecosystem, membership program prominent, cookie consent"
+    }
+  },
+  "tone_profile": {
+    "keywords": ["warm", "sophisticated", "crafted", "comfortable", "timeless", "modular", "designed", "sustainable", "intentional", "livable"],
+    "headline_style": "Aspirational yet approachable. Emphasize quality materials, comfort, and design intent. Typical patterns: 'The Best [Product] for Better [Activity]' (Casper), 'Systems for Living' (Floyd), 'Home happens here' (Parachute). Short, evocative, emotion-forward.",
+    "cta_style": "Low-pressure, exploratory. Common CTAs: 'Shop the Collection', 'Explore', 'Shop Now', 'See All', 'Discover', 'Design Your Space'. Avoid aggressive urgency — home purchases are considered decisions.",
+    "trust_signals": [
+      "Free shipping (all 5 brands)",
+      "100-night trial / risk-free trial (Casper pattern — adopted by mattress/furniture DTC brands)",
+      "Warranty / lifetime warranty",
+      "Easy returns / free returns",
+      "Made in USA / designed in [city]",
+      "Sustainable materials / certified materials",
+      "Press quotes (Architectural Digest, Dwell, NYT, Wirecutter, Apartment Therapy)",
+      "Member program / loyalty (Floyd 'Membership')",
+      "Financing options (Shop Pay installments, Affirm, Klarna)"
+    ],
+    "anti_patterns": [
+      "Avoid cluttered product grids with heavy borders/shadows — home brands let imagery breathe",
+      "Avoid harsh/neon colors — palette stays in warm neutrals, earth tones, sophisticated darks",
+      "Avoid stock-looking isolated product photos — in-context lifestyle photography is mandatory",
+      "Avoid aggressive discount language — sales are announced subtly (announcement bar, not screaming hero CTAs)",
+      "Avoid pure black (#000) — all brands use near-black (navy or dark charcoal) for text",
+      "Avoid heavy box shadows on cards — flat/clean is the standard",
+      "Avoid small, cramped typography — generous line-height (1.5-1.8x) and breathing room"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      {
+        "name": "warm_neutral_minimal",
+        "description": "Cream/beige backgrounds, dark charcoal text, warm wood tones in imagery. Parachute and Floyd exemplify this.",
+        "palette": {"bg": "#f1eee9 to #f8f6ed", "text": "#3b3b3b to #231e1e", "accent": "muted earth tones"}
+      },
+      {
+        "name": "clean_cool_sophisticated",
+        "description": "White backgrounds, navy text, cool blue-gray accent sections. Casper exemplifies this.",
+        "palette": {"bg": "#ffffff", "text": "#1e306e", "accent": "#cb372a or cool blue"}
+      },
+      {
+        "name": "dark_moody_sophisticated",
+        "description": "Dark charcoal backgrounds, white/cream text, dramatic photography. Burrow leans this direction with dark nav and rich material photography.",
+        "palette": {"bg": "#262626", "text": "#ffffff or #f7eee3", "accent": "warm wood and leather tones"}
+      }
+    ],
+    "typography_mood": [
+      {
+        "name": "elegant_serif_headings",
+        "description": "Serif or serif-adjacent headings (NewKansas at Casper, Petrona at Parachute) paired with clean sans-serif body. Conveys heritage, craftsmanship, luxury.",
+        "examples": ["Casper (NewKansas-Medium headings)", "Parachute (Petrona serif for editorial)"]
+      },
+      {
+        "name": "warm_geometric_sans",
+        "description": "Geometric sans-serif throughout (Suisse Intl, Floyd Gothic). Conveys modern, approachable, design-forward. Most common among the 5 brands.",
+        "examples": ["Burrow (Suisse Intl)", "Parachute (Suisse Intl)", "Floyd (Floyd Gothic)", "Article (Proxima Nova)"]
+      }
+    ],
+    "layout_density": [
+      {
+        "name": "spacious_lifestyle_forward",
+        "description": "Large hero images, generous whitespace, fewer products on screen. Floyd and Parachute exemplify — the photography is the primary design element.",
+        "max_width": "fluid / wide container",
+        "card_density": "2-3 columns"
+      },
+      {
+        "name": "product_grid_focused",
+        "description": "Tighter product grids (3-4 columns), more products visible above the fold. Casper and Article lean this way — still image-heavy but more SKU-focused.",
+        "max_width": "1200-1400px",
+        "card_density": "3-4 columns"
+      }
+    ]
+  },
+  "tech_notes": {
+    "platforms": {
+      "Casper": "Shopify (custom theme, Shopify CDN fonts, Shopify sections)",
+      "Article": "Custom React SPA (Next.js likely, no Shopify)",
+      "Parachute": "Shopify (custom theme with Rebuy, Yotpo, Splide carousel)",
+      "Burrow": "Shopify Hydrogen/Oxygen (React SPA, headless Shopify, custom CSS modules)",
+      "Floyd": "Shopify (custom theme, Klaviyo, OneTrust cookie consent)"
+    },
+    "common_third_party": [
+      "Yotpo (reviews/UGC)",
+      "Rebuy (personalization/upsell)",
+      "Klaviyo (email marketing)",
+      "Shop Pay Installments (financing)",
+      "Splide/Swiper (carousels)",
+      "OneTrust (cookie consent)"
+    ]
+  }
+}

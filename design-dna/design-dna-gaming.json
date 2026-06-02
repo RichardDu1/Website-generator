@@ -1,0 +1,164 @@
+{
+  "industry": "gaming",
+  "subtypes": ["esports", "game-studio", "gaming-peripherals", "streaming-platform", "gaming-community", "indie-game", "mmo-guild"],
+  "extracted_from": [
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.riotgames.com", "style": "bold-immersive"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.razer.com", "style": "neon-dark"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.twitch.tv", "style": "dark-community"}
+  ],
+  "reference_brands": ["Riot Games", "Razer", "Twitch", "Epic Games", "Corsair", "Blizzard", "Steam", "ESL Gaming", "Discord", "Logitech G"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0a0a0f", "#0d0d1a", "#12121a", "#1a0a2e"],
+      "primary_role": "Page background, header bg (deep dark with subtle purple-blue undertone for cyber feel)",
+      "accent": ["#ff0044", "#ff073a", "#00ff88", "#00d4ff", "#bf40bf", "#ff6600", "#39ff14"],
+      "accent_role": "CTA buttons (neon red/cyan), key highlights, active states, rank badges, tournament callouts",
+      "surface": ["#1a1a2e", "#1c1c28", "#222233", "#16213e", "#0f1a2e"],
+      "surface_role": "Card backgrounds (dark with slight color tint), section alternation, modal backgrounds",
+      "neutral": ["#8b8b9e", "#6c6c80", "#9e9eb0", "#b0b0c0", "#c0c0d0"],
+      "neutral_role": "Body text (light gray on dark bg), secondary info, muted elements, game stats",
+      "border": ["#2a2a3e", "#333355", "#252540", "#3a2a4a", "#1e2d3d"],
+      "border_role": "Card borders, input borders (subtle colored tint for sci-fi feel), dividers with glow",
+      "semantic": {
+        "success": "#00ff88",
+        "warning": "#ffaa00",
+        "error": "#ff0044",
+        "info": "#00d4ff"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Orbitron", "Rajdhani", "Russo One", "Bebas Neue", "system-ui"],
+      "body_fonts": ["Inter", "Exo 2", "Rajdhani", "system-ui"],
+      "mono_fonts": ["JetBrains Mono", "Fira Code", "Share Tech Mono", "Consolas"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 42, "max": 72, "unit": "px"},
+        "h2": {"min": 28, "max": 48, "unit": "px"},
+        "h3": {"min": 20, "max": 28, "unit": "px"},
+        "body": {"min": 14, "max": 16, "unit": "px"},
+        "small": {"min": 11, "max": 13, "unit": "px"}
+      },
+      "line_height": {"body": 1.6, "heading": 1.1},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 80, "max": 160, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1280, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "sharp": "2px - 4px",
+      "rounded": "6px - 12px",
+      "pill": "9999px",
+      "typical_button": "4px (angular, aggressive) or 9999px (pill for community)",
+      "typical_card": "8px - 16px (rounded but with angular decorative elements)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "neon red or cyan gradient",
+        "color": "white",
+        "border_radius": "4px (angular / cyberpunk)",
+        "text": "action-oriented (Play Now, Download, Join Tournament, Get Started, Buy Now)",
+        "font_size": "14-16px",
+        "font_weight": 700
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent with neon border",
+        "color": "neon color or white",
+        "border_radius": "4px",
+        "text": "Watch Trailer, Learn More, View Champions, Explore",
+        "font_size": "14-16px"
+      },
+      {
+        "variant": "ghost",
+        "bg": "transparent",
+        "color": "light gray",
+        "border_radius": "pill",
+        "text": "Navigation, social links, secondary info"
+      }
+    ],
+    "elevation": {
+      "shadows": "neon glow, colored, dramatic",
+      "approach": "Colored glow shadows (neon box-shadow in accent colors) rather than traditional neutral drop shadows. Cards have subtle inner glow borders.",
+      "typical_values": ["0 0 10px rgba(255,0,68,0.3)", "0 0 20px rgba(0,212,255,0.2)", "0 0 40px rgba(0,255,136,0.15)", "0 4px 16px rgba(0,0,0,0.5)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (dark bg, logo left, nav center with hover glow effects, CTA right, optional top banner for tournament/livestream)",
+      "hero (full-width game cinematic or trailer video bg + game title + subtitle + primary CTA + platform icons + ESRB rating)",
+      "features (dark cards with neon icon borders: gameplay mechanics, modes, weapons, maps — bento grid or 3-column)",
+      "characters / champions (character cards: portrait + name + role + ability icons + lore snippet — grid or horizontal scroll)",
+      "gallery (full-bleed screenshot grid with lightbox, video embeds, concept art — masonry or carousel)",
+      "tournaments / esports (upcoming events: date + prize pool + teams + 'Register' button, leaderboard widget)",
+      "download_cta (centered, dark bg with neon glow, platform buttons: Steam/Epic/Xbox/PlayStation/App Store icons)",
+      "footer (4-column: game info, community links, support, legal + age rating + platform icons + social)"
+    ],
+    "hero_variants": [
+      "cinematic_trailer (Riot Games style — full-bleed video, game logo centered, 'Play Free' CTA, dark overlay)",
+      "countdown_launch (pre-release — dark bg, game title, countdown timer, wishlist CTA, platform icons)",
+      "character_showcase (fighting game style — character lineup with animated hover, 'Choose Your Fighter' feel)",
+      "livestream_embed (community/platform style — embedded Twitch/YouTube player, chat sidebar, schedule)"
+    ],
+    "feature_card_variants": [
+      "gameplay_card (icon + feature name + description, neon border accent on hover, dark glass bg)",
+      "character_card (full character art + name + role class + 3 ability icons, overlay on hover with lore)",
+      "tournament_card (game logo + date + prize pool + registered teams count + region flag + 'Join' CTA)",
+      "weapon_gear_card (item render + name + stats bars (damage/speed/range) + rarity indicator color)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["epic", "immersive", "competitive", "adrenaline", "community", "dark", "vibrant", "futuristic"],
+    "headline_style": "short, explosive, under 5 words (e.g., 'Enter the Arena.', 'Legends Rise.', 'Dominate.')",
+    "cta_style": "imperative, urgent (Play Now, Download Free, Join the Fight, Compete, Claim Your Rank, Get the Game)",
+    "trust_signals": ["player count (X million players)", "ESRB/PEGI rating", "platform availability icons", "awards/nominations", "esports prize pools", "streamer/influencer quotes", "metacritic score", "partner/sponsor logos"],
+    "anti_patterns": ["generic Vector stock illustrations", "light/white backgrounds", "serif fonts", "slow transitions (>300ms)", "mobile-unfriendly layouts", "no gameplay screenshots", "corporate-sounding copy"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "neon_crimson (Razer/Cyberpunk: #0a0a0f bg, #ff0044 neon red, #00ff88 green highlight — aggressive gaming)",
+      "arcane_purple (Riot/League: #0d0d1a bg, #bf40bf purple, #ffd700 gold accent — fantasy/moba feel)",
+      "cyber_teal (Cyberpunk/sci-fi: #12121a bg, #00d4ff cyan, #ff073a red accent, #f0f0f0 text — futuristic)",
+      "toxic_green (esports/competitive: #0a0f0a dark green-black, #39ff14 neon green, #000000 — arena energy)",
+      "ember_orange (Blizzard/Overwatch: #1a1220 dark, #ff6600 orange, #ffcc00 yellow — warm action, heroic)"
+    ],
+    "typography_mood": [
+      "orbitron_futuristic (Orbitron headings, Exo 2 body — sci-fi, cyberpunk, space/racing games)",
+      "rajdhani_sharp (Rajdhani headings and body — sharp, competitive, esports, fps games)",
+      "russo_impact (Russo One headings, Inter body — bold, comic-style, character-driven games)"
+    ],
+    "layout_density": [
+      "cinematic_spacious (AAA game studio: full-bleed videos, large sections, immersive storytelling)",
+      "esports_dashboard (tournament-focused: scores, brackets, streams, leaderboards — dense information)",
+      "community_grid (community/platform: user-generated content, forum cards, activity feeds)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "features", "characters", "gallery", "tournaments", "download_cta", "footer"],
+      "curated_stack": "gaming_cinematic_landing"
+    },
+    "game_detail_page": {
+      "sections": ["header", "hero_video", "about", "features", "characters_roster", "screenshots", "system_requirements", "reviews", "purchase_options", "footer"],
+      "best_practices": "Persistent purchase/download CTA, system requirements toggle, screenshot gallery with lightbox, trailer embed prominent"
+    },
+    "esports_page": {
+      "sections": ["header", "upcoming_events", "leaderboard", "teams", "past_results", "watch_live", "footer"]
+    },
+    "community_page": {
+      "sections": ["header", "forums_preview", "fan_art", "user_content", "events_calendar", "discord_cta", "footer"]
+    },
+    "shop_page": {
+      "sections": ["header", "featured_items", "category_grid", "merch_grid", "cart", "footer"]
+    }
+  }
+}

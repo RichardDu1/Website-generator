@@ -1,0 +1,236 @@
+{
+  "industry": "saas-productivity",
+  "extracted_from": [
+    {"source": "官网CSS提取", "brand": "Figma", "url": "https://www.figma.com", "date": "2026-06-02", "method": "curl HTML + WebFetch structure"},
+    {"source": "官网CSS提取", "brand": "Miro", "url": "https://miro.com", "date": "2026-06-02", "method": "curl HTML + WebFetch structure"},
+    {"source": "官网CSS提取", "brand": "Loom", "url": "https://www.loom.com", "date": "2026-06-02", "method": "curl HTML + WebFetch structure"},
+    {"source": "官网CSS提取", "brand": "Calendly", "url": "https://calendly.com", "date": "2026-06-02", "method": "curl HTML + WebFetch structure"},
+    {"source": "官网CSS提取", "brand": "Typeform", "url": "https://www.typeform.com", "date": "2026-06-02", "method": "curl HTML + WebFetch structure + partial Playwright screenshot"}
+  ],
+  "reference_brands": ["Figma", "Miro", "Loom", "Calendly", "Typeform"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#4D49FC", "#FDE050", "#625DF5", "#006BFF", "#4A154B"],
+      "primary_role": "主色——生产力工具用大胆、有辨识度的品牌色建立强烈记忆点：Figma用紫蓝(#4D49FC)、Miro用亮黄(#FDE050)、Loom用玫紫(#625DF5)、Calendly用亮蓝(#006BFF)、Typeform用深紫(#4A154B)。所有5个品牌都避免使用标准链接蓝(#0066CC)——那太普通缺乏溢价感。主色用于CTA按钮、品牌标志、hero区装饰元素和链接hover态。",
+      "accent": ["#00B6FF", "#3859FF", "#1868DB", "#635BFF", "#AE61CD", "#30C963", "#FF7237", "#72DFD5", "#EDA2F3", "#FFA557"],
+      "accent_role": "强调色——Miro用12种多彩强调色构建视觉丰富的白板画布感，Figma用青/绿/橙点缀产品功能，Typeform用紫色渐变营造高级感。强调色用于插图、功能图标、UI状态标签、数据可视化系列。从不作为大面积色块使用——否则会削弱主色品牌识别。",
+      "surface": ["#FFFFFF", "#F8F9FB", "#FAFAFC", "#F1F2F5", "#000000", "#1C1C1E", "#101214", "#3E3040"],
+      "surface_role": "背景色——两极分化：Figma用纯黑(#000000)深色主题+白色卡片，Miro/Calendly用白色+极浅灰构建明亮信任感，Loom混合深色section(#101214)+白色section，Typeform用深紫棕(#3E3040)暗色主题。生产力工具的共同点是背景色极少出现中等灰度——要么极亮要么极暗，没有中间态。",
+      "neutral": ["#697485", "#555A6A", "#3B394E", "#476788", "#3D3D3C"],
+      "neutral_role": "文字颜色——深色主题正文用#FFFFFF，辅助文字用#AEB2C0或#8A8F98；浅色主题正文用#0B3558(Calendly)或#1C1C1E(Miro)，辅助文字用#555A6A或#697485。对比度始终满足WCAG AA(4.5:1以上)。Calendly的#0B3558是navy替代纯黑的优秀案例——降低刺眼度的同时保持足够对比。",
+      "border": ["#E6E6E6", "#D8DAE2", "#A6BBD1", "#D4E0ED", "#E0E2E8", "#CFCFCE"],
+      "border_role": "边框——极细(1px)且颜色极淡。Miro用#E0E2E8，Calendly用#A6BBD1(淡蓝灰边框，与品牌蓝协调)，Figma用#E6E6E6。边框存在感被刻意压低——生产力工具靠间距和白空间区分内容块，而非依赖边框。",
+      "semantic": {"success": "#30C963", "warning": "#FFA557", "error": "#D8182C", "info": "#3859FF"}
+    },
+    "typography": {
+      "heading_fonts": ["Figma Sans", "Gilroy", "Open Sans", "Inter", "system-ui"],
+      "body_fonts": ["Inter", "Figma Sans", "Gilroy", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto"],
+      "heading_weight": 600,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 42, "max": 80, "unit": "px"},
+        "h2": {"min": 32, "max": 60, "unit": "px"},
+        "h3": {"min": 18, "max": 28, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 60, "max": 160, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "buttons": "8px(Calendly实测) / 8px(Loom实测) / 4px-8px(Figma scale)——生产力工具统一走8px微圆角，不极端(不学B2B的9999px pill也不学金融的0px直角)。8px是亲和与专业的最佳平衡点",
+      "cards": "12px-16px(Calendly实测16px和12px) / 8px-12px(Figma token有8和12两档) / 8px(Loom实测)——卡片比按钮略圆，形成视觉层级差异",
+      "inputs": "8px(Figma: --fig-radius-8)——与按钮一致，交互元素统一圆角"
+    },
+    "elevation": {
+      "shadows": "极简阴影——生产力工具不用Material Design多层投影。Figma深色主题完全不用阴影(figma-style的边框+透明度区分层级)。Miro/Calendly浅色卡片用0 1px 3px rgba(0,0,0,0.08)极淡单层阴影。与B2B SaaS一致：阴影不是主要层级区分手段，间距和背景色是。",
+      "typical_values": ["0 1px 3px rgba(0,0,0,0.08)", "none(深色主题)", "0 0 0 1px rgba(0,0,0,0.04) inset(Figma边框替代阴影)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (minimal, logo左 + 导航链接中 + 'Sign in'/'Log in' + 'Get started free' CTA右, 高度56-64px, sticky常见)",
+      "hero (粗体h1 42-80px + 副标题16-20px + 主要CTA 'Get started free' + 次要CTA 'Contact sales'或'Watch demo', 产品截图/动画/交互式嵌入作为主视觉, padding 80-160px上下)",
+      "social proof logos (10-20个知名客户logo灰度/单色展示, 'Trusted by...' 或 'Millions of people across...' 标题)",
+      "product demo / interactive embed (生产力工具的核心差异化section——常常嵌入真实产品交互或录制演示, 而不是静态截图)",
+      "features grid (3-4列卡片, icon + title + description, 每个卡片一个功能点, 24px padding, 8-16px圆角)",
+      "integrations / ecosystem (工具logo矩阵展示集成的第三方应用, 生产力工具特别强调生态——因为用户在多个工具间切换)",
+      "use cases / solutions (角色或场景卡片: 'for design', 'for engineering', 'for sales' 等, 带illustrations或icons)",
+      "testimonials / customer stories (2-4列引用卡片, 知名客户头像+姓名+职位+简短引语+量化结果如'169% ROI')",
+      "stats/metrics bar (3-5个数据点: 用户数100M+, 集成数250+, 模板数6000+, 响应率提升等)",
+      "pricing (3-4级定价卡片: Free/Standard/Teams/Enterprise, 年度/月度切换, Free tier突出——生产力工具的freemium模型)",
+      "footer CTA (大标题 + 'Get started free' CTA, 品牌色或深色背景, padding 100-160px)",
+      "footer (4-6列链接网格: Product/Solutions/Resources/Company/Legal, 社交图标, 语言选择器, 合规徽章)"
+    ],
+    "hero_variants": [
+      "产品界面大图+文字(Figma风格): h1居中或左对齐, 下方全宽产品界面截图带圆角和阴影, 产品即品牌",
+      "交互式嵌入/动画(Miro风格): hero区嵌入可交互的产品canvas或动画演示, 用户可立即试用——生产力工具的终极信任建立方式",
+      "视频/屏幕录制预览(Loom风格): 嵌入视频播放器UI或屏幕录制预览, 展示产品核心功能",
+      "步骤图解+文字(Calendly风格): 5步图解展示产品工作流, 每个步骤配插图, 线性叙事降低认知负担",
+      "三栏选项卡+CTA(Typeform风格): ASK/ACT/LEARN三栏tab切换, 展示不同产品模块, 深色背景+品牌色高亮"
+    ],
+    "card_variants": [
+      "功能卡片(Miro实测): white bg, 标题+描述+链接, 6列网格, 卡片间距宽松, no shadow——靠留白区分",
+      "用例卡片(Loom实测): 4列 illustrated cards, 每个带isometric插图+标题+描述+链接, 场景化叙事",
+      "集成卡片(通用): 工具logo网格, 每个logo等大居中, 单色或全彩, 无边框卡片——纯logo矩阵",
+      "定价卡片(Calendly实测): white bg + 1px淡蓝边框, 8-12px圆角, 24px padding, 价格大号数字, CTA按钮底部, 功能列表checkmark",
+      "客户引用卡片(通用): 浅灰或白底, 8-12px圆角, 16-24px padding, 公司logo顶部, 引语+头像+姓名+职位底部, 有时带量化ROI统计数据"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["collaborative", "simple", "powerful", "modern", "delightful", "frictionless", "async", "free"],
+    "headline_style": "利益驱动(benefit-driven)、现在时、动词开头、强调协作和速度——Figma'Make anything possible, all in Figma'(创造可能性)、Miro'The collaboration layer your AI tools are missing'(点出缺口)、Loom'One video is worth a thousand words'(价值主张)、Calendly'Calendly makes scheduling simple'(简化痛点)、Typeform'Your favorite forms. Now with AI automation'(产品演进+AI)。从不使用问句作为主标题。长度4-10词。",
+    "cta_style": "'Get started free' / 'Get started—it's free' / 'Sign up for free' / 'Start for free'——生产力工具CTA的共性：(1)前置免费('free'/'for free')降低试用门槛 (2)动词短语('Get started'/'Sign up'/'Start')精确描述动作 (3)2-3词简洁有力。次要CTA用'Contact sales'(企业销售路径)或'Watch demo'(产品演示路径)。双CTA分层转化：自助(free) + 销售/演示。Calendly用'Try for Free'区分定价页CTA。Typeform用'Get started—it's free'的破折号增加口语化亲和力。",
+    "trust_signals": [
+      "客户logo矩阵(Figma: Airbnb+Atlassian+Microsoft+Netflix+Slack+Stripe+Zoom等10+；Loom: HubSpot+Lacoste+Tesla+Walmart+Disney+Goldman Sachs等)",
+      "用户规模数据(Miro: '100M+ people collaborating on Miro'; Loom: 'Millions of people across 400,000 companies'; Typeform: '150,000+ businesses')",
+      "集成生态数量(Miro: '250+ apps and integrations', '6,000+ templates'; Calendly: 集成logo展示Zoom+Salesforce+Slack+Stripe等)",
+      "合规与安全徽章(Miro: ISO 42001+ISO 27001+SOC 2+GDPR; Calendly: SOC+DSS+GDPR+CCPA+ISO 27001)",
+      "ROI量化案例(Calendly: '169% return on investment'(HackerOne), '160% increase in customers reached'(Vonage), '26% increase in website bookings')",
+      "免费层级/免费试用——生产力工具最核心的信任信号。所有5个品牌都在首屏CTA承诺免费。"
+    ],
+    "anti_patterns": [
+      "不要用'Welcome to...'开头的hero标题——5个品牌无一使用，全部直接切入价值主张",
+      "不要隐藏产品——生产力工具hero区必须展示真实产品UI/交互/界面截图，不用抽象插画代替",
+      "不要超过2个hero CTA按钮——3个以上稀释点击率，主CTA(free)+次CTA(sales/demo)是标准模式",
+      "不要用纯黑色(#000000)在纯白色(#FFFFFF)上——Calendly用#0B3558 navy替代黑文字降低刺眼度",
+      "不要忽略集成/生态section——生产力工具用户的核心痛点是工具间切换，集成展示是转化关键",
+      "不要用高价锚定定价——生产力工具的freemium模型决定了首个定价卡片必须是Free，且该卡片要显示在显眼位置",
+      "不要用纯企业话术(bullshit bingo)——生产力工具的目标用户包括个人和小团队，语言必须保持可接近性",
+      "不要在hero区用carousel/slider——5个品牌全部用静态内容+清晰信息层级，轮播图是注意力杀手"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "bold single-color brand(Miro/Calendly): 一个极致饱和度品牌色(黄色#FDE050 / 蓝色#006BFF)覆盖所有品牌触点, 白色背景为主, 品牌色用于CTA按钮+装饰+图标, 极强的色彩记忆度——'Miro=黄色''Calendly=蓝色'",
+      "dark mode first(Figma/Typeform): 深色主题(#000000/#3E3040)作为默认, 品牌色在暗背景上做高亮文字或渐变, 营造高级感+技术感, 产品截图在暗背景上更有视觉冲击力",
+      "gradient purple(Loom): 玫紫色(#625DF5)作为主品牌色, 配合深色section和紫色渐变光晕, 视频录制工具特有的'创作者的酷'调性"
+    ],
+    "typography_mood": [
+      "custom display font(Figma: Figma Sans / Calendly: Gilroy): 定制或购买专有字体建立排他性品牌识别, 字重600+用于heading, 字形介于几何和人文之间——既现代又不过于机械",
+      "modern geometric(Miro: Open Sans / Loom: Inter-like): 使用广泛可用的现代几何sans-serif, 强调可读性和跨平台一致性, 与品牌的多平台覆盖策略一致",
+      "system-first(Typeform: -apple-system, BlinkMacSystemFont): 使用系统原生字体栈, 不加载额外web字体——优化加载性能, 也符合'让人专注于内容而非形式'的品牌理念"
+    ],
+    "layout_density": [
+      "spacious product-first(Figma/Miro): section padding 80-160px, 大量留白让产品截图'呼吸', 每屏1-2个信息组, 产品截图面积占比>40%——'让产品自己说话'",
+      "dense feature-rich(Calendly/Typeform): section padding 60-100px, 更多section但每个section更紧凑, 每屏2-3个信息组, 更高效传递功能信息——适用于功能较多的产品"
+    ]
+  },
+  "per_brand_specifics": {
+    "figma": {
+      "hero_heading": "Make anything possible, all in Figma",
+      "primary_cta_text": "Get started for free",
+      "secondary_cta_text": "Contact sales",
+      "section_count": 12,
+      "key_sections": ["hero_animated_headline", "product_tabs_design_figma_make_devmode_designsystems", "customer_logos", "feature_cards_3col", "template_gallery", "community_showcase", "pricing", "footer_cta"],
+      "notable": "深色主题(#000000背景), 定制Figma Sans字体(支持variable weight/wdth/slnt), 完善的--fig-*设计token系统(间距4-120px 9档, 圆角2-24px 6档, 字阶display到caption共11档)。主页用动画/轮播式h1文案(Make anything possible...重复但每次配不同产品截图)。Hero区同时展示Figma design+Figma Make+Dev Mode三个产品线。唯一将product demo作为主导航tab的品牌。",
+      "extracted_css": {
+        "bodyBg": "#000000",
+        "bodyColor": "#FFFFFF",
+        "bodyFont": "Figma Sans, system-ui, -apple-system, sans-serif",
+        "h1Size": "60-80px(display scale)",
+        "h1Weight": "600-700",
+        "designTokens": "完整--fig-*系统: spacing(4,8,12,16,24,32,40,64,80,120), radius(2,4,8,12,16,24,full), typography(display/title1-4/bodyXL/bodyL/body/caption/button/buttonS/badge/formInput/formLabel)",
+        "primaryHex": "#4D49FC",
+        "surfaceHex": "#000000",
+        "bgDirection": "dark-first"
+      }
+    },
+    "miro": {
+      "hero_heading": "The collaboration layer your AI tools are missing",
+      "primary_cta_text": "Get started free",
+      "secondary_cta_text": "Contact sales",
+      "section_count": 14,
+      "key_sections": ["header", "hero", "product_tabs(Research/Roadmaps/Diagrams/Workshops)", "feature_highlight_research", "stats_bar(100M+/250+/6000+)", "testimonial_asos", "features_grid_6cards", "ai_platform_cta", "resources_links", "footer"],
+      "notable": "标志性亮黄色品牌(#FDE050), 深色文字(#1C1C1E), 12种强调色系统(teal/pink/orange/blue/green/purple/cyan/red等)——反映白板画布的多彩特性。Open Sans字体。hero标题直接指向AI agent协作这一新品类定位。产品tab导航让用户在hero区就能切换不同产品视图。独特的产品内部链接式footer(Customer Stories/Blog/Academy/Community等)。",
+      "extracted_css": {
+        "bodyBg": "#FFFFFF",
+        "bodyColor": "#1C1C1E",
+        "bodyFont": "'Open Sans', 'Fragment Mono', sans-serif",
+        "h1Size": "48-60px",
+        "h1Weight": "600",
+        "h2Size": "32-40px",
+        "heroBg": "#FFFFFF",
+        "primaryHex": "#FDE050",
+        "accentHexes": ["#3859FF", "#72DFD5", "#EDA2F3", "#FFA557", "#85B6FF", "#7ED996", "#C0EB80", "#8E83FF", "#80D6F3", "#FF8080"],
+        "surfaceHex": "#FAFAFC",
+        "bgDirection": "light-first"
+      }
+    },
+    "loom": {
+      "hero_heading": "One video is worth a thousand words",
+      "primary_cta_text": "Get Loom for free",
+      "secondary_cta_text": null,
+      "section_count": 13,
+      "key_sections": ["header", "hero", "customer_logo_marquee", "ai_feature_announcement(Jira)", "product_demo_mockup", "feature_grid_3col(editor/integrations/engagement)", "security", "use_cases_4cards(Sales/Engineering/Support/Design)", "feature_checklist_8items", "blog", "enterprise_section", "testimonial_carousel_6quotes", "final_cta", "footer"],
+      "notable": "强大的玫紫色品牌(#625DF5), logo渐变光晕(glow.webp)。Atlassian收购后突出Jira集成——'New! Ship faster with AI bug reports'。hero标题用了经典谚语的改编——感性价值主张而非功能罗列。Dark sections与light sections交替布局增加视觉节奏。独特的产品内分享链接展示(loom.com/share/28u2o923——直接展示产品URL格式)。",
+      "extracted_css": {
+        "bodyBg": "#FFFFFF",
+        "bodyColor": "#101214",
+        "bodyFont": "Inter, system-ui, sans-serif",
+        "h1Size": "48-64px",
+        "h1Weight": "600-700",
+        "h2Size": "32-48px",
+        "btnBorderRadius": "8px",
+        "primaryHex": "#625DF5",
+        "darkSurfaceHex": "#101214",
+        "blueAccentHex": "#1868DB",
+        "darkPurpleHex": "#3B394E",
+        "bgDirection": "mixed(light sections + dark sections alternating)"
+      }
+    },
+    "calendly": {
+      "hero_heading": "Calendly makes scheduling simple",
+      "primary_cta_text": "Get started for free",
+      "secondary_cta_text": "Talk to sales",
+      "section_count": 10,
+      "key_sections": ["header", "social_proof_banner(100,000+)", "hero_5step_diagram", "integrations_logo_grid", "pricing_4tiers(Free/Standard/Teams/Enterprise)", "customer_stories_with_roi_stats", "security_compliance_badges", "footer_cta", "footer"],
+      "notable": "最简洁的hero标题——5词直达痛点。定制Gilroy字体建立排他性品牌识别。亮蓝色(#006BFF)品牌+深navy(#0B3558)文字组合替代刺眼的纯黑白。5步图解工作流(Connect calendars→Add availability→Connect conferencing→Customize events→Share link)在hero区直接演示产品逻辑——线性叙事降低认知负担。4级定价从Free开始锚定——freemium模型的最佳实践。客户引用带有精确ROI数字(169%、160%、20% decrease等)。",
+      "extracted_css": {
+        "bodyBg": "#F8F9FB",
+        "bodyColor": "#0B3558",
+        "bodyFont": "'Gilroy', 'Gilroy Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+        "h1Size": "42-56px",
+        "h1Weight": "600-700",
+        "h2Size": "28-36px",
+        "btnBg": "#006BFF",
+        "btnColor": "#FFFFFF",
+        "btnBorderRadius": "8px",
+        "cardBorderRadius": "12px-16px",
+        "primaryHex": "#006BFF",
+        "darkNavyHex": "#0B3558",
+        "surfaceHex": "#F8F9FB",
+        "borderHex": "#A6BBD1",
+        "bgDirection": "light-first"
+      }
+    },
+    "typeform": {
+      "hero_heading": "Your favorite forms. Now with AI automation.",
+      "primary_cta_text": "Get started—it's free",
+      "secondary_cta_text": null,
+      "section_count": 11,
+      "key_sections": ["promotional_banner(Telethon)", "hero_3tab(ASK/ACT/LEARN)", "intelligent_forms_features", "growth_flow_feature(New!)", "research_flow_feature(New!)", "testimonials_carousel_with_logos", "integrations_animated_marquee", "footer_cta", "footer"],
+      "notable": "深色主题(#3E3040/#4A154B)独树一帜——在竞争激烈的表单市场中用暗色美学建立辨识度。Webflow构建(不是React/Next.js, cdn.prod.website-files.com CDN)。Hero区用三栏tab(ASK/ACT/LEARN)组织产品模块——ASk=表单, ACT=Automation, LEARN=Research。'New!' badge标注新产品线(Growth Flow/Research Flow)——持续产品创新的信号。CTA文案'Get started—it's free'用破折号增加口语化亲和力。独特的bg-shine光效装饰(shine.avif/bg-shine.avif)。",
+      "extracted_css": {
+        "bodyBg": "#3E3040",
+        "bodyColor": "#FFFFFF",
+        "bodyFont": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        "h1Size": "42-56px",
+        "h1Weight": "600-700",
+        "h2Size": "28-40px",
+        "primaryHex": "#4A154B",
+        "darkBgHex": "#3E3040",
+        "purpleAccent": "#AE61CD",
+        "blueAccent": "#635BFF",
+        "greenAccent": "#30C963",
+        "lightGreenHex": "#CBF5DD",
+        "surfaceHex": "#FFFFFF",
+        "bgDirection": "dark-first(purple-dark)"
+      }
+    }
+  },
+  "design_dna_summary": "生产力SaaS设计DNA的独特之处：产品是绝对的主角。与B2B SaaS(B2B以可信度优先)不同, 生产力工具必须以产品体验为中心——hero区放真实产品截图/交互嵌入而非抽象插画, CTA强调免费试用降低门槛, section顺序上product demo排在features前面。5个品牌的公约数：(1)Hero标题≤10词, 现在时动词驱动, 聚焦协作/速度/简化；(2)主CTA包含'free'一词, 双CTA分层(自助free+销售demo)；(3)至少一个集成/生态section展示工具间连接；(4)8px统一圆角——不极端；(5)品牌色大胆饱和——不做第2个蓝色SaaS；(6)产品截图面积>抽象插画面积；(7)Freemium定价——首个plan必为Free；(8)深色/明亮两极分化——不做中等灰度背景；(9)客户logo+精确ROI数字是核心信任信号；(10)字体要么定制(Figma Sans, Gilroy)要么广泛兼容(Open Sans, system-ui)——没有中间选项。"
+}

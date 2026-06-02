@@ -1,0 +1,164 @@
+{
+  "industry": "construction",
+  "subtypes": ["general-contractor", "home-renovation", "commercial-construction", "civil-engineering", "architectural-firm", "interior-design-build"],
+  "extracted_from": [
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.caterpillar.com", "style": "industrial-bold"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.bechtel.com", "style": "corporate-engineering"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.turnerconstruction.com", "style": "project-focused"}
+  ],
+  "reference_brands": ["Caterpillar", "Bechtel", "Turner Construction", "Skanska", "Fluor", "Komatsu", "John Deere", "Hilti", "AECOM", "Kiewit"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#1a2233", "#0f172a", "#1e293b", "#111827"],
+      "primary_role": "Page background, header bg, hero overlay (navy/industrial dark for authority and stability)",
+      "accent": ["#f59e0b", "#ffcc00", "#eab308", "#f97316", "#ef4444"],
+      "accent_role": "CTA buttons (safety yellow/amber), price/quotes, important callouts, safety indicators",
+      "surface": ["#ffffff", "#f5f5f5", "#fafafa", "#e8eaed", "#f0f0f0"],
+      "surface_role": "Card backgrounds (white/concrete gray), project sheets, spec tables",
+      "neutral": ["#475569", "#64748b", "#94a3b8", "#cbd5e1", "#787878"],
+      "neutral_role": "Body text, project descriptions, specs, secondary navigation",
+      "border": ["#e2e8f0", "#d4d4d4", "#334155", "#c0c0c0"],
+      "border_role": "Card borders, table borders, input fields, blueprint-style linework",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#f59e0b",
+        "error": "#dc2626",
+        "info": "#2563eb"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Barlow Condensed", "Oswald", "Teko", "Montserrat", "system-ui"],
+      "body_fonts": ["Roboto", "Inter", "Source Sans 3", "Open Sans", "system-ui"],
+      "mono_fonts": ["JetBrains Mono", "Consolas", "Courier New"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 44, "max": 72, "unit": "px"},
+        "h2": {"min": 30, "max": 48, "unit": "px"},
+        "h3": {"min": 20, "max": 28, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.6, "heading": 1.1},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 80, "max": 140, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1280, "unit": "px"},
+      "card_padding": {"typical": "28px"}
+    },
+    "border_radius": {
+      "sharp": "0px - 4px",
+      "rounded": "6px - 10px",
+      "pill": "9999px",
+      "typical_button": "4px (straight, structural) or 9999px (pill for modern firms)",
+      "typical_card": "6px - 10px (slightly rounded, structurally grounded)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "safety yellow/amber",
+        "color": "navy black text",
+        "border_radius": "4px (industrial angular)",
+        "text": "action-oriented (Get a Quote, Request Estimate, Start Your Project, Contact Us)",
+        "font_size": "15-17px",
+        "font_weight": 700
+      },
+      {
+        "variant": "secondary",
+        "bg": "navy with white border",
+        "color": "white",
+        "border_radius": "4px",
+        "text": "View Our Work, See Projects, Our Services",
+        "font_size": "15-17px"
+      },
+      {
+        "variant": "outline",
+        "bg": "transparent",
+        "color": "navy or dark gray",
+        "border_radius": "4px",
+        "text": "Navigation, secondary actions, 'Download Brochure'"
+      }
+    ],
+    "elevation": {
+      "shadows": "heavy, structural, grounded",
+      "approach": "Solid, weighty shadows that convey physical mass and stability. Not floating — anchored.",
+      "typical_values": ["0 1px 3px rgba(0,0,0,0.12)", "0 4px 12px rgba(0,0,0,0.15)", "0 8px 24px rgba(0,0,0,0.2)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky navy/dark bg, logo left, nav center, phone number right, prominent 'Get Quote' CTA)",
+      "hero (full-width completed project photo or jobsite imagery + h1 + subtitle + primary CTA + secondary CTA)",
+      "services (icon grid: general contracting, renovation, design-build, commercial, civil — 3 or 4 columns)",
+      "projects_gallery (masonry or grid layout of completed projects, filterable by type: residential/commercial/industrial)",
+      "team (photo cards: project managers, lead carpenters, estimators — name + role + certifications + years experience)",
+      "testimonials (quote cards with project photos, client names, project type, star rating)",
+      "quote_cta (centered, dark bg or project photo bg, 'Start Your Project Today', form or phone CTA, license/insured badges)",
+      "footer (4-column: company info/license #, services, service areas, contact/social + copyright)"
+    ],
+    "hero_variants": [
+      "full_bleed_project (Bechtel style — massive completed structure photo, minimal overlay, bold white text)",
+      "before_after_split (renovation style — left: before, right: after, dramatic transformation reveal)",
+      "drone_footage (modern firm style — aerial video of worksite or completed project, slow cinematic pan)",
+      "blueprint_hero (architectural style — blueprint-style linework overlay on dark bg, technical feel)"
+    ],
+    "feature_card_variants": [
+      "service_icon_card (large icon + title + description + 'Learn more' link, 3-column grid)",
+      "project_showcase_card (full photo + project name + location + completion date + category tag, overlay on hover)",
+      "stat_card (large number counter + label: '500+ Projects', '50+ Years', '98% On-Time', with accent stripe)",
+      "testimonial_quote_card (large quotation mark + text + client name + project type, elegant typography)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["solid", "reliable", "experienced", "industrial", "safe", "professional", "craftsmanship", "on-time"],
+    "headline_style": "confident and grounded, 5-7 words (e.g., 'Building Excellence Since 1985.', 'Your Vision. Our Craft.')",
+    "cta_style": "direct, no-nonsense (Get a Quote, Start Your Project, Request Estimate, Schedule Consultation)",
+    "trust_signals": ["license number", "insurance/bonded badges", "years in business", "project count", "safety record (OSHA)", "industry certifications (LEED, NARI)", "BBB rating", "manufacturer partnerships"],
+    "anti_patterns": ["stock photos of people in hard hats pointing", "fake project images", "vague pricing", "no license or insurance info", "clip art icons", "excessive animation"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "navy_yellow (Bechtel/Turner: #0f172a navy, #f59e0b safety yellow, #ffffff cards — classic industrial)",
+      "concrete_modern (architectural: #f5f5f5 light gray, #1a1a1a text, #2563eb blue accent — clean, modern)",
+      "earth_industrial (Caterpillar: #1a1a1a black, #ffcc00 yellow, #f97316 orange accents — heavy equipment feel)",
+      "steel_blue (Skanska: #1e3a5f steel blue, #ffffff, #94a3b8 silver — corporate engineering)",
+      "warm_craft (renovation/builder: #2c1810 dark walnut, #f5f0e8 cream, #d4a574 copper — craftsman warmth)"
+    ],
+    "typography_mood": [
+      "barlow_industrial (Barlow Condensed headings, Roboto body — condensed, authoritative, project-focused)",
+      "oswald_bold (Oswald headings, Inter body — powerful, modern contractor feel)",
+      "montserrat_clean (Montserrat headings and body — polished, architectural firm aesthetic)"
+    ],
+    "layout_density": [
+      "project_showcase (large imagery, minimal text, let the work speak — high-end architectural firms)",
+      "service_oriented (clear service categories, quick quote access, phone number prominent — local contractors)",
+      "spec_dense (detailed project specs, tables, technical data — engineering/industrial firms)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "services", "projects_gallery", "team", "testimonials", "quote_cta", "footer"],
+      "curated_stack": "construction_service_landing"
+    },
+    "projects_page": {
+      "sections": ["header", "filter_bar", "project_grid", "pagination", "cta", "footer"],
+      "best_practices": "Filterable by project type (residential/commercial/industrial), masonry grid, lightbox gallery on click, before/after toggle"
+    },
+    "project_detail_page": {
+      "sections": ["header", "hero_photo", "project_overview", "before_after", "challenges_solutions", "testimonial", "related_projects", "cta", "footer"]
+    },
+    "service_page": {
+      "sections": ["header", "service_detail", "process_timeline", "related_projects", "pricing_estimate", "cta_form", "footer"]
+    },
+    "about_page": {
+      "sections": ["header", "story_history", "team", "equipment_fleet", "safety_commitment", "community", "careers_cta", "footer"]
+    }
+  }
+}

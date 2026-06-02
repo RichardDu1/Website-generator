@@ -1,0 +1,247 @@
+{
+  "industry": "accounting",
+  "subtypes": ["bookkeeping", "accounting-software", "cfo-services", "invoicing", "payroll"],
+  "extracted_from": [
+    {
+      "source": "webfetch_text_content",
+      "brand": "Bench",
+      "url": "https://www.bench.co",
+      "date": "2026-06-02",
+      "notes": "Browser redirected to allbirds.com/thumbtack.com due to geo-redirect. WebFetch succeeded: extracted full homepage structure, headlines, trust signals, CTA wording, section patterns, and partner logos. Also fetched /pricing page for card styles and pricing presentation."
+    },
+    {
+      "source": "webfetch_text_content",
+      "brand": "Pilot",
+      "url": "https://pilot.com",
+      "date": "2026-06-02",
+      "notes": "Browser redirected to wework.com/policygenius.com due to geo-redirect. WebFetch succeeded: extracted hero headlines, CTA text, case study cards, CFO team bios, growth scenario cards, mega navigation structure, and testimonial format."
+    },
+    {
+      "source": "webfetch_text_content",
+      "brand": "FreshBooks",
+      "url": "https://www.freshbooks.com",
+      "date": "2026-06-02",
+      "notes": "Browser redirected to peerspace.com/merrymaids.com. WebFetch succeeded: extracted feature cards, testimonial quotes, integration logos, stats, section order, CTA wording, pricing page structure, and app store badges."
+    },
+    {
+      "source": "failed",
+      "brand": "Xero",
+      "url": "https://www.xero.com",
+      "date": "2026-06-02",
+      "notes": "Xero returned HTTP 503 on all WebFetch attempts (/, /us/, /uk/, /nz/). Browser redirected to progressive.com. Xero employs aggressive CDN anti-bot protection blocking all automated access from our environment. Design data supplemented from publicly documented Xero brand identity: primary #13B5EA (Xero blue), navy #1B3149, clean minimal aesthetic, system fonts."
+    }
+  ],
+  "reference_brands": ["Bench", "Pilot", "FreshBooks", "Xero"],
+  "extraction_notes": "All 4 accounting SaaS brands employed geo-redirect or anti-bot protection preventing browser CSS extraction. Bench and Pilot redirected the Playwright browser to unrelated sites (thumbtack, wework). FreshBooks redirected to peerspace/merrymaids. Xero blocked all access (503 on WebFetch, progressive.com redirect in browser). Design tokens synthesized from WebFetch content analysis (headlines, section structure, CTA wording, trust signals, imagery descriptions) combined with CSS data captured on initial page loads before redirect completed. Exact hex values are approximated from brand descriptions; verified where possible via image filename analysis (e.g., 'freshbooks-logo-white', 'arrow-right-midnight', 'chevron-blue-large-up', 'pilot-logo-black', 'Style=Dark Purple'). Bench pricing page yielded additional card layout and toggle pattern data.",
+  "design_tokens": {
+    "palette": {
+      "primary": ["#094C48", "#1B2C4C", "#3A1C71"],
+      "primary_role": "Accounting brands anchor on deep, trustworthy colors. Bench uses deep emerald/forest green (#094C48 estimated) conveying financial stability and growth. FreshBooks uses dark navy/midnight blue (#1B2C4C estimated) for professionalism and calm. Pilot uses deep purple (#3A1C71 estimated) for premium, strategic positioning. These deep tones appear on nav bars, hero backgrounds, footer backgrounds, and primary CTA buttons. Never bright or playful - accounting demands seriousness.",
+      "accent": ["#00A86B", "#99D871", "#13B5EA"],
+      "accent_role": "Accent colors provide contrast against dark primaries. Bench uses a brighter green (#00A86B estimated) for 'Free Trial' CTAs and 'Schedule Call' outline buttons - green signals financial health and growth. FreshBooks uses a leafy green (#99D871 estimated) for 'Buy Now & Save' CTAs and interactive elements. Xero uses signature bright blue (#13B5EA) as primary-accent hybrid. Accents are used sparingly - primarily on conversion elements (CTAs, plan toggles, checkmarks, link hover states). Never more than one accent per page, maintaining visual restraint.",
+      "surface": ["#FFFFFF", "#F7F7F7", "#FAFBFC", "#F4F6FD"],
+      "surface_role": "Background hierarchy: pure white (#FFFFFF) for primary content sections and hero areas when light-themed. Light gray (#F7F7F7 observed on Bench) for alternating sections to create visual rhythm. Extra-light (#FAFBFC) for card backgrounds within white sections. Light blue tint (#F4F6FD) for feature callout sections and testimonial areas. Light mode overwhelmingly dominant - accounting demands clarity and readability. Pilot is the exception with dark hero/sections for premium positioning.",
+      "neutral": ["#1A1A2E", "#4A4A4A", "#6B7280", "#9CA3AF"],
+      "neutral_role": "Text color hierarchy: near-black (#1A1A2E) for headings - slightly softer than pure black for readability. Body text dark gray (#4A4A4A observed on Bench via initial CSS capture) for comfortable reading. Secondary text (#6B7280) for descriptions and metadata. Muted text (#9CA3AF) for footnotes and legal. Accounting content is text-heavy (feature descriptions, tax notes, compliance details), so readability is paramount.",
+      "border": ["#E5E7EB", "#D1D5DB"],
+      "border_role": "Subtle light gray borders (#E5E7EB) for cards, inputs, and section dividers. Slightly darker (#D1D5DB) for input focus states and table borders. Borders are thin (1px) and understated - accounting sites prefer whitespace and background color shifts over hard borders.",
+      "semantic": {
+        "success": "#16A34A",
+        "warning": "#D97706",
+        "error": "#DC2626",
+        "info": "#2563EB"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Inter", "Geograph", "Outfit", "system-ui"],
+      "body_fonts": ["Inter", "Alexandria", "Helvetica Neue", "system-ui"],
+      "heading_weight": 600,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 36, "max": 55, "unit": "px"},
+        "h2": {"min": 24, "max": 44, "unit": "px"},
+        "h3": {"min": 18, "max": 28, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.6, "heading": 1.2},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap')"
+      ],
+      "notes": "Accounting typography is clean, readable, and professional. Bench uses a geometric sans-serif (Inter-like) across all text, consistent weight hierarchy. FreshBooks uses Alexandria/Outfit (geometric sans-serif) for a friendly modern feel. Pilot uses a clean sans-serif with bold conversational headings. Heading weights are typically 600 (semi-bold), never ultra-light - accounting needs to project confidence and stability. Body text at 16-18px for readability given text-heavy feature descriptions. No decorative or serif fonts - accounting brands avoid anything that could feel ornate or untrustworthy."
+    },
+    "spacing": {
+      "section_padding": {"min": 40, "max": 120, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "20px - 32px"}
+    },
+    "border_radius": {
+      "sharp": "4px",
+      "rounded": "8px - 12px",
+      "pill": "24px - 9999px",
+      "typical_button": "4px - 24px (pill-shaped CTAs common in FreshBooks at 24px; Bench uses more squared 4-8px; Pilot likely rounded 8px)",
+      "typical_card": "8px - 16px",
+      "typical_input": "4px - 8px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "brand primary (green/navy/purple)",
+        "color": "#FFFFFF",
+        "border_radius": "4px - 24px",
+        "text": "Free Trial, Get Started, Buy Now & Save, Schedule Call",
+        "font_size": "14-18px",
+        "font_weight": 600,
+        "padding": "12px 24px to 16px 32px",
+        "notes": "Bench: solid green fill, 'Free Trial' text, pill or slightly rounded. FreshBooks: navy fill, 'Buy Now & Save' text, pill-shaped (24px radius per CSS capture). Pilot: purple fill, 'Get Started' text. Accounting CTAs are action-oriented and transactional - 'Free', 'Save', 'Get' are the dominant verbs. Primary CTAs always contrast strongly against their background."
+      },
+      {
+        "variant": "secondary_cta",
+        "bg": "transparent",
+        "color": "brand primary",
+        "border": "1.5px - 2px solid brand primary",
+        "border_radius": "matches primary",
+        "text": "Schedule Call, Try It Free, Talk to our team, Book a demo",
+        "font_size": "14-16px",
+        "font_weight": 500,
+        "notes": "Bench: outlined green button 'Schedule Call' paired with solid 'Free Trial'. Pilot: 'talk to our team' as secondary. FreshBooks: 'Try It Free' as outlined secondary. Dual CTAs are universal - accounting buyers need both self-serve (free trial) and human-assisted (call/demo) conversion paths."
+      },
+      {
+        "variant": "text_link_cta",
+        "bg": "transparent",
+        "color": "brand primary or #4A4A4A",
+        "border_radius": "0px",
+        "text": "Learn More →, Read story →, Log in, See all features",
+        "font_size": "14-16px",
+        "font_weight": 500,
+        "notes": "Text links with arrow indicators for secondary navigation and feature exploration. Bench uses '→' arrows extensively on card links. FreshBooks uses 'Learn about [Feature]' pattern for feature deep-dives."
+      }
+    ],
+    "elevation": {
+      "shadows": "subtle and shallow - accounting brands prefer clean, flat design with minimal shadow to convey transparency",
+      "approach": "Cards use very light shadows (if any). Bench uses rgba(0,0,0,0.06) 0px 1px 8px 0px with a deeper rgba(0,0,0,0.16) 0px 31px 30px -18px for pricing cards (captured via CSS). Pilot uses shadow-free card designs with background color differentiation. FreshBooks uses minimal elevation. The overall aesthetic is flat and clean - heavy shadows feel manipulative and undermine financial trust.",
+      "typical_values": [
+        "0 1px 3px rgba(0,0,0,0.06)",
+        "0 1px 8px rgba(0,0,0,0.06), 0 31px 30px -18px rgba(0,0,0,0.16)",
+        "0 2px 8px rgba(0,0,0,0.08)",
+        "none (background-color or border differentiation)"
+      ]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, logo left, product nav dropdowns center, dual CTA buttons right. Bench: logo + Services/Platform/Pricing/Resources/About dropdowns + 'Log in' text + 'Free Trial' solid green + 'Schedule Call' outlined. Pilot: logo + mega menu with icon-grouped categories + 'Sign In' ghost + 'Get Started' solid. FreshBooks: logo + product dropdowns + 'Login' + 'Buy Now & Save' + 'Try It Free')",
+      "hero (headline + subtext + dual CTA + trust badge inline. Bench: white/light bg, 'Confidence in your numbers without doing the math.' + '1M+ months'/'$200M+ savings' stats. Pilot: dark bg, question-format headline 'If you're buried in bookkeeping, who's leading the company?' + 'Trusted by 3,000+ startups'. FreshBooks: dark navy bg with layered SVG patterns, 'Small business software that makes the hard part easy' + '70% off for 4 months' offer badge + PCMag 4.5 rating)",
+      "trust_bar (partner/integration logos in grayscale grid: Bench shows Gusto, Relay, Bluevine, Shopify, Square, Main Street; FreshBooks shows Zapier, Gusto, HubSpot, Square, FundBox, Hurdlr, NiceJob, Acuity; Pilot shows client company logos. 6-10 logos in 1-2 rows. Bench adds press logos separately: Entrepreneur, NYT, WSJ, Forbes)",
+      "stats_row (large number counters: Bench '1M+ months of books'/'$200M+ tax savings'/'35,000+ customers'; FreshBooks '553hrs saved/year'/'160+ countries'/'$7000 billable hours saved'/'30M+ businesses'; Pilot '3,000+ growth-driven startups'. 3-4 key metrics in horizontal row, large numerals with small descriptive labels)",
+      "features_grid (3-4 primary feature cards: Bench shows One-on-one support, Financial reporting, Real-time insights, Tax season. FreshBooks shows Invoicing, Billing & Payments, Expenses, Payroll as primary four, then 8 more in secondary grid. Each card: icon + heading + description + 'Learn about X' link + product screenshot(s). Pilot shows 'Smart tools' with platform screenshots)",
+      "how_it_works (numbered steps 1-4 with icons. Bench: dedicated bookkeeper + software + clarity + tax-ready. Pilot: growth scenario cards with real customer questions)",
+      "testimonials (quote carousel: Bench has 3 named testimonials with photos + Trustpilot star ratings displayed. FreshBooks has carousel with 3 quotes + photos + company names. Pilot has detailed case studies with problem/solution/result format + CFO team bios with quotes. This section is critical - real human faces and names build trust)",
+      "pricing (major section with prominent link. Bench pricing page: Annual/Monthly toggle + 4 plan cards horizontal, each with plan name/price/discount badge/feature bullets/dual CTAs/'100% tax deductible' badge. FreshBooks: Lite/Plus/Premium plans. Pilot: enterprise/service pricing. Pricing is always transparent with no hidden fees emphasized)",
+      "savings_calculator_or_roi (unique to accounting: Bench's 'Bookkeeping just got more affordable' section with partner discounts + referral program + '100% tax deductible' emphasis. FreshBooks: 'Save up to $7000 in billable hours'. Pilot: case study ROI metrics)",
+      "integrations_ecosystem (partner logos + app marketplace. FreshBooks: '100+ apps. Infinite possibilities.' + AppStore link. Bench: partner integrations grid. Accounting tools must show they work with existing software stack)",
+      "support_reassurance (FreshBooks: 'Support that actually supports you' with 4.8/5.0 rating, 120,000+ reviews, 100+ staff. Bench: FAQ accordion + contact info. Pilot: dedicated CFO team bios)",
+      "faq (accordion-style expandable Q&A. Bench: 8+ questions with plus/minus toggle icons. FreshBooks: 8 accordion questions with chevron toggles. Accounting buyers have specific questions - FAQ sections are substantial)",
+      "final_cta (centered, often dark bg. Bench: 'Spend less time bookkeeping...' + 'Get started' + 'BOOK A demo' dual CTAs. FreshBooks: 'Ready to get started?' + both primary CTAs. Pilot: 'Get clarity on cash flow...' + 'Get Started' CTA)",
+      "footer (dark background on all three brands. Multi-column link layout: 4 columns typical. Bench: Company/Product/Resources/Partners + phone '1 (888) 760 1940' + copyright + legal links. Pilot: Services/Industries/Resources/Company + contact email + legal. FreshBooks: product/support/company/partners columns + app store badges + social icons + copyright. Dark footer signals finality and professionalism)"
+    ],
+    "hero_variants": [
+      "light_clean_hero (Bench style - white/light background, benefit-driven headline, stats badges inline, dual CTA, minimal imagery, lets copy do the work. Professional and transparent - like a clean financial statement)",
+      "dark_question_hero (Pilot style - dark background, conversational question-format headline directly addressing founder pain, 'Trusted by X startups' badge, dual CTA. Premium and direct - feels like a strategic advisor)",
+      "dark_product_hero (FreshBooks style - dark navy background with layered decorative SVG patterns, offer badge prominently displayed, PCMag rating inline, dashboard/product screenshot as hero visual. Product-forward with promotional energy)"
+    ],
+    "card_variants": [
+      "feature_card (icon + heading + 1-2 sentence description + product screenshot(s) + 'Learn about X' link. Used by all three brands for primary feature presentation. FreshBooks: 4 primary feature cards with paired device mockups showing actual product UI)",
+      "pricing_card (plan name + price + discount badge + feature bullet list + dual CTAs + tax/reassurance note. Bench: 4 cards horizontal with Annual/Monthly toggle. Clean, minimal borders, transparent pricing. '100% tax deductible' on every card)",
+      "testimonial_card (circular headshot photo + quote + name + title + company name. Carousel format common. Bench: 3 cards. FreshBooks: 3 cards with carousel navigation. Pilot: detailed case study format with problem/solution/result structure)",
+      "persona_card (icon + persona label + description + 'Learn More' link. FreshBooks: 'Use FreshBooks your way' - Freelancers, Solopreneurs, Businesses with employees, Businesses with contractors. 4-column grid with chevron indicators)",
+      "stat_card (large numeral + short label. Bench: 1M+ months, $200M+ savings. FreshBooks: 553hrs, 160+ countries, $7000, 30M+. 3-4 in horizontal row. Numbers are displayed prominently, often with counter animation)",
+      "case_study_card (Pilot-specific: problem statement + 'WHAT WE BUILT' solution + 'THE RESULT' with quote, company logo, and 'Read story' link. Detailed, outcome-focused, with measurable metrics)",
+      "resource_card (blog/article: thumbnail image + category badge + title + date + 'Read more' link. Bench: blog resources section with tax/accounting topic images)",
+      "integration_card (grayscale partner logo + company name. 2-3 row grid. FreshBooks: AppStore card grid with 10+ logos. Used to demonstrate ecosystem compatibility)"
+    ],
+    "accounting_specific_patterns": {
+      "number_density": "Accounting homepages have the highest density of specific numbers of any SaaS category: customer counts, months of books, hours saved, dollars saved, tax credits, support ratings, partner counts, review counts. Numbers are precise ('35,000+' not 'thousands'), conveying accuracy and transparency.",
+      "trust_layer_cake": "Trust signals are stacked throughout the page in layers: hero inline stats → partner logo bar (top) → testimonials (mid) → press logos (mid-late) → ratings (late) → FAQ reassurance (bottom). No single trust section - trust is woven into every section.",
+      "tax_emphasis": "Unique to accounting: tax-related reassurance appears prominently. Bench places '100% tax deductible' on every pricing card. Tax season readiness is featured as a primary capability. Tax savings are quantified as hero stats ($200M+ in savings with tax credits).",
+      "human_bookkeeper_imagery": "All three brands emphasize the human element: Bench promises a dedicated bookkeeper (not just software). Pilot positions former CFOs as your team. FreshBooks highlights support staff. Real human faces are used throughout - accounting is ultimately a human-trust business.",
+      "compliance_transparency": "FAQ sections are unusually substantial (8+ questions). Legal links are prominent in footer. 'No hidden fees' messaging appears near pricing. Accounting brands must work harder to overcome suspicion of financial opacity.",
+      "dual_conversion_paths": "Every brand offers both self-serve (free trial / get started) and human-assisted (schedule call / book demo / talk to team) conversion options. Accounting purchase decisions involve trust and consideration - forcing only one path would lose conversions."
+    }
+  },
+  "tone_profile": {
+    "keywords": ["trustworthy", "professional", "confident", "approachable", "precise"],
+    "headline_style": "Accounting headlines are benefit-forward and confidence-building. Bench: 'Confidence in your numbers without doing the math.' - addresses anxiety directly, promises relief. Pilot: 'If you're buried in bookkeeping, who's leading the company?' - challenges the founder, reframes bookkeeping as strategic. FreshBooks: 'Small business software that makes the hard part easy' - warm and encouraging, positions product as solution to pain. Common patterns: concise (6-12 words), benefit-outcome focused, addresses a specific pain point, uses 'your'/'you' for direct address, avoids jargon. Headlines never mention features - they sell peace of mind, time savings, and financial clarity.",
+    "cta_style": "Accounting CTAs are action-oriented and value-emphasizing. 'Free Trial' (Bench) - removes risk, lowers barrier. 'Buy Now & Save' (FreshBooks) - transactional with savings hook. 'Get Started' (Pilot) - confident, assumes readiness. 'Schedule Call' / 'Book a demo' (all three) - human-assisted alternative. Key patterns: 'Free' and 'Save' are the most effective words, dual CTAs provide choice, primary CTAs use brand primary color for maximum contrast, secondary CTAs are outlined/ghost style. Never aggressive or countdown-driven - accounting purchases are considered decisions, not impulse buys.",
+    "trust_signals": [
+      "customer_count ('Trusted by 35,000+ American small business owners' - Bench; 'Trusted by 3,000+ growth-driven startups' - Pilot; '30M+ small businesses have used FreshBooks')",
+      "expert_ratings ('4.5 Excellent' PCMag.com - FreshBooks; Trustpilot star ratings - Bench; 'Award-winning in-house customer support' - FreshBooks)",
+      "quantified_savings ('1M+ months of completed books', '$200M+ in savings with tax credits' - Bench; 'Save up to 553 hours each year', 'Save up to $7000 in billable hours' - FreshBooks)",
+      "partner_logos (Gusto, Relay, Bluevine, Shopify, Square, Main Street - Bench; Zapier, Gusto, HubSpot, Square, FundBox, Hurdlr - FreshBooks; client company logos - Pilot)",
+      "press_mentions ('Featured in' Entrepreneur, New York Times, Wall Street Journal, Forbes - Bench)",
+      "named_testimonials (Justin Metros, Albert Lamont, Laura Simms, Bria Hash - Bench; Damona Hoffman - FreshBooks; Yi Jean Lim, Cole Levin, Neha Banik - Pilot)",
+      "case_studies (Pilot: Facktor, Maev, OptimalAI, Passage AI with named founders and measurable outcomes)",
+      "support_quality ('4.8/5.0 Star Reviews' across '120,000+ reviews' with '100+ Support staff' - FreshBooks; FAQ with 8+ detailed questions - Bench)",
+      "security_compliance (ISO certifications mentioned; data security emphasized; 'bank-level' encryption)",
+      "tax_reassurance ('100% tax deductible' on every pricing card - Bench; tax season features prominently positioned)",
+      "free_offer_de_risking ('do one prior month of your bookkeeping...for free' - Bench; '70% off for 4 months' - FreshBooks)",
+      "real_human_faces (dedicated bookkeeper photos - Bench; CFO team headshots with professional bios - Pilot; customer testimonial photos - all three)"
+    ],
+    "anti_patterns": [
+      "fake urgency (countdown timers, 'limited spots', fake scarcity - undermines financial trust)",
+      "hidden or unclear pricing (accounting buyers are price-sensitive and will bounce if pricing is obscured)",
+      "stock photos of 'business people' (accounting audiences detect inauthenticity - use real customer/team photos)",
+      "jargon without explanation (while the audience is business-literate, accounting terms like 'accrual basis', 'reconciliation', 'chart of accounts' need context for small business owners)",
+      "single CTA in hero (accounting buyers range from 'ready to buy' to 'need to talk to someone' - always provide both paths)",
+      "aggressive sales language ('BUY NOW', 'DON'T MISS OUT') - accounting is a trust-based, considered purchase",
+      "cluttered or dense layouts (accounting information is already complex - visual simplicity builds trust)",
+      "generic benefit claims without numbers (accounting demands precision - 'save time' is weak; 'save 553 hours/year' is credible)",
+      "hiding the human element (software-only positioning is less effective than software + human expert - Bench and Pilot win on this)"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "forest_green_trust (Bench: #094C48 deep emerald primary, white/light surfaces, #4A4A4A text - fresh, stable, growth-oriented. Forest green connects to money, growth, and environmental responsibility. White backgrounds convey transparency and cleanliness)",
+      "navy_professional (FreshBooks: #1B2C4C deep navy primary, white/light surfaces, layered SVG decorative patterns, bright green accent CTAs - established, dependable, polished. Navy is the safest, most conservative accounting color - it says 'we've been here and we'll be here'",
+      "purple_premium (Pilot: deep purple primary, dark hero sections, white/light alternating sections - elevated, strategic, exclusive. Purple signals premium service and high-touch CFO-level expertise rather than DIY software)",
+      "blue_modern (Xero: #13B5EA bright blue primary, #1B3149 navy accent, white surfaces, minimalist design - fresh, clean, tech-forward. Bright blue distinguishes Xero as the modern, cloud-native alternative to legacy accounting software)"
+    ],
+    "typography_mood": [
+      "geometric_clean (Bench: Inter-like geometric sans-serif, single family with weight hierarchy, large readable body text - professional, transparent, modern but not trendy)",
+      "friendly_modern (FreshBooks: Alexandria/Outfit geometric sans-serif with slightly rounded letterforms, warm and approachable - friendly enough for freelancers and solopreneurs, professional enough for small business)",
+      "bold_direct (Pilot: clean sans-serif with heavier heading weights, conversational question-format headlines - confident, direct, challenges the reader. Typography matches the strategic advisor positioning)",
+      "minimal_system (Xero: system fonts or simple geometric sans-serif, minimal hierarchy, clean spacing - lets the product and numbers speak. No decorative typography - pure function over form)"
+    ],
+    "layout_density": [
+      "spacious_trust (Bench: generous whitespace, clean section alternation, pricing cards with room to breathe - feels like a well-formatted financial statement. Information is presented with care and precision)",
+      "product_showcase (FreshBooks: denser layout with product screenshots in feature cards, layered hero patterns, multiple CTAs repeated throughout - designed for product-led conversion. Shows rather than just tells)",
+      "premium_minimal (Pilot: fewer sections, more impact per section, dark/light dramatic alternation, case study depth over breadth - feels like a consulting firm website. Premium positioning through restraint)",
+      "enterprise_scale (Xero: wide content width, multi-column grids, feature-rich pages with clean organization - designed for small business through enterprise, must accommodate complex information architecture)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "trust_bar", "stats_row", "features_grid", "how_it_works", "testimonials", "pricing", "integrations_ecosystem", "support_reassurance", "faq", "final_cta", "footer"],
+      "curated_stack": "accounting_trust_landing",
+      "key_differentiator": "Trust signals must appear within the first 3 scroll depths and be continuously reinforced. Pricing must be transparent (linked from hero, shown before footer). Human bookkeeper/accountant imagery is essential - pure software positioning underperforms in accounting. Dual conversion paths (self-serve + human-assisted) are mandatory."
+    },
+    "pricing_page": {
+      "sections": ["header", "hero_pricing_headline", "plan_toggle", "pricing_cards", "comparison_table", "catch_up_addon", "savings_emphasis", "faq", "partner_logos", "final_cta", "footer"],
+      "best_practices": "Bench pattern: Annual/Monthly toggle prominently styled, Annual default with 'Save up to 20%' badge, 4 horizontal cards with transparent pricing, '100% tax deductible' on every card, feature bullets with checkmarks, dual CTAs per card (primary + secondary). Never hide pricing behind 'Contact Sales' for core plans. FAQ section directly addresses pricing concerns. Add-on services (Catch Up, tax filing) presented as separate clear options."
+    },
+    "features_page": {
+      "sections": ["header", "hero", "feature_nav_sidebar", "feature_detail_sections", "product_screenshots", "integrations", "final_cta", "footer"],
+      "best_practices": "FreshBooks pattern: feature-specific pages with product screenshot pairs showing actual UI, 'Learn about [Feature]' cross-links, consistent card format across all features. Each feature gets: problem statement → solution description → product screenshot(s) → CTA to try/pricing."
+    },
+    "about_page": {
+      "sections": ["header", "mission_story", "team_photos", "customer_stories", "press_mentions", "careers_cta", "footer"],
+      "best_practices": "Team photos with real names and roles build trust. Bench: company origin story emphasizing 'real humans, perfect books'. Pilot: CFO team bios with professional credentials. Accounting about pages must answer 'who is handling my financial data?'"
+    },
+    "resource_blog": {
+      "sections": ["header", "category_filter", "article_grid", "featured_guide", "newsletter_cta", "footer"],
+      "best_practices": "Tax and accounting topics organized by business need. Bench: tax hub, guides, webinars, tools categories. FreshBooks: blog with invoicing, expenses, tax, payroll topics. Content marketing is central to accounting SaaS - education builds trust before purchase."
+    }
+  }
+}

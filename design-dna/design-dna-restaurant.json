@@ -1,0 +1,239 @@
+{
+  "industry": "restaurant",
+  "subtypes": ["cafe-coffee", "fast-casual", "fine-dining", "food-delivery", "quick-service"],
+  "extracted_from": [
+    {"source": "DESIGN.md library", "brand": "starbucks", "style": "warm-green-cafe", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "cafe", "style": "cozy-brown-minimal", "date": "2026-05-30"},
+    {"source": "DESIGN.md library", "brand": "uber", "style": "black-white-urban", "date": "2026-05-30"},
+    {"source": "CloakBrowser extraction", "brand": "sweetgreen", "style": "editorial-farm-fresh", "date": "2026-06-02"},
+    {"source": "CloakBrowser extraction", "brand": "chipotle", "style": "earthy-warm-industrial", "date": "2026-06-02"},
+    {"source": "CloakBrowser extraction", "brand": "shakeshack", "style": "bold-minimal-classic", "date": "2026-06-02"},
+    {"source": "CloakBrowser extraction", "brand": "diginn", "style": "statement-seasonal-dark", "date": "2026-06-02"}
+  ],
+  "reference_brands": ["Starbucks", "Cafe", "Uber (Uber Eats)", "Sweetgreen", "Chipotle", "Shake Shack", "Dig Inn"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#006241", "#5d4432", "#000000", "#1e3932", "#00473c", "#451400", "#005740"],
+      "primary_role": "Deep brand colors for headings and dark feature bands. Starbucks green (#006241) and Sweetgreen green (#00473c) for farm-to-table brand moments. Cafe brown (#5d4432) for warmth. Uber black (#000000) for delivery/urban energy. Chipotle maroon (#451400) for earthy Mexican-grill identity — used as text color site-wide, not just headings. Dig Inn green (#005740) for seasonal healthy food brand. Dark greens, browns, and near-blacks anchor food brands.",
+      "accent": ["#00754a", "#cba258", "#000000", "#e6ff55", "#ad2118", "#b68207", "#a8d6ae"],
+      "accent_role": "CTAs, rewards badges, and ordering actions. Starbucks Green Accent (#00754a) for all CTAs. Gold (#cba258) reserved for Rewards ceremony. Sweetgreen neon green (#e6ff55) is a bold, unmistakable CTA accent on dark green backgrounds — highly distinctive. Chipotle brand red (#ad2118) for urgency-driven ORDER NOW CTAs. Chipotle gold (#b68207) for secondary text links. Dig Inn light green (#a8d6ae) for accent sections and app download panels. Uber uses pure black for delivery CTAs.",
+      "surface": ["#f2f0eb", "#f9f7f5", "#ffffff", "#edebe9", "#1e3932", "#000000", "#f4f3e7", "#d8e5d6", "#e8dcc6", "#0e1512", "#f0f0f0", "#1a1a1a", "#161616", "#e6f0e7", "#f9f6eb"],
+      "surface_role": "Warm cream/off-white canvases dominate across all brands. Sweetgreen cream (#f4f3e7) is the farm-table base surface. Sweetgreen sage (#d8e5d6) and warm peach (#e8dcc6) provide subtle section variation. Sweetgreen dark header (#0e1512) creates an inverted nav. Chipotle uses pure white (#ffffff) and light gray (#f0f0f0). Dig Inn alternates near-black sections (#1a1a1a, #161616) with mint (#e6f0e7), cream (#f9f6eb), and light green (#a8d6ae) — a dark/light color-block rhythm. Shake Shack sticks to white dominant. White for cards across all brands. Dark green/black for feature bands and footers.",
+      "neutral": ["rgba(0,0,0,0.87)", "#3e2b1e", "#4b4b4b", "#afafaf", "rgba(0,0,0,0.58)", "#451400", "#0e1512", "#696969", "#161616", "#707070"],
+      "neutral_role": "Warm-toned text, never pure black for body (exceptions: Shake Shack, Dig Inn). Starbucks uses 87% opacity black for softer reading on cream. Cafe uses warm dark brown (#3e2b1e). Chipotle uses #451400 (maroon) for ALL body text — unique among restaurants, creating an earthy, warm reading experience. Sweetgreen uses dark green (#0e1512) for body text and gray (#696969) for meta/labels. Dig Inn uses near-black (#161616) for body on light surfaces, white on dark sections. Shake Shack uses pure black text.",
+      "border": ["#d6dbde", "#cacacb", "#e7e7e7", "#000000"],
+      "border_role": "Subtle warm-toned borders for form inputs and card separators. Uber uses stark black borders intentionally — the only brand with high-contrast borders. Most restaurant brands minimize visible borders, preferring color-block separation.",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#c82014",
+        "info": "#2563eb"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["SoDoSans", "Poppins", "UberMove", "Helvetica Neue", "system-ui", "SweetSansText", "Nunito", "Jost", "Flama", "Grenette", "Trade Gothic"],
+      "body_fonts": ["SoDoSans", "Poppins", "UberMoveText", "Inter", "system-ui", "SweetSansText", "Nunito", "Jost", "Flama"],
+      "mono_fonts": ["JetBrains Mono", "SF Mono", "Consolas"],
+      "heading_weight": 600,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 16, "max": 90, "unit": "px"},
+        "h2": {"min": 20, "max": 120, "unit": "px"},
+        "h3": {"min": 16, "max": 32, "unit": "px"},
+        "body": {"min": 14, "max": 19, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.5, "heading": 1.2},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 32, "max": 96, "unit": "px"},
+      "section_gap": {"typical": 64, "unit": "px"},
+      "content_max_width": {"typical": 1280, "unit": "px"},
+      "card_padding": {"typical": "16px-24px"}
+    },
+    "border_radius": {
+      "sharp": "0px-4px (Sweetgreen uses 0px for cards and text buttons; Chipotle uses 4px universally for all buttons and inputs — a major exception to the restaurant pill convention)",
+      "rounded": "12px (content cards, product tiles — the universal card radius for food brands)",
+      "pill_small": "30px-32px (Shake Shack 30px for primary CTA, Dig Inn 32px for secondary 'Order Now' and 'Order catering')",
+      "pill_large": "50px-60px (Dig Inn primary 'Order Now' at 60px — extra generous pill for statement CTAs)",
+      "pill_extreme": "1000px (Sweetgreen 'Order now' — effectively a full pill on wide buttons)",
+      "circle": "50% (Sweetgreen Flickity carousel arrows, icon-only buttons)",
+      "typical_button": "Varies by brand strategy. Sweetgreen: 1000px pill for CTAs. Chipotle: 4px sharp (industry outlier — rectangular, not pill). Shake Shack: 30px pill. Dig Inn: 60px (primary) / 32px (secondary). Starbucks: 50px. Uber: 999px. The 'universal pill' rule has exceptions — Chipotle proves sharp rectangles work in fast-casual.",
+      "typical_card": "12px — consistent across Starbucks, Cafe, Uber. Sweetgreen and Chipotle use 0px (no radius, flat edge-to-edge)."
+    },
+    "button_styles": [
+      {
+        "variant": "primary_filled",
+        "bg": "brand green, brand red, or black",
+        "color": "white",
+        "border_radius": "varies: 1000px (Sweetgreen) / 4px (Chipotle) / 30px (Shake Shack) / 60px (Dig Inn)",
+        "text": "Order now, Add to order, Reserve, Explore menu, ORDER NOW, Build your own bowl",
+        "font_size": "14-20px",
+        "font_weight": "400-750",
+        "padding": "varies: Sweetgreen 15px 60px, Chipotle 0px 16px, Dig Inn 16px 40px"
+      },
+      {
+        "variant": "primary_outlined",
+        "bg": "transparent",
+        "color": "brand color",
+        "border_radius": "4px (Chipotle) to 50px (Starbucks)",
+        "text": "Learn more, Start an order, See menu, SIGN IN",
+        "font_size": "14-20px",
+        "font_weight": "400-600",
+        "border": "1px solid brand color"
+      },
+      {
+        "variant": "dark_surface",
+        "bg": "#000000 or #161616",
+        "color": "white",
+        "border_radius": "32px (Dig Inn) to 50px (Starbucks)",
+        "text": "Join now, Sign in, Get the app, Order Now, Order catering",
+        "font_size": "14-20px",
+        "font_weight": "600-750"
+      },
+      {
+        "variant": "neon_accent (Sweetgreen exclusive)",
+        "bg": "#e6ff55",
+        "color": "#00473c",
+        "border_radius": "1000px (full pill)",
+        "text": "Order now, Let us know, Find out more",
+        "font_size": "16px",
+        "font_weight": "400",
+        "padding": "15px 60px 13px",
+        "text_transform": "uppercase"
+      },
+      {
+        "variant": "floating_action (Frap/Cart)",
+        "bg": "brand color",
+        "color": "white",
+        "border_radius": "50%",
+        "size": "56px",
+        "text": "Icon only (shopping bag, order icon)",
+        "position": "fixed bottom-right"
+      },
+      {
+        "variant": "category_tab (Sweetgreen)",
+        "bg": "transparent",
+        "color": "#0e1512",
+        "border_radius": "4px",
+        "font_size": "48px",
+        "font_weight": "200 (ultra-light)",
+        "text": "Salads, Bowls, etc.",
+        "text_transform": "capitalize"
+      }
+    ],
+    "elevation": {
+      "shadows": "whisper-soft layered shadows (Starbucks, Uber) or flat (Cafe, Sweetgreen, Chipotle, Dig Inn)",
+      "approach": "Starbucks uses 2-3 layer low-alpha shadows for cards and floating CTAs. Uber uses single low-opacity shadows (rgba(0,0,0,0.12-0.16)) for minimal lift. Sweetgreen, Chipotle, Shake Shack, and Dig Inn are entirely flat (no box-shadows on cards). Modern fast-casual brands prefer color-block alternation over shadow-based depth. Depth primarily comes from color-block section alternation and dark/light rhythm.",
+      "typical_values": ["0 0 0.5px rgba(0,0,0,0.14), 0 1px 1px rgba(0,0,0,0.24)", "rgba(0,0,0,0.12) 0px 4px 16px 0px", "0 0 6px rgba(0,0,0,0.24) + 0 8px 12px rgba(0,0,0,0.14)", "none (Sweetgreen, Chipotle, Shake Shack, Dig Inn — flat design)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, logo left, nav links center, CTA buttons right — inverted dark header for Sweetgreen, transparent for Dig Inn, white for Chipotle)",
+      "promotional_strip (optional top banner — 'Free shipping on orders over $X', 'New spring menu')",
+      "hero (varies by brand: cream editorial, white video-centered, slider carousel, or dark statement)",
+      "category_navigation (horizontal scroll of menu categories — Sweetgreen uses ultra-light 48px transparent tabs, Chipotle uses anchor-links to menu sections)",
+      "menu_grid (3-4 column grid of product cards — photo, name, description, price, add-to-order button)",
+      "feature_band (full-width dark section — Dig Inn uses #1a1a1a near-black, Sweetgreen uses dark green #0e1512, Chipotle uses white with video background)",
+      "rewards_loyalty (status tiers — points system, benefits list — Chipotle Rewards, Dig Inn Rewards)",
+      "gift_cards (illustrated card grid with physical-card photography feel — Shake Shack has Shack Store)",
+      "testimonials (customer quotes, review ratings — Dig Inn has a dedicated review content block with mint #e6f0e7 background)",
+      "app_download (QR code + app store badges, phone mockup — Dig Inn uses light green #a8d6ae background)",
+      "newsletter_cta (email signup with incentive — Sweetgreen, Dig Inn)",
+      "footer (4-6 column: menu, about, careers, social impact, legal, region selector)"
+    ],
+    "hero_variants": [
+      "split_warm (Starbucks style — 40% product photo right, 60% text left, cream canvas, green accents)",
+      "dark_feature_band (full-width #1e3932 dark green, white text, product photo + CTAs)",
+      "cozy_minimal (Cafe style — #f9f7f5 warm surface, brown typography, clean centered layout)",
+      "urban_bold (Uber Eats style — black/white contrast, 52px UberMove Bold, pill CTAs, delivery-focused)",
+      "editorial_confident (Sweetgreen style — #f4f3e7 cream canvas, 16px h1 at 400 weight, dark green text #00473c, neon green #e6ff55 CTA pill, product photography on warm tile backgrounds — tiny type that reads as supremely confident)",
+      "video_centered (Chipotle style — full-width video background, white overlay, 33.6px h1 in maroon #451400, brand-red #ad2118 ORDER NOW button at 20px with 4px sharp radius)",
+      "slider_carousel (Shake Shack style — Slick slider with full-bleed 2880x1040 photography, 47px Jost bold h1, 30px pill black CTA, minimal overlay)",
+      "statement_dark (Dig Inn style — 90px Flama 750-weight h1 in white on dark/transparent background, 120px h2, 60px green pill CTA — type IS the hero, photography is background)"
+    ],
+    "feature_card_variants": [
+      "menu_product_card (photography top, name + description + price + add button below, 12px radius or 0px flat)",
+      "rewards_status_card (dark panel, tier badge, benefits list, progress bar)",
+      "gift_card_tile (illustrated photograph fills entire card, subtle drop shadow, physical card feel)",
+      "category_image_card (full-bleed food/drink photography with text overlay)",
+      "two_up_image_reveal (Sweetgreen — side-by-side columns, one with text and padding, one full-bleed image, scroll-triggered image reveal animation)",
+      "integrated_content_block (Dig Inn — alternating image+text blocks, right-aligned or left-aligned image, dark #1a1a1a background, white text, site-button CTAs)",
+      "word_marquee (Dig Inn — full-width black #000000 section with scrolling text banner)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["warm", "inviting", "confident", "premium-casual", "community", "rewarding", "fresh", "editorial", "earthy", "bold", "seasonal", "statement"],
+    "headline_style": "benefit-driven, warm and welcoming, 3-7 words (e.g., 'Free coffee is just the beginning', 'Explore our spring menu', 'Order delivery near you', 'Inspiring healthier communities', 'CHIPOTLE HONEY CHICKEN')",
+    "cta_style": "action-oriented ordering verbs (Order now, ORDER NOW, Add to order, Explore menu, Start an order, Build your own bowl, Reserve, Join now). Chipotle uses ALL-CAPS UPPERCASE for primary CTAs creating urgency. Sweetgreen uses sentence case for a softer, more editorial feel. Dig Inn alternates green and black pill CTAs by hierarchy.",
+    "trust_signals": ["star ratings and customer reviews", "nutritional information transparency", "sustainability commitments", "rewards program stats", "store locator / find nearest", "allergen information", "secure payment badges", "partner logos", "seasonal ingredient sourcing (Sweetgreen, Dig Inn)", "food ethics / mission pages (Chipotle 'Our Values', Dig Inn 'Our Mission', Sweetgreen 'Our Mission')", "calorie counts on menu cards"],
+    "anti_patterns": ["cold corporate tone", "pure white backgrounds without warmth (unless Chipotle-style earth tones in text compensate)", "no food/drink photography above the fold", "aggressive sales language (except Chipotle's ALL-CAPS which is brand-appropriate)", "generic stock photos", "complex navigation that hides the menu", "low-contrast CTA buttons that blend into the background"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "warm_green_cafe (Starbucks: #f2f0eb cream canvas, #006241 brand green, #1e3932 dark bands, #cba258 gold rewards — four-tier green system)",
+      "cozy_brown (Cafe: #f9f7f5 warm surface, #5d4432 primary brown, #3e2b1e dark text — quiet coffee-shop warmth)",
+      "urban_monochrome (Uber Eats: #ffffff + #000000 binary, #efefef chip gray, whisper shadows — delivery efficiency)",
+      "editorial_farm_fresh (Sweetgreen: #f4f3e7 cream base, #00473c brand green, #0e1512 dark header, #e6ff55 neon CTA accent, #d8e5d6 sage, #e8dcc6 peach — sophisticated farm-to-table, editorial confidence through minimalism)",
+      "earthy_warm_industrial (Chipotle: #ffffff base, #451400 maroon text everywhere, #ad2118 red CTAs, #b68207 gold accents, #f0f0f0 light gray — Mexican grill warmth, industrial efficiency, earthy brand color as text color)",
+      "bold_minimal_classic (Shake Shack: #ffffff dominant, #000000 black CTAs and text, #707070 muted gray — burger joint confidence, geometric typography carries the brand, minimal color lets food photos pop)",
+      "statement_seasonal_dark (Dig Inn: #f9f6eb cream, #1a1a1a near-black sections, #000000 pure black marquee, #005740 green CTAs, #e6f0e7 mint, #a8d6ae light green — dark/light color-block rhythm, massive type, seasonal fresh energy)"
+    ],
+    "typography_mood": [
+      "tight_proprietary (Starbucks: SoDoSans -0.01em tracking everywhere, 50px pill buttons, weight 600 headings)",
+      "expressive_poppins (Cafe: Poppins with wide weight range, desktop-first scale, JetBrains Mono for code)",
+      "bold_geometric (Uber: UberMove Bold 700 exclusively for headlines, UberMoveText Medium 500 for UI — strict two-font hierarchy)",
+      "editorial_serif_sans (Sweetgreen: SweetSansText for body (400 weight), Grenette serif for display moments, 16px h1 at 400 weight — tiny, confident, magazine-like. h2 at 24px with 0.72px letter-spacing. Category tabs at 48px ultra-light 200 weight.)",
+      "rounded_friendly (Chipotle: Nunito 500 weight for all headings — rounded, approachable, fast-casual friendly. Trade Gothic for hero buttons. Single weight (500) throughout creates consistent warmth.)",
+      "geometric_statement (Shake Shack: Jost 700 weight for all h1-h3 headings — modern geometric sans, 47px h1 at 56px line-height, 30px h2 at 34px line-height, 24px h3 at 30px line-height. Black-on-white bold typography.)",
+      "massive_condensed (Dig Inn: Flama at 750 weight for h1 (90px / 86.4px line-height), 700 weight for h2 (120px / 115.2px line-height), 700 weight for h3 (30px). Type-first design where headings fill the viewport. Most aggressive scale in the restaurant industry.)"
+    ],
+    "layout_density": [
+      "color_block_rhythm (Starbucks: cream -> white -> dark green sections alternate, creating visual cadence)",
+      "spacious_cozy (Cafe: generous whitespace on warm canvas, 2/4/8/12/16/24/32/48 spacing scale)",
+      "efficient_urban (Uber: compact, information-dense, transit-system clarity — content packed but never cluttered)",
+      "editorial_airy (Sweetgreen: generous whitespace on cream, two-up columns with image reveal, collection grids, content max-width ~1280px)",
+      "section_dense (Chipotle: information-loaded sections, video hero taking full viewport, AEM component-based pages, content blocks stacked vertically with minimal spacing)",
+      "slider_sparse (Shake Shack: carousel hero dominates, minimal content density, food photography is the primary content, large type over images)",
+      "dark_light_rhythm (Dig Inn: dark -> dark -> black -> mint -> cream -> light green — aggressive color-block alternation, each section full viewport height, marquee text breaks, massive type)"
+    ],
+    "button_radius_spectrum": {
+      "sharp_4px": "Chipotle — all buttons (ORDER NOW, CREATE AN ACCOUNT, SIGN IN) use 4px border-radius. Rectangular, industrial, efficient. The only major restaurant brand rejecting the pill convention.",
+      "pill_30px": "Shake Shack — primary black CTA uses 30px. Rounded but restrained.",
+      "pill_32px": "Dig Inn — secondary CTAs (Order Now on dark, Order catering, Build your own bowl, Explore Our Mission) at 32px. Slightly rounded pill.",
+      "pill_50px": "Starbucks — classic restaurant pill. The reference standard.",
+      "pill_60px": "Dig Inn — primary green 'Order Now' at 60px. Extra generous, highly clickable, statement-level CTA.",
+      "pill_1000px": "Sweetgreen — 'Order now' neon green pill, essentially full-capsule. The extreme end of the spectrum."
+    }
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "promotional_strip", "hero", "category_navigation", "menu_grid", "feature_band", "rewards_loyalty", "app_download", "footer"],
+      "curated_stack": "restaurant_warm_landing"
+    },
+    "menu_page": {
+      "sections": ["header", "category_filter", "menu_grid", "nutritional_info", "footer"],
+      "best_practices": "Category tabs/pills for menu sections, product cards with photo + name + calories + price, dietary badges, quick-add to order. Sweetgreen uses ultra-light 200-weight 48px category names. Chipotle uses anchor-based menu navigation."
+    },
+    "product_detail_page": {
+      "sections": ["breadcrumb", "product_hero", "size_selector", "customizations", "nutrition_table", "add_to_order_cta", "related_items"],
+      "best_practices": "Floating add-to-order button, nutritional facts table with two-column label/value rows, size selector with visual cup icons"
+    },
+    "rewards_page": {
+      "sections": ["header", "hero (dark green band)", "how_it_works", "tier_cards", "partner_offers", "faq", "footer"],
+      "best_practices": "Gold accent exclusively for Rewards ceremony, tier status panels in dark brand color, star/point accumulation visuals. Chipotle Rewards, Dig Inn Rewards, Shake Shack — all major fast-casual brands now have rewards programs."
+    },
+    "locations_page": {
+      "sections": ["header", "search_bar", "map", "location_list", "location_detail_cards", "footer"],
+      "best_practices": "Prominent search with geolocation, map + list dual view, store cards with address + hours + distance + directions CTA, mobile-first (most restaurant traffic searches locations on phone). All 4 new brands (Sweetgreen, Chipotle, Shake Shack, Dig Inn) have dedicated location finders."
+    }
+  }
+}

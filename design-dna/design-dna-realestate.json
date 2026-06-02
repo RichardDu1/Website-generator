@@ -1,0 +1,324 @@
+{
+  "industry": "realestate",
+  "subtypes": ["residential", "commercial", "luxury", "rental", "new_development"],
+  "extracted_from": [
+    {"url": "https://www.zillow.com", "style": "clean-blue-search", "date": "2026-06-02", "source": "brandcolor.dev + web research", "status": "site blocked (403/ERR_ABORTED); data from brand guidelines + design analyses"},
+    {"url": "https://www.compass.com", "style": "luxury-black-gold", "date": "2026-06-02", "source": "WebFetch HTML structure + COMPASS Brand Book PDF (Lora + Roboto)", "status": "site redirected Playwright; structural data + brand book fonts captured"},
+    {"url": "https://www.redfin.com", "style": "clean-red-accent-search", "date": "2026-06-02", "source": "WebFetch structure + design articles + brandcolor.dev", "status": "site redirected Playwright; design article 'It's a Red, Red, Red, Red World' + header UX case study captured"},
+    {"url": "https://www.theagencyre.com", "style": "luxury-black-red-editorial", "date": "2026-06-02", "source": "WebFetch blog announcement + SiteZilla audit", "status": "site 429; design blog post + third-party audit captured"},
+    {"url": "https://www.sothebysrealty.com", "style": "luxury-serif-white", "date": "2026-05-30"},
+    {"style": "synthesized from industry research", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Zillow", "Redfin", "Compass", "Sotheby's International Realty", "The Agency RE", "Realtor.com", "Trulia", "Douglas Elliman", "Keller Williams"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0a1628", "#0d2137", "#13294b", "#1a3a5c", "#006AFF", "#001751", "#000000"],
+      "primary_role": "Header, navigation, footer backgrounds, trust bars. Zillow uses #006AFF for interactive elements. Compass and The Agency use near-black for luxury feel. Redfin uses white headers (not red — discovered via A/B test that white headers increased engagement 500%).",
+      "accent": ["#c8963e", "#d4a853", "#b8860b", "#e6b85c", "#f0d17d", "#C88205", "#F2A619", "#FFD237", "#FFDC69", "#A02021", "#C82025"],
+      "accent_role": "CTA buttons, price highlights, featured badges, luxury markers. Zillow golds symbolizing wealth. Redfin deep red #A02021 as primary brand differentiator. Compass gold for premium feel. The Agency uses red accent sparingly.",
+      "surface": ["#ffffff", "#f8f9fa", "#f4f6f8", "#eef1f5", "#fafaf8", "#E0F2FF", "#FFF9F0"],
+      "surface_role": "Card backgrounds, property cards, alternating section backgrounds. Zillow uses light blue tint (#E0F2FF) for info sections. Compass uses pure white cards on dark backgrounds. Redfin uses near-white with subtle contrast.",
+      "neutral": ["#2d3436", "#4a4a4a", "#636e72", "#8a8f94", "#b2bec3"],
+      "neutral_role": "Body text, property details, secondary information",
+      "border": ["#e0e4e8", "#d1d5db", "#c8ccd0", "#e8ecf0"],
+      "border_role": "Card borders, input fields, dividers, property card edges",
+      "semantic": {
+        "success": "#1a7a3a",
+        "warning": "#d4a853",
+        "error": "#c0392b",
+        "info": "#2980b9",
+        "price_drop": "#27ae60",
+        "hot_listing": "#e74c3c",
+        "new_listing": "#2980b9",
+        "redfin_price_cut": "#C82025",
+        "zillow_premier_agent": "#006AFF",
+        "compass_exclusive": "#c8963e",
+        "coming_soon": "#b8860b"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Playfair Display", "Cormorant Garamond", "DM Serif Display", "Lora", "Cinzel", "Lora Bold Italic"],
+      "body_fonts": ["Inter", "Lato", "Source Sans 3", "Nunito Sans", "Work Sans", "Roboto"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 38, "max": 64, "unit": "px"},
+        "h2": {"min": 28, "max": 44, "unit": "px"},
+        "h3": {"min": 20, "max": 28, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"},
+        "price": {"min": 24, "max": 36, "unit": "px"}
+      },
+      "line_height": {"body": 1.65, "heading": 1.2},
+      "brand_font_pairings": [
+        {"brand": "Zillow", "heading": "System sans-serif / Open Sans", "body": "Open Sans / system sans-serif", "style": "utilitarian, clean, high-readability"},
+        {"brand": "Compass", "heading": "Lora Bold Italic (brand book) / Circular (web)", "body": "Roboto (brand book) / geometric sans-serif (web)", "style": "modern luxury, editorial accent via italic serif headings"},
+        {"brand": "Redfin", "heading": "Sans-serif (clean modern)", "body": "Sans-serif (high readability)", "style": "functional, data-forward, accessible — explicitly moved away from 'odd fonts' per design case study"},
+        {"brand": "The Agency RE", "heading": "Serif (likely Playfair Display or similar)", "body": "Clean sans-serif", "style": "editorial luxury, magazine-quality, high-end global brokerage"}
+      ],
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 56, "max": 104, "unit": "px"},
+      "section_gap": {"typical": 72, "unit": "px"},
+      "content_max_width": {"typical": 1240, "unit": "px"},
+      "card_padding": {"typical": "20px 24px"},
+      "property_card_gap": {"typical": 24, "unit": "px"}
+    },
+    "border_radius": {
+      "sharp": "2px - 4px",
+      "rounded": "6px - 10px",
+      "pill": "9999px",
+      "typical_button": "4px - 8px",
+      "typical_card": "6px - 12px",
+      "property_image": "8px (top corners only, image bleeds to edge)",
+      "zillow_search_bar": "8px (rounded input group, white bg, blue border on focus)",
+      "compass_neighborhood_cards": "4px (sharp, modern, Contentful CDN images)",
+      "redfin_city_pills": "9999px (pill-shaped horizontal scroll chips)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "accent gold (#c8963e or #d4a853) or brand blue (#006AFF for Zillow) or brand red (#A02021 for Redfin)",
+        "color": "white or #0a1628 (dark navy)",
+        "border_radius": "4px or 8px",
+        "text": "action-oriented (Schedule a Tour, Contact Agent, View Listing, Get Pre-Approved, Search, See What I Qualify For)",
+        "font_size": "14-16px",
+        "font_weight": 600,
+        "padding": "12px 28px"
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent",
+        "color": "primary navy or brand color",
+        "border": "1.5px solid primary",
+        "border_radius": "4px",
+        "text": "Learn More, View All Listings, Download Brochure, View All Compass Exclusives",
+        "font_size": "14-16px"
+      },
+      {
+        "variant": "ghost_icon",
+        "bg": "transparent",
+        "color": "neutral gray",
+        "border_radius": "9999px",
+        "text": "Save/Heart icon, Share, Compare (icon + optional label)"
+      },
+      {
+        "variant": "search_cta",
+        "bg": "brand primary (#006AFF Zillow, #A02021 Redfin, #000000 Compass)",
+        "color": "white",
+        "border_radius": "0 8px 8px 0 (right side of search bar group) or 8px (standalone)",
+        "text": "Search, Find Homes, Search Properties",
+        "font_size": "16px",
+        "font_weight": 600,
+        "padding": "12px 32px"
+      }
+    ],
+    "elevation": {
+      "shadows": "clean, professional",
+      "typical_values": [
+        "0 2px 8px rgba(0,0,0,0.06)",
+        "0 4px 16px rgba(0,0,0,0.08)",
+        "0 8px 32px rgba(0,0,0,0.12)"
+      ],
+      "zillow_card_hover": "subtle shadow lift on hover (0 4px 12px rgba(0,0,0,0.1)) revealing additional property info",
+      "redfin_map_overlay": "0 2px 12px rgba(0,0,0,0.15) for map-control panels"
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, logo left, nav center, phone + primary CTA right)",
+      "hero (full-bleed property/lifestyle photo + headline + subtitle + search bar + stats badge)",
+      "property_search (large centered search: location input, property type dropdown, price range, beds/baths, 'Search' CTA)",
+      "featured_listings (3-6 property cards: photo carousel, price, address, beds/baths/sqft, agent, save button)",
+      "stats_bar (counter animation: homes sold, happy clients, years experience, avg days on market)",
+      "agents (photo cards with name, title, phone, email, listings count, bio link)",
+      "testimonials (headshot + quote + name + property type purchased)",
+      "mortgage_calculator (interactive widget: price, down payment, rate, term → estimated monthly payment)",
+      "neighborhoods / area_guide (photo cards for each neighborhood with description + avg price)",
+      "cta_contact (split: form left, contact info + agent photo right, or centered 'Ready to find your dream home?')",
+      "footer (4-column: about/contact/quick_links/social + MLS disclaimer + equal housing logo + license #)"
+    ],
+    "brand_section_signatures": {
+      "zillow": [
+        "header (sticky, logo left, nav: Buy/Rent/Sell/Mortgages, Sign in right)",
+        "hero (search-centric: large centered search bar group — location input + price dropdown + property type toggle + blue Search CTA)",
+        "search_results (split-pane: property card list left + interactive Mapbox/Google Map right with smart marker clustering and boundary-drawing)",
+        "property_cards (photo, bold price, address, bed/bath/sqft icons, listing type badge, hover shadow lift)",
+        "filter_bar (secondary controls: sort by newest/price/type, dynamic filtering without page reload)",
+        "personalized_recommendations (ML-driven, based on browsing behavior + saved searches)",
+        "footer (multi-column: city/state search links + company info + app badges + legal)"
+      ],
+      "compass": [
+        "header (sticky two-tier: primary Buy/Rent/Sell nav + dropdown mega-menus with 3 columns each)",
+        "hero (full-bleed photo bg + 'Find your place' H1 + 3-tab search toggle: Buy/Rent/Sell + unified search input)",
+        "compass_exclusives (personalized recommendation carousel: 'Be the first to browse exclusive listings before they hit the market')",
+        "mortgage_preapproval (split/card layout with Rocket Mortgage integration: 'Know your buying power with a preapproval and custom rate in minutes')",
+        "concierge (before/after comparison: 'Concierge helps you sell your home faster and for more money by covering the cost of home improvement services — zero due until closing')",
+        "neighborhood_guides (6-column card grid with Contentful CDN images + city labels → links to /neighborhood-guides/[slug]/)",
+        "popular_cities (expandable accordion/grid of 20+ city links)",
+        "real_estate_markets (expandable state-level directory: Arizona through Washington plus 'View All Markets')",
+        "footer (4-column: Company/Explore/Mobile Apps/Social + licensing + equal housing + state-specific legal)"
+      ],
+      "redfin": [
+        "header (sticky single-row white: logo left, Buy/Rent/Sell/Mortgage/Agents/Feed nav, 'Join/Sign in' right — NOT red, white header increased engagement 500%)",
+        "hero (full-bleed neighborhood photo bg + 'Redfin Early Access. Find it first.' H1 + 5-tab toggle: Buy/Mortgage/Sell/Rent/My Home Value)",
+        "4_icon_cards (beneath tabs: Buy agent/Mortgage/Sell/Rent — each with icon + benefit description + CTA link)",
+        "app_download_promo (QR code + app store badges + phone mockup image)",
+        "ask_an_agent (location-prompt input + 'Talk to a Redfin agent' heading)",
+        "city_pill_list (horizontal scrolling pill-shaped chips: 'Browse the newest homes' — 10+ city links)",
+        "city_search_grid (multi-column grid of 130+ city links organized by metro area)",
+        "state_directory (50-state link list with homes for sale)",
+        "rental_city_grid (similar multi-column apartment/rental city links)",
+        "footer (4-column: Join us/Find homes faster/About us/Subsidiaries + legal + fair housing + NMLS #3030 + state licensing)"
+      ],
+      "the_agency_re": [
+        "dual_sticky_header (main brokerage nav + blog/journal nav, each with mega-dropdowns)",
+        "hero (cinematic full-bleed luxury property photo, likely serif headline, editorial treatment)",
+        "internationalized_search (auto-detected currency conversion, localized measurement parameters)",
+        "agent_rolodex (global agent directory with high-end portrait photography)",
+        "editorial_content (category-driven: News & Insights, Properties Buy/Sell, Lifestyle & Design, Community)",
+        "instagram_social_proof (6-thumbnail Instagram grid: 'THE MOST FOLLOWED REAL ESTATE BRAND')",
+        "lead_capture (multi-field form: name, email, phone, preferred agent, message + CAPTCHA + newsletter signup)",
+        "brand_ecosystem (links to The Agency Magazine, in-house PR, philanthropy, merchandise store shoptheagency.com)",
+        "footer (3-column: The Agency/Resources/Get In Touch + social icons + legal + state-specific fair housing PDFs)"
+      ]
+    },
+    "hero_variants": [
+      "full_bleed_photo (luxury: dramatic property photo, dark overlay, white serif headline — Compass, The Agency, Sotheby's)",
+      "video_bg (modern: drone footage loop, overlay text + search bar)",
+      "split_left (residential: lifestyle photo left, headline + search right)",
+      "search_centered (Zillow-style: large search bar dominant, minimal background, blue CTA, white bg)",
+      "tabbed_search_hero (Compass/Redfin-style: full-bleed bg image + tab toggle Buy/Rent/Sell + unified search input)"
+    ],
+    "property_card_variants": [
+      "photo_carousel (image slider, price overlay, address below, bed/bath/sqft icons, agent contact)",
+      "grid_minimal (clean white card, single photo, details below, save heart corner)",
+      "list_detail (horizontal card: photo left, full details right, stacked on mobile)",
+      "map_card (mini map pin + photo, used for location-search results)",
+      "redfin_split_card (photo + details in a card alongside an interactive map — map takes ~50% screen width)",
+      "compass_exclusive_card (gold-accented badge, personalized recommendation based on listing attributes + location + prior search activity)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["trustworthy", "professional", "aspirational", "local_expert", "responsive", "polished", "data_driven", "editorial"],
+    "headline_style": "aspirational and location-specific (e.g., 'Discover exceptional homes in [City]', 'Your journey home starts here', 'Find your place', 'Redfin Early Access. Find it first.')",
+    "cta_style": "guidance-oriented (Schedule a Tour, Contact Agent, View Listing, Get Pre-Approved, Start Your Search, See What I Qualify For)",
+    "trust_signals": [
+      "MLS badge / licensed realtor logo",
+      "Equal Housing Opportunity logo",
+      "seller/buyer counts ('500+ homes sold')",
+      "years of experience",
+      "5-star Google/Zillow reviews with count",
+      "local board of Realtors membership",
+      "featured in [local publication] logos",
+      "average days on market (performance stat)",
+      "license number visible in footer",
+      "NMLS number for mortgage services (Redfin: NMLS #3030)",
+      "state-by-state real estate licensing disclosures (Compass, Redfin, The Agency)",
+      "Instagram follower count as social proof (The Agency: 'Most Followed Real Estate Brand')",
+      "E-Verify notice (Compass)",
+      "Fair Housing policy links + state-specific PDFs"
+    ],
+    "brand_voice_examples": {
+      "zillow": "warm, helpful, data-empowered — 'Your journey home starts here.' Focus on making complex real estate data accessible.",
+      "compass": "aspirational, concierge-level, sophisticated — 'Find your place.' Premium positioning with emphasis on white-glove service.",
+      "redfin": "direct, transparent, tech-forward — 'Redfin Early Access. Find it first.' Emphasizes data advantage and agent quality.",
+      "the_agency_re": "editorial, global, cinematic — 'Curtains up! Happy shopping!' Theatrical luxury with international sophistication."
+    },
+    "anti_patterns": [
+      "fake scarcity ('Only 2 left!')",
+      "unrealistic renderings instead of real photos",
+      "missing license/disclaimer info",
+      "auto-play video with sound",
+      "stock photos of people who aren't the actual agents",
+      "red-heavy headers that overwhelm content (Redfin learned this the hard way — engagement dropped until they switched to white)",
+      "overly complex navigation with duplicate entries (Redfin post-mortem: 'No inclusion criteria — anything could land in the header')",
+      "jarring color combos requiring compensating colors (Redfin: 'buttons have to be bright orange to stand out against the sea of red')"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "navy_gold_luxury (Compass: #0a1628 primary, #c8963e accent, white cards, Lora Italic headings, Roboto body)",
+      "clean_blue_search (Zillow: #006AFF primary, white bg, blue CTAs, no serif — sans-heavy utilitarian, gold accents for warmth)",
+      "black_gold_ultra (Sotheby's: #000000 bg, #d4a853 gold, thin serif, dramatic photography)",
+      "warm_cream_traditional (Keller Williams: #faf7f2 bg, #b8860b accent, brick/terracotta tones, friendly)",
+      "modern_teal_gold (Redfin alternative: #eef1f5 bg, teal-blue accent, clean sans, red price badges)",
+      "red_white_data (Redfin actual: #A02021 accent on pure white, sans-serif, dense data cards, red used sparingly as accent only — NOT as background)",
+      "black_red_editorial (The Agency RE: #000000 or dark bg, red accent, serif headings, cinematic photography, magazine-quality layout)"
+    ],
+    "typography_mood": [
+      "luxury_serif (Playfair Display + Cormorant Garamond — high-end, established, elegant — The Agency, Sotheby's)",
+      "modern_sans (Inter + Work Sans — tech-forward, clean, utilitarian — Zillow)",
+      "editorial_serif (Lora + Source Sans 3 — neighborhood guides, content-rich — Compass brand book uses Lora Bold Italic)",
+      "bold_display (Cinzel + Montserrat — dramatic, for luxury new developments)",
+      "geometric_luxury (Circular/LL Circular + Roboto — modern luxury tech — Compass web)",
+      "functional_sans (Open Sans + system fonts — maximum readability, data-dense — Zillow, Redfin)"
+    ],
+    "layout_density": [
+      "spacious_luxury (large hero, 3 cards per row max, generous whitespace — Compass, The Agency, Sotheby's)",
+      "search_dense (Zillow/Redfin: map half-screen, results list, maximum info density — 50% map + 50% property list)",
+      "balanced_agent (compromise: 4 cards per row, clean grids, strong agent presence)",
+      "editorial_magazine (The Agency: category-driven content, Instagram grid integration, article-style property features)"
+    ],
+    "search_bar_patterns": [
+      "unified_single_input (Compass: one input for 'City, Neighborhood, Address, School, ZIP, Agent, MLS #' with tab toggle above)",
+      "multi_field_group (Zillow: location + price + property type + beds/baths in a horizontal group with blue Search button)",
+      "tabbed_with_icon_cards (Redfin: 5-tab toggle above, 4 icon cards below, location-based search implied)",
+      "luxury_minimal (The Agency/Sotheby's: search less prominent, photography-first, browse-oriented rather than search-driven)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "property_search", "featured_listings", "stats_bar", "agents", "testimonials", "mortgage_calculator", "cta_contact", "footer"],
+      "curated_stack": "realestate_luxury_landing"
+    },
+    "property_listing": {
+      "sections": ["header", "photo_gallery", "property_details", "features_amenities", "map_location", "schools_nearby", "agent_contact", "similar_listings", "footer"],
+      "best_practices": "30+ high-res photos, 3D/virtual tour link, floor plan, price history, walk score, property tax info"
+    },
+    "agent_profile": {
+      "sections": ["header", "agent_bio", "current_listings", "sold_properties", "client_reviews", "contact_form", "footer"]
+    },
+    "area_guide": {
+      "sections": ["header", "hero (neighborhood photo)", "overview_stats", "schools", "restaurants_lifestyle", "market_trends", "featured_listings", "cta_contact", "footer"]
+    },
+    "contact_page": {
+      "sections": ["header", "contact_form", "office_locations", "team_photos", "footer"]
+    },
+    "mortgage_calculator_page": {
+      "sections": ["header", "calculator_widget (price slider, down payment %, rate %, term years, PMI toggle → estimated monthly payment + amortization table)", "preapproval_cta", "rate_comparison", "faq", "footer"],
+      "best_practices": "integrate with external mortgage provider (Zillow Home Loans, Rocket Mortgage for Redfin/Compass), show real-time rates, soft-CTA to 'See What I Qualify For'"
+    },
+    "neighborhood_guide": {
+      "sections": ["header", "hero (neighborhood photo)", "overview (median price, walk score, schools rating)", "market_trends (price history chart)", "featured_listings", "local_amenities (restaurants, parks, transit)", "schools_directory", "cta_contact", "footer"],
+      "best_practices": "Contentful/CDN-hosted images (Compass uses images.ctfassets.net), 6-card city grid on index, individual guide pages with rich local data"
+    }
+  },
+  "ux_anti_patterns_learned": {
+    "redfin_header_case_study": {
+      "what": "Original Redfin header used brand-red as background color across the entire header",
+      "why_bad": "Red background overwhelmed page content, required bright orange buttons to stand out, felt 'jarring and untrustworthy'",
+      "fix": "Switched header background to white — engagement with every page increased over 500%",
+      "lesson": "Brand color should accent, not dominate. White headers let content breathe. Red specifically signals danger/stop when overused."
+    },
+    "redfin_navigation_case_study": {
+      "what": "Original nav had no inclusion criteria — any link could land in the header causing duplicates and poor hierarchy",
+      "why_bad": "Low-value pages stole clicks from higher-priority destinations, visual clutter overwhelmed users",
+      "fix": "Single-row header with clear Buy vs Sell separation — Buy page views rose 338%, inquiry form submissions increased 285%",
+      "lesson": "Ruthlessly prioritize navigation. Separate buyer and seller journeys. Test incrementally — A/B tests reached significance in <1 week due to high traffic."
+    },
+    "redfin_mobile_case_study": {
+      "what": "90% of mobile users tapped the logo to go home regardless of what the button label said",
+      "why_bad": "Traditional hamburger menu was ignored; users developed their own navigation heuristic",
+      "fix": "Simplified to 3 items: Home Buying, Selling, App upsell; replaced hamburger with simple dropdown arrow",
+      "lesson": "Observe actual user behavior, not intended behavior. The logo is the universal 'take me home' button on mobile."
+    }
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "industry": "beauty_spa",
+  "subtypes": ["spa", "salon", "medspa", "barber", "nail_studio", "wellness_center", "ecommerce_beauty", "skincare_clinic"],
+  "extracted_from": [
+    {"url": "https://www.massageenvy.com", "style": "warm-wellness", "date": "2026-05-30"},
+    {"url": "https://www.drybar.com", "style": "playful-feminine", "date": "2026-06-02"},
+    {"url": "https://www.bluemercury.com", "style": "clean-luxury-beauty", "date": "2026-05-30"},
+    {"url": "https://www.sephora.com", "style": "black-white-luxe-ecommerce", "date": "2026-06-02"},
+    {"url": "https://www.glossier.com", "style": "minimal-millennial-pink", "date": "2026-06-02"},
+    {"url": "https://www.heydayskincare.com", "style": "navy-warm-cream-spa", "date": "2026-06-02"},
+    {"style": "synthesized from industry research", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Massage Envy", "Drybar", "Hand & Stone", "Aveda", "Bluemercury", "Heyday", "Glosslab", "The NOW Massage", "Face Haus", "Sephora", "Glossier"],
+  "brand_specific_dna": {
+    "sephora": {
+      "url": "https://www.sephora.com",
+      "style": "black-white-luxe-ecommerce",
+      "font_family": "\"helvetica neue\", helvetica, arial, sans-serif",
+      "base_font_size": "14px",
+      "max_width": "1248px",
+      "palette": {
+        "bg": "#ffffff",
+        "text": "#000000",
+        "header_bar": "#625696",
+        "light_section": "#f6f6f8",
+        "accent_green": "#008048",
+        "accent_blue": "#d9e7ff",
+        "footer_bg": "#000000",
+        "brand_red": "#cf112c",
+        "brand_bright_red": "#e2030f",
+        "brand_blue": "#136BEA",
+        "brand_gray": "#666666",
+        "brand_dark_gray": "#3F3F3F",
+        "brand_light_gray": "#eeeeee",
+        "brand_pink": "#f4b6c7"
+      },
+      "button_style": "pill (9999px border-radius), transparent/white bg, 14px, black text",
+      "design_keywords": ["clean", "grid-based", "product-forward", "beauty-ecommerce", "high-contrast", "luxe", "black-and-white with color accents"]
+    },
+    "glossier": {
+      "url": "https://www.glossier.com",
+      "style": "minimal-millennial-pink",
+      "font_family": "Apercu, \"Gill Sans\", sans-serif",
+      "base_font_size": "16px",
+      "max_width": "1920px",
+      "palette": {
+        "bg": "#ffffff",
+        "text": "#000000",
+        "secondary_btn_bg": "#f7f7f7",
+        "conversion_black": "#000000",
+        "added_green": "#00ac5a",
+        "disabled_gray": "#e8e8e8",
+        "brand_pink": "#f4b6c7",
+        "klaviyo_gray": "#e9e9eb"
+      },
+      "button_style": "0px border-radius (square), animated 'marching ants' border on hover, multiple variants (primary/secondary/quaternary/conversion/add-to-bag), 14px font",
+      "typography": {
+        "h2_size": "20px",
+        "h3_size": "14px",
+        "body_size": "16px",
+        "weight": "400 (light throughout)"
+      },
+      "design_keywords": ["minimal", "millennial-pink", "editorial", "photography-driven", "clean", "DTC", "custom-typography", "white-space", "conversational-copy"]
+    },
+    "heyday": {
+      "url": "https://www.heydayskincare.com",
+      "style": "navy-warm-cream-spa",
+      "font_family": "SunsetGothicRegular, SunsetGothicLight, sans-serif",
+      "base_font_size": "16px",
+      "google_fonts": ["Inter"],
+      "palette": {
+        "bg_warm_white": "#fffcf8",
+        "bg_cool_white": "#f2f7fd",
+        "brand_navy": "#0f2a59",
+        "text_primary": "#0f2a59",
+        "text_white_on_hero": "#ffffff",
+        "header_bg": "#fffcf8"
+      },
+      "typography": {
+        "h1_size": "72px",
+        "h1_weight": "400",
+        "h1_line_height": "72px",
+        "h2_size_main": "32px",
+        "h2_size_nav": "20px",
+        "h3_size": "20px",
+        "heading_font": "SunsetGothicLight",
+        "body_font": "SunsetGothicRegular"
+      },
+      "button_style": "0px border-radius, transparent bg, navy text, subtle underline on active tabs, uppercase small text, 14px-16px",
+      "section_pattern": "alternating warm white (#fffcf8) and cool white (#f2f7fd) sections",
+      "framework": "Shopify + Tailwind CSS",
+      "design_keywords": ["clean", "spa-wellness", "skin-first", "minimal", "warm-neutral", "custom-typography", "service-booking", "airy", "elevated-wellness"]
+    },
+    "drybar": {
+      "url": "https://www.drybar.com",
+      "style": "playful-feminine-serif",
+      "font_family": "poppins, sans-serif",
+      "base_font_size": "15px",
+      "heading_font": "\"Mrs Eaves OT\", mrs-eaves, serif",
+      "palette": {
+        "bg": "#ffffff",
+        "body_text": "#42413d",
+        "heading_teal": "#004243",
+        "deep_teal": "#014d4a",
+        "section_soft_blue": "#c3e0f7",
+        "accent_rose": "#e76981",
+        "accent_teal": "#1cafb9",
+        "warm_blush_bg": "#f9f4f2",
+        "muted_gray": "#949494",
+        "footer_text_gray": "#54575a",
+        "brand_lemon_yellow": "#ffdd30"
+      },
+      "typography": {
+        "h1_size": "54px",
+        "h2_serif": "45px - 90px (Mrs Eaves, large expressive)",
+        "h2_sans": "38px (Poppins, bold)",
+        "h3_size": "28px",
+        "heading_weight": "400",
+        "heading_font_serif": "Mrs Eaves (elegant editorial serif)",
+        "body_font": "Poppins (geometric sans)"
+      },
+      "button_style": "0px border-radius, transparent bg, warm charcoal text, btn-secondary (outline style), 14px-20px, padding: 16px 40px",
+      "font_cdn": "fonts.net (Monotype kit)",
+      "cms": "Magento (Adobe Commerce)",
+      "design_keywords": ["playful", "feminine", "bold-serif", "lemon-yellow-accent", "product-first", "editorial-headlines", "warm-charcoal", "modern-vintage", "accessible-luxury"]
+    }
+  },
+  "design_tokens": {
+    "palette": {
+      "primary": ["#3d2c2c", "#4a3030", "#5c3d3d", "#2c1e1e", "#0f2a59"],
+      "primary_role": "Header text, navigation, footer (warm dark brown/navy instead of harsh black)",
+      "accent": ["#d4a0a0", "#e8c4b8", "#c8957a", "#dba88a", "#f0c9b0", "#e76981", "#1cafb9", "#f4b6c7", "#008048", "#136BEA", "#625696"],
+      "accent_role": "CTA buttons, service price highlights, decorative elements, badges, brand-specific accents (rose, teal, pink, green, blue, purple)",
+      "surface": ["#fef9f6", "#fdf5f0", "#faf4ef", "#fffbf8", "#f9f3ed", "#f5ede5", "#fffcf8", "#f2f7fd", "#f6f6f8", "#f9f4f2"],
+      "surface_role": "Page backgrounds, card backgrounds, alternating sections (warm cream/pink/cool white tones)",
+      "neutral": ["#5c4a4a", "#6b5b5b", "#7d6e6e", "#8a7a7a", "#9e9090", "#42413d", "#666666", "#3F3F3F", "#949494"],
+      "neutral_role": "Body text, service descriptions, secondary information",
+      "border": ["#e8d5cc", "#dcc8bc", "#ecd9cf", "#f0e0d6", "#eeeeee", "#cccccc"],
+      "border_role": "Card borders, input fields, dividers (soft warm tones to clean gray)",
+      "semantic": {
+        "success": "#5a8f7b",
+        "warning": "#d4a853",
+        "error": "#c4666b",
+        "info": "#8b7e9b",
+        "new_service": "#c8957a",
+        "seasonal": "#d4a0a0",
+        "added_to_cart": "#00ac5a",
+        "sale_red": "#cf112c"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Playfair Display", "Cormorant Garamond", "Lora", "Optima", "Josefin Sans", "Mrs Eaves", "SunsetGothicLight", "Apercu"],
+      "body_fonts": ["Inter", "Lato", "Nunito", "Quicksand", "Karla", "helvetica neue", "Poppins", "SunsetGothicRegular"],
+      "heading_weight": 500,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 36, "max": 72, "unit": "px", "notes": "Sephora: 14px (hidden SEO h1), Heyday: 72px hero, Drybar: 54px"},
+        "h2": {"min": 18, "max": 90, "unit": "px", "notes": "Heyday: 32px main/20px nav, Drybar: 45-90px serif/38px sans, Sephora: 16px, Glossier: 20px"},
+        "h3": {"min": 14, "max": 28, "unit": "px", "notes": "Drybar: 28px, Heyday: 20px, Glossier: 14px"},
+        "body": {"min": 14, "max": 18, "unit": "px", "notes": "Sephora: 14px, Drybar: 15px, Heyday/Glossier: 16px"},
+        "small": {"min": 12, "max": 14, "unit": "px"},
+        "service_price": {"min": 18, "max": 24, "unit": "px"}
+      },
+      "line_height": {"body": 1.7, "heading": 1.3},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap')"
+      ],
+      "custom_font_sources": [
+        "fonts.net (Monotype) — used by Drybar for Mrs Eaves",
+        "Shopify font hosting — used by Glossier for Apercu, Heyday for SunsetGothic"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 56, "max": 100, "unit": "px"},
+      "section_gap": {"typical": 64, "unit": "px"},
+      "content_max_width": {"typical": 1140, "unit": "px", "variants": {"sephora": "1248px", "glossier": "1920px (full-bleed feel)", "heyday": "none (full-width Tailwind)", "drybar": "none (full-width Magento)"}},
+      "card_padding": {"typical": "24px 28px"},
+      "service_card_gap": {"typical": 20, "unit": "px"}
+    },
+    "border_radius": {
+      "sharp": "4px",
+      "rounded": "8px - 16px",
+      "pill": "9999px",
+      "typical_button": "0px (square, Glossier/Drybar/Heyday) to 9999px (pill, Sephora)",
+      "typical_card": "12px - 20px",
+      "image_container": "12px - 16px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "accent rose (#d4a0a0 or #c8957a) or black (#000000 for luxury ecommerce)",
+        "color": "white",
+        "border_radius": "pill (9999px) for spa/wellness, square (0px) for DTC/minimal brands",
+        "text": "inviting action (Book Appointment, Schedule Visit, Shop Services, Reserve Your Spot, Shop Now)",
+        "font_size": "14-16px",
+        "font_weight": 500,
+        "padding": "12px 32px",
+        "letter_spacing": "0.03em"
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent",
+        "color": "#5c3d3d (warm brown) or #42413d (warm charcoal)",
+        "border": "1.5px solid #dcc8bc",
+        "border_radius": "pill or 8px or 0px",
+        "text": "View Services, Meet Our Team, See Gallery, Shop All",
+        "font_size": "14-16px",
+        "font_weight": 500,
+        "padding": "16px 40px (typical Drybar)"
+      },
+      {
+        "variant": "text_link",
+        "bg": "transparent",
+        "color": "#c8957a (accent rose) or #0f2a59 (brand navy)",
+        "border": "none",
+        "text_decoration": "underline on hover (Heyday uses border-bottom on tabs)",
+        "text": "Learn More, Read Full Description, View All, Book a Facial",
+        "font_weight": 400
+      },
+      {
+        "variant": "add_to_bag_dtc",
+        "bg": "#f7f7f7 (light gray)",
+        "color": "#000000",
+        "border_radius": "0px (square)",
+        "text": "Add to bag, Notify me",
+        "font_size": "14px",
+        "animation": "marching ants border on hover (Glossier signature)",
+        "source": "Glossier"
+      },
+      {
+        "variant": "spa_tab",
+        "bg": "transparent",
+        "color": "#0f2a59 (brand navy)",
+        "border_radius": "0px",
+        "border": "none, or border-bottom on active tab",
+        "text": "Products, Articles, Pages, Facials (category tabs)",
+        "font_size": "14px",
+        "padding": "12px 16px",
+        "source": "Heyday"
+      }
+    ],
+    "elevation": {
+      "shadows": "soft, diffused or none (many brands use flat design with no shadows)",
+      "typical_values": [
+        "0 2px 12px rgba(92, 61, 61, 0.05)",
+        "0 4px 20px rgba(92, 61, 61, 0.07)",
+        "0 8px 32px rgba(92, 61, 61, 0.1)",
+        "none (flat design — Glossier, Drybar, Heyday)"
+      ]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (transparent or cream bg, centered logo, hamburger mobile, 'Book Now' pill CTA right for service brands)",
+      "hero (full-bleed serene interior photo + headline + subheadline + primary CTA + secondary 'View Services' — OR full-bleed product photography for ecommerce)",
+      "promo_banner (sticky top bar: coupon code, limited time offer, free shipping threshold — common in ecommerce beauty)",
+      "services_menu (grid or list: service category + items with names, durations, prices, descriptions — 'Book' button per item)",
+      "about_philosophy (short paragraph about the space/experience, owner/stylist photo, mission)",
+      "team (photo cards: staff headshot, name, role/specialty, short bio, Instagram handle)",
+      "product_grid (ecommerce: horizontal scroll rows or masonry grid, product image + name + price + quick-add CTA)",
+      "gallery (masonry or carousel: interior space, treatment rooms, product shots, before/after with consent)",
+      "reviews (testimonial cards: client name, star rating, quote about specific service/staff member, Google/Yelp source — or product reviews for ecommerce)",
+      "booking_cta (centered section: 'Ready to relax?' + booking widget or 'Book Now' button + phone number)",
+      "footer (3-4 column: about/location_hours/services + social links + newsletter signup or booking link)"
+    ],
+    "hero_variants": [
+      "full_bleed_interior (serene spa/salon photo, dark soft overlay, centered white headline — most common for service brands)",
+      "full_bleed_product (product/model photography, minimal overlay, headline + CTA bottom-left or centered — Glossier, Sephora)",
+      "split_right (text left with CTA + lifestyle/interior photo right)",
+      "video_ambient (slow-motion interior video loop: candles, massage table, products)",
+      "carousel_hero (rotating images: interior, treatment, product, team — auto-advance)",
+      "promo_hero (large coupon/offer text: '$30 off your first facial' — Heyday, '10% OFF YOUR FIRST ORDER' — Drybar)"
+    ],
+    "service_card_variants": [
+      "menu_list (clean list: service name, duration, price right-aligned, short description, 'Book' button)",
+      "image_card (service photo top, name + description below, price badge, book link)",
+      "category_grid (icon per service category, expandable to see individual services)",
+      "product_card_ecommerce (product image, brand name, product name, price, rating stars, quick-add button — Sephora, Drybar)",
+      "editorial_card (large photo, minimal text, lifestyle context — Glossier)"
+    ],
+    "gallery_variants": [
+      "masonry_grid (mixed-size photos: interior wide, treatment square, product portrait)",
+      "carousel (full-width horizontal scroll with arrow controls)",
+      "before_after_slider (medspa/salon: interactive slider comparison)",
+      "instagram_grid (beauty bar/nail studio: social-proof-first, embedded Instagram feed)"
+    ],
+    "new_patterns_discovered": {
+      "marching_ants_border": "Glossier uses a distinctive animated dashed-border effect ('marching ants') on button hover — CSS background-size animation with 4-edge gradient. Signals 'in progress' for Add to Bag actions.",
+      "serif_sans_mix": "Drybar pairs bold Mrs Eaves serif (headings, 45-90px) with Poppins sans-serif (body, 15px) — editorial magazine aesthetic applied to ecommerce.",
+      "navy_warm_cream_spa": "Heyday uses #0f2a59 navy for ALL text (not black) on #fffcf8 warm white — no pure black anywhere, creating a uniquely soft, elevated spa feel.",
+      "tailwind_spa": "Heyday is built on Shopify + Tailwind CSS — proving utility-first CSS works for premium spa brands when paired with custom typography and warm color palette.",
+      "custom_font_everywhere": "All 4 scanned brands use custom/proprietary fonts: Sephora (Helvetica Neue system stack), Glossier (Apercu), Heyday (SunsetGothic), Drybar (Mrs Eaves + Poppins). No brand uses only Google Fonts."
+    }
+  },
+  "tone_profile": {
+    "keywords": ["calming", "elegant", "nurturing", "refined", "warm", "inviting", "rejuvenating", "fresh", "minimal", "editorial"],
+    "headline_style": "evocative and sensory (e.g., 'A sanctuary for your senses', 'Reveal your natural radiance', 'Where beauty meets tranquility', 'Don't mask oil. absorb it.' — Drybar, 'You look good' — Glossier)",
+    "cta_style": "varies by sub-type: spa → gentle/inviting (Book Your Experience, Reserve Your Appointment); ecommerce → direct/casual (Shop Now, Add to Bag, Fetch the Look); service → benefit-driven (BOOK AND SAVE NOW — Heyday)",
+    "trust_signals": [
+      "licensed estheticians/cosmetologists noted",
+      "Google/Yelp star rating and review count",
+      "before/after photos (with client consent)",
+      "clean/sanitation certifications",
+      "product brands used (Aveda, Dermalogica, Oribe, etc.)",
+      "years in business",
+      "featured in local publications / 'Best of' awards",
+      "Instagram gallery (real work, real clients)",
+      "cancellation policy clearly stated",
+      "product reviews with verified purchase badges (ecommerce)",
+      "satisfaction guarantee / free returns (ecommerce)"
+    ],
+    "anti_patterns": [
+      "aggressive sales language or urgency",
+      "stock photos of models instead of real work/space",
+      "harsh or clinical color palette (unless medspa)",
+      "complex multi-step booking flows",
+      "missing pricing (common trust breaker in beauty industry)",
+      "pure black (#000000) on pure white (#ffffff) for spa/wellness brands — too harsh; use warm charcoal or navy instead",
+      "generic system fonts without custom brand typography"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "soft_rose_gold (spa: #fef9f6 cream bg, #d4a0a0 rose accent, #c8957a warm gold, Playfair Display — feminine, calming)",
+      "clean_white_luxury (medspa: #ffffff white bg, #c8957a subtle accent, minimal decoration, clinical-clean but warm)",
+      "earthy_sage (wellness: #f5ede5 warm stone bg, #8b9d83 sage accent, natural textures, organic feel)",
+      "dark_moody_barber (barber: #1a1a1a charcoal bg, #c8957a leather accent, brass fixtures, bold typography)",
+      "blush_cream_boutique (nail studio: #fdf5f0 blush bg, #dba88a peach accent, gold foil details, Instagram-worthy)",
+      "navy_warm_cream (elevated spa: #fffcf8 warm cream bg, #0f2a59 navy text, SunsetGothic font, no pure black — per Heyday)",
+      "black_white_luxe (beauty ecommerce: #ffffff white bg, #000000 black text, pill buttons, bold accent colors, Helvetica Neue — per Sephora)",
+      "minimal_millennial_pink (DTC beauty: #ffffff white bg, pink brand identity, Apercu font, 0px border-radius, editorial photography — per Glossier)",
+      "playful_serif_lemon (haircare ecommerce: #ffffff bg, #42413d warm charcoal text, #004243 teal headings, #ffdd30 lemon accent, Mrs Eaves serif + Poppins — per Drybar)"
+    ],
+    "typography_mood": [
+      "elegant_serif (Playfair Display headings — spa, luxury, refined)",
+      "minimal_sans (Josefin Sans + Inter — modern medspa, clean, geometric)",
+      "warm_editorial (Lora headings + Nunito body — accessible, cozy, neighborhood salon)",
+      "bold_industrial (barber: thick sans like Montserrat or Bebas Neue, high contrast)",
+      "editorial_serif_modern (Mrs Eaves headings + Poppins body — playful yet refined, magazine-quality — per Drybar)",
+      "custom_light_sans (SunsetGothicLight headings + SunsetGothicRegular body — airy, modern spa, weight-400 throughout — per Heyday)",
+      "proprietary_minimal (Apercu — clean DTC, geometric but friendly, unified weight — per Glossier)",
+      "system_luxe (Helvetica Neue — established luxury ecommerce, works at scale, accessible — per Sephora)"
+    ],
+    "layout_density": [
+      "spacious_zen (spa: large photos, generous whitespace, slow scroll experience)",
+      "menu_efficient (salon: service list prominent, booking always visible)",
+      "instagram_grid (beauty bar: gallery-dominant, social-proof-first layout)",
+      "product_grid_dense (ecommerce: multi-row product grids, quick-add CTAs, filter-heavy — Sephora, Drybar)",
+      "editorial_air (DTC: large photos, minimal text, storytelling scroll, white space heavy — Glossier)",
+      "alternating_sections (spa: warm white / cool white alternating full-width sections, each with one focused message — Heyday)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "promo_banner", "hero", "services_menu", "about_philosophy", "team", "gallery", "reviews", "booking_cta", "footer"],
+      "curated_stack": "beauty_spa_wellness_landing"
+    },
+    "service_detail": {
+      "sections": ["header", "hero (service photo)", "service_description", "pricing_duration", "benefits", "before_after", "related_services", "booking_cta", "footer"],
+      "best_practices": "Detailed description of treatment, what to expect, prep instructions, aftercare, FAQ"
+    },
+    "team_page": {
+      "sections": ["header", "team_intro", "stylist_therapist_grid", "join_team_cta", "footer"]
+    },
+    "booking_page": {
+      "sections": ["header", "service_selection", "date_time_picker", "staff_selection", "contact_info", "confirmation", "footer"],
+      "best_practices": "Minimal steps (3 max), show availability clearly, allow staff preference, send confirmation"
+    },
+    "gallery_page": {
+      "sections": ["header", "gallery_grid", "instagram_feed", "booking_cta", "footer"]
+    },
+    "ecommerce_plp": {
+      "sections": ["header", "breadcrumb", "category_title", "filter_bar", "product_grid", "pagination", "footer"],
+      "best_practices": "Sticky filter bar, quick-add to cart, product badges (NEW, SALE, BESTSELLER), brand logos"
+    },
+    "ecommerce_pdp": {
+      "sections": ["header", "breadcrumb", "product_images", "product_details", "add_to_bag", "description", "ingredients", "how_to_use", "reviews", "related_products", "footer"],
+      "best_practices": "Multiple product images/videos, ingredient transparency, before/after photos, review integration"
+    }
+  }
+}

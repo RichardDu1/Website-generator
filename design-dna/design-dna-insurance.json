@@ -1,0 +1,168 @@
+{
+  "industry": "insurance",
+  "subtypes": ["direct-to-consumer", "insurtech", "comparison-marketplace", "traditional-carrier"],
+  "extracted_from": [
+    {"source": "官网Playwright提取+WebFetch结构分析+WebSearch品牌数据", "brand": "Lemonade", "url": "https://www.lemonade.com", "date": "2026-06-02", "notes": "Playwright briefly captured font/typography before anti-bot redirect; brand colors from court docs (FF0083) and brand descriptions; structure from initial snapshot"},
+    {"source": "WebFetch结构分析+WebSearch品牌数据", "brand": "Policygenius", "url": "https://www.policygenius.com", "date": "2026-06-02", "notes": "Geo-blocked — only compliance gate accessible; brand colors from Brandfetch; structure inferred from partial data"},
+    {"source": "WebFetch结构分析+WebSearch品牌数据", "brand": "Geico", "url": "https://www.geico.com", "date": "2026-06-02", "notes": "Full structural extraction from WebFetch; brand colors confirmed from multiple sources (#003DA5, #00843D)"},
+    {"source": "WebFetch结构分析+WebSearch品牌数据", "brand": "Progressive", "url": "https://www.progressive.com", "date": "2026-06-02", "notes": "Full structural extraction from WebFetch; brand colors from colorcodeguide (#0053BA)"},
+    {"source": "WebFetch结构分析+WebSearch品牌数据", "brand": "Hippo", "url": "https://www.hippo.com", "date": "2026-06-02", "notes": "Full structural extraction from WebFetch; brand colors from scheme analysis (#02DF82 primary green)"}
+  ],
+  "reference_brands": ["Lemonade", "Policygenius", "Geico", "Progressive", "Hippo"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#003DA5", "#0053BA", "#FF0083", "#D44512", "#02DF82"],
+      "primary_role": "Insurance splits into two camps: traditional carriers use deep navy blue for trust and stability (Geico #003DA5, Progressive #0053BA). Insurtech disruptors use bold, non-traditional primaries to signal they are different — Lemonade pink (#FF0083), Policygenius orange (#D44512), Hippo green (#02DF82). The blue brands lean on legacy credibility; the chromatic brands lean on 'we're not your father's insurance company.' All five use their primary color for the main CTA button, logo, and key interactive elements.",
+      "accent": ["#00843D", "#FF0083", "#82FFDC", "#2D2D2D", "#2B2727"],
+      "accent_role": "Secondary brand colors serve as visual complements. Geico's green (#00843D) is used alongside navy for promotions and the gecko mascot. Lemonade's pink doubles as primary+accent with charcoal/gravel as neutral grounding. Hippo uses mint (#82FFDC) as a softer secondary to its punchy green. Dark grays (#2D2D2D Progressive, #2B2727 Policygenius) serve as text and secondary surfaces.",
+      "surface": ["#ffffff", "#f4f4f4", "#f8f9fa", "#eef0f3"],
+      "surface_role": "White is the dominant page background across all five brands. Light grays (#f4f4f4, #f8f9fa) provide subtle section alternation. Insurance sites avoid dark backgrounds for the main reading surface — even dark-branded Lemonade uses white hero sections. Dark surfaces are reserved for footer or accent bands only.",
+      "neutral": ["#2D2D2D", "#2B2727", "#1A1C1E", "#555555", "#777777"],
+      "neutral_role": "Body text is near-black (#2D2D2D Progressive, #2B2727 Policygenius) or dark charcoal (Lemonade 'Gravel' ~#1A1C1E). Secondary text and labels use mid-gray (#555-#777). All neutral tones are warm-leaning grays, never cool blue-grays, keeping text approachable and trustworthy.",
+      "border": ["#e0e0e0", "#d1d5db", "#c9cdd1"],
+      "border_role": "Light gray borders for cards, inputs, and dividers. Subtle and functional — insurance UIs prioritize clarity over decorative borders. Often rendered as 1px solid on white backgrounds.",
+      "semantic": {"success": "#15be53", "warning": "#ec7e00", "error": "#dc2626", "info": "#0053BA"}
+    },
+    "typography": {
+      "heading_fonts": ["Sohne (Klim Type Foundry, Lemonade custom)", "Eurostile Bold Extended #2 (Geico logo)", "Custom italic sans-serif (Progressive logo)", "System sans-serif (Geico/Progressive web)", "Next.js default sans-serif (Hippo)"],
+      "body_fonts": ["Sohne (Lemonade)", "Inter or system-ui (Hippo/Next.js)", "Helvetica/Arial (Geico)", "Clean sans-serif (Progressive)", "System sans-serif (Policygenius)"],
+      "heading_weight": 300,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 32, "max": 48, "unit": "px"},
+        "h2": {"min": 24, "max": 36, "unit": "px"},
+        "h3": {"min": 18, "max": 24, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.5, "heading": 1.2},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')"
+      ],
+      "note": "Insurance typography favors clarity and accessibility. Heading weights are lighter than other industries (300-400 rather than 600-700) to signal calm confidence rather than urgency. Body text is consistently 15-18px — larger than typical 14-16px web standard — accommodating an older demographic that may include seniors. Lemonade uses the custom Sohne typeface (Klim Type Foundry) for both headings and body, giving it the most distinctive typographic voice among the five."
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 120, "unit": "px"},
+      "section_gap": {"typical": 64, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "buttons": "4px-8px (traditional: Geico, Progressive) to 32px-pill (disruptors: Lemonade, Hippo)",
+      "cards": "8px-16px — universally rounded, moderate radius for approachable feel",
+      "inputs": "4px-8px — tighter radius for form fields (ZIP code entry, quote forms)",
+      "typical_button": "8px (insurance average)",
+      "typical_card": "12px"
+    },
+    "elevation": {
+      "shadows": "Light, subtle — insurance avoids heavy shadows that feel aggressive or 'salesy'. Cards use 0 1px 3px rgba(0,0,0,0.08) to 0 2px 8px rgba(0,0,0,0.1). Quote form modules often use 0 4px 12px rgba(0,0,0,0.1) to elevate the interactive element without feeling heavy.",
+      "typical_values": [
+        "0 1px 3px rgba(0,0,0,0.08)",
+        "0 2px 8px rgba(0,0,0,0.1)",
+        "0 4px 12px rgba(0,0,0,0.1)"
+      ]
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "brand primary (blue #003DA5 / green #02DF82 / pink #FF0083)",
+        "color": "white",
+        "border_radius": "8px (Geico/Progressive) to 32px (Lemonade/Hippo)",
+        "text": "Check our prices, Get your free quote, Start My Quote, Go",
+        "font_size": "16-18px",
+        "font_weight": 500
+      },
+      {
+        "variant": "secondary_outlined",
+        "bg": "transparent",
+        "color": "brand primary",
+        "border_radius": "matches primary",
+        "text": "Learn more, Explore, View more",
+        "font_size": "14-16px",
+        "border": "1.5px solid primary"
+      },
+      {
+        "variant": "zip_code_submit",
+        "bg": "brand primary",
+        "color": "white",
+        "border_radius": "4px-8px",
+        "text": "Go, Start My Quote, Quote auto insurance",
+        "font_size": "14-16px",
+        "note": "The ZIP-code-entry pattern is iconic in insurance — a short text input + submit button, often the first interactive element in the hero. This is the insurance-specific CTA variant."
+      }
+    ]
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky nav with product dropdowns — insurance has many products: auto, home, renters, life, pet, business, etc. Typically 6-10 nav items with mega-menu dropdowns)",
+      "hero with quote form (THE defining insurance pattern — headline + subheadline + ZIP code entry + product selector checkboxes/pills + primary CTA. Disruptors simplify: Lemonade has product grid, Hippo has single CTA + carrier logos)",
+      "trust stat bar (3-4 column stats: years in business, customers served, average savings, satisfaction rating. Geico: '85 Years / $900+ Savings / 97% Satisfaction'. Progressive: '$900+ / 43 million+ / 24/7/365')",
+      "product cards grid (3-6 product types in icon+heading+description cards — auto, home, renters, life, pet. Each with a 'Learn more' or 'Check price' link)",
+      "why choose us / benefits (3-4 feature cards: instant claims, AI-powered, bundle savings, 24/7 support. Hippo: 'Personalized coverage / More protection / Ongoing care')",
+      "how it works (3-step numbered process with imagery — 1. Enter ZIP, 2. Compare rates, 3. Get covered. Lemonade: '90 seconds to get insured, 3 seconds to get paid')",
+      "testimonials / social proof (customer quotes with names and photos, or embedded social media posts. Lemonade uses embedded tweets; Hippo uses 4 named testimonials)",
+      "bundling / cross-sell (promoting multi-product bundles — auto+home, auto+renters. Usually with savings dollar amount prominently displayed)",
+      "coverage add-ons (additional insurance types beyond primary — flood, landlord, pet, motorcycle, RV. Card grid with 'Learn more' links)",
+      "mobile app promotion (app store badges, phone screenshots, feature bullets. Geico touts '#1 Rated Insurance App'; Hippo shows dual phone mockups)",
+      "savings / switch section (targeting competitor switchers — 'Already insured? Switch and save $X'. Lemonade lists competitor logos)",
+      "carrier / partner logo strip (insurance-specific: shows underwriting partners. Hippo shows 7 carrier logos including Nationwide, Liberty Mutual, Progressive)",
+      "final CTA banner (bold background color, headline like 'Quick quotes today. Fewer problems tomorrow.', single large CTA button)",
+      "FAQs (3-5 expandable questions with 'See more FAQs' link — critical for insurance where purchase decisions involve research)",
+      "footer (massive multi-column — 6-8 columns with nested link groups by product category + social icons + app store badges + legal disclaimers. Insurance footers are among the most complex of any industry due to regulatory requirements)"
+    ],
+    "hero_variants": [
+      "Quote-form hero (Geico, Progressive): H1 headline + 'Enter your ZIP code' input + product selector checkboxes/pills + CTA. The iconic insurance pattern. ZIP code is the entry point to rate comparison.",
+      "Product-grid hero (Lemonade): H1 headline + value prop + product card grid with individual price points. No ZIP code entry upfront — browse products first, then enter details later. Lower friction, higher browse-ability.",
+      "Single-CTA hero (Hippo): H1 headline + subheadline + single prominent CTA button + carrier logo strip. Simplest pattern — one action, immediate trust via partner logos, no form friction."
+    ],
+    "card_variants": [
+      "Product card (icon/image + product name + one-line description + price + CTA link. Lemonade: 'Renters — Coverage for your stuff — From $5/mo — Check our prices')",
+      "Trust stat card (large number + label + tiny footnote. Geico: '$900+' / 'Average Annual Savings' with asterisk. No imagery, pure data.)",
+      "Testimonial card (user photo + name + quote text. Rounded, white background, light shadow. Lemonade uses real tweet embeds; Hippo uses designed testimonial cards.)",
+      "Feature/benefit card (illustration or icon + heading + 2-3 line description. Used in 'Why choose us' and 'How it works' sections. Lighter visual weight than product cards.)",
+      "Coverage add-on card (smaller than product cards — icon + label + 'Learn more' link. Denser grid layout, 4-6 per row.)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["trustworthy", "confident", "approachable", "clear", "reassuring"],
+    "headline_style": "Insurance headlines balance confidence with accessibility. Traditional carriers use declarative statements ('The Insurance Savings You Expect' — Geico, 'An Insurance Company You Can Rely On' — Progressive). Disruptors use conversational, benefit-driven language ('Forget everything you know about insurance' — Lemonade, 'Home insurance has never felt this easy' — Hippo). Dollar amounts appear in headlines frequently ('$900+ average savings'). All avoid fear-based language — the industry has shifted from 'protect against disaster' to 'save money and feel secure.'",
+    "cta_style": "Price-transparent and action-oriented. 'Check our prices' (Lemonade) rather than 'Get a quote' — the word 'prices' signals transparency and no commitment. 'Get your free quote' (Hippo) emphasizes zero cost to start. 'Start My Quote' (Geico) uses first-person possessive. CTA language in insurance consistently emphasizes: (1) no cost to check, (2) no commitment, (3) speed/ease, (4) potential savings. Never uses 'Buy now' or 'Purchase' — insurance purchases are considered decisions, not impulse buys.",
+    "trust_signals": [
+      "Years in business ('85 Years' — Geico, 'since 1937' — Progressive) — longevity is the #1 insurance trust signal",
+      "Customer count ('43 million+' — Progressive, '500K+ homeowners' — Hippo) — social proof at scale",
+      "Dollar savings ('$900+ average annual savings' — both Geico and Progressive, nearly identical figure)",
+      "Satisfaction ratings ('97% Customer Satisfaction' — Geico, '4.8 on App Store' — Hippo, '4.9 stars' — Lemonade)",
+      "Financial backing and ratings ('A-Rated' — Lemonade, 'AM Best A- Rated' — Hippo, 'Berkshire Hathaway subsidiary' — Geico, 'NYSE:LMND' — Lemonade)",
+      "Third-party awards ('#1 Insurance Website' by Keynova Group — Progressive, '#1 Rated Insurance App' by Forrester — Geico)",
+      "Carrier/partner logos (Hippo shows 7 underwriting partners: Bamboo, Stillwater, Nationwide, American Integrity, Homeowners, Liberty Mutual, Progressive)",
+      "Customer testimonials with real names (Lemonade embeds actual tweets; Hippo uses first name + last initial format)",
+      "B-Corp certification (Lemonade — unique differentiator signaling social responsibility via Giveback program)",
+      "Money-back or repair guarantees ('We guarantee repairs for as long as you own or lease your vehicle' — Progressive)"
+    ],
+    "anti_patterns": [
+      "Fear-based headlines ('What if disaster strikes?') — modern insurance avoids this entirely",
+      "Urgency/scarcity tactics ('Limited time offer', 'Only 3 spots left') — erodes trust in a trust-dependent industry",
+      "Overly complex jargon without plain-language explanation — insurance has regulatory requirements but customer-facing copy must translate",
+      "Stock photography of happy families in perfect homes — feels inauthentic; real customer photos or custom illustrations preferred",
+      "Hidden pricing or 'Call for quote' as primary CTA — modern consumers expect digital, transparent pricing"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "Traditional trust (blue + white): The Geico/Progressive approach. Navy blue primary, white backgrounds, green or gray accents. Projects stability, longevity, institutional reliability. Best for brands competing on trust and scale.",
+      "Disruptor bold (chromatic primary): The Lemonade/Hippo/Policygenius approach. Pink, green, or orange as the dominant brand color. Projects modernity, differentiation, and a departure from 'old insurance.' Best for brands competing on experience and innovation."
+    ],
+    "typography_mood": [
+      "Institutional clarity (Geico/Progressive): Standard sans-serif (Helvetica, Arial, system fonts) with bold weight headings. Prioritizes legibility and broad compatibility over stylistic distinction. Works for high-volume, nationally scaled brands.",
+      "Design-forward warmth (Lemonade/Hippo): Custom or carefully selected typefaces (Sohne by Klim for Lemonade). Lighter heading weights (300-400) for a calm, premium feel. Works for brands targeting design-conscious younger demographics."
+    ],
+    "layout_density": [
+      "High-density quote-first (Geico/Progressive): The hero IS the quote tool. ZIP code input is the first interactive element. Multiple product checkboxes, secondary CTAs, and legal text all in the hero. Information-dense but functionally efficient for users who arrive ready to quote.",
+      "Low-density browse-first (Lemonade/Hippo): Hero is a brand statement with product exploration below. Clean, generous whitespace, fewer elements above the fold. Designed for users who want to understand the brand before starting a quote flow."
+    ]
+  },
+  "quote_form_pattern": {
+    "description": "The ZIP-code-entry quote form in the hero is the most distinctive insurance design pattern, present on 3 of 5 brands analyzed (Geico, Progressive) and modified on the other 2 (Lemonade places it after product selection; Hippo defers it to a dedicated flow). The pattern consists of: (1) prominent text input for ZIP code, (2) product type selector as checkboxes or pills, (3) primary submit button ('Go', 'Start My Quote'), (4) microcopy about savings ($900+), (5) legal disclaimer footnote. The ZIP code is the universal entry point because insurance rates are geography-dependent.",
+    "why_it_works": "ZIP code entry feels low-commitment (not asking for name/email/phone). It immediately personalizes the experience. The savings microcopy provides motivation. The legal footnote maintains compliance. This pattern converts significantly better than 'Contact us for a quote' because it feels like the start of a tool, not a sales call."
+  }
+}

@@ -1,0 +1,250 @@
+{
+  "industry": "ecommerce-fashion",
+  "version": "1.0",
+  "generated": "2026-06-02",
+  "extracted_from": [
+    {"source": "CloakBrowser live extraction", "brand": "Everlane", "url": "https://www.everlane.com", "date": "2026-06-02"},
+    {"source": "CloakBrowser live extraction", "brand": "Allbirds", "url": "https://www.allbirds.com", "date": "2026-06-02"},
+    {"source": "CloakBrowser live extraction", "brand": "Warby Parker", "url": "https://www.warbyparker.com", "date": "2026-06-02"},
+    {"source": "CloakBrowser live extraction", "brand": "Gymshark", "url": "https://www.gymshark.com", "date": "2026-06-02"},
+    {"source": "CloakBrowser live extraction", "brand": "Mejuri", "url": "https://mejuri.com", "date": "2026-06-02"}
+  ],
+  "reference_brands": ["Everlane", "Allbirds", "Warby Parker", "Gymshark", "Mejuri"],
+
+  "extraction_notes": {
+    "method": "CloakBrowser (58 C++ anti-detection patches) headless + humanize mode. JavaScript getComputedStyle + CSS custom property scanning. 1440x900 viewport.",
+    "everlane": "Minimalist essentials brand. White background, black text, Maison Neue Book font. Shopify Plus with 'Atlas' design system. Zero border-radius everywhere. Clean grid, no card shadows.",
+    "allbirds": "Sustainable footwear. Warm oat background (#ece9e2). Geograph custom font. Tailwind v4 with OKLCH colors. Sticky transparent nav. Natural/earthy palette.",
+    "warby_parker": "Eyewear DTC pioneer. White + deep navy (#072369). Sans-serif, large hero headings (55px h2). Pill-shaped buttons (36px radius). Blue accent (#1050d0). Custom CSS design system with wp-* tokens.",
+    "gymshark": "Athletic wear. Bold typography (Roboto + Druk Condensed Super + Bebas Neue). All headings 700 weight. Dark transparent nav. Hero titles up to 128px. 4px standard radius. Black/white/gray base with colored accents.",
+    "mejuri": "Luxury jewelry. Pure black (#000000) sticky nav. SimonMono monospace font (unique differentiator). White text on black. Wide letter-spacing (1.2-2.4px). Oxygen/Shopify Hydrogen stack. 48px h2 hero statements."
+  },
+
+  "design_tokens": {
+    "palette": {
+      "primary": ["#121212", "#000000", "#072369"],
+      "primary_role": "主色 — 文字和主要按钮。Everlane用#121212深灰按钮; Mejuri用纯黑#000000作为nav背景; Warby Parker用深海军蓝#072369作为品牌底色",
+      "accent": ["#1050d0", "#007db5", "#d0021b"],
+      "accent_role": "强调色 — Warby Parker链接蓝#1050d0; Gymshark图标蓝#007db5; Everlane促销红#d0021b。仅用于链接、促销标签、图标",
+      "surface": ["#ffffff", "#ece9e2", "#f8f6f5", "#fcfbf9", "#f5f5f5"],
+      "surface_role": "背景层次 — 纯白#ffffff(最常用); Allbirds暖燕麦色#ece9e2; Everlane暖白#f8f6f5; Warby Parker暖白#fcfbf9; Gymshark浅灰#f5f5f5。暖色调优先于冷灰",
+      "neutral": ["#000000", "#121212", "#53565a", "#6e6e6e", "#bbbcbc"],
+      "neutral_role": "文字等级 — 纯黑或近黑(#000000/#121212)正文; 中灰#53565a辅助文字; 浅灰#6e6e6e三级文字; #bbbcbc边框",
+      "border": ["#bbbcbc", "#c1c6c8", "#e7e7e7"],
+      "border_role": "边框颜色 — 浅灰系，低对比度。Gymshark #bbbcbc; Warby Parker #c1c6c8; Gymshark #e7e7e7",
+      "semantic": {"success": "#16a34a", "warning": "#d97706", "error": "#dc2626", "info": "#2563eb"}
+    },
+    "typography": {
+      "heading_fonts": ["Maison Neue Book (Everlane)", "Geograph (Allbirds)", "Druk Condensed Super (Gymshark)", "Bebas Neue (Gymshark)", "SimonMono (Mejuri)", "sans-serif (Warby Parker)"],
+      "body_fonts": ["Assistant, sans-serif (Everlane)", "Geograph, system-ui, sans-serif (Allbirds)", "sans-serif (Warby Parker)", "Roboto, Helvetica, Arial, sans-serif (Gymshark)", "SimonMono, Courier New, monospace (Mejuri)"],
+      "heading_weight": 500,
+      "body_weight": 400,
+      "heading_letter_spacing": "-0.5px to 2.4px (wide range: negative for large display, positive for luxury/minimal)",
+      "scale": {
+        "display": {"min": 48, "max": 128, "unit": "px", "note": "超大展示标题。Gymshark hero h2达128px(12.8rem); Mejuri h2达48px; Warby Parker h2达55px"},
+        "h1": {"min": 24, "max": 32, "unit": "px", "note": "页面标题。Everlane 32px/400; Gymshark 32px/700; Mejuri 24px/500; Allbirds 24px/400"},
+        "h2": {"min": 12, "max": 55, "unit": "px", "note": "区段标题。Warby Parker 55px hero(极大); Gymshark 25px/700; Allbirds 12px/500"},
+        "h3": {"min": 14, "max": 20, "unit": "px", "note": "子标题。Warby Parker 20px/700; Gymshark 14px/700"},
+        "h4": {"min": 14, "max": 20, "unit": "px", "note": "卡片标题。Everlane 20px/400; Gymshark 14px/400"},
+        "body": {"min": 14, "max": 16, "unit": "px", "note": "正文。16px为最常用基础字号; 辅助文字14px"},
+        "small": {"min": 11, "max": 14, "unit": "px", "note": "小字。Gymshark h5 12px/700; Everlane p 12px"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 32, "max": 80, "unit": "px", "note": "Gymshark section 32px padding; 80px spacing tokens. 桌面端section间距偏大"},
+      "content_max_width": {"typical": 1280, "unit": "px", "note": "大多数品牌使用全宽布局，content不设max-width。Warby Parker使用grid columns系统"},
+      "card_padding": {"typical": "0px (image-first cards)", "note": "产品卡片通常无padding，图片撑满。Everlane卡片内部padding: 0"},
+      "spacing_scale": "fashion ecommerce使用紧凑间距。典型scale: 4, 8, 12, 16, 24, 32, 48, 64, 80px。移动端更紧凑(4px grid gap)"
+    },
+    "border_radius": {
+      "buttons": "0px (Everlane, Mejuri, Gymshark minimalist) 到 36px (Warby Parker pill buttons)。两极分化: 极简0或完全圆角pill",
+      "cards": "0px (大多数品牌): 产品卡片无圆角，图片直接撑满",
+      "inputs": "4-8px: Gymshark 4px standard, Everlane 8px input radius",
+      "drawers_modals": "12-24px: Everlane drawer 24px, inset 12px"
+    },
+    "elevation": {
+      "shadows": "极轻阴影或无阴影。Fashion ecommerce偏好flat design — 产品卡片通常无box-shadow",
+      "typical_values": [
+        "none (Everlane产品卡片, Gymshark卡片, Mejuri卡片)",
+        "0px 2px 8px rgba(55,63,71,0.08), 0px 1px 2px rgba(55,63,71,0.12) (Everlane卡片阴影 — 极轻)",
+        "0px 8px 16px rgba(55,63,71,0.2) (Everlane medium shadow)",
+        "0px 6px 24px rgba(18,18,18,0.24) (Warby Parker shadow-6)",
+        "0px 4px 60px rgba(0,0,0,0.1) (Gymshark large shadow — 非常大的模糊半径)",
+        "0px 4px 15px rgba(0,0,0,0.1) (Gymshark small shadow)",
+        "0px 20px 48px rgba(55,63,71,0.16), 0px 12px 24px rgba(55,63,71,0.2), 0px 0px 12px rgba(55,63,71,0.08) (Everlane popover — 多层阴影)"
+      ]
+    }
+  },
+
+  "section_patterns": {
+    "typical_order": [
+      "announcement bar (promo banner, 32px, 背景深色文字白色)",
+      "header/nav (sticky or static, logo left/center, hamburger menu on mobile, cart + search icons right)",
+      "hero (full-width lifestyle photo, large headline overlay, CTA button, 800px+ height on desktop)",
+      "featured categories (2-4 image tiles, clean labels, 圆形或方形)",
+      "product grid (3-4 columns desktop, 2 columns tablet, 1-2 mobile, image-heavy, price below)",
+      "brand story / values section (Everlane: sustainability, Warby Parker: social mission)",
+      "social proof (press logos, reviews, UGC gallery)",
+      "newsletter signup (full-width or footer-integrated)",
+      "footer (multi-column: 4-6 columns, brand links, help, social icons, legal)"
+    ],
+    "hero_variants": [
+      "变体1: 全屏生活方式照片 + 文字叠加 (Everlane, Gymshark) — 800px+高度，大标题，1-2个CTA",
+      "变体2: 居中文字hero + 浅色/纯色背景 (Warby Parker) — 360px高度，55px大标题，60px上下padding",
+      "变体3: 深色背景hero + 白色文字 (Mejuri) — 黑色背景，808px高度，产品+模特图，简洁CTA",
+      "变体4: 双CTA hero (Allbirds) — Shop Men / Shop Women 分性别CTA，产品图居中"
+    ],
+    "card_variants": [
+      "产品卡片: image-first, 0px圆角, 无shadow, flex column布局, 商品名+价格在图片下方, 多图hover切换",
+      "分类卡片: 大图+文字标签, 方形或横向, 无边框, 文字居中或左下角",
+      "blog/内容卡片: 0px圆角(Everlane blog), 轻微shadow, 图片+标题+摘要"
+    ],
+    "nav_patterns": {
+      "everlane": "Static header, white bg #ffffff, logo center, 74px height, 372 links (mega menu), text links dark",
+      "allbirds": "Sticky transparent header, overlay on hero, 0px reported height (JS-rendered), 203 links",
+      "warby_parker": "Static transparent header, dark text #121212, logo centered, 18 links (minimal nav), 40px height (truncated by JS)",
+      "gymshark": "Static transparent header, white text on dark sections, 76px height, 141 links, gender-split nav",
+      "mejuri": "Sticky black header #000000, white text, 57px height, 8 links (minimal luxury nav), logo left"
+    }
+  },
+
+  "tone_profile": {
+    "keywords": ["minimal", "aspirational", "clean", "image-driven", "confident"],
+    "headline_style": "Short, bold, aspirational. 3-8 words. Fashion uses lifestyle-benefit headlines rather than feature descriptions. 例: 'MADE FOR SUMMER' (Everlane), 'New frames, made for play' (Warby Parker), 'The Summer Guide' (Mejuri), 'TREE RUNNER — Wildly Comfortable. Blissfully Breathable.' (Allbirds)",
+    "cta_style": "Direct action verbs: 'Shop Now', 'Shop Men / Shop Women', 'Start the quiz', 'Discover', 'Shop the Collection'. Rarely longer than 3 words. Everlane uses arrow prefix: '→ SHOP THE COLLECTION'",
+    "trust_signals": [
+      "Customer reviews / star ratings near product cards",
+      "Sustainability badges (Everlane: ethical factories; Allbirds: carbon neutral; Warby Parker: buy a pair give a pair)",
+      "Press quotes/logos ('As seen in Vogue, GQ, etc.')",
+      "Free shipping & returns prominently displayed",
+      "Social media proof / UGC galleries",
+      "Newsletter signup (10-15% off first order incentive)"
+    ],
+    "anti_patterns": [
+      "Do NOT use heavy box shadows on cards (fashion = flat, image-forward)",
+      "Do NOT use colored backgrounds behind product images (always white/natural)",
+      "Do NOT use serif fonts for body text (Mejuri is exception with monospace)",
+      "Do NOT use small, text-heavy descriptions on product cards (max: name + price)",
+      "Do NOT use bright/neon colors for primary UI elements (palette stays neutral)",
+      "Do NOT use complex multi-level dropdowns (mega-menu or simple flyout preferred)",
+      "Avoid border-radius on product images/cards",
+      "Avoid dark mode (all 5 brands use light backgrounds)"
+    ]
+  },
+
+  "variation_space": {
+    "color_mood": [
+      "Warm Neutral (Everlane, Allbirds): 白底+暖燕麦/米色+深灰文字。温暖、自然、可持续感。适合: 环保、极简、日常服饰",
+      "High Contrast (Mejuri, Warby Parker): 纯白+纯黑/深海军蓝。干净、锐利、奢华感。适合: 高端、珠宝、设计师品牌",
+      "Athletic Bold (Gymshark): 白底+黑文字+高饱和强调色。活力、力量、年轻。适合: 运动、街头、潮流"
+    ],
+    "typography_mood": [
+      "Minimal Sans (Everlane, Warby Parker, Allbirds): 细体/常规字重标题(400-500), 清晰易读。'安静的自信'。适合: 极简、DTC、中高端",
+      "Bold Athletic (Gymshark): 全粗体标题(700), 压缩字体(Druk Condensed Super, Bebas Neue), 大写。'响亮、有力'。适合: 运动、街头、年轻品牌",
+      "Editorial Mono (Mejuri): 等宽字体(SimonMono), 宽字母间距, 杂志感。'精致、有态度'。适合: 奢侈、珠宝、编辑型品牌"
+    ],
+    "layout_density": [
+      "Airy & Spacious (Everlane, Mejuri): 大量留白，单列hero，图片主导，文字极少。适合: 高端、极简",
+      "Energetic & Dense (Gymshark): 多种内容密度混合，多区块快速切换，视频+图片轮播。适合: 快时尚、运动",
+      "Balanced (Warby Parker, Allbirds): hero后紧接分类卡片+产品网格，经典ecommerce密度。适合: 大多数DTC品牌"
+    ],
+    "button_style": [
+      "Zero-radius flat (Everlane, Mejuri): 0px圆角，纯色填充，文字大写或regular。极简",
+      "Pill rounded (Warby Parker): 36px全圆角，outline样式(边框1px)，'友好、可接近'",
+      "Standard (Gymshark): 4px圆角，可变背景色，功能优先"
+    ]
+  },
+
+  "per_brand_summary": {
+    "everlane": {
+      "positioning": "Radical Transparency / Modern Essentials",
+      "palette_hex": ["#ffffff", "#000000", "#121212", "#262626", "#c8c0b8", "#ebeaea", "#f8f6f5", "#d0021b", "#161912", "#737373"],
+      "typography": "Maison Neue Book (headings) / Assistant, sans-serif (body). 400 weight headings (light/minimal). 15-16px body.",
+      "radius": "0px everywhere — cards, buttons, inputs, blog cards, collection cards",
+      "nav": "Static, white bg, logo center, mega-menu with 372 links, 74px height",
+      "hero": "Full-width lifestyle photo, 806px height, headline + arrow CTA overlay",
+      "cards": "Flex column, no shadow, no radius, 0px padding. 5 images per product card (multi-angle hover). Left-aligned text.",
+      "signature": "A11Y-first with skip-to-content; Atlas design system with detailed CSS custom properties; arrow-prefixed CTAs"
+    },
+    "allbirds": {
+      "positioning": "Sustainable Comfort / Natural Materials",
+      "palette_hex": ["#ece9e2", "#ffffff", "#000000", "#575757", "#fff"],
+      "typography": "Geograph, system-ui, sans-serif. Tailwind v4 fluid type scale. 16px body, 24px h1. OKLCH color space.",
+      "radius": "0px on cards/buttons. Custom clip-path for pill shapes (skewed pill SVG mask).",
+      "nav": "Sticky, transparent, overlay on hero. Large link count (203).",
+      "hero": "Dual-gender CTA (Shop Men / Shop Women), product image centered, 784px height, warm oat background showing through",
+      "cards": "Grid display, 12px gap, image-heavy. No shadow, no radius.",
+      "signature": "Tailwind v4 with modern OKLCH color tokens; custom SVG clip-paths; warm natural tones throughout"
+    },
+    "warby_parker": {
+      "positioning": "Accessible Eyewear / Try-at-Home",
+      "palette_hex": ["#ffffff", "#121212", "#072369", "#1050d0", "#dfebe8", "#fcfbf9", "#bf0025", "#e1e5e6", "#3a434c", "#09624d"],
+      "typography": "sans-serif system font stack. 55px hero h2 (400 weight, -0.55px letter-spacing). 20px h3 (700 weight). 16px body.",
+      "radius": "36px pill buttons (signature), 20px skip-link, 4px nav items, 0px modals",
+      "nav": "Static, transparent, centered logo, minimal 18 links, dark text on light bg",
+      "hero": "Centered text hero, 360px height, 60px vertical padding, no background image (text-focused)",
+      "cards": "N/A on homepage (uses category tiles rather than product cards). Grid system: 8 cols tablet, desktop offset 48px.",
+      "signature": "Pill-shaped outline buttons (1px solid border, 36px radius); deep navy #072369 brand color; sophisticated shadow system"
+    },
+    "gymshark": {
+      "positioning": "Performance Athletic / Community-Driven",
+      "palette_hex": ["#ffffff", "#000000", "#53565a", "#f5f5f5", "#007db5", "#e7e7e7", "#d54537", "#bf2e35", "#377d47", "#bbbcbc"],
+      "typography": "Roboto body; Druk Condensed Super + Bebas Neue headings. All headings 700 weight. 32px h1, 25px h2, 14px h3. Hero titles up to 128px.",
+      "radius": "4px standard (rounded-corners-standard), 0px on cards",
+      "nav": "Static, transparent, gender-split (Women/Men), 76px+ height, white text overlay, 141 links",
+      "hero": "Full-width lifestyle/action photos, massive 6010px scroll height (multi-section scroller), 176 images on main page",
+      "cards": "Block display, no shadow, no radius, 0px padding. 2 images per card. Dense mobile-first grid.",
+      "signature": "Bold athletic typography with Druk Condensed Super; massive hero titles; gender-split navigation; Glassmorphism (blur(50px) backdrop); particle design system"
+    },
+    "mejuri": {
+      "positioning": "Luxury Jewelry / Everyday Fine",
+      "palette_hex": ["#ffffff", "#000000", "#0a0a0a"],
+      "typography": "SimonMono, Courier New, monospace (signature font choice). 24px h1 (500 weight, 1.2px letter-spacing). 48px h2 (500 weight, 2.4px letter-spacing). 16px body.",
+      "radius": "0px on all elements (pure minimal)",
+      "nav": "Sticky, black bg #000000, white text, 57px height, minimal 8 links (luxury simplicity)",
+      "hero": "Black background, white text, 808px height, product+lifestyle imagery, single CTA: 'Shop Now'",
+      "cards": "No shadow, no radius, no padding. Pure image-first display.",
+      "signature": "Monospace font as luxury differentiator; wide letter-spacing for editorial feel; pure black/white palette; Shopify Oxygen/Hydrogen stack"
+    }
+  },
+
+  "component_specs": {
+    "hero": {
+      "min_height_desktop": "360-808px",
+      "layout_types": ["image_background + text_overlay", "solid_bg + centered_text", "video_background + overlay"],
+      "heading_level": "h1 or h2",
+      "heading_size_range": "24-128px",
+      "cta_count": "1-2 buttons",
+      "common_cta_text": ["Shop Now", "Shop Men", "Shop Women", "Start the Quiz", "Discover", "Shop the Collection"]
+    },
+    "product_card": {
+      "layout": "image_stack (1-5 images, primary + hover alternates) > product_name > price",
+      "aspect_ratio": "3:4 or 1:1 (portrait orientation dominant)",
+      "border_radius": "0px (universal across all 5 brands)",
+      "shadow": "none (universal in default state, minimal on hover at most)",
+      "padding": "0px (image fills card width)",
+      "text_alignment": "left (Everlane, Mejuri, Gymshark) or center (Allbirds)",
+      "interactions": "hover: swap to second product image (Everlane, Gymshark), slight opacity/zoom",
+      "badges": "Sale (red #d0021b), New Arrival, Best Seller, Sustainable"
+    },
+    "navigation": {
+      "variants": [
+        "sticky + transparent → solid on scroll (Allbirds, Gymshark)",
+        "sticky + always solid dark (Mejuri — black #000000)",
+        "static + white bg (Everlane)",
+        "static + transparent (Warby Parker)"
+      ],
+      "logo_position": "center (Everlane, Warby Parker) or left (Gymshark, Mejuri, Allbirds)",
+      "height_desktop": "57-76px",
+      "cart_icon": "right side, often with count badge",
+      "search": "icon toggle or integrated bar",
+      "mobile": "hamburger menu, full-screen overlay or drawer"
+    },
+    "footer": {
+      "columns": "3-6 columns desktop, stacked mobile",
+      "sections": ["Brand/About links", "Help/Customer Service", "Shop/Products", "Social media icons", "Newsletter signup", "Legal/Privacy"],
+      "background": "white #ffffff (Everlane, Warby Parker, Mejuri) or transparent (Allbirds, Gymshark)",
+      "padding": "minimal top padding (30px Gymshark), generous internal spacing"
+    }
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "industry": "senior-care",
+  "extracted_from": [
+    {"source": "CloakBrowser headless extraction", "brand": "A Place for Mom", "url": "https://www.aplaceformom.com", "date": "2026-06-02"},
+    {"source": "CloakBrowser headless extraction", "brand": "Sunrise Senior Living", "url": "https://www.sunriseseniorliving.com", "date": "2026-06-02"},
+    {"source": "CloakBrowser headless extraction", "brand": "Brookdale", "url": "https://www.brookdale.com", "date": "2026-06-02"},
+    {"source": "Secondary research (site blocked by DataDome)", "brand": "Atria Senior Living", "url": "https://www.atriaseniorliving.com", "date": "2026-06-02", "notes": "403 Forbidden even with CloakBrowser. Data from design agency case study (EveryDay Studio) and brand research."}
+  ],
+  "reference_brands": ["A Place for Mom", "Sunrise Senior Living", "Brookdale", "Atria Senior Living"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#4F6AC5", "#037EAB", "#00539B"],
+      "primary_role": "主色 — 蓝色系：信任、沉稳、可靠。软蓝到深蓝的梯级，避免过于临床/医疗感",
+      "accent": ["#2DA262", "#F4792A"],
+      "accent_role": "强调色 — 绿色(生命力/自然) + 暖橙(温暖/活力)，用于CTA和重点标记",
+      "surface": ["#FFFDF7", "#FFFBF5", "#F1F4F7", "#E0E9EB"],
+      "surface_role": "背景色 — 暖白/奶油色为主，避免纯白(过于临床)；辅以柔蓝/青灰交替区分section",
+      "neutral": ["#2C2F34", "#333333"],
+      "neutral_role": "正文颜色 — 深灰而非纯黑，柔和且对比度充足(≥4.5:1)，适合老年用户阅读",
+      "border": ["#CCCCCC", "#DFE1DF"],
+      "border_role": "边框颜色 — 浅灰/灰绿，轻微存在感，不抢内容焦点",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#2563eb"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Poppins", "Montserrat", "Gotham"],
+      "body_fonts": ["Poppins", "Montserrat", "Lato", "Gotham"],
+      "system_fallback": "sans-serif",
+      "heading_weight": 400,
+      "body_weight": 400,
+      "heading_weight_alt": 600,
+      "scale": {
+        "h1": {"min": 44, "max": 72, "unit": "px", "notes": "APFM 72px/400, Sunrise 52px/325(light), Brookdale 44px/400. Range reflects hero vs. section heading."},
+        "h2": {"min": 44, "max": 56, "unit": "px", "notes": "APFM 56px, Sunrise 55px, Brookdale 44px. Large, confident headings for scannability."},
+        "h3": {"min": 18, "max": 30, "unit": "px", "notes": "APFM 18px, Sunrise 14px(small!), Brookdale 30px. Wide variation; 20-24px recommended for accessibility."},
+        "body": {"min": 16, "max": 20, "unit": "px", "notes": "CRITICAL: 14px(APFM) is common industry baseline but 16px minimum recommended for senior audience. Brookdale/Sunrise use 16px. Ideal range 16-18px for body, 16-20px for CTAs."},
+        "small": {"min": 14, "max": 16, "unit": "px", "notes": "Captions, legal text. Never below 14px for accessibility."}
+      },
+      "line_height": {
+        "body": 1.4,
+        "heading": 1.1,
+        "notes": "Sunrise: 24px(=1.5), APFM: 21px(=1.5), Brookdale: 20.8px(=1.3). Generous line-height aids readability for older eyes."
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 40, "max": 100, "unit": "px", "notes": "Sunrise uses 40px and 100px section padding. APFM hero has 80px padding."},
+      "content_max_width": {"typical": 1200, "max": 1600, "unit": "px", "notes": "Sunrise max 1600px (very wide). Most use 1140-1200px. Senior care sites tend toward wider layouts for larger type."},
+      "card_padding": {"typical": "23-24px", "notes": "Brookdale: 23px. Others use similar range."},
+      "card_gap": {"typical": "24-32px", "unit": "px"}
+    },
+    "border_radius": {
+      "buttons": "4px (Brookdale) to 9999px/pill (APFM)",
+      "buttons_role": "APFM uses pill-shaped (9999px) secondary buttons for friendly feel; Brookdale uses 4px conventional; Sunrise uses 0px (flat)",
+      "cards": "0-8px",
+      "cards_role": "Flat to subtly rounded. Brookdale cards have 0px radius with shadow.",
+      "inputs": "4-8px",
+      "inputs_role": "Search inputs and forms typically use moderate rounding"
+    },
+    "elevation": {
+      "shadows": "Subtle, warm shadows. Never harsh or dramatic.",
+      "typical_values": [
+        "rgba(0, 0, 0, 0.3) 0px 3px 8px -2px (Brookdale cards)",
+        "0 2px 8px rgba(0, 0, 0, 0.08) (soft card shadow)",
+        "0 4px 16px rgba(0, 0, 0, 0.12) (elevated card/hover)"
+      ],
+      "notes": "Brookdale uses a soft offset shadow with negative spread for subtle depth. Sunrise uses flat design (no shadow). Shadows should evoke warmth, not drama."
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (warm bg: cream/white, logo left, prominent phone number with tel: link, 'Schedule a Tour' / 'Find a Community' primary CTA, hamburger or minimal nav)",
+      "hero (large warm photo of seniors + family, headline about care/dignity/peace of mind, search bar or location finder as primary interaction, phone number visible)",
+      "care types overview (icon+title+description cards: Independent Living / Assisted Living / Memory Care / Respite Care)",
+      "location finder / community search (zip code or city input, map or list results)",
+      "how it works / process steps (numbered steps with illustrations, reassuring copy about the journey)",
+      "amenities & lifestyle (photo-rich: dining, activities, gardens, social events, wellness programs)",
+      "testimonials / reviews (family quotes, resident stories, star ratings, video testimonials optional)",
+      "safety & health protocols (clinical but warm: staff credentials, medication management, emergency response, COVID-19 info)",
+      "cost calculator / financial guidance (interactive tool or clear pricing tiers, insurance guidance)",
+      "about / mission statement (company story, years in operation, core values, leadership photos)",
+      "CTA footer section (get started, call now, schedule tour — urgent but warm)",
+      "footer (location links by state, care types, about, careers, contact, phone, social media)"
+    ],
+    "hero_variants": [
+      "large photo + headline overlay + CTA button (Sunrise style: 52px white headline, 'Book a Tour' btn)",
+      "photo + search bar + headline (APFM style: 'Find senior living near you' 72px + pill-shaped search tabs)",
+      "photo + value prop + CTA (Brookdale style: photo + 'Brookdale Senior Living' 44px + 'Search Now' green btn)"
+    ],
+    "card_variants": [
+      "care type cards (icon + title + short description, 3-4 across, soft bg or white with shadow)",
+      "location cards (photo + community name + address + phone + 'Learn More' link)",
+      "amenity cards (photo-dominant, title overlay, lifestyle imagery: dining, garden, activity)"
+    ],
+    "interaction_patterns": {
+      "primary_cta_position": "Header right + hero center",
+      "phone_visibility": "Always visible in header (large, colored, with icon). Multiple tel: links throughout page.",
+      "form_style": "Short (2-3 fields), reassuring microcopy, large input fields, clear labels",
+      "trust_badges": "Awards, certifications, years in business, partner logos (often in hero or footer area)"
+    }
+  },
+  "tone_profile": {
+    "keywords": ["warm", "trustworthy", "caring", "dignified", "family-focused", "accessible", "reassuring", "professional but personal"],
+    "headline_style": "Reassuring and family-oriented. Emphasize peace of mind, dignity, and living fully. APFM: 'Find senior living near you' (direct, helpful). Sunrise: 'Senior Living That Helps You Live Fully' (aspirational). Brookdale: 'Brookdale Senior Living' (established, trusted).",
+    "cta_style": "Action-oriented but gentle. 'Schedule a Tour', 'Find a Community', 'Search Now', 'Book a Tour', 'Talk to an Advisor'. Never aggressive or salesy. Warm invitation, not hard sell.",
+    "trust_signals": [
+      "Family testimonials with full names and photos",
+      "Years in business / number of communities",
+      "Staff credentials and training highlights",
+      "Safety ratings and inspection results",
+      "Awards and industry recognition",
+      "Partner/certification logos (ALFA, Argentum, CARF, etc.)",
+      "Real resident photos (not stock)"
+    ],
+    "anti_patterns": [
+      "Avoid clinical/cold language (no 'facility', use 'community')",
+      "Don't use tiny fonts — 16px minimum for body, 14px absolute minimum",
+      "Don't use dark/moody color schemes — avoid black, charcoal heavy designs",
+      "Don't use institutional/sterile imagery — no empty hallways, medical equipment closeups",
+      "Don't use aggressive sales tactics — no countdown timers, 'limited spots', urgency popups",
+      "Don't use pure white (#FFFFFF) as dominant background — use cream/off-white for warmth",
+      "Don't hide phone numbers — they must be prominent and tappable on mobile"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      {
+        "name": "warm earthy",
+        "primary": "#4F6AC5",
+        "accent": "#C2853A",
+        "surface": "#FFFDF7",
+        "description": "APFM-inspired: warm cream + periwinkle blue + amber. Most popular, universally appealing."
+      },
+      {
+        "name": "soft coastal",
+        "primary": "#037EAB",
+        "accent": "#F4792A",
+        "surface": "#F1F4F7",
+        "description": "Sunrise-inspired: teal blue + warm orange + soft gray-blue. Fresh, modern, energizing."
+      },
+      {
+        "name": "classic traditional",
+        "primary": "#00539B",
+        "accent": "#2DA262",
+        "surface": "#FBFBF9",
+        "description": "Brookdale-inspired: navy blue + leaf green + warm white. Established, trustworthy, conventional."
+      }
+    ],
+    "typography_mood": [
+      {
+        "name": "serif traditional",
+        "heading": "Optima / Commissioner (APFM custom fonts)",
+        "body": "Poppins",
+        "description": "Mix of serif heading + sans body for classic warmth. APFM uses Commissioner (bold serif) for headings with self-hosted fonts."
+      },
+      {
+        "name": "sans-serif accessible",
+        "heading": "Montserrat / Gotham",
+        "body": "Montserrat / Lato",
+        "description": "Clean sans-serif throughout for maximum readability. Sunrise uses Gotham + Montserrat. Brookdale uses Montserrat throughout."
+      },
+      {
+        "name": "humanist modern",
+        "heading": "Poppins",
+        "body": "Poppins",
+        "description": "Single typeface family for cohesion. Warm geometric sans that reads as friendly and contemporary."
+      }
+    ],
+    "layout_density": [
+      {
+        "name": "spacious and airy",
+        "max_width": "1600px",
+        "section_padding": "80-100px",
+        "card_gap": "32px",
+        "description": "Sunrise-inspired. Wide layouts, generous whitespace, large hero images. Feels premium and calm."
+      },
+      {
+        "name": "moderate density with more CTAs",
+        "max_width": "1140-1200px",
+        "section_padding": "60-80px",
+        "card_gap": "24px",
+        "description": "APFM-inspired. Balanced content density, multiple CTAs per page, search-focused interaction."
+      }
+    ]
+  },
+  "accessibility_notes": {
+    "critical": [
+      "Body text minimum 16px — this is a MEDICAL NECESSITY for senior audience, not just a design preference",
+      "Color contrast ratio minimum 4.5:1 for all text, 3:1 for large text (18px+) — WCAG AA",
+      "Phone numbers must be large, tappable tel: links with minimum 44x44px touch target",
+      "Form inputs must have clear visible labels (not placeholder-only), large touch targets",
+      "Avoid low-contrast gray text on light backgrounds — common anti-pattern",
+      "Navigation must be simple — this audience is less tech-savvy; hamburger menus should be obvious",
+      "No auto-playing video/audio — can disorient older users",
+      "Focus states must be clearly visible for keyboard navigation"
+    ],
+    "recommended": [
+      "Line height 1.5 minimum for body text — improves readability for aging eyes",
+      "Sans-serif fonts preferred for screen readability (Montserrat, Poppins, Open Sans)",
+      "Avoid italics for body text — harder to read at smaller sizes",
+      "Use generous letter-spacing (0.01-0.02em) for improved character recognition",
+      "Consider a font-size toggle widget (small/medium/large) for user preference"
+    ]
+  },
+  "brand_specific_notes": {
+    "a_place_for_mom": {
+      "differentiator": "Lead generation marketplace (not a community operator). Search-first UX. Blue color signals tech/trust. Pill-shaped buttons are distinctive. 14px body is smaller than competitors — potential accessibility concern.",
+      "color_hex": {"primary": "#4F6AC5", "dark": "#334FA9", "navy": "#1F3066", "surface": "#FFFDF7", "text": "#2C2F34"},
+      "h1": {"size": "72px", "weight": 400},
+      "cta_text": "Find senior living near you"
+    },
+    "sunrise_senior_living": {
+      "differentiator": "Premium community operator. Light H1 weight (325) is unique — feels airy/aspirational. Teal + orange palette is modern and distinctive. Flat design (no shadows, 0px radius). Photo-heavy with warm lifestyle imagery.",
+      "color_hex": {"primary": "#037EAB", "accent": "#F4792A", "surface_section": "#E0E9EB", "surface_alt": "#F1F4F7", "text": "#1E1E1E"},
+      "h1": {"size": "52px", "weight": 325},
+      "cta_text": "Book a Tour"
+    },
+    "brookdale": {
+      "differentiator": "Largest operator, established brand. Green accent signals health/nature. Most conventional design language. Rounded buttons (4px). Cards with depth via shadow. Strong Montserrat typeface consistency.",
+      "color_hex": {"primary": "#00539B", "accent": "#2DA262", "surface": "#FFFFFF", "surface_alt": "#F9F9F9", "text": "#333333"},
+      "h1": {"size": "44px", "weight": 400},
+      "cta_text": "Search Now"
+    },
+    "atria_senior_living": {
+      "differentiator": "Modular design system across sub-brands. Known for portrait-forward photography (residents + staff). Scannable layout for amenities/pricing. Accessibility-first type sizing.",
+      "color_hex": {"primary": "#00529B", "accent": "#0088CE", "surface": "#F8F8F5"},
+      "h1": {"size": "48px", "weight": 400},
+      "cta_text": "Find a Community"
+    }
+  }
+}

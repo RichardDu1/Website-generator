@@ -1,0 +1,189 @@
+{
+  "industry": "ecommerce-food",
+  "version": "1.0",
+  "extracted_from": [
+    {"source": "官网分析 (WebFetch)", "brand": "HelloFresh", "url": "https://www.hellofresh.com", "date": "2026-06-02", "notes": "全面提取: 页面结构、品牌色、字体、CTA模式、信任信号"},
+    {"source": "官网分析 (WebFetch)", "brand": "Factor", "url": "https://www.factor75.com", "date": "2026-06-02", "notes": "HelloFresh子品牌，运动/健康定位"},
+    {"source": "官网分析 (WebFetch)", "brand": "Green Chef", "url": "https://www.greenchef.com", "date": "2026-06-02", "notes": "HelloFresh子品牌，有机认证/清洁饮食定位"},
+    {"source": "官网分析 (WebFetch)", "brand": "EveryPlate", "url": "https://www.everyplate.com", "date": "2026-06-02", "notes": "HelloFresh子品牌，性价比定位"},
+    {"source": "公开品牌信息 (WebSearch)", "brand": "Blue Apron", "url": "https://www.blueapron.com", "date": "2026-06-02", "notes": "原目标品牌，Cloudflare拦截无法直接访问；品牌色和设计模式从公开来源提取"},
+    {"source": "品牌搜索 (WebSearch)", "brand": "Daily Harvest", "url": "https://www.daily-harvest.com", "date": "2026-06-02", "notes": "原目标品牌，域名已重定向至Thumbtack（疑似被收购或关停）"},
+    {"source": "品牌搜索 (WebSearch)", "brand": "Trade Coffee", "url": "https://www.drinktrade.com", "date": "2026-06-02", "notes": "原目标品牌，网站重定向至Taskrabbit（疑似被收购或关停）"},
+    {"source": "品牌搜索 (WebSearch)", "brand": "Thrive Market", "url": "https://thrivemarket.com", "date": "2026-06-02", "notes": "原目标品牌，ERR_ABORTED连接失败"}
+  ],
+  "reference_brands": ["HelloFresh", "Factor", "Green Chef", "EveryPlate", "Blue Apron"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#669933", "#4A7C59", "#006400", "#3A913F"],
+      "primary_role": "绿色系 — 食物配送品牌统一使用绿色传达新鲜、健康、天然。深绿用于CTA按钮和品牌标识，浅绿用于辅助元素。HelloFresh #669933 是最具代表性的行业主色。",
+      "accent": ["#99cc33", "#F5A623", "#FF6B35"],
+      "accent_role": "强调色 — 亮绿用于优惠标签和统计图标，暖橙用于限时优惠和'最受欢迎'标签，营造紧迫感和食欲感。",
+      "surface": ["#FFFFFF", "#FAFAF5", "#F7F3EB", "#F0EDE5"],
+      "surface_role": "表面色 — 主背景纯白(#FFFFFF)，卡片和区块使用暖色系off-white/cream(#FAFAF5, #F7F3EB)营造温暖亲近感，模拟厨房和自然食材的色调。避免冷灰。",
+      "neutral": ["#1A1A1A", "#333333", "#666666"],
+      "neutral_role": "文字颜色 — 标题用深黑(#1A1A1A)，正文用深灰(#333333-666666)。食物品牌文字对比度通常较高，确保在热情的照片背景下可读。",
+      "border": ["#E5E0D8", "#D4CFC5"],
+      "border_role": "边框颜色 — 温暖的浅灰/米色边框，匹配off-white表面。避免冷灰。卡片边框通常极淡或完全省略，让食物照片本身成为视觉焦点。",
+      "semantic": {"success": "#16a34a", "warning": "#d97706", "error": "#dc2626", "info": "#2563eb"}
+    },
+    "typography": {
+      "heading_fonts": ["Capucine (HelloFresh, Process Type Foundry)", "系统原生粗体 sans-serif (Factor/Green Chef/EveryPlate)"],
+      "body_fonts": ["Source Sans (HelloFresh)", "系统原生 sans-serif — 'Helvetica Neue', Helvetica, Arial (通用)"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 32, "max": 64, "unit": "px", "notes": "Hero标题通常全大写 + 粗体。HelloFresh使用48-56px Capucine Bold。"},
+        "h2": {"min": 24, "max": 42, "unit": "px", "notes": "段落标题混合大小写或全大写，配食物照片。"},
+        "h3": {"min": 18, "max": 24, "unit": "px", "notes": "卡片标题、计划名称通常全大写。"},
+        "body": {"min": 15, "max": 18, "unit": "px", "notes": "正文16px为基准，保持高可读性。"},
+        "small": {"min": 12, "max": 14, "unit": "px", "notes": "法律条款、脚注、辅助信息。"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 120, "unit": "px", "notes": "大区块之间通常80-120px间距，照片区域可能全出血无padding。"},
+      "content_max_width": {"typical": 1200, "unit": "px", "notes": "内容区最大宽度1200-1280px，计划卡片等窄内容可能限制在960px。"},
+      "card_padding": {"typical": "24px", "notes": "卡片内边距通常24px，食物照片卡片可能0 padding让照片出血到边缘。"}
+    },
+    "border_radius": {
+      "buttons": "50px (完全圆角药丸形) 或 8-12px (柔和大圆角)",
+      "cards": "12-16px (柔和大圆角，符合食物品牌的温暖亲和感)",
+      "inputs": "8-12px (圆角输入框，与整体圆润风格一致)"
+    },
+    "elevation": {
+      "shadows": "低阴影或无阴影 — 食物品牌偏好扁平/干净设计，让食物照片成为视觉焦点。卡片通常无阴影或用极淡的阴影(0 2px 8px rgba(0,0,0,0.06))。",
+      "typical_values": ["none (最常用)", "0 2px 8px rgba(0,0,0,0.06)", "0 4px 12px rgba(0,0,0,0.08)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "announcement bar (顶部优惠条: 'Free X + Y% Off' 或 '$X.XX/Meal')",
+      "header (sticky, logo左/中, 'Our Plans'/'Weekly Menu'/'Login', 'Get Started' CTA右)",
+      "hero (全宽食物照片背景, 大字标题关于品质/便利/健康, 绿色CTA按钮, 小字条款)",
+      "trust stats (3-4个统计数字卡片: 满意度97%+ / 好评数 / 新鲜食材 / 菜系数量)",
+      "how it works (3-4步骤: 选餐 → 我们配送 → 轻松烹饪 → 享用)",
+      "plan selector / dietary preferences (6-8个饮食偏好卡片: 荤素/素食/低卡/高蛋白/无麸质等)",
+      "value propositions (3个特性卡片: 新鲜食材/易做/健康)",
+      "what's new / featured (新品展示, 图片卡片)",
+      "testimonials / reviews (Trustpilot集成或自定义客户评价轮播)",
+      "closing CTA (大标题 + 优惠 + 绿色按钮 + 全宽背景图)",
+      "FAQ (7-10个折叠问题, 涵盖配送/定制/过敏原/跳过/取消)",
+      "newsletter signup",
+      "footer (多列链接: 关于/菜单/合作/帮助, 支付方式图标, 社交媒体, 法律条款)"
+    ],
+    "hero_variants": [
+      "全出血食物照片 + 文字叠加 (HelloFresh, Factor) — 最常用，俯拍或45度角美食图",
+      "大标题居中 + 背景图 + 订阅框 (Green Chef) — 标题先行，照片做氛围",
+      "移动端分离图片策略 — 桌面和移动端使用不同尺寸/裁剪的hero图片",
+      "视频/GIF背景 — Green Chef使用GIF展示步骤，HelloFresh步骤1使用动画GIF"
+    ],
+    "card_variants": [
+      "饮食偏好卡片 (圆形食物照片 + 标签 + 一行描述) — Green Chef 8个, HelloFresh 6个",
+      "步骤卡片 (插图/图标 + 编号 + 标题 + 描述) — 所有品牌通用的3-4步流程",
+      "统计卡片 (大百分比数字 + 简短文案 + 插图) — HelloFresh 91/97/98%, Factor 97/90/92%",
+      "价值主张卡片 (图标/GIF + 标题 + 描述 + 脚注) — Green Chef 4个GIF卡片",
+      "推荐/评价卡片 (用户照片/星级 + 评价文字) — EveryPlate Trustpilot集成"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["fresh", "convenient", "delicious", "healthy", "easy", "organic", "sustainable", "home-cooked", "flexible", "no commitment"],
+    "headline_style": "全大写粗体或混合大小写。强调感官体验和结果 — 'NOTHING HITS LIKE HOME COOKING'(HelloFresh), 'TRUST EVERY BITE, FOR LIFE'(Green Chef), 'Start Fresh. Fuel Right. Eat Like a Pro.'(Factor)。句式：短、有力、情感驱动。避免技术语言和空洞营销话术。",
+    "cta_style": "'See Pricing & Plans' 是最常见的CTA文案（HelloFresh, Green Chef）。Factor使用 'GET OFFER' / 'GET STARTED'（全大写）。EveryPlate使用 'Get Offer'。按钮始终为绿色实心药丸形，白色文字。CTA在页面上重复3-5次（hero、中部、底部）。",
+    "trust_signals": [
+      "客户满意度统计数据 (91%-98% 范围, 大字号展示)",
+      "第三方评价平台 (Trustpilot 评分和评论数)",
+      "媒体奖项/报道 (Newsweek, USA Today Readers' Choice, Esquire)",
+      "饮食认证 (CCOF Organic, Clean Label Project, dietitian-approved)",
+      "灵活承诺 ('Pause or cancel anytime', 'No commitment', 'Skip a week')",
+      "新鲜保证 ('Fresh, never frozen', 'Portioned ingredients')",
+      "可回收包装 (环保信任信号)",
+      "临床研究引用 (Factor: 'Clinically Proven', Green Chef: 带脚注的研究数据)"
+    ],
+    "anti_patterns": [
+      "避免低质量食物照片 — 食物照片是核心竞争力，必须专业拍摄",
+      "避免冷色调灰色背景 — 必须用暖白/米色/奶油色背景",
+      "避免临床/药房式语言 — 食物是情感产品，不是医疗产品",
+      "避免隐藏价格 — 即使不显示具体价格也要清楚标注'See Pricing & Plans'路径",
+      "避免复杂的多级导航 — 菜单结构应简单: Plans / Menu / About / Help",
+      "避免自动播放带声音的视频",
+      "避免在hero区域使用纯色背景代替食物照片",
+      "避免使用过多边框/分隔线 — 让留白和照片自然分隔内容"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "fresh green dominant (HelloFresh #669933) — 最经典的配餐品牌配色，绿色传达新鲜",
+      "deep organic green (Green Chef #4A7C59) — 更深沉的绿，传达有机/认证/高端感",
+      "dark athletic green+black (Factor) — 运动/表现导向，深色背景配亮绿CTA",
+      "warm earthy neutrals + green accent — 奶油色/米色表面 + 绿色点缀，最安全的食物配色",
+      "vibrant red-orange accent (EveryPlate) — 预算友好定位可用更鲜艳的强调色"
+    ],
+    "typography_mood": [
+      "warm distinctive display (Capucine-style) — 有个性的温暖展示字体，适合中高端品牌",
+      "bold geometric sans — 现代几何无衬线，适合运动/健康定位品牌",
+      "friendly rounded sans — 圆润亲和的无衬线，适合家庭/预算友好定位",
+      "clean system sans (Source Sans/Inter-style) — 干净的系统字体，适合重视可读性的品牌"
+    ],
+    "layout_density": [
+      "photo-first with minimal text — 食物照片占60-80%版面，文字极简 (HelloFresh风格)",
+      "information-rich with benefit details — 照片+多层级文案+认证标签+脚注 (Green Chef风格)",
+      "bold stats-driven — 大数字统计+简短文案+照片背景 (Factor风格)",
+      "price-forward value layout — 价格醒目+对比+步骤引导 (EveryPlate风格)"
+    ]
+  },
+  "common_components": {
+    "plan_selector_cards": {
+      "description": "饮食偏好/计划选择卡片组，2x3或2x4网格，每张卡片包含食物照片+计划名称+简短描述。通常是用户选择订阅前的第一步交互。",
+      "typical_count": "6-8个计划/偏好选项",
+      "card_structure": "圆形或圆角方形食物照片 + 全大写计划名 + 一行描述文字(如'OUR MOST POPULAR PLAN')",
+      "interaction": "点击跳转至/plans页面并预选对应计划"
+    },
+    "how_it_works_steps": {
+      "description": "3-4步骤说明订阅配送模式，每步配插图/GIF/图标。这是配餐行业的标准UI模式。",
+      "steps": ["① Pick your meals (浏览菜单选择)", "② We deliver (食材配送到家)", "③ Cook & enjoy (简单烹饪享受)", "④ (可选) Skip or cancel anytime"],
+      "layout": "桌面端水平排列3-4列，移动端垂直堆叠"
+    },
+    "statistics_banner": {
+      "description": "3-4个大数字统计卡片，展示客户满意度和产品优势。",
+      "typical_stats": ["9X% 满意度", "XX,000+ 好评/客户", "XX+ 周菜谱", "100+ 禁用成分"],
+      "layout": "水平3列排列，大百分比数字+小号辅助文字"
+    },
+    "dietary_tags": {
+      "description": "饮食标签系统，用于标记餐食和筛选。这是食物电商特有的UX元素。",
+      "common_tags": ["Vegetarian", "Vegan", "Gluten-Free", "High Protein", "Low Calorie (Calorie Smart)", "Low Carb (Carb Smart)", "Mediterranean", "Pescatarian", "Quick & Easy", "Family-Friendly", "Keto-Friendly", "Dairy-Free"],
+      "display": "小标签pill/tag形式，通常放在餐食卡片上或作为筛选器"
+    },
+    "offer_announcement_bar": {
+      "description": "页面顶部粘性优惠公告条",
+      "typical_copy": "'Free Breakfast for Life + 10 Free Meals' / 'Get 50% off First Box + 20% off Two Months' / '$2.99/Meal on Your First Box'",
+      "behavior": "通常可关闭，包含倒计时或促销代码"
+    },
+    "pricing_display": {
+      "description": "定价信息通常不直接在首页显示完整价格，而是引导至/plans页面。首页显示优惠折扣和起价。",
+      "typical_patterns": [
+        "大折扣数字（50% OFF, 57% OFF）+ 第一盒优惠",
+        "每餐起价（'Starting at $X.XX/meal'）",
+        "免运费首盒 + 后续运费说明",
+        "灵活承诺文字（'Pause or cancel anytime'）紧挨CTA"
+      ],
+      "fine_print": "CTA下方小字详细说明折扣条款、适用计划、新客限制"
+    }
+  },
+  "photography_style": {
+    "lighting": "暖色自然光，金色时段色调，避免冷光或闪光灯效果",
+    "angles": "俯拍(flat lay)和45度角为主 — 俯拍展示食材和摆盘，45度展示成品质感",
+    "surfaces": "木质桌面、亚麻餐巾、铸铁锅、陶瓷盘、大理石台面 — 温暖材质，避免塑料感",
+    "color_palette": "鲜艳的绿(蔬菜)、深红(番茄/辣椒)、金黄(谷物/面包)、焦糖色(烤制蛋白)",
+    "styling": "家常精致(homey-refined) — 不过于精致像餐厅，也不过于随意。有手或餐具入镜增加生活感。",
+    "consistency": "所有品牌照片色调统一处理 — 暖色、高对比度、去饱和度适中",
+    "delivery": "Cloudinary CDN (HelloFresh系) 使用 f_auto, fl_lossy, q_auto 自动优化。响应式图片通过 w_ 参数控制尺寸。",
+    "mobile_strategy": "移动端和桌面端使用不同的hero图片(不同裁剪/构图)，_mob后缀标识移动端资源"
+  },
+  "layout_principles": {
+    "cta_repetition": "CTA按钮在页面纵向重复3-5次(hero + 中部 + 底部closing section)。每屏至少有一个CTA入口。",
+    "photo_first": "照片优先于文字 — 食物照片通常占主要版面(60-80%)，文字叠加或紧邻。",
+    "vertical_rhythm": "大区块之间留白充足(80-120px)，内容组内部紧凑。区块交替使用全宽照片背景和白色背景。",
+    "mobile_first": "移动端优先设计，hero照片针对竖屏裁剪，卡片在移动端垂直堆叠。导航收缩为汉堡菜单。",
+    "warm_white_space": "所有留白使用暖白色或奶油色(#FFFFFF 到 #FAFAF5)，绝不使用冷灰。",
+    "sticky_nav": "导航栏通常sticky，保持在视口顶部，包含Logo + 核心链接 + CTA + Login。"
+  }
+}

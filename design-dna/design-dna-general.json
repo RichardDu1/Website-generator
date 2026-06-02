@@ -1,0 +1,145 @@
+{
+  "industry": "general_small_business",
+  "description": "通用小企业模板 — 当 AI 无法将用户需求匹配到任何已知行业时的安全兜底。中性、专业、不出错。",
+  "subtypes": ["local_service", "consulting", "freelance", "handyman", "gardener", "cleaner", "tutor", "other"],
+  "extracted_from": [
+    {"source": "synthesized as universal fallback", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Thumbtack", "HomeAdvisor", "TaskRabbit", "Fiverr", "Upwork"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#1e293b", "#1a1a2e", "#0f172a"],
+      "primary_role": "Headings, navigation, footer background",
+      "accent": ["#2563eb", "#3b82f6", "#6366f1"],
+      "accent_role": "CTA buttons, links, highlights, icons",
+      "surface": ["#ffffff", "#f8fafc", "#f1f5f9"],
+      "surface_role": "Page background, card backgrounds, alternating sections",
+      "neutral": ["#334155", "#475569", "#64748b", "#94a3b8"],
+      "neutral_role": "Body text, secondary text, muted elements",
+      "border": ["#e2e8f0", "#cbd5e1"],
+      "border_role": "Card borders, input borders, dividers",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#2563eb"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Inter", "Plus Jakarta Sans", "system-ui"],
+      "body_fonts": ["Inter", "system-ui"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 36, "max": 56, "unit": "px"},
+        "h2": {"min": 28, "max": 40, "unit": "px"},
+        "h3": {"min": 20, "max": 28, "unit": "px"},
+        "body": {"min": 15, "max": 17, "unit": "px"},
+        "small": {"min": 13, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.65, "heading": 1.2},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 48, "max": 96, "unit": "px"},
+      "section_gap": {"typical": 64, "unit": "px"},
+      "content_max_width": {"typical": 1140, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "sharp": "4px",
+      "rounded": "8px",
+      "pill": "9999px",
+      "typical_button": "8px",
+      "typical_card": "12px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "#2563eb",
+        "color": "white",
+        "border_radius": "8px",
+        "text": "action-oriented (Get a Quote, Book Now, Contact Us, Get Started)",
+        "font_size": "15px",
+        "font_weight": 600
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent",
+        "color": "#1e293b",
+        "border": "1px solid #cbd5e1",
+        "border_radius": "8px",
+        "text": "Learn More, Our Services, View Portfolio"
+      },
+      {
+        "variant": "ghost",
+        "bg": "transparent",
+        "color": "#475569",
+        "text": "Navigation, secondary actions"
+      }
+    ],
+    "elevation": {
+      "shadows": "subtle, card-only",
+      "typical_values": ["0 1px 3px rgba(0,0,0,0.08)", "0 4px 12px rgba(0,0,0,0.1)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (logo + nav + phone/CTA)",
+      "hero (headline + subtitle + primary CTA + photo)",
+      "services (3-6 cards: icon + title + description)",
+      "about (short bio + photo + credentials)",
+      "testimonials / reviews (star ratings + quotes)",
+      "gallery / portfolio (grid of work photos)",
+      "contact / quote form (name, email, message, submit)",
+      "footer (contact info, hours, social links, legal)"
+    ],
+    "hero_variants": [
+      "split (photo left, text + CTA right)",
+      "centered (full-width bg image, centered text overlay)",
+      "minimal (large typography, no image, clean)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["professional", "reliable", "friendly", "trustworthy", "local"],
+    "headline_style": "clear and direct (e.g., 'Quality [service] in [location]')",
+    "cta_style": "help-oriented (Get a Quote, Book Now, Contact Us)",
+    "trust_signals": ["reviews/ratings", "years in business", "license/insurance", "before/after photos", "service area map"],
+    "anti_patterns": ["corporate jargon", "stock photos of people in suits", "fake urgency counters", "excessive animation"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "classic_blue (default: #1e293b + #2563eb, works for 80% of small businesses)",
+      "warm_professional (#3d2e1e + #d4a853, good for trades, handyman, gardener)",
+      "clean_green (#1a3a2c + #16a34a, good for outdoor, cleaning, eco)",
+      "modern_slate (#0f172a + #6366f1, good for consulting, tech-adjacent)",
+      "friendly_coral (#2d1e1e + #e85d5d, good for personal services, tutoring)"
+    ],
+    "typography_mood": [
+      "inter (default: clean, modern, universal)",
+      "plus_jakarta (slightly warmer, good for service businesses)",
+      "system_ui (fastest loading, native feel)"
+    ],
+    "layout_density": [
+      "balanced (default)",
+      "spacious (minimal content, photography-driven)",
+      "compact (information-rich, good for directories/listings)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "services", "about", "testimonials", "contact", "footer"]
+    },
+    "service_page": {
+      "sections": ["header", "hero", "service_detail", "pricing", "gallery", "faq", "cta", "footer"]
+    },
+    "contact_page": {
+      "sections": ["header", "contact_form", "map", "hours", "faq", "footer"]
+    },
+    "gallery_page": {
+      "sections": ["header", "gallery_grid", "testimonials", "cta", "footer"]
+    }
+  }
+}

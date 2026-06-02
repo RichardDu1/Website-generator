@@ -1,0 +1,338 @@
+{
+  "industry": "legal",
+  "subtypes": ["law_firm", "solo_practitioner", "corporate_law", "family_law", "personal_injury", "criminal_defense", "legal_tech_saas", "practice_management"],
+  "extracted_from": [
+    {"url": "https://www.kirkland.com", "style": "corporate-navy-gold", "date": "2026-05-30"},
+    {"url": "https://www.lw.com", "style": "minimal-navy-white", "date": "2026-05-30"},
+    {"url": "https://www.legalzoom.com", "style": "approachable-coral-gold", "date": "2026-06-02"},
+    {"url": "https://www.rocketlawyer.com", "style": "modern-charcoal-amber", "date": "2026-06-02"},
+    {"url": "https://www.clio.com", "style": "ocean-blue-platform", "date": "2026-06-02"},
+    {"style": "synthesized from industry research", "date": "2026-05-30"}
+  ],
+  "reference_brands": ["Kirkland & Ellis", "Latham & Watkins", "Skadden Arps", "Baker McKenzie", "Wachtell Lipton", "Clifford Chance", "LegalZoom", "Rocket Lawyer", "Clio"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0a1f33", "#0d2b45", "#132e4a", "#1a3c5c", "#0f2340", "#1A1A26", "#0F478D", "#17385D", "#1a1a2e"],
+      "primary_role": "Header, navigation, footer, section backgrounds (navy conveys authority). Clio uses Ocean blue (#0F478D-#17385D). Rocket Lawyer uses near-black navy #1A1A26.",
+      "accent": ["#c8963e", "#d4a944", "#b8860b", "#c9a95c", "#e8d5a3", "#D68021", "#ffb70e", "#dc9a00", "#fcb900"],
+      "accent_role": "CTA buttons, highlights, awards badges, divider lines, premium indicators. Rocket Lawyer uses warm amber #D68021. LegalZoom uses gold #ffb70e.",
+      "brand_accent": {
+        "legalzoom_coral": ["#f45a27 (500)", "#f67b52 (400)", "#f89473 (300)", "#faac93 (200)", "#fbc5b3 (100)", "#fdded4 (50)", "#fef5f2 (25)", "#ec440c (600)", "#a83009 (700)", "#651d05 (800)", "#220a02 (900)"],
+        "legalzoom_coral_role": "Primary brand color — warm coral/orange, highly distinctive for legal. Used on main CTAs, brand marks, key highlights. Creates an approachable, modern feel unlike traditional navy.",
+        "rocketlawyer_amber": "#D68021",
+        "rocketlawyer_amber_role": "Primary CTA and accent color against dark navy (#1A1A26) background.",
+        "rocketlawyer_green": "#598B25",
+        "rocketlawyer_green_role": "Success indicators, checkmarks, feature confirmations.",
+        "clio_ocean_blue": ["#0F478D", "#17385D", "#1a1a2e", "#23598F", "#3482C9", "#0693e3", "#0070E0", "#1a73e8"],
+        "clio_ocean_blue_role": "Brand identity — 'Ocean' theme. Deep navy for headers, progressively lighter blues for interactive elements and CTAs.",
+        "clio_green": "#00d084",
+        "clio_green_role": "Success states, feature highlights.",
+        "clio_orange": "#ff6900",
+        "clio_orange_role": "Urgent/attention CTAs and highlights."
+      },
+      "surface": ["#ffffff", "#f7f8f9", "#f4f5f6", "#eef0f3", "#fafaf9"],
+      "surface_role": "Card backgrounds, page backgrounds, alternating sections",
+      "neutral": ["#1a1a1a", "#3a3a3a", "#555555", "#6c7278", "#8a8f94"],
+      "neutral_role": "Body text, secondary text, metadata, dates, citations",
+      "border": ["#d1d5db", "#c8ccd0", "#e0e4e8", "#b0b5ba"],
+      "border_role": "Card borders, input fields, dividers, table lines",
+      "semantic": {
+        "success": "#1a5632",
+        "warning": "#d4a853",
+        "error": "#b91c1c",
+        "info": "#1e4d8c",
+        "verdict_win": "#1a7a32",
+        "settlement": "#d4a853"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Playfair Display", "Lora", "Cormorant Garamond", "DM Serif Display", "EB Garamond", "Quincy CF"],
+      "heading_font_usage": {
+        "Quincy CF": "LegalZoom heading typeface — warm, contemporary serif with approachable character. Pairs with Work Sans body.",
+        "Playfair Display": "Traditional Big Law prestige serif (Kirkland-style).",
+        "Lora": "Accessible, warm serif for family law / solo practitioners."
+      },
+      "body_fonts": ["Inter", "Lato", "Source Sans 3", "Libre Franklin", "Nunito Sans", "Work Sans"],
+      "body_font_usage": {
+        "Work Sans": "LegalZoom body typeface — clean geometric sans-serif, highly readable, modern feel.",
+        "Inter": "Neutral modern sans-serif, widely used in legal tech dashboards and SaaS.",
+        "Libre Franklin": "Sharp, editorial sans-serif for contemporary firm sites."
+      },
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 36, "max": 56, "unit": "px"},
+        "h2": {"min": 26, "max": 40, "unit": "px"},
+        "h3": {"min": 18, "max": 26, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"},
+        "case_citation": {"min": 13, "max": 15, "unit": "px"}
+      },
+      "line_height": {"body": 1.75, "heading": 1.2},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 56, "max": 100, "unit": "px"},
+      "section_gap": {"typical": 72, "unit": "px"},
+      "content_max_width": {"typical": 1140, "unit": "px"},
+      "card_padding": {"typical": "24px 28px"},
+      "text_column_width": {"max": 680, "unit": "px"}
+    },
+    "border_radius": {
+      "sharp": "2px - 4px",
+      "rounded": "4px - 6px",
+      "pill": "9999px",
+      "typical_button": "3px - 6px",
+      "typical_card": "4px - 8px",
+      "observed": {
+        "clio_pill_buttons": "9999px — fully rounded pill-shaped CTAs (modern SaaS pattern)",
+        "legalzoom_cards": "4-8px — subtle rounded cards with imagery"
+      }
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "accent gold (#c8963e or #d4a944)",
+        "color": "white or #0a1f33 (navy)",
+        "border_radius": "3px or 4px",
+        "text": "authoritative action (Schedule Consultation, Free Case Evaluation, Contact Us, Speak with an Attorney)",
+        "font_size": "14-16px",
+        "font_weight": 600,
+        "padding": "14px 32px",
+        "letter_spacing": "0.02em"
+      },
+      {
+        "variant": "primary_cta_warm",
+        "bg": "coral (#f45a27 LegalZoom) or amber (#D68021 Rocket Lawyer)",
+        "color": "white",
+        "border_radius": "4px - 8px",
+        "text": "action-oriented (Start my business, Start free trial, Try for Free, Get legal help)",
+        "font_size": "14-16px",
+        "font_weight": 600,
+        "padding": "14px 32px",
+        "note": "Legal tech SaaS pattern — warmer CTA colors are more approachable than traditional gold, reducing intimidation for DIY legal consumers."
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent",
+        "color": "primary navy",
+        "border": "1.5px solid primary navy",
+        "border_radius": "3px",
+        "text": "Learn About Our Firm, View Practice Areas, Our Attorneys",
+        "font_size": "14-16px",
+        "font_weight": 500
+      },
+      {
+        "variant": "dual_cta",
+        "bg": "one filled primary + one outlined",
+        "color": "varies",
+        "border_radius": "4px - 9999px",
+        "text": "'Book a demo' + 'Start a free trial' (Clio pattern). 'Start free trial' + 'Request a demo' (enterprise funnel).",
+        "font_weight": 600,
+        "note": "Clio's dual-CTA pattern: primary 'Try for Free' (filled) + secondary 'Book a demo' (outlined). Used in header/hero to segment self-serve vs. sales-assisted conversion paths."
+      },
+      {
+        "variant": "file_upload_cta",
+        "bg": "primary brand",
+        "color": "white",
+        "border_radius": "4px - 8px",
+        "text": "Upload file, Upload your contract",
+        "font_weight": 600,
+        "note": "Rocket Lawyer's hero CTA pattern — 'Welcome to your Contract HQ' with prominent upload button. Turns the primary action into file ingestion."
+      },
+      {
+        "variant": "text_link",
+        "bg": "transparent",
+        "color": "primary navy",
+        "border": "none",
+        "text": "Read More, View Full Bio, See Case Results",
+        "text_decoration": "underline on hover",
+        "font_weight": 500
+      }
+    ],
+    "elevation": {
+      "shadows": "subtle, authoritative",
+      "typical_values": [
+        "0 1px 3px rgba(0,0,0,0.06)",
+        "0 4px 12px rgba(0,0,0,0.08)",
+        "0 8px 24px rgba(0,0,0,0.1)"
+      ]
+    },
+    "css_design_system": {
+      "legalzoom": {
+        "system_type": "Custom design system with 115 CSS custom properties",
+        "architecture": "3-accent + 1-brand semantic color scale (50-900), error scale, neutral scale. Each color has 10-step lightness ramp.",
+        "color_scales": {
+          "accent1_gold": {"500": "#ffb70e", "50": "#fffcf5", "900": "#4a3300"},
+          "accent2_teal": {"500": "#22424b", "50": "#cad4d7", "900": "#0d191c"},
+          "accent3_sky": {"500": "#009de0", "25": "#edf8fd", "900": "#002a3a"},
+          "brand_coral": {"500": "#f45a27", "25": "#fef5f2", "900": "#220a02"},
+          "error_pink": {"500": "#e52554", "25": "#fef4f7", "900": "#590b1e"}
+        },
+        "font_stack": "Quincy CF (serif headings) + Work Sans (body sans-serif) + system fallbacks",
+        "rendering": "Builder.io headless CMS + Astro SSG",
+        "note": "LegalZoom's coral brand color is the most distinctive departure from legal industry norms — warm, human, approachable. Gold is relegated to accent role."
+      }
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (navy bg, logo left, nav center, phone number prominent right, 'Free Consultation' CTA)",
+      "hero (split or full-width: firm name + tagline + primary CTA + secondary CTA + trust badges)",
+      "practice_areas (3-6 icon/grid cards: practice area name + icon + short description + link)",
+      "about_firm (brief history, mission statement, core values, key differentiators)",
+      "attorneys (photo cards: headshot, name, title/role, bar admissions, education, bio link)",
+      "case_results (grid or list: case type, outcome, settlement/verdict amount, brief description)",
+      "testimonials (client photo + quote + name + case type, star rating)",
+      "awards_recognitions (logo grid: Super Lawyers, Best Lawyers, Chambers, Martindale-Hubbell, Avvo rating)",
+      "consultation_cta (centered or split: 'Free Case Evaluation' + form fields or phone number)",
+      "footer (4-column: firm_info/practice_areas/offices/legal + disclaimer + bar admission states + privacy policy)"
+    ],
+    "hero_variants": [
+      "split_left (text left with CTA, attorney/office photo right — most common)",
+      "full_bleed_office (office building photo, dark overlay, centered text + CTA)",
+      "minimal_text (clean white bg, centered serif headline, no image — boutique/solo firms)",
+      "video_bg (short office tour or attorney introduction video loop)",
+      "service_card_hero (LegalZoom: 3 horizontal cards below headline — Business, Estate, IP — each with icon + CTA. No single hero image; card-based navigation)",
+      "contract_upload_hero (Rocket Lawyer: 'Welcome to your Contract HQ' + file upload CTA + FAQ quick-links. Hero IS the product interaction)",
+      "stats_bar_hero (Clio: headline + dual CTA + 5-stat trust bar immediately below: 18 years, 400K pros, 100+ bar approvals, 4.7/5 rating, 130+ countries)"
+    ],
+    "practice_area_variants": [
+      "icon_grid (icon top, practice name, short description, 'Learn More' link)",
+      "list_with_icons (vertical list with caret or arrow, compact)",
+      "illustrative_card (practice area illustration/photo + title overlay + link)",
+      "document_category_card (Rocket Lawyer: category header + 4 document links per card + 'See all' link. Cards: Business, Real Estate, Family & Personal)"
+    ],
+    "attorney_card_variants": [
+      "photo_centered (headshot top, name + title below, education, bar #, contact)",
+      "horizontal_card (photo left, full bio excerpt right, two contact CTAs)",
+      "list_compact (small photo, name, title, phone — used for sidebar or quick reference)",
+      "slider_carousel (Rocket Lawyer: horizontal scroll of attorney cards — photo, name, city/state, years in practice, 'Connect' CTA)"
+    ],
+    "legal_tech_specific_sections": [
+      "stats_trust_bar (immediately below hero: key metrics as social proof — years in business, customers served, bar approvals, rating, countries served. Clio & LegalZoom)",
+      "pricing_comparison (3-column toggle yearly/monthly, feature comparison, 'Most Popular' badge. Rocket Lawyer pattern)",
+      "ai_feature_showcase (interactive modal cards with feature screenshots. Clio's 8 AI-accelerated feature tiles)",
+      "competitor_alternative (dedicated comparison pages — Clio positions vs. legacy practice management)",
+      "firm_size_segments (Solo / Small / Mid-sized / Enterprise columns with tailored messaging + testimonial per segment. Clio pattern)",
+      "press_logo_bar (WSJ, CNBC, Bloomberg Law, TechCrunch logos in grayscale row. Rocket Lawyer pattern)",
+      "newsletter_embedded_cta (LegalZoom: 'Get helpful tips and info from our newsletter!' between testimonials and footer)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["authoritative", "trustworthy", "experienced", "prestigious", "accessible", "tenacious", "discreet", "approachable", "empowering", "confident"],
+    "headline_style": "confident and results-focused (e.g., 'Vigorous advocacy. Meaningful results.', 'When the stakes are high, experience matters.', 'The only system of action in legal.', 'Get the legal help you need, with our DIY services or attorney advice.')",
+    "cta_style": "low-pressure authority (Schedule Consultation, Free Case Evaluation, Speak with an Attorney, Contact Our Firm, Start my business, Try for Free, Book a demo)",
+    "cta_style_by_segment": {
+      "traditional_firm": "Schedule Consultation, Free Case Evaluation, Speak with an Attorney — authority-forward, low urgency",
+      "legal_tech_diy": "Start my business, Get legal help, Start free trial — action-oriented, empowering, low barrier",
+      "legal_tech_enterprise": "Book a demo, Request a demo, Start a free trial (dual CTA) — segments self-serve vs sales-assisted"
+    },
+    "trust_signals": [
+      "bar admission states (listed in footer and attorney bios)",
+      "case results with specific dollar amounts",
+      "awards: Super Lawyers, Best Lawyers, Chambers Ranked, Martindale-Hubbell AV Preeminent",
+      "years of combined experience",
+      "board certifications in specialty areas",
+      "published articles and speaking engagements",
+      "client testimonials with permission (real names when possible)",
+      "contingency fee / 'No fee unless we win' (PI firms)",
+      "24/7 availability for emergencies",
+      "language accessibility (Spanish, Mandarin, etc.)",
+      "customer volume (3.5M+ estate docs, 4M+ businesses — LegalZoom)",
+      "industry longevity (25+ years, 18 years — LegalZoom, Clio)",
+      "security certifications (SOC 2 Type 2, PCI DSS — Clio)",
+      "professional user count (400,000+ professionals — Clio)",
+      "regulatory authorization (Arizona Supreme Court — Rocket Lawyer)",
+      "press coverage (WSJ, CNBC, Bloomberg Law, The Atlantic — Rocket Lawyer)",
+      "star ratings with review count (4.7/5 from 12,000+ reviews — Clio)",
+      "flat-rate pricing guarantee ('No hourly charges. No surprises. Really.' — LegalZoom)"
+    ],
+    "anti_patterns": ["aggressive urgency ('Call NOW or lose your rights!')", "stock photos of gavels and scales of justice", "vague case results without specifics", "missing state bar disclaimers", "auto-play videos with dramatic music", "guarantee language (ethically prohibited in many jurisdictions)"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "navy_gold_prestige (Kirkland: #0a1f33 primary, #c8963e accent, white cards, Playfair Display — big law corporate)",
+      "navy_white_minimal (Latham: #132e4a primary, white dominant, thin gold divider lines only, understated)",
+      "warm_traditional (solo/family law: cream #fafaf9 surfaces, warm navy, softer gold accent, Lora headings)",
+      "charcoal_crimson (criminal defense: #1a1a1a primary, #b91c1c accent, bold, serious, high contrast)",
+      "slate_teal_gold (boutique IP: #2c3e50 primary, teal-blue accent, clean sans-serif mix, modern)",
+      "coral_gold_approachable (LegalZoom: #f45a27 brand, #ffb70e gold accent, #22424b teal secondary, white surface, Quincy CF + Work Sans. Warm and consumer-friendly — redefines legal from intimidating to accessible.)",
+      "charcoal_amber_modern (Rocket Lawyer: #1A1A26 primary, #D68021 amber accent, #598B25 green success, white-dominant surface. Clean legal-tech aesthetic with AI-forward positioning.)",
+      "ocean_blue_platform (Clio: #0F478D #17385D deep navy, #0693e3 #0070E0 mid-blue CTAs, #00d084 green highlights, #fcb900 amber accents. Pill buttons. Platform/enterprise-grade visual authority.)"
+    ],
+    "typography_mood": [
+      "classic_serif (Playfair Display headings + Inter body — prestigious, traditional, established)",
+      "literary_serif (Lora or EB Garamond headings + Source Sans 3 body — warm, accessible, trustworthy)",
+      "modern_editorial (DM Serif Display headings + Libre Franklin body — contemporary, sharp, confident)",
+      "approachable_serif_sans (Quincy CF headings + Work Sans body — LegalZoom pattern: warm humanist serif + clean geometric sans. Consumer-legal crossover.)"
+    ],
+    "layout_density": [
+      "spacious_prestige (Big Law: large sections, generous whitespace, few elements per viewport)",
+      "balanced_practice (mid-size: standard density, 3-4 cards per row)",
+      "dense_direct (PI/solo: more CTAs, phone numbers everywhere, results prominently displayed)",
+      "consumer_guided (LegalZoom: card-based navigation, progressive disclosure, mega-menu with clear categories. High information density but organized into scannable cards.)",
+      "saas_conversion (Rocket Lawyer / Clio: pricing tables, feature grids, dual CTAs at every decision point. Conversion-optimized density with trust bars between sections.)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "practice_areas", "about_firm", "attorneys", "case_results", "testimonials", "consultation_cta", "footer"],
+      "curated_stack": "legal_prestige_landing"
+    },
+    "legal_tech_landing_page": {
+      "sections": ["header (sticky, logo + mega-menu + dual CTA)", "hero (headline + CTA(s) + trust bar)", "stats_bar (5-6 key metrics)", "feature_grid (6-8 interactive cards)", "testimonials_or_logos", "pricing_comparison (3-column toggle)", "segment_solutions (by firm size or use case)", "bottom_cta", "footer (5-column link directory + legal disclaimer)"],
+      "curated_stack": "legal_tech_saas_landing",
+      "observed_at": ["Clio", "Rocket Lawyer"]
+    },
+    "practice_area": {
+      "sections": ["header", "hero (practice-specific)", "overview", "sub_practices", "case_results_related", "attorneys_specializing", "faq", "consultation_cta", "footer"],
+      "best_practices": "Long-form content for SEO (2,000+ words), internal links to related practices, specific case results, relevant attorney bios"
+    },
+    "attorney_profile": {
+      "sections": ["header", "attorney_bio", "education_admissions", "practice_areas", "representative_matters", "awards_publications", "contact_form", "footer"]
+    },
+    "case_results": {
+      "sections": ["header", "results_grid", "disclaimer", "consultation_cta", "footer"],
+      "best_practices": "Organized by practice area, specific amounts, attorney attribution, legal disclaimer about past results"
+    },
+    "contact_page": {
+      "sections": ["header", "contact_form", "office_locations", "map", "footer"],
+      "best_practices": "Multiple contact methods, office photos, parking/transit info, language options"
+    },
+    "pricing_page": {
+      "sections": ["header", "pricing_toggle", "plan_comparison", "feature_matrix", "faq", "enterprise_cta", "footer"],
+      "observed_at": ["Rocket Lawyer"],
+      "best_practices": "Yearly/monthly toggle with 40-50% annual savings callout. 'Most Popular' badge on middle tier. Feature checkmarks with green success color."
+    }
+  },
+  "navigation_patterns": {
+    "traditional_firm": "Horizontal nav: Firm | Attorneys | Practice Areas | News & Insights | Careers | Contact. Utility: phone number + search. All-caps or small-caps labels.",
+    "legal_tech_mega_menu": {
+      "description": "Large dropdown mega-menus organizing services by audience or need. Essential for consumer legal sites with broad service catalogs.",
+      "legalzoom": "5-column mega-menu: Business | Personal | Attorneys | Forms | Resources. Each with subcategories. State selector (50-state grid + alphabet). Phone (855) 787-1922 + Sign In.",
+      "rocketlawyer": "Products | Legal Pro Services | Enterprise | Membership Pricing | Contract Review (NEW badge). Help icon, phone (877) 881-0947, Log in, Start free trial.",
+      "clio": "Products | Solutions | Enterprise | Pricing | Resources & Events | Company | Community. Region selector (US/Global, Australia, Canada, Ireland, UK). Login + 'Try Clio for free'."
+    }
+  },
+  "footer_patterns": {
+    "traditional_firm": "4 columns: Firm info / Practice areas / Offices / Legal. Disclaimer + bar admissions + privacy policy.",
+    "legal_tech": {
+      "description": "5+ column link directories with comprehensive service listings for SEO. Social icons, app store badges, international sites, legal disclaimers, copyright.",
+      "legalzoom_5col": "Company | Support | Learn More | Social | Legal (with state-specific attorney advertising disclosures)",
+      "rocketlawyer_5col": "Rocket Lawyer | Start & Protect | Popular Documents | Work With Us / Connect | Social + Phone + International sites + Cicero logo + Arizona Supreme Court authorization",
+      "clio_5col": "Products | Features | Resources & Events | Community | Support. Bottom bar: App Store + Google Play badges, Terms, Privacy, GDPR, Accessibility, AI Principles."
+    }
+  },
+  "iconography": {
+    "traditional_icons": ["scales of justice (use sparingly — overused cliche)", "gavel", "columns/pillars", "shield", "eagle", "law books"],
+    "legal_tech_icons": ["document with checkmark", "shield with lock", "AI sparkle/star (Rocket Lawyer 'Rocket Copilot AI')", "heart (Rocket Lawyer emotional branding overlay on AI features)", "cloud/data flow (Clio platform integrations)", "building blocks/modules (platform extensibility)"],
+    "observed_trust_icons": ["5-star rating graphics (gold/amber)", "quote marks (testimonial markers)", "checkmarks in green (feature lists)", "press publication logos (grayscale/monochrome row)", "CCPA privacy opt-out icon", "App Store / Google Play download badges"]
+  }
+}

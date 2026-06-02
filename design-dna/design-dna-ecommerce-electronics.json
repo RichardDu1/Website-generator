@@ -1,0 +1,183 @@
+{
+  "industry": "ecommerce-electronics",
+  "extracted_from": [
+    {"source": "官网分析", "brand": "Apple", "url": "https://www.apple.com", "date": "2026-06-02", "method": "WebFetch + Browser Snapshot"},
+    {"source": "官网分析", "brand": "Dyson", "url": "https://www.dyson.co.uk", "date": "2026-06-02", "method": "WebFetch + Browser Snapshot"},
+    {"source": "官网分析", "brand": "Sonos", "url": "https://www.sonos.com/en-gb/home", "date": "2026-06-02", "method": "WebFetch + Browser Snapshot"},
+    {"source": "官网分析", "brand": "Framework", "url": "https://frame.work", "date": "2026-06-02", "method": "WebFetch"},
+    {"source": "官网分析", "brand": "Nothing", "url": "https://nothing.tech", "date": "2026-06-02", "method": "WebFetch"}
+  ],
+  "reference_brands": ["Apple", "Dyson", "Sonos", "Framework", "Nothing"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0071e3", "#000000", "#1d1d1f"],
+      "primary_role": "主色用于CTA按钮(Buy/Shop now/Configure now)、导航背景和品牌标识。Apple蓝(#0071e3)用于主要购买按钮,黑色(#000000)用于顶级品牌背景和hero沉浸区,Dyson/Sonos/Framework均以黑或深色为主要产品展示背景",
+      "accent": ["#ff6b00", "#10a37f", "#dc2626"],
+      "accent_role": "强调色用于产品差异化标识和促销标签。Framework用橙色(#ff6b00)作为品牌强调色贯穿全站,Dyson用普鲁士蓝/铜色作为产品线区分,Apple每个产品线有独立强调色(cosmic orange, sky blue, rose gold),Sonos用深绿点缀,Nothing采用红黑高对比",
+      "surface": ["#ffffff", "#f5f5f7", "#fafafa", "#000000"],
+      "surface_role": "背景色层次:白色(#ffffff)为主要内容区背景,Apple浅灰(#f5f5f7)为次级区域背景,#fafafa为卡片底色,纯黑(#000000)为hero沉浸区背景。所有5个品牌均采用浅色主体/深色产品展示的对比策略",
+      "neutral": ["#1d1d1f", "#6e6e73", "#f5f5f7"],
+      "neutral_role": "文字颜色:Apple使用近黑(#1d1d1f)作为主文字,中灰(#6e6e73)为辅助文字。Dyson/Sonos使用类似阶梯。Framework在暗色背景上反转文字为白色。所有品牌遵循WCAG AA对比度标准",
+      "border": ["#d2d2d7", "#e5e5e5"],
+      "border_role": "边框颜色:极淡灰(#d2d2d7)用于卡片分隔和表单边框,更淡的#e5e5e5用于微妙的区域分界。电子产品品牌普遍使用近乎透明的边框以保持干净美学",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#2563eb"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["SF Pro Display (Apple)", "Custom geometric sans-serif (Dyson)", "Sonos Sans / FF Mark (Sonos)", "Inter / neutral grotesk (Framework)", "NDot + Inter (Nothing)"],
+      "body_fonts": ["SF Pro Text (Apple)", "Custom sans-serif (Dyson)", "Clean sans-serif (Sonos)", "Inter / geometric sans-serif (Framework)", "Inter / system sans-serif (Nothing)"],
+      "heading_weight": 600,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 36, "max": 80, "unit": "px", "notes": "Apple英雄区产品名使用120px+图像化字体,Sonos使用64-80px巨幅标题,Framework使用48-64px,Nothing使用48-72px大写标题"},
+        "h2": {"min": 24, "max": 52, "unit": "px", "notes": "Apple使用48-52px用于产品名称,Dyson使用36-48px工业风格标题,Sonos使用42-52px"},
+        "h3": {"min": 18, "max": 28, "unit": "px", "notes": "产品卡片标题和功能区块副标题"},
+        "body": {"min": 14, "max": 18, "unit": "px", "notes": "正文范围,Apple/Dyson偏向17-18px以获得更好的可读性"},
+        "small": {"min": 12, "max": 14, "unit": "px", "notes": "法律注释、脚注、次级链接"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 60, "max": 160, "unit": "px", "notes": "电子产品品牌使用极慷慨的垂直间距,典型section padding为80-120px,hero区域可达160px"},
+      "content_max_width": {"typical": 1400, "unit": "px", "notes": "Apple/Dyson使用~1400px最大宽度,Sonos约1200px,Framework约1280px"},
+      "card_padding": {"typical": "24px", "notes": "产品卡片内边距一般在20-32px范围"}
+    },
+    "border_radius": {
+      "buttons": "8-12px (略圆角矩形), Apple Blue按钮约10-12px, Sonos/Dyson约8px, Framework和Nothing约6-8px",
+      "cards": "12-18px (产品卡片), Apple约18px, Dyson约12px, Nothing更尖锐约4-8px",
+      "inputs": "8-12px (搜索框和表单)"
+    },
+    "elevation": {
+      "shadows": "Apple-like: 精微、优雅、低对比 — 使用轻微阴影暗示层次而非强调戏剧性深度。典型值: 0 2px 8px rgba(0,0,0,0.08) 用于卡片浮起, 0 1px 3px rgba(0,0,0,0.04) 用于微妙分层。Dyson/Sonos遵循类似哲学,Nothing几乎完全平面(flat design),Framework中等阴影",
+      "typical_values": [
+        "0 2px 8px rgba(0,0,0,0.08) — 卡片悬停",
+        "0 1px 3px rgba(0,0,0,0.04) — 微弱分层",
+        "0 4px 16px rgba(0,0,0,0.12) — 模态/弹出层",
+        "0 8px 32px rgba(0,0,0,0.16) — 导航下拉"
+      ]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, 透明或黑色/白色实心底色, logo居中或左侧, 极简导航)",
+      "promo banner (可选, 促销信息, 通常黑底白字细条)",
+      "hero (全幅产品图, 黑/白背景, 大标题 + 价格 + 双CTA: Learn more + Buy)",
+      "产品网格/卡片区 (2x2或2x3卡片: 不同产品线, 每卡片含图+名+标语+双CTA)",
+      "功能亮点区 (左右交替图文, 大图 + 简短标语 + Learn more CTA)",
+      "对比/规格区 (可展开的详细技术规格, 隐式信任信号)",
+      "分类浏览 (横向滚动/图标网格: 产品类别入口)",
+      "信任条 (全幅: 免费配送/质保/退换/分期 等4-5个图标+文字)",
+      "娱乐/生态/服务区 (Apple: 娱乐轮播, Sonos: 电台画廊, Nothing: 品牌故事)",
+      "社媒/社区证明 (代言引用, 评测链接, 社区入口)",
+      "Newsletter注册 (折扣激励 + 邮箱输入)",
+      "footer (多栏链接目录, 6-7栏, 版权信息, 语言选择器)"
+    ],
+    "hero_variants": [
+      "全屏产品图+文字覆盖 (Apple/Dyson主模式: 深色背景上产品悬浮, 大标题在图片上方或下方)",
+      "视频循环背景 (Sonos标志性模式: 产品使用场景视频自动播放, 文字叠加在暗化层上)",
+      "黑白高对比宣言 (Nothing: 极简黑白摄影+大写标题, 品牌宣言感)",
+      "暗色产品特写+技术标语 (Framework: 笔记本暗光特写+开发者导向文案)"
+    ],
+    "card_variants": [
+      "产品卡片 (图片+产品名+标语+价格+双CTA, 统一模板, 2-3列网格)",
+      "分类导航卡片 (圆形或圆角产品图标+类别名, 无价格, 用于浏览引导)",
+      "功能/信任卡片 (图标+标题+描述, 如Dyson的4栏信任条, Sonos的3栏系统卡片)",
+      "内容推荐卡片 (Apple TV/Arcade风格: 横向滚动, 图片+标题+类型标签)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["premium", "minimal", "innovative", "confident", "precise"],
+    "headline_style": "短促、自信、产品聚焦。Apple: 2-3词极简标语(All out Pro. / Magichromatic.)。Dyson: 自信技术声明(32% smaller. 25% lighter. Still mighty.)。Sonos: 体验宣言(The whole-home sound system.)。Framework: 反传统宣言(Configure once. Upgrade whenever.)。Nothing: 反企业极简(headphone ( a ))",
+    "cta_style": "双按钮模式几乎通用: 主CTA(实心深色/品牌色, 1-2词: Buy/Shop now/Configure now/Discover) + 次CTA(文本/轮廓, 固定: Learn more)。Nothing例外: 统一使用'Discover'一个CTA,强调探索而非交易。所有品牌避免'Buy Now' — 给用户研究空间",
+    "trust_signals": [
+      "详细技术规格透明度 (Framework: 极致细节脚注, 包括测试年月/OS版本/亮度nits/刷新率/音量/无线状态/流媒体应用/电源模式)",
+      "质保/退换政策 (Dyson: 35天退换, 2-5年质保. Sonos: 30天退换)",
+      "免费配送 (Dyson: 次日达含周末. Sonos: 免运费)",
+      "价格保证 (Dyson: 最佳价格保证. Sonos: 价格匹配承诺)",
+      "分期付款 (Dyson: Klarna + PayPal Credit. Sonos: 先玩后付)",
+      "名人/专家背书 (Sonos: 格莱美获奖制作人Giles Martin. Nothing: Charli xcx作为股东+大使)",
+      "专利/创新数字 (Sonos: 4000+专利. Dyson: 最受赞誉无线系列)",
+      "开放/社区信号 (Framework: GitHub/Mastodon/论坛链接. Nothing: 社区频道)",
+      "安全/法律背书 (Apple: 详尽脚注+监管免责. FDIC会员等金融合规信号)"
+    ],
+    "anti_patterns": [
+      "不要使用闪烁的倒计时或虚假紧迫感元素 (电子产品购买决策周期长, 虚假紧迫损害信任)",
+      "不要使用弹出式全屏促销 (Apple/Sonos/Dyson无一使用, 破坏premium感)",
+      "不要在产品页使用5星评级插件的外观 (应内嵌到设计系统中, 非第三方组件样)",
+      "不要在hero标题中使用问题句式 (所有5个品牌都使用陈述/宣言句式, 从不提问)",
+      "不要使用超过2个CTA按钮 per card (标准的Learn more + Buy/Shop足以支撑决策流)",
+      "避免花哨的渐变色按钮 (所有品牌使用纯色实心CTA或纯文本CTA, 不用渐变)"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "深色沉浸 (Apple/Framework路线): 黑色hero背景, 产品照明摄影, 营造产品悬浮于虚空的专业感",
+      "亮白清洁 (Dyson/Sonos路线): 白色主导, 产品在明亮空间中, 传达清洁/科技/清新感",
+      "高对比宣言 (Nothing路线): 纯黑白二元 + 少量红/透明强调, 反传统/叛逆/艺术感"
+    ],
+    "typography_mood": [
+      "SF Pro / 定制几何无衬线 (Apple/Dyson/Sonos路线): 精密、克制、专业 — 字形本身就是品牌资产",
+      "开源友好型 (Framework路线): Inter或中性grotesk, 可访问性优先, 传达开放和民主化",
+      "实验性/声明型 (Nothing路线): NDot点阵字体 + 小写+括号命名, 传达反企业/独立精神"
+    ],
+    "layout_density": [
+      "极度稀疏 (Apple路线): 大量留白, 产品呼吸, 每屏聚焦1个核心信息, section间距慷慨(120-160px)",
+      "信息高效 (Framework路线): 产品信息密集但有序, 每区包含完整规格+双CTA, 适合技术受众",
+      "编辑式节奏 (Sonos/Nothing路线): 混合全幅影像+文字, 像杂志式长滚动, 情感节奏 > 信息密度"
+    ]
+  },
+  "common_patterns_analysis": {
+    "navigation": {
+      "summary": "所有5个品牌均使用sticky顶部导航,logo左对齐(Apple左/中,Dyson左,Sonos左,Framework左,Nothing左),产品分类水平排列,最右侧放搜索/账户/购物车图标",
+      "style": "半透明毛玻璃效果(Apple)或纯白/纯黑实色(Dyson/Sonos/Nothing)或暗色半透明(Framework)",
+      "structure": "一级分类(6-10个) → 二级下拉(可选, 含产品图片缩略图非纯文字)"
+    },
+    "hero": {
+      "summary": "5/5品牌使用全幅产品图像作为hero, 4/5使用双CTA模式(Learn more + Buy/Shop/Configure/Discover), 标题均在2-10词之间, 不使用问句",
+      "product_name_rendering": "Apple独有: 产品名作为图片/logo渲染而非纯文字(跨平台精确排版控制)。其他4家使用web字体渲染产品名"
+    },
+    "product_cards": {
+      "summary": "所有品牌使用统一产品卡片模板: 产品图(上) → 产品名(中) → 简短标语(中) → 价格(可选) → CTA(下)。网格密度: 2-4列",
+      "consistency": "Apple/Dyson/Framework内部卡片100%遵循统一模板(每产品同结构), Sonos略有变化(功能卡片 vs 产品卡片), Nothing最松散"
+    },
+    "footer": {
+      "summary": "全部使用多栏链接目录 + 语言/地区选择器 + 版权信息。栏目数: Apple(6-7栏), Dyson(4栏), Sonos(4栏), Framework(3-4栏), Nothing(3栏)。每个品牌均有完整的法律链接(隐私/条款/可访问性等)"
+    },
+    "animations": {
+      "summary": "Apple: 视频hero自动播放 + 滚动触发产品揭示 + 轮播动画。Sonos: 视频循环背景(多次出现'无法播放视频'降级标记)。Dyson: 懒加载图片+悬停展开。Framework: 跑马灯式宣言滚动条。Nothing: 滚动画廊。所有品牌均使用滚动驱动的渐进式内容揭示",
+      "key_technique": "Intersection Observer + CSS transform淡入, 视频元素使用autoplay+loop+muted+playsinline"
+    }
+  },
+  "rules_for_generation": {
+    "must_have": [
+      "Sticky导航栏, 包含Logo(左) + 产品分类(中) + 搜索/账户/购物车(右)",
+      "Hero区使用全幅产品图(黑底或白底), 大而少的文字(标题5-15词)",
+      "双CTA模式: Learn more(文本/轮廓) + Buy/Shop/Configure(实心按钮)",
+      "section间距至少80px, 典型120px, hero可达160px",
+      "统一的产品卡片网格, 2-3列, 每卡片结构完全一致",
+      "信任条: 4-5个图标+文字(配送/质保/退换/分期/客服)",
+      "多栏footer(至少4栏链接目录) + 版权 + 语言选择"
+    ],
+    "should_have": [
+      "视频或动画hero背景(自动播放, 静音, 循环)",
+      "产品图片懒加载, 占位用blur-up或base64透明图",
+      "横向滚动轮播(产品/娱乐内容/合作伙伴)",
+      "悬停效果: 卡片微升+阴影增强, 按钮颜色反转",
+      "Newsletter注册区(带折扣激励)",
+      "名人/专家/媒体背书引用",
+      "滚动触发的内容动画(Intersection Observer)"
+    ],
+    "nice_to_have": [
+      "自定义品牌字体(如SF Pro, NDot, Sonos Sans)",
+      "半透明毛玻璃导航(backdrop-filter: blur)",
+      "产品3D旋转或360度视图",
+      "AR预览按钮(Apple已支持部分产品)",
+      "暗色模式切换(自动跟随系统设置)",
+      "像素艺术或品牌吉祥物(Framework风格)",
+      "跑马灯/宣言滚动条(Framework风格)"
+    ]
+  }
+}

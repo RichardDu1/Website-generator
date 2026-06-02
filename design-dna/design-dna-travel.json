@@ -1,0 +1,435 @@
+{
+  "industry": "travel",
+  "subtypes": ["hotel", "resort", "travel-agency", "airbnb-management", "tour-operator", "cruise-line", "experiences", "vacation-rental"],
+  "extracted_from": [
+    {
+      "brand": "Airbnb",
+      "url": "https://www.airbnb.com",
+      "date_extracted": "2026-06-02",
+      "style": "warm-inviting",
+      "primary_color": "#FF385C",
+      "body_font": "Airbnb Cereal VF, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif",
+      "logo_color": "rgb(255, 56, 92)",
+      "card_radius": "20px",
+      "header_style": "transparent-over-hero",
+      "search_placeholder": "Search destinations",
+      "h1_size": "28px",
+      "h1_weight": 700,
+      "h2_size": "14px",
+      "body_text": "#222222",
+      "body_bg": "#FFFFFF",
+      "button_radius": "8px (links), 20px (pill), 50% (icon)",
+      "key_tokens": [
+        "Custom Airbnb Cereal VF typeface",
+        "Coral/rausch red #FF385C as core brand color",
+        "Dark navy #162339 for depth accents",
+        "Frosted glass: backdrop-filter blur(24px) saturate(1.6)",
+        "Card radius 20px — very rounded, photo-friendly",
+        "Gradient: #E61E4D → #E31C5F → #D70466 (rausch gradient)",
+        "Luxe gradient: #59086E → #460479 → #440589 (purple for luxury tier)",
+        "Transparent header over full-bleed hero photos",
+        "Guest favourite badge with star icon on cards",
+        "Minimalist section headings (14px) — photo-first browsing"
+      ]
+    },
+    {
+      "brand": "Booking.com",
+      "url": "https://www.booking.com",
+      "date_extracted": "2026-06-02",
+      "style": "trust-blue",
+      "primary_color": "#003B95",
+      "accent_color": "#FFB700",
+      "cta_blue": "#006CE4",
+      "body_font": "BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+      "card_radius": "8px",
+      "card_shadow": "0px 2px 8px rgba(26, 26, 26, 0.16)",
+      "button_radius": "4px (form), 9999px (pill filters)",
+      "max_width": "1140px",
+      "banner_height": "434px",
+      "section_max_width": "1110px",
+      "search_placeholder": "Where are you going?",
+      "h1_size": "24px",
+      "h1_weight": 700,
+      "h2_size": "24px",
+      "h3_size_range": "16-20px",
+      "body_text": "#1A1A1A",
+      "body_bg": "#FFFFFF",
+      "overlay_gradient": "rgba(0,0,0,0.6)",
+      "key_tokens": [
+        "System font stack — no custom font, prioritizes load speed",
+        "Navy #003B95 as primary trust color (header, banner)",
+        "Yellow #FFB700 as accent CTA (signature Booking.com yellow)",
+        "Blue #006CE4 for secondary CTAs and links",
+        "Card radius 8px — sharper, more information-dense",
+        "Card shadow subtle: rgba(26,26,26,0.16) at 2px blur 8px",
+        "Pill filter buttons: 9999px border-radius for category pills",
+        "Dark body text #1A1A1A — slightly darker than Airbnb for readability at density",
+        "Hero banner: navy bg, search form overlay",
+        "Trust signals: 300M+ reviews, 24/7 support, pay at property"
+      ]
+    },
+    {
+      "brand": "Marriott",
+      "url": "https://www.marriott.com",
+      "date_extracted": "2026-06-02",
+      "style": "elegant-warm",
+      "primary_color": "#1C1C1C",
+      "accent_color": "#FF8D6B",
+      "body_font": "Swiss-721, sans-serif",
+      "body_bg": "#F4F4F4",
+      "body_text": "#1C1C1C",
+      "card_radius": "14px",
+      "image_radius": "14px",
+      "button_radius": "52px (pill — brand default)",
+      "button_primary_bg": "#1C1C1C",
+      "button_primary_color": "#FFFFFF",
+      "input_bg": "#1C1C1C (dark, inverted)",
+      "input_color": "#FFFFFF",
+      "search_placeholder": "Where can we take you?",
+      "search_font_size": "22px",
+      "search_cta_font_size": "18px",
+      "cta_font_size_range": "13-18px",
+      "title_xl_max": "4.688rem (viewport-L)",
+      "title_l_max": "3.4375rem (viewport-L)",
+      "title_m_max": "1.875rem (viewport-xs)",
+      "title_s_max": "1.5625rem (viewport-xs)",
+      "h2_size_range": "16-40px",
+      "font_weight": 700,
+      "label_color": "#707070",
+      "rule_color": "#C4C4C4",
+      "icon_btn_bg": "#EEEEEE",
+      "scrim_color": "hsla(0,0%,100%,0.52)",
+      "brand_gradient_desktop": "linear-gradient(270deg, hsla(0,0%,100%,0) 0.03%, hsla(0,0%,100%,0.46) 58%, hsla(0,0%,100%,0.54))",
+      "key_tokens": [
+        "Custom Swiss-721 typeface — elegant, Swiss/Helvetica-inspired",
+        "Monochromatic dark #1C1C1C + white palette with warm coral #FF8D6B accent",
+        "Body bg #F4F4F4 — warm light grey, more premium than pure white",
+        "Fully pill-shaped buttons: 50-52px border-radius across all CTAs",
+        "Dark inverted input fields (#1C1C1C bg, white text) — premium feel",
+        "Card and image radius: 14px — between Airbnb (20px) and Booking (8px)",
+        "Large responsive typography: up to 4.688rem for display titles",
+        "Brand gradient overlay: translucent white over hero images",
+        "Transparent header with white text over hero, solid on scroll",
+        "Two CTA tiers: primary dark (#1C1C1C) + secondary white/outline"
+      ]
+    },
+    {
+      "brand": "GetYourGuide",
+      "url": "https://www.getyourguide.com",
+      "date_extracted": "2026-06-02",
+      "style": "adventurous-modern",
+      "primary_color": "#1A2B49",
+      "cta_blue": "#0071EB",
+      "brand_red": "#F53",
+      "body_font": "GT Eesti, fallback for GT Eesti, android fallback for GT Eesti, sans-serif",
+      "fallback_font": "Noto Sans, sans-serif",
+      "body_bg": "#FFFFFF",
+      "body_text": "#1A2B49",
+      "label_secondary": "#63687A",
+      "label_tertiary": "#858995",
+      "separator_primary": "#EBEEF1",
+      "separator_secondary": "#DCDFE4",
+      "border_primary": "#DCDFE4",
+      "border_primary_hovered": "#A0A8B6",
+      "border_focused": "#0071EB",
+      "border_error": "#C72A3D",
+      "surface_secondary": "#EBEEF1",
+      "surface_highlight": "#E1F0FF",
+      "success_strong": "#007850",
+      "success_weak": "#D1F6E2",
+      "warning_surface": "#FFECC1",
+      "warning_label": "#A65200",
+      "critical": "#C72A3D",
+      "critical_pressed": "#951D2B",
+      "decorative_midnight_blue": "#1A2B49",
+      "decorative_flamingo_pink": "#F4CDD7",
+      "decorative_plant_green": "#A1D55D",
+      "decorative_basking_yellow": "#FFD938",
+      "decorative_poolside_blue": "#81BEFF",
+      "overlay_dark_80": "#191B20CC",
+      "overlay_dark_50": "#191B2080",
+      "overlay_dark_20": "#191B2033",
+      "overlay_navy_20": "#1A2B4933",
+      "h1_size": "48px",
+      "h1_weight": 400,
+      "h2_size": "36px",
+      "h2_weight": 700,
+      "h3_size": "16px",
+      "h3_weight": 700,
+      "search_placeholder": "Search for activities and attractions",
+      "search_button_radius": "80px",
+      "search_button_bg": "#0071EB",
+      "search_button_color": "#FFFFFF",
+      "search_button_font_size": "24px",
+      "spacing_system": "8px base (4, 8, 12, 24, 32, 40, 48, 64, 128px)",
+      "key_tokens": [
+        "Custom GT Eesti typeface with Noto Sans fallback",
+        "Midnight navy #1A2B49 as primary text/background color",
+        "Vibrant blue #0071EB for primary CTAs and focus states",
+        "Brand red #F53 for GYG brand marks and experimental accents",
+        "Ultra-pill search button: 80px border-radius",
+        "H1 at 48px with weight 400 — large but not bold (elegant)",
+        "Rich decorative palette: pink, green, yellow, blue for illustrative content",
+        "Comprehensive token system: interactive, border, surface, label, decorative layers",
+        "Dark image overlays at 20%/50%/80% opacity for text readability",
+        "Trust signals: review counts in grey (#63687A), lowest price guarantee"
+      ]
+    }
+  ],
+  "reference_brands": ["Airbnb", "Booking.com", "Marriott", "GetYourGuide", "Expedia", "Hilton", "TripAdvisor", "Kayak", "Four Seasons", "Virgin Atlantic", "Intrepid Travel"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#003B95", "#1A2B49", "#1C1C1C", "#FF385C", "#0071EB", "#006CE4", "#1A3A5C", "#0B2B4A"],
+      "primary_role": "Header/nav bg, trust color, brand authority. Navy (#003B95 Booking) → deep midnight (#1A2B49 GYG) → near-black (#1C1C1C Marriott). Coral (#FF385C Airbnb) is the outlier warm primary.",
+      "accent": ["#FFB700", "#FF8D6B", "#F53", "#FF385C", "#E87400", "#0891B2", "#059669", "#FFD938", "#A1D55D", "#81BEFF"],
+      "accent_role": "CTA buttons (Booking yellow #FFB700, Airbnb coral #FF385C), coral accents (Marriott #FF8D6B), brand red (GYG #F53), decorative (GYG green #A1D55D, yellow #FFD938, blue #81BEFF)",
+      "surface": ["#FFFFFF", "#F4F4F4", "#F7F8FA", "#F7F7F7", "#EBEEF1", "#E1F0FF", "#D1F6E2", "#FFECC1"],
+      "surface_role": "Cards (white #FFFFFF), body bg (Marriott warm grey #F4F4F4, Airbnb grey100 #F7F7F7), secondary surfaces (GYG #EBEEF1), highlight (GYG light blue #E1F0FF), success (GYG #D1F6E2), warning (GYG #FFECC1)",
+      "neutral": ["#1A1A1A", "#222222", "#1C1C1C", "#63687A", "#6B7280", "#707070", "#858995", "#B0B0B0", "#A0A8B6", "#C4C4C4", "#DCDFE4", "#EBEEF1"],
+      "neutral_role": "Body text (#1A1A1A Booking, #222222 Airbnb, #1C1C1C Marriott/GYG), secondary labels (#63687A GYG, #707070 Marriott), tertiary (#858995 GYG), bobo grey (#B0B0B0 Airbnb), borders (#DCDFE4 GYG, #C4C4C4 Marriott)",
+      "border": ["#DCDFE4", "#EBEEF1", "#E5E7EB", "#D1D5DB", "#C4C4C4", "#A0A8B6"],
+      "border_role": "Card borders, input borders, separators. GYG uses #DCDFE4 (primary) + #EBEEF1 (secondary). Airbnb uses #EBEBEB. Marriott uses #C4C4C4 for horizontal rules.",
+      "semantic": {
+        "success": "#007850",
+        "success_surface": "#D1F6E2",
+        "warning": "#A65200",
+        "warning_surface": "#FFECC1",
+        "error": "#C72A3D",
+        "error_surface": "#C72A3D",
+        "info": "#0071EB",
+        "info_surface": "#E1F0FF"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["GT Eesti", "Swiss-721", "Airbnb Cereal VF", "Playfair Display", "Cormorant Garamond", "Lora", "Raleway", "system-ui"],
+      "body_fonts": ["GT Eesti", "Swiss-721", "Airbnb Cereal VF", "Noto Sans", "BlinkMacSystemFont", "Lato", "Nunito Sans", "Inter", "Source Sans 3", "system-ui"],
+      "mono_fonts": ["JetBrains Mono", "SF Mono", "Consolas"],
+      "heading_weight": 700,
+      "heading_weight_alt": 400,
+      "heading_weight_alt_note": "GetYourGuide uses 400 weight for H1 (48px) — elegant, modern approach",
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 24, "max": 48, "unit": "px", "note": "Booking 24px, Airbnb 28px, GYG 48px, Marriott 40px (H2 promo)"},
+        "h2": {"min": 14, "max": 40, "unit": "px", "note": "Airbnb section labels 14px, Booking 24px, GYG 36px, Marriott promo 40px"},
+        "h3": {"min": 16, "max": 28, "unit": "px", "note": "Booking/GYG 16px, Marriott up to 28px"},
+        "body": {"min": 14, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"},
+        "search_input": {"min": 14, "max": 22, "unit": "px", "note": "Airbnb 14px, Booking 14px, Marriott 22px, GYG 16px"},
+        "cta_button": {"min": 13, "max": 24, "unit": "px", "note": "Marriott 13-18px, Airbnb 14px, Booking 14-20px, GYG search 24px"}
+      },
+      "line_height": {"body": 1.65, "heading": 1.2},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap')"
+      ],
+      "custom_fonts_note": "Airbnb Cereal VF, GT Eesti, and Swiss-721 are proprietary fonts not available on Google Fonts. Closest free alternatives: Airbnb Cereal → Nunito Sans or Circular; GT Eesti → Noto Sans or Inter; Swiss-721 → Helvetica Neue or system-ui."
+    },
+    "spacing": {
+      "section_padding": {"min": 72, "max": 140, "unit": "px"},
+      "section_gap": {"typical": 88, "unit": "px"},
+      "content_max_width": {"typical": 1260, "unit": "px", "variants": {"Booking.com": "1140px", "Booking.com section": "1110px"}},
+      "card_padding": {"typical": "24px"},
+      "spacing_systems": {
+        "GetYourGuide": "8px base: 4, 8, 12, 24, 32, 40, 48, 64, 128px",
+        "Airbnb": "24px macro spacing (--spacing-macro24px: 24px)"
+      }
+    },
+    "border_radius": {
+      "sharp": "4px - 6px",
+      "rounded": "12px - 16px",
+      "pill": "9999px",
+      "airbnb_card": "20px (most rounded — photo-first, informal)",
+      "marriott_card": "14px (images and cards)",
+      "booking_card": "8px (sharpest — information-dense, utilitarian)",
+      "typical_button": "4-8px (sharp) to 52px-80px (pill)",
+      "gyg_search_button": "80px (ultra-pill)",
+      "marriott_button": "52px (pill default)",
+      "booking_pill_filter": "9999px (pill filters)",
+      "airbnb_icon_button": "50% (circular icon buttons)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "varies by brand: #FFB700 (Booking yellow), #FF385C (Airbnb coral), #1C1C1C (Marriott dark), #0071EB (GYG blue)",
+        "color": "dark text on yellow, white on dark/blue/coral",
+        "border_radius": "4px (Booking form) to 80px (GYG search) — varies widely",
+        "text": "action-oriented: Search, Book Now, Find Hotels, Explore, Check Availability, Reserve",
+        "font_size": "13-24px",
+        "font_weight": "600-700"
+      },
+      {
+        "variant": "secondary",
+        "bg": "white with border, or transparent",
+        "color": "primary brand color",
+        "border_radius": "4-8px or 52px (Marriott pill)",
+        "text": "Learn More, View Details, See All, Sign In or Join",
+        "font_size": "12-16px"
+      },
+      {
+        "variant": "pill_filter",
+        "bg": "transparent (inactive), #006CE4 bg (Booking active), #0071EB bg (GYG active)",
+        "color": "primary blue (active), neutral dark (inactive)",
+        "border_radius": "9999px",
+        "text": "Category/topic filters: City Breaks, Art & Culture, History, Luxury, etc.",
+        "font_size": "14px"
+      },
+      {
+        "variant": "wishlist_icon",
+        "bg": "transparent heart icon",
+        "color": "red on hover",
+        "border_radius": "50%",
+        "text": "Save/wishlist toggle (icon-only, top-right of destination/property cards)"
+      }
+    ],
+    "elevation": {
+      "shadows": "soft, diffused, warm",
+      "approach": "Gentle elevation suggesting airiness and lightness. Cards float slightly above background. Airbnb uses frosted glass (backdrop-filter blur), Booking uses subtle grey shadow.",
+      "typical_values": [
+        "0px 2px 8px rgba(26, 26, 26, 0.16) (Booking.com — subtle, one shadow level)",
+        "0px 1px 3px rgba(0, 0, 0, 0.06)",
+        "0px 4px 16px rgba(0, 0, 0, 0.08)",
+        "0px 8px 30px rgba(0, 0, 0, 0.1)",
+        "rgba(0, 0, 0, 0.28) (Airbnb shadow350)"
+      ],
+      "backdrop_effects": {
+        "airbnb": "blur(24px) saturate(1.6) — frosted glass for nav/overlays",
+        "marriott": "hsla(0,0%,100%,0.52) scrim — translucent white overlay",
+        "getyourguide": "#191B20 at 20%/50%/80% opacity — dark image overlays for text readability"
+      }
+    },
+    "header_styles": {
+      "airbnb": "Transparent over full-bleed hero photo, white icons, solid white on scroll",
+      "booking": "Navy #003B95 solid banner with search form overlay, white text/icons",
+      "marriott": "Transparent over hero (rgba(28,28,28,0.65) scrim), white text, pill Sign In button",
+      "getyourguide": "Transparent over hero image, dark overlay gradient, white text/icons"
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (transparent over hero → solid on scroll, logo left, nav center or right, user menu right)",
+      "hero (full-width destination photo or video + headline + search bar widget + CTA — prominent, above fold)",
+      "search (inline form: destination input, date picker, guests selector, 'Search'/'Find' button)",
+      "filter_pills (horizontal scrollable pill buttons: destination types, themes, regions — Booking/GYG pattern)",
+      "destinations (grid of destination cards: photo + name + property count + starting price, 3-4 columns)",
+      "experiences_activities (activity cards: photo + title + rating + review count + price + heart icon — GYG/Airbnb)",
+      "packages_deals (featured deals: photo + title + duration + original price + discounted price + CTA)",
+      "trust_signals (row of icons: free cancellation, best price guarantee, verified reviews, 24/7 support)",
+      "reviews (testimonial cards with traveler photos, star ratings, verified badge, quote — carousel or grid)",
+      "booking_cta (centered, scenic background, 'Ready for your next adventure?' + Search/Book button + trust badges)",
+      "footer (5-column: destinations, company, support, partners, social + language selector + copyright)"
+    ],
+    "hero_variants": [
+      "destination_photo (Airbnb style — full-bleed beautiful location photo, search bar overlay, warm overlay)",
+      "navy_banner (Booking.com style — solid navy #003B95 banner, white text, prominent search form embedded)",
+      "video_background (resort style — drone footage of property, slow pan, minimal text, luxury feel)",
+      "dark_overlay (GYG style — hero photo with 50-80% dark overlay gradient, large headline + ultra-pill search CTA)",
+      "grid_hero (Booking.com alternative — grid of 4-6 destination thumbnails with overlay CTA per tile)",
+      "seasonal_promo (ski/beach seasonal — strong seasonal imagery, countdown or 'Book early' messaging)",
+      "marriott_elegant (translucent white gradient overlay, dark text, refined serif/swiss typography, aspirional headline)"
+    ],
+    "feature_card_variants": [
+      "destination_card (large photo + location name + distance + dates available, Airbnb-style 20px rounded)",
+      "property_card (photo + name + rating stars + review count + price/night + heart icon, Booking 8px radius)",
+      "deal_card (photo + destination + 'Was $X / Now $Y' + per-night price + rating badge + heart icon)",
+      "activity_card (photo + title + duration + rating (# reviews) + lowest price badge + heart — GYG pattern)",
+      "review_card (guest photo + name + date + star rating + 'Trip type' tag + quote excerpt)",
+      "amenity_icon (pool/wifi/spa/gym icon + label, small card, used in property detail sections)",
+      "hotel_brand_card (Marriott: brand logo + hotel count + brief description, 14px radius)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["inviting", "warm", "adventurous", "trustworthy", "aspirational", "relaxing", "exploratory", "inspiring", "experiential"],
+    "headline_style": "evocative and aspirational, 3-8 words. Varies by brand: Airbnb minimalist ('Airbnb homepage'), Booking action-oriented ('Find your next stay'), Marriott aspirational ('Where can we take you?'), GYG experiential ('走遍世界，精彩尽享' / 'Explore the world, enjoy it all')",
+    "cta_style": "action verbs evoking discovery: Explore, Discover, Book, Reserve, Plan Your Trip, Find Hotels, Search, Check In",
+    "trust_signals": [
+      "verified guest reviews with star ratings",
+      "review counts (3,000+, 300M+ scale varies by brand)",
+      "free cancellation badge",
+      "best price guarantee / lowest price badge",
+      "secure booking SSL",
+      "24/7 customer support mention",
+      "pay at property / no prepayment needed (Booking)",
+      "COVID/cleaning safety badge",
+      "traveler's choice award / guest favourite badge"
+    ],
+    "anti_patterns": ["low-quality stock photos", "fake review counts", "hidden fees not disclosed", "cluttered search UI", "no destination photos", "aggressive urgency ('Only 1 left!')", "generic sans-serif without brand personality", "absence of trust signals below the fold"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "ocean_navy (Booking.com: #003B95 navy, #FFFFFF cards, #FFB700 yellow accent, clean trust feel)",
+      "tropical_coral (Airbnb: #FF385C coral, #FFFFFF bg, warm greys, rounded everything, inviting informal)",
+      "luxury_monochrome (Marriott: #1C1C1C dark, #F4F4F4 warm grey bg, #FF8D6B coral accent, Swiss typography, refined)",
+      "midnight_blue (GetYourGuide: #1A2B49 deep navy, #0071EB vibrant blue, #F53 brand red, rich decorative palette, modern adventurous)",
+      "luxury_gold (Four Seasons: #1A1A1A bg accents, #D4AF37 gold, #FFFFFF, elegant serif typography)",
+      "eco_green (Intrepid Travel: #2D6A4F forest green, #F0F4E8 cream, #E07A5F terracotta accent, earthy)",
+      "coastal_fresh (resort style: #E0F2FE light blue, #0891B2 teal, #FEF3C7 sand, white cards, breezy)"
+    ],
+    "typography_mood": [
+      "playfair_elegant (Playfair Display headings, Lato body — luxury, editorial, high-end resorts)",
+      "swiss_refined (Swiss-721 — Marriott: elegant, clean, premium hospitality)",
+      "cereal_warm (Airbnb Cereal VF — friendly, round, approachable, modern)",
+      "gt_modern (GT Eesti — GetYourGuide: geometric, clean, contemporary European)",
+      "raleway_modern (Raleway headings, Nunito Sans body — clean, modern, booking platforms)",
+      "system_trust (System font stack — Booking.com: fast, accessible, trustworthy familiarity)",
+      "lora_warm (Lora headings, Source Sans 3 body — approachable, story-driven, boutique hotels)"
+    ],
+    "layout_density": [
+      "airbnb_spacious (large photos, generous padding, minimal text, photo-first browsing, 20px card radius)",
+      "booking_dense (more listings per viewport, filter pills, comparison-oriented layout, 8px card radius, 1140px max-width)",
+      "marriott_editorial (magazine-style, large Swiss typography, narrative sections, 14px card radius, warm grey bg)",
+      "gyg_modern (hero-first with dark overlay, ultra-pill CTAs, decorative color pops, 8px spacing system)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "search", "filter_pills", "destinations", "experiences", "packages", "trust_signals", "reviews", "booking_cta", "footer"],
+      "curated_stack": "travel_booking_landing"
+    },
+    "search_results_page": {
+      "sections": ["header", "search_bar (persistent, sticky)", "filter_sidebar (or horizontal pills)", "results_grid", "map_view_toggle", "pagination", "footer"],
+      "best_practices": "Persistent search bar at top, filters in sidebar or horizontal pills, list/map toggle, sort by price/rating/distance, show result count, price per night prominent"
+    },
+    "property_detail_page": {
+      "sections": ["header", "photo_gallery (grid or carousel)", "property_summary (name, rating, location)", "amenities_list", "rooms_table", "reviews (with filters)", "booking_widget (sticky sidebar)", "map_location", "host_info (Airbnb)", "footer"]
+    },
+    "activity_detail_page": {
+      "sections": ["header", "photo_gallery", "activity_summary (title, duration, rating)", "highlights", "what_to_expect", "included_excluded", "meeting_point", "reviews", "booking_widget (sticky: date picker + participants + price + CTA)", "footer"],
+      "best_practices": "Sticky booking bar with price + CTA, trust badges near CTA (free cancellation, lowest price), review count visible above fold"
+    },
+    "destination_guide": {
+      "sections": ["header", "hero_photo", "overview", "things_to_do", "where_to_stay", "when_to_visit", "travel_tips", "related_destinations", "footer"]
+    },
+    "about_page": {
+      "sections": ["header", "story", "mission", "team", "press_mentions", "careers_cta", "footer"]
+    }
+  },
+  "brand_archetypes": {
+    "airbnb": {
+      "personality": "Warm host, design-conscious friend, aspirational explorer",
+      "visual_signature": "Coral red + rounded everything + full-bleed photography + Cereal typeface",
+      "differentiator": "Most rounded cards (20px), frosted glass effects, 'Guest favourite' badge",
+      "search_pattern": "Where-to input + date + guests in a single row, transparent bg over hero photo"
+    },
+    "booking": {
+      "personality": "Efficient travel agent, trusted global platform, deals-focused",
+      "visual_signature": "Navy banner + yellow CTA + system font + sharp 8px cards + pill filters",
+      "differentiator": "Highest information density, 300M+ reviews signal, 'pay at property' trust",
+      "search_pattern": "Destination + dates + occupancy in navy banner, yellow 'Search' button"
+    },
+    "marriott": {
+      "personality": "Refined hotelier, understated luxury, Bonvoy loyalty",
+      "visual_signature": "Monochromatic dark palette + Swiss-721 + 52px pill buttons + warm grey bg",
+      "differentiator": "Dark inverted inputs, 14px image radius, up to 4.688rem typography, white scrim gradients",
+      "search_pattern": "Large 'Where can we take you?' input, Find Hotels pill button"
+    },
+    "getyourguide": {
+      "personality": "Modern adventurer, experience curator, digital-native",
+      "visual_signature": "Midnight navy + vibrant blue + ultra-pill 80px search + GT Eesti + decorative color pops",
+      "differentiator": "H1 at 48px weight 400, comprehensive token system, 8px spacing grid, lowest price badges",
+      "search_pattern": "Hero overlay with dark gradient, large headline, ultra-pill search button"
+    }
+  }
+}

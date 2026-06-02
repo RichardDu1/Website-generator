@@ -1,0 +1,164 @@
+{
+  "industry": "nonprofit",
+  "subtypes": ["charity", "foundation", "advocacy-group", "community-org", "religious-org", "educational-nonprofit", "environmental-npo"],
+  "extracted_from": [
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.charitywater.org", "style": "impact-storytelling"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.doctorswithoutborders.org", "style": "urgent-compassionate"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.worldwildlife.org", "style": "nature-warm"}
+  ],
+  "reference_brands": ["charity: water", "Doctors Without Borders", "WWF", "Red Cross", "UNICEF", "Habitat for Humanity", "The Nature Conservancy", "Oxfam", "Kiva", "Feeding America"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#2d6a4f", "#1b4332", "#40916c", "#081c15"],
+      "primary_role": "Header bg, footer bg, primary trust color (forest/earth green for hope and nature)",
+      "accent": ["#e07a5f", "#f4a261", "#e9c46a", "#e76f51", "#f77f00"],
+      "accent_role": "Donate buttons (warm terracotta/orange), impact stats highlights, urgent call-to-action markers",
+      "surface": ["#ffffff", "#fefae0", "#f8f5f0", "#fafaf5", "#f0f4e8"],
+      "surface_role": "Card backgrounds (warm cream/off-white), story sections, program highlights",
+      "neutral": ["#4a4a4a", "#6b705c", "#8d8d8d", "#a5a58d", "#b7b7a4"],
+      "neutral_role": "Body text, secondary information, captions, footer links",
+      "border": ["#e0e0d8", "#dddfd8", "#d4d4cc", "#c5c5bb"],
+      "border_role": "Card borders, input borders, dividers (soft, warm grays, not cold)",
+      "semantic": {
+        "success": "#2d6a4f",
+        "warning": "#e9c46a",
+        "error": "#e76f51",
+        "info": "#457b9d"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Merriweather", "Lora", "Libre Baskerville", "Crimson Text", "system-ui"],
+      "body_fonts": ["Nunito", "Source Sans 3", "Open Sans", "Inter", "system-ui"],
+      "mono_fonts": ["JetBrains Mono", "SF Mono", "Consolas"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 38, "max": 60, "unit": "px"},
+        "h2": {"min": 28, "max": 42, "unit": "px"},
+        "h3": {"min": 20, "max": 28, "unit": "px"},
+        "body": {"min": 16, "max": 18, "unit": "px"},
+        "small": {"min": 13, "max": 15, "unit": "px"}
+      },
+      "line_height": {"body": 1.7, "heading": 1.25},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 64, "max": 120, "unit": "px"},
+      "section_gap": {"typical": 72, "unit": "px"},
+      "content_max_width": {"typical": 1160, "unit": "px"},
+      "card_padding": {"typical": "28px"}
+    },
+    "border_radius": {
+      "sharp": "2px - 4px",
+      "rounded": "8px - 14px",
+      "pill": "9999px",
+      "typical_button": "8px (soft, approachable) or 9999px (pill for donate buttons)",
+      "typical_card": "10px - 14px (soft, friendly, human)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_donate",
+        "bg": "warm terracotta/orange accent",
+        "color": "white",
+        "border_radius": "8px or pill",
+        "text": "Donate Now, Give Monthly, Support Our Mission, Help Today",
+        "font_size": "16-18px",
+        "font_weight": 700
+      },
+      {
+        "variant": "secondary",
+        "bg": "white with green border",
+        "color": "forest green",
+        "border_radius": "8px",
+        "text": "Learn More, See Our Impact, Get Involved, Volunteer",
+        "font_size": "15-17px"
+      },
+      {
+        "variant": "volunteer_cta",
+        "bg": "light green tint",
+        "color": "dark green",
+        "border_radius": "pill",
+        "text": "Join Us, Become a Volunteer, Partner With Us"
+      }
+    ],
+    "elevation": {
+      "shadows": "soft, warm, human",
+      "approach": "Gentle shadows that feel organic and approachable. Not corporate — feels like a community space.",
+      "typical_values": ["0 1px 3px rgba(0,0,0,0.04)", "0 4px 12px rgba(0,0,0,0.06)", "0 8px 24px rgba(0,0,0,0.08)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (light bg, logo left, nav center, 'Donate' CTA button right — warm, not corporate)",
+      "hero (full-width mission photo or video + headline + subtitle + primary Donate CTA + secondary Learn More)",
+      "impact_stats (counter animation row: lives impacted, projects completed, countries served, volunteers mobilized — with icons)",
+      "programs (3-column grid: program photo + title + short description + 'Learn more' link)",
+      "stories (individual impact stories: beneficiary photo + quote + name + program, alternating left/right layout)",
+      "donate_cta (centered, warm bg, suggested amounts ($25/$50/$100/$250) + 'Other' input + monthly toggle)",
+      "volunteer (photo-rich section: ways to get involved, event calendar, signup form)",
+      "footer (4-column: mission statement, programs, get involved, contact/donate + tax ID + transparency links)"
+    ],
+    "hero_variants": [
+      "mission_statement (charity: water style — bold mission text over beautiful human-centered photo, warm overlay)",
+      "urgent_appeal (Red Cross style — impactful photo, urgent headline, prominent donate button, crisis context)",
+      "nature_immersive (WWF style — stunning wildlife/landscape photo, minimal text, emotional connection first)",
+      "community_photo (Habitat for Humanity style — volunteers + beneficiaries together, warm, human, relational)"
+    ],
+    "feature_card_variants": [
+      "impact_stat_card (large number + label + icon, counter animation, accent top stripe)",
+      "program_card (photo + program name + description + 'Support this program' link, equal height grid)",
+      "story_card (beneficiary photo + quote + name + location, editorial feel, human-centered)",
+      "donation_tier_card (amount + impact description: '$25 provides clean water for one person', clickable, border highlight on hover)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["compassionate", "hopeful", "transparent", "community-driven", " impactful", "warm", "human", "trustworthy"],
+    "headline_style": "emotionally resonant, under 8 words (e.g., 'Clean Water for Every Person.', 'Hope Heals. You Make It Possible.')",
+    "cta_style": "values-driven action verbs (Donate, Give, Join, Support, Help, Make a Difference, Change a Life)",
+    "trust_signals": ["transparency dashboard (financial breakdown)", "GuideStar/Candid rating", "Charity Navigator score", "impact metrics (real-time if possible)", "annual reports", "donor privacy promise", "tax-deductible badge (501c3)", "partner logos"],
+    "anti_patterns": ["guilt-tripping language", "fake urgency ('Only 24 hours!')", "stock photos of suffering", "hidden donation fees", "complex donation flow", "corporate-slick aesthetic (too polished = suspicious)"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "forest_hope (#2d6a4f green, #fefae0 cream, #e07a5f terracotta — balanced, nature-connected, warm)",
+      "ocean_compassion (Blues: #1d3557 navy, #457b9d blue, #f1faee white, #e63946 red accent for urgency)",
+      "earth_nurture (#606c38 olive, #fefae0 parchment, #bc6c25 copper, #283618 dark moss — grounded, organic)",
+      "sunrise_optimism (#f4a261 warm orange, #ffffff, #264653 dark teal, #e9c46a yellow — bright, hopeful, energetic)",
+      "sage_calm (#8cb369 sage green, #f5f0e8 warm white, #bc4b51 muted red, #f4e285 soft gold — gentle, peaceful)"
+    ],
+    "typography_mood": [
+      "merriweather_classic (Merriweather headings, Nunito body — trustworthy, editorial, established NGOs)",
+      "lora_warm (Lora headings, Source Sans 3 body — warm, approachable, community organizations)",
+      "libre_statement (Libre Baskerville headings, Inter body — authoritative, foundation/advocacy feel)"
+    ],
+    "layout_density": [
+      "story_driven (large photos, narrative flow, immersive storytelling — charity: water style)",
+      "impact_dashboard (stats-forward, data visualization, transparency-focused — GiveDirectly style)",
+      "community_hub (event calendar, volunteer signups, social feed — local community organizations)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "impact_stats", "programs", "stories", "donate_cta", "volunteer", "footer"],
+      "curated_stack": "nonprofit_mission_landing"
+    },
+    "donation_page": {
+      "sections": ["header", "donation_form", "suggested_amounts", "impact_explainer", "trust_badges", "footer"],
+      "best_practices": "Suggested giving levels with impact descriptions, monthly/one-time toggle, minimal form fields, transparent fee disclosure, donor wall option"
+    },
+    "programs_page": {
+      "sections": ["header", "program_overview", "program_list", "impact_per_program", "stories", "support_cta", "footer"]
+    },
+    "impact_page": {
+      "sections": ["header", "key_metrics", "financial_transparency", "annual_report", "stories_map", "donor_recognition", "footer"]
+    },
+    "about_page": {
+      "sections": ["header", "mission_vision", "history", "team", "board", "partners", "financials", "careers_cta", "footer"]
+    }
+  }
+}

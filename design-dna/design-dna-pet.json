@@ -1,0 +1,168 @@
+{
+  "industry": "pet",
+  "subtypes": ["veterinary-clinic", "pet-grooming", "pet-boarding-daycare", "pet-store", "dog-training", "pet-sitting-walking", "animal-shelter-rescue"],
+  "extracted_from": [
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.chewy.com", "style": "friendly-warm"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.rover.com", "style": "playful-trusting"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.banfield.com", "style": "caring-professional"}
+  ],
+  "reference_brands": ["Chewy", "Rover", "Banfield Pet Hospital", "PetSmart", "Petco", "BarkBox", "VCA Animal Hospitals", "The Farmer's Dog", "Wag!", "Best Friends Animal Society"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#2d5a4b", "#3a7c63", "#4a9e7a", "#1e4034"],
+      "primary_role": "Header bg, footer bg, trust color (forest/pet green for health, nature, and trust)",
+      "accent": ["#f4a261", "#e0763b", "#f7b05e", "#f9c74f", "#e55934"],
+      "accent_role": "CTA buttons (warm orange/coral — friendly, energetic, treat-like color), key callouts",
+      "surface": ["#ffffff", "#fef9f4", "#fdf5ea", "#faf7f2", "#f0f4e8"],
+      "surface_role": "Card backgrounds (warm cream/off-white), section backgrounds, form fields",
+      "neutral": ["#5c4e3d", "#6b5b45", "#7a6b55", "#8c7c66", "#9e9e9e"],
+      "neutral_role": "Body text (warm brown-gray, softer than pure gray — more natural), secondary info",
+      "border": ["#e8e0d5", "#e0d5c5", "#d9cebe", "#f0e5d8", "#ddd6cc"],
+      "border_role": "Card borders, input borders (soft warm beige, organic feel)",
+      "semantic": {
+        "success": "#4a9e7a",
+        "warning": "#f7b05e",
+        "error": "#e55934",
+        "info": "#5b9bd5"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Fredoka", "Nunito", "Baloo 2", "Quicksand", "system-ui"],
+      "body_fonts": ["Nunito", "Nunito Sans", "Inter", "Rubik", "system-ui"],
+      "mono_fonts": ["JetBrains Mono", "SF Mono", "Consolas"],
+      "heading_weight": 600,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 36, "max": 56, "unit": "px"},
+        "h2": {"min": 26, "max": 40, "unit": "px"},
+        "h3": {"min": 18, "max": 26, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 13, "max": 15, "unit": "px"}
+      },
+      "line_height": {"body": 1.65, "heading": 1.2},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 64, "max": 120, "unit": "px"},
+      "section_gap": {"typical": 72, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "sharp": "never — avoid sharp corners entirely in pet industry",
+      "rounded": "12px - 20px",
+      "pill": "9999px",
+      "typical_button": "9999px (pill — universally rounded, friendly, approachable)",
+      "typical_card": "16px - 24px (generous rounding, soft and cuddly feel)"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "warm orange/coral",
+        "color": "white",
+        "border_radius": "9999px (full pill)",
+        "text": "Book Appointment, Schedule Visit, Shop Now, Adopt Today, Get Started",
+        "font_size": "16-18px",
+        "font_weight": 700
+      },
+      {
+        "variant": "secondary",
+        "bg": "soft green or cream with border",
+        "color": "dark green",
+        "border_radius": "9999px (pill)",
+        "text": "Learn More, Meet Our Team, See Services, View Gallery",
+        "font_size": "15-17px"
+      },
+      {
+        "variant": "text_button",
+        "bg": "transparent",
+        "color": "warm brown or green",
+        "border_radius": "none",
+        "text": "Navigation, filters, 'Read more', secondary links"
+      }
+    ],
+    "elevation": {
+      "shadows": "soft, playful, gentle",
+      "approach": "Shadows should feel bouncy and light — like a tennis ball. Slightly more pronounced than wedding (more playful) but still friendly.",
+      "typical_values": ["0 2px 4px rgba(0,0,0,0.05)", "0 4px 12px rgba(0,0,0,0.08)", "0 8px 24px rgba(0,0,0,0.1)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (warm white or light green bg, logo left with optional paw/mascot, nav center, 'Book Now' pill CTA right, sticky)",
+      "hero (full-width happy pet photo or video + warm headline + subtitle + primary CTA + secondary CTA + trust badges)",
+      "services (icon + title grid: vet care, grooming, boarding, daycare, training, retail — 3 or 4 columns with rounded cards)",
+      "team (photo cards: veterinarian/groomer photo + name + role + bio snippet + pet emoji or favorite animal, warm tone)",
+      "gallery (happy pet photo grid, playful captions, soft lightbox, optional Instagram-style layout with rounded images)",
+      "reviews (pet owner testimonials: pet photo + owner name + pet name + breed + 5-star review, heartwarming quotes)",
+      "appointment_cta (centered, warm bg with paw-print pattern or pet photo, pill buttons, 'Book Your Visit' + phone number, online scheduling widget)",
+      "footer (4-column: clinic/store info, services, hours + emergency contacts, social + paw-print decorative touches + copyright)"
+    ],
+    "hero_variants": [
+      "happy_pet_portrait (Chewy/BarkBox style — adorable pet face full-bleed, warm overlay, playful headline, pill CTA)",
+      "vet_clinic_warm (Banfield style — clean clinic photo or illustration, 'Caring for Your Best Friend', professional yet warm)",
+      "action_play (Rover/Wag style — pets playing/running photo, energetic, 'Find a Sitter' or 'Book Dog Walking' CTA)",
+      "adoption_hero (shelter style — adoptable pet photo + 'Give a Forever Home' + emotional headline, soft, hopeful)"
+    ],
+    "feature_card_variants": [
+      "service_card (large rounded card: icon + service name + friendly description + 'Learn More' pill link, colorful icon bg)",
+      "team_member_card (round photo + name + role + short bio, hover shows fun fact or favorite treat, warm bg)",
+      "pet_gallery_card (rounded pet photo + pet name + breed + cute caption, lightbox trigger, Instagram-like)",
+      "review_card (pet photo thumbnail + star rating + quote + owner name + pet name + breed, heart icon, warm card bg)"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["warm", "friendly", "playful", "caring", "trustworthy", "approachable", "loving", "professional"],
+    "headline_style": "warm and welcoming, 4-7 words (e.g., 'Because They're Family.', 'Where Tails Never Stop Wagging.', 'Veterinary Care with Heart.')",
+    "cta_style": "friendly and encouraging (Book a Visit, Schedule Grooming, Meet Our Team, Shop Treats, Adopt a Friend, Get Started)",
+    "trust_signals": ["licensed veterinarians", "AAHA accredited", "years in business", "Google reviews stars", "pet insurance accepted", "fear-free certified", "rescue partner badges", "satisfaction guarantee", "online booking convenience"],
+    "anti_patterns": ["cold/sterile white hospital aesthetic (for vet sites)", "sharp corners anywhere", "dark/intimidating colors", "stock photos of sad/stressed pets", "complicated medical jargon without explanation", "aggressive upselling", "no pet photos"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "forest_friendly (#2d5a4b green, #fef9f4 cream, #f4a261 warm orange, #ffffff cards — balanced, veterinary, trustworthy)",
+      "sunshine_playful (#e0763b coral, #fff8e7 warm yellow, #3a7c63 green, #ffffff — energetic, daycare/boarding, fun)",
+      "berry_sweet (#8b4a6b berry, #fdf5f3 blush, #c49b7c copper, #f5f0e8 cream — grooming salons, boutiques, stylish)",
+      "ocean_pup (#4a8fa8 ocean blue, #f7f9fc white, #f4a261 coral accent, #e8f4f8 light blue — coastal/beach vet clinics)",
+      "earth_dog (#6b4c3b warm brown, #f5f0e8 cream, #9c7a5e tan, #e8d5c0 sand — natural/organic pet stores, holistic vets)"
+    ],
+    "typography_mood": [
+      "fredoka_playful (Fredoka headings, Nunito body — rounded, happy, most versatile pet industry font)",
+      "nunito_friendly (Nunito for both headings and body — consistent, approachable, clean vet clinics)",
+      "baloo_bold (Baloo 2 headings, Quicksand body — extra playful, chunky, great for pet stores and daycares)"
+    ],
+    "layout_density": [
+      "vet_professional (clean, organized, easy navigation, trust-focused — veterinary clinics and hospitals)",
+      "playful_retail (colorful, product-heavy, fun browsing experience — pet stores and subscription boxes)",
+      "service_accessible (quick booking visible, services clear, phone prominent — grooming, daycare, walking services)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "services", "team", "gallery", "reviews", "appointment_cta", "footer"],
+      "curated_stack": "pet_care_landing"
+    },
+    "services_page": {
+      "sections": ["header", "service_list", "pricing", "team_specialists", "faq", "booking_cta", "footer"],
+      "best_practices": "Clear service categories with icons, transparent pricing (or 'starting at'), specialist credentials, FAQ for common concerns"
+    },
+    "team_page": {
+      "sections": ["header", "veterinarians", "technicians", "groomers", "support_staff", "join_our_team", "footer"]
+    },
+    "gallery_page": {
+      "sections": ["header", "filter_buttons", "pet_grid", "lightbox", "share_widget", "footer"],
+      "best_practices": "Happy pet photos only, soft rounded images, lightbox gallery, Instagram feed embed, owner consent for all photos"
+    },
+    "adoption_page": {
+      "sections": ["header", "available_pets", "adoption_process", "success_stories", "donate_cta", "volunteer", "footer"]
+    },
+    "appointment_page": {
+      "sections": ["header", "booking_widget", "service_selector", "date_time", "owner_pet_info", "confirmation", "footer"]
+    }
+  }
+}

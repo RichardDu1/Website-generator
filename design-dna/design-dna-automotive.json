@@ -1,0 +1,163 @@
+{
+  "industry": "automotive",
+  "subtypes": ["dealership", "auto-repair", "car-wash", "body-shop", "tire-center", "fleet-service"],
+  "extracted_from": [
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.bmw.com", "style": "premium-dark"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.tesla.com", "style": "minimal-futuristic"},
+    {"style": "synthesized from industry research 2026-05-30", "url": "https://www.mercedes-benz.com", "style": "luxury-metallic"}
+  ],
+  "reference_brands": ["BMW", "Tesla", "Mercedes-Benz", "Porsche", "Audi", "Ford", "Toyota", "CarMax", "AutoNation", "Firestone"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#0a0a0a", "#111111", "#1c1c1e", "#2c2c2e"],
+      "primary_role": "Page background, hero section bg, header bg (dark mode dominant, metallic feel)",
+      "accent": ["#e30613", "#c41230", "#ff4d00", "#d4af37", "#2563eb"],
+      "accent_role": "CTA buttons, price highlights, special offers, key specs callouts",
+      "surface": ["#1a1a2e", "#222222", "#f5f5f7", "#ffffff", "#fafafa"],
+      "surface_role": "Card backgrounds (dark: near-black metallic, light: off-white cream), section alternation",
+      "neutral": ["#8e8e93", "#a1a1a6", "#6c7278", "#9ca3af", "#c7c7cc"],
+      "neutral_role": "Body text on dark bg, specs text, secondary information, disclaimers",
+      "border": ["#333333", "#3a3a3c", "#e5e5e6", "#d1d1d6", "#38383a"],
+      "border_role": "Card borders (dark: subtle metallic, light: soft gray), input borders, dividers",
+      "semantic": {
+        "success": "#34c759",
+        "warning": "#ff9500",
+        "error": "#ff3b30",
+        "info": "#0a84ff"
+      }
+    },
+    "typography": {
+      "heading_fonts": ["Oswald", "Bebas Neue", "Montserrat", "Rajdhani", "system-ui"],
+      "body_fonts": ["Inter", "Montserrat", "Source Sans 3", "system-ui"],
+      "mono_fonts": ["JetBrains Mono", "SF Mono", "Consolas"],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 42, "max": 72, "unit": "px"},
+        "h2": {"min": 28, "max": 48, "unit": "px"},
+        "h3": {"min": 20, "max": 30, "unit": "px"},
+        "body": {"min": 15, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      },
+      "line_height": {"body": 1.6, "heading": 1.1},
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')",
+        "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap')"
+      ]
+    },
+    "spacing": {
+      "section_padding": {"min": 80, "max": 160, "unit": "px"},
+      "section_gap": {"typical": 80, "unit": "px"},
+      "content_max_width": {"typical": 1320, "unit": "px"},
+      "card_padding": {"typical": "32px"}
+    },
+    "border_radius": {
+      "sharp": "2px - 4px",
+      "rounded": "6px - 10px",
+      "pill": "9999px",
+      "typical_button": "4px (angular, industrial) or 9999px (pill)",
+      "typical_card": "8px - 12px"
+    },
+    "button_styles": [
+      {
+        "variant": "primary_cta",
+        "bg": "accent red or gold",
+        "color": "white",
+        "border_radius": "4px (angular)",
+        "text": "action-oriented (Book Service, Schedule Test Drive, Get Quote)",
+        "font_size": "14-16px",
+        "font_weight": 600
+      },
+      {
+        "variant": "secondary",
+        "bg": "transparent with border",
+        "color": "primary text or white",
+        "border_radius": "4px",
+        "text": "Browse Inventory, View Offers, Learn More",
+        "font_size": "14-16px"
+      },
+      {
+        "variant": "ghost",
+        "bg": "transparent",
+        "color": "neutral gray",
+        "border_radius": "pill",
+        "text": "Navigation, phone number, dealership info"
+      }
+    ],
+    "elevation": {
+      "shadows": "sharp, defined with slight blur",
+      "approach": "Clean edge shadows with metallic sheen feel — not glassmorphism but subtle industrial weight",
+      "typical_values": ["0 2px 4px rgba(0,0,0,0.3)", "0 6px 16px rgba(0,0,0,0.2)", "0 12px 32px rgba(0,0,0,0.25)"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky dark bg, logo left, nav center, phone/CTA right, full-width)",
+      "hero (full-width vehicle imagery or video bg + h1 tagline + subtitle + primary CTA + secondary CTA + trust badges)",
+      "services (icon + title + description grid, 3 or 4 columns — repair, maintenance, detailing, tires)",
+      "inventory_gallery (filterable grid or carousel of vehicle/service images, lightbox on click)",
+      "team (photo cards with name, role, certifications — mechanics or sales staff)",
+      "reviews (testimonial cards with star ratings, customer names, vehicle models — carousel layout)",
+      "booking_cta (centered, accent bg or dark bg, 'Schedule Your Service' or 'Book a Test Drive', phone number prominent)",
+      "footer (4-column: dealership info/contact/social, services, hours, legal + map embed)"
+    ],
+    "hero_variants": [
+      "full_bleed_vehicle (BMW style — vehicle photo full-width, dark overlay, text left-aligned)",
+      "video_background (Tesla style — cinematic vehicle video loop, minimal text overlay)",
+      "split_layout (CarMax style — photo left, search/inventory tool right)",
+      "service_hero (Firestone style — bold typography, price offers, quick booking form)"
+    ],
+    "feature_card_variants": [
+      "icon_grid (service cards: icon + title + description + 'Learn more' link)",
+      "vehicle_card (image + year/make/model + price + mileage + CTA button)",
+      "testimonial_card (5-star rating + quote + customer name + vehicle + date)",
+      "spec_highlight (large number + label: '0-60 in 3.1s', '500hp', '300mi range')"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["bold", "powerful", "premium", "trustworthy", "precision", "performance", "industrial"],
+    "headline_style": "short, powerful, under 6 words (e.g., 'Precision Performance. Unmatched Service.', 'Drive Your Dream.')",
+    "cta_style": "direct action verbs (Book, Schedule, Browse, Test Drive, Get Quote, Call Now)",
+    "trust_signals": ["manufacturer certifications", "ASE certified mechanics", "warranty badges", "Google reviews rating", "years in business", "BBB accreditation", "OEM parts guarantee", "financing available badges"],
+    "anti_patterns": ["clip art icons", "generic stock photos of smiling mechanics", "low-res vehicle images", "cluttered price tables", "fake countdown timers"]
+  },
+  "variation_space": {
+    "color_mood": [
+      "luxury_metallic (Mercedes-Benz: #0a0a0a bg, #d4af37 gold accent, chrome highlights)",
+      "racing_red (Ferrari/Ducati: #cc0000 primary, #ffffff text, black accents, aggressive feel)",
+      "electric_blue (Tesla/Rivian: #111111 bg, #2563eb blue accent, white text, clean futuristic)",
+      "industrial_dark (Firestone/Pep Boys: #1a1a1a bg, #ff4d00 orange accent, yellow safety highlights)",
+      "premium_monochrome (Audi/BMW: #f5f5f7 bg, #0a0a0a text, subtle silver accents, minimal chrome)"
+    ],
+    "typography_mood": [
+      "oswald_bold (Oswald headings, Inter body — authoritative, industrial, high-impact)",
+      "montserrat_premium (Montserrat headings and body — polished, modern dealership feel)",
+      "bebas_statement (Bebas Neue headings, Source Sans 3 body — bold, editorial, magazine-like)"
+    ],
+    "layout_density": [
+      "full_bleed_spacious (BMW/Porsche: large hero, lots of negative space, cinematic)",
+      "service_dense (Firestone/Jiffy Lube: more CTAs per viewport, quick booking visible immediately)",
+      "inventory_grid (CarMax/AutoNation: vehicle cards dominant, filter sidebar, search-first layout)"
+    ]
+  },
+  "page_types": {
+    "landing_page": {
+      "sections": ["header", "hero", "services", "inventory_gallery", "team", "reviews", "booking_cta", "footer"],
+      "curated_stack": "automotive_service_landing"
+    },
+    "inventory_page": {
+      "sections": ["header", "search_filters", "vehicle_grid", "pagination", "financing_cta", "footer"],
+      "best_practices": "Filter sidebar or top bar with make/model/year/price, vehicle cards with photo + key specs + price, comparison tool"
+    },
+    "vehicle_detail_page": {
+      "sections": ["header", "vehicle_gallery", "specs_table", "pricing_breakdown", "financing_calculator", "similar_vehicles", "footer"]
+    },
+    "service_page": {
+      "sections": ["header", "service_list", "pricing_table", "appointment_form", "specials", "footer"]
+    },
+    "about_page": {
+      "sections": ["header", "story", "team", "facility_tour", "certifications", "careers_cta", "footer"]
+    }
+  }
+}

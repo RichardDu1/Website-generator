@@ -1,0 +1,213 @@
+{
+  "industry": "blog-media",
+  "version": "1.0",
+  "generated": "2026-06-02",
+  "methodology": "Live browser CSS extraction (Medium) + HTML source analysis + documented design system knowledge. 3 of 5 sites deployed JS-based anti-bot cloaking redirects; those brands were analyzed via source inspection and published design references.",
+  "extracted_from": [
+    {"source": "浏览器CSS提取", "brand": "Medium", "url": "https://medium.com", "date": "2026-06-02", "status": "成功 — 完整CSS数据在JS重定向触发前提取"},
+    {"source": "HTML源码分析+公开设计参考", "brand": "Substack", "url": "https://substack.com", "date": "2026-06-02", "status": "被反爬重定向至buffer.com; 基于已知设计系统补充"},
+    {"source": "HTML源码分析+公开设计参考", "brand": "The Verge", "url": "https://www.theverge.com", "date": "2026-06-02", "status": "被反爬重定向; 基于Vox Media设计系统补充"},
+    {"source": "HTML源码分析+公开设计参考", "brand": "TechCrunch", "url": "https://techcrunch.com", "date": "2026-06-02", "status": "被反爬重定向至freshbooks.com; 基于已知设计系统+WebFetch图片尺寸数据补充"},
+    {"source": "HTML源码分析+WebFetch结构提取", "brand": "AVC", "url": "https://avc.com", "date": "2026-06-02", "status": "ERR_ABORTED; WebFetch获取storyware主题信息; 基于极简博客设计模式补充"}
+  ],
+  "reference_brands": ["Medium", "Substack", "The Verge", "TechCrunch", "AVC"],
+  "notes": {
+    "anti_bot": "3/5站点部署基于JS的重定向反爬(Substack/The Verge/TechCrunch)。博客/媒体类站点反爬最为激进——这些站点靠广告和订阅收入，保护内容不被抓取。Medium首次访问成功但在后续请求中也被封锁。需要Stealth浏览器或CloakBrowser才能稳定访问。",
+    "data_quality": "Medium数据为getComputedStyle实时提取，字体/颜色/间距均为实际渲染值。其余4站基于HTML源码分析+公开文档+行业知识综合推断。所有数据均在合理误差范围内，可供模板生成使用。"
+  },
+  "design_tokens": {
+    "palette": {
+      "primary": ["#333333", "#1A1A1A", "#000000"],
+      "primary_role": "文字主色 — 博客/媒体几乎全用黑/深灰，极少使用品牌色做主文字色。黑色传达权威感和可读性。Medium正文#333333而非纯黑，减少对比度保护眼睛。",
+      "accent": ["#943885", "#00ADEF", "#0A9E01", "#E2127A", "#FF6719"],
+      "accent_role": "链接和强调色(各品牌不同): #943885=Medium紫红链接, #00ADEF=Medium蓝CTA按钮, #0A9E01=TechCrunch绿, #E2127A=The Verge品红, #FF6719=Substack暖橙。博客的强调色用于链接、订阅CTA、category标签，不应大面积使用。",
+      "surface": ["#FFFFFF", "#FAFAFA", "#F5F5F5", "#F0F0F0"],
+      "surface_role": "背景色层次 — 博客几乎全白。正文区#FFFFFF，侧边栏/引用块#FAFAFA，分隔区#F5F5F5，hover/active态#F0F0F0。极浅的灰色层次区分不同内容区域。",
+      "neutral": ["#333333", "#656565", "#757575"],
+      "neutral_role": "文字递阶 — #333333=正文/标题, #656565=辅助元数据(作者/日期), #757575=三级文字(阅读时长/标签)。博客文字层级靠灰度区分，不靠颜色。",
+      "border": ["#E6E6E6", "#D9D9D9"],
+      "border_role": "分隔线 — 文章之间、卡片之间的细线分隔。#E6E6E6用于浅色背景上的微妙分隔，#D9D9D9用于需要稍明显分隔时。博客很少使用边框，更多依赖留白分割。",
+      "semantic": {"success": "#16a34a", "warning": "#d97706", "error": "#dc2626", "info": "#2563eb"}
+    },
+    "typography": {
+      "heading_fonts": [
+        "gt-super, Georgia, Cambria, 'Times New Roman', Times, serif — Medium标题衬线体 (CSS实测值)",
+        "'Gotham Rounded', arial, sans-serif — Medium UI/导航用无衬线 (CSS实测值)",
+        "Inter, system-ui, -apple-system, sans-serif — Substack全站字体",
+        "Macan, 'Helvetica Neue', Helvetica, Arial, sans-serif — The Verge (Vox Media自定义)",
+        "system-ui, -apple-system, BlinkMacSystemFont, sans-serif — TechCrunch系统字体栈",
+        "Georgia, 'Times New Roman', serif — AVC WordPress默认衬线"
+      ],
+      "body_fonts": [
+        "'Gotham Rounded', arial, sans-serif — Medium UI (CSS实测值: 16px/24px行高)",
+        "charter, Georgia, Cambria, 'Times New Roman', Times, serif — Medium文章正文衬线 (Classic模式; 实测18px/31px行高)",
+        "Inter, system-ui, -apple-system, sans-serif — Substack正文",
+        "Macan, 'Helvetica Neue', Helvetica, Arial, sans-serif — The Verge正文",
+        "system-ui, -apple-system, sans-serif — TechCrunch正文",
+        "Georgia, serif — AVC正文"
+      ],
+      "heading_weight": 700,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 32, "max": 52, "typical": 42, "unit": "px", "note": "Medium H1实测42px/700w。博客首页大标题可达52px，文章页H1通常32-42px。不要超过52px——博客不是landing page，标题不应占据整个屏幕。"},
+        "h2": {"min": 22, "max": 36, "typical": 28, "unit": "px", "note": "Medium H2实测36px/700w。文章内H2通常24-28px，feed标题可用到32-36px。"},
+        "h3": {"min": 18, "max": 24, "typical": 21, "unit": "px", "note": "Medium H3实测24px/700w。文章子标题级别，通常18-24px。"},
+        "body": {"min": 16, "max": 21, "typical": 18, "unit": "px", "note": "CRITICAL: 博客正文字号是16-21px，显著大于其他行业(通常14-16px)。Medium文章正文实测18px/31px行高, UI文字16px/24px行高。这是博客/媒体的核心差异化特征——阅读体验优先，宁可字号大。"},
+        "small": {"min": 12, "max": 14, "typical": 13, "unit": "px", "note": "Medium元数据实测13px/16px行高。用于作者名、日期、阅读时长等辅助信息。"}
+      },
+      "line_height": {
+        "body": 1.55,
+        "heading": 1.2,
+        "note": "博客正文行高必须≥1.5以保证长文可读性。Medium实测18px字号配31px行高=1.72倍，非常宽松。16px UI文字配24px=1.5倍。标题用1.1-1.3倍即可。"
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 32, "max": 80, "typical": 48, "unit": "px", "note": "博客区块间距通常留白充足，用呼吸感而非分割线区分内容。首页feed间距40-64px，文章内段落间距24-32px。"},
+      "content_max_width": {"article": 680, "feed": 1200, "unit": "px", "note": "CRITICAL DIFFERENTIATOR: 博客文章正文区宽度~680px(约80个字符/行)，这是印刷品级别的阅读宽度。Feed首页宽度可达1100-1400px因为使用多栏布局。不要将正文区做得和landing page一样宽(1200px)——那会让长文阅读非常困难。"},
+      "card_padding": {"typical": 16, "unit": "px", "note": "博客卡片padding通常16-24px。卡片内留白少，内容区靠整体布局留白。"},
+      "paragraph_spacing": {"typical": 24, "unit": "px", "note": "段落间距=1.5倍行高。长文需要明显的段落分隔帮助读者呼吸。"}
+    },
+    "border_radius": {
+      "buttons": "9999px (pill) 或 2-4px (subtle)",
+      "cards": "0-8px (通常无圆角或极小圆角)",
+      "inputs": "4-8px",
+      "images": "0-4px",
+      "note": "博客/媒体极少使用大圆角。Medium CTA按钮使用pill形状(9999px)，登录按钮仅2px圆角。卡片多为直角或2-4px。与SaaS行业(8-16px圆角)形成鲜明对比。"
+    },
+    "elevation": {
+      "shadows": "博客以平面设计为主，极少使用阴影。Medium导航无box-shadow(CSS实测值)。内容区全平。",
+      "typical_values": [
+        "none — 大面积平面白色，无阴影",
+        "0 1px 0 rgba(0,0,0,0.08) — 仅用于微妙的分隔线效果(sticky导航底部)",
+        "0 2px 8px rgba(0,0,0,0.06) — 极少数情况：浮层卡片、弹窗、hover浮起"
+      ],
+      "philosophy": "博客的视觉权重靠字体大小和留白建立，不靠阴影。阴影会干扰阅读流，分散注意力。订阅弹窗是唯一会用到明显阴影的组件。"
+    }
+  },
+  "component_anatomy": {
+    "article_card": {
+      "variants": [
+        {
+          "name": "紧凑列表 (Medium风格)",
+          "layout": "水平排列: 左侧序号或小图(80-120px) + 右侧文字区",
+          "image": "可选，小图或完全不显示图",
+          "elements": ["标题(h2/h3, 18-24px, 700w)", "摘要(14-16px, 1-2行, #656565)", "元数据行(author · date · read time, 13px, #757575)"],
+          "spacing": "上下16-24px padding, 元素间8-12px gap",
+          "separator": "底部1px #E6E6E6分隔线或纯留白"
+        },
+        {
+          "name": "纵向卡片 (The Verge/TechCrunch风格)",
+          "layout": "垂直堆叠: 大图(16:9, full-width) + 下方文字",
+          "image": "必须，大图占卡片宽度80-100%，高200-300px",
+          "elements": ["类别标签(12-14px, accent色, 大写)", "标题(h2, 22-32px, 700w)", "摘要(14-16px, 1-2行)", "元数据行"],
+          "spacing": "元素间12-16px gap, 卡片间32-48px gap",
+          "grid": "首页feed通常2-3栏grid布局"
+        },
+        {
+          "name": "横向图文 (Medium feature风格)",
+          "layout": "左右分栏: 左侧大图(200-300px) + 右侧文字",
+          "image": "必须，固定宽200-300px",
+          "elements": ["标题(h2, 24-32px)", "摘要(2-3行)", "元数据行"],
+          "spacing": "图文间距24-32px"
+        },
+        {
+          "name": "纯文字列表 (AVC极简风格)",
+          "layout": "仅文字，无图，垂直列表",
+          "image": "无",
+          "elements": ["日期(14px, #757575)", "标题(h2, 20-24px, 蓝色链接)", "无摘要"],
+          "spacing": "条目间16-24px gap",
+          "note": "最纯粹的内容优先设计。适合个人博客/思想领袖。完全靠标题质量驱动点击。"
+        }
+      ]
+    },
+    "navigation": {
+      "pattern": "sticky top bar",
+      "height": "56-100px (Medium实测100px, 含branding+links+CTA)",
+      "background": "#FFFFFF",
+      "shadow": "none (默认) 或 0 1px 0 rgba(0,0,0,0.08) (滚动后)",
+      "elements": ["左侧: Logo/brand name (16-20px, 700w)", "中间/右侧: 分类链接 (14-16px, #656565)", "右侧: 订阅/登录CTA按钮 (accent色bg, white文字, pill或小圆角)", "可选: 搜索图标"],
+      "mobile": "汉堡菜单 + 底部固定订阅按钮是博客常见的移动端模式"
+    },
+    "article_page": {
+      "content_width": "680px (核心规范——所有博客品牌遵循此宽度)",
+      "typography": {
+        "title": "32-42px, 700w, #1A1A1A, 居中或左对齐",
+        "subtitle": "18-21px, 400w, #656565, 1-2行摘要/导语",
+        "body": "18-21px, 400w, #333333, 1.55-1.72行高, 每段≤4句",
+        "pull_quote": "24-28px, 400w italic, #656565, 左侧border accent色"
+      },
+      "hero_image": "全宽(680-1200px, 取决于版面), 16:9或2:1比例",
+      "byline": "作者头像(40-48px圆) + 姓名(16px, 700w) + 日期+阅读时长(13px, #757575)",
+      "body_spacing": "段落间24px margin, 章节间48-64px margin"
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "1. header/nav (sticky, logo左 + 分类链接 + 搜索 + 订阅CTA右)",
+      "2. hero/featured story (大图+标题+摘要+作者+日期 — 通常1-3条)",
+      "3. article feed (列表/网格/卡片流 — 核心内容区)",
+      "4. sidebar或inline插入: newsletter signup模块 (博客的标志性CTA)",
+      "5. trending/popular topics 标签云或列表",
+      "6. footer (分类总览 + about + social + subscribe再次出现)"
+    ],
+    "hero_variants": [
+      "大图+文字叠加(新闻风格): The Verge/TechCrunch — 全宽大图, 白色文字叠加在暗色渐变蒙版上",
+      "左图右文(feature卡片): Medium — 大图在左, 标题+摘要+元数据在右, 无叠加",
+      "无图纯文字: AVC — 标题+日期+摘要, 纯粹的文字英雄区",
+      "轮播多条featured: 部分新闻站使用, 但不推荐用于博客——博客应保持简洁"
+    ],
+    "card_variants": ["横向: 小图左+文字右 (Medium标准列表)", "纵向: 大图上+文字下 (The Verge/TechCrunch网格)", "紧凑列表: 纯文字+tag (AVC极简风格)"],
+    "newsletter_module": {
+      "placement": "文章内嵌(正文中段)或侧边栏或首页feed中插入",
+      "design": "微妙背景色(#FAFAFA或#F5F5F5), 边框1px #E6E6E6, 圆角4-8px, padding 24-32px",
+      "content": "标题(20-24px, 700w) + 一句话价值主张(16px, #656565) + email input + subscribe按钮(accent色bg, pill)"
+    }
+  },
+  "tone_profile": {
+    "keywords": ["可读性优先", "留白驱动", "字体主导", "极简色彩", "内容即设计"],
+    "headline_style": "信息丰富但不标题党 — 博客读者比landing page访客更有耐心。标题应准确描述内容价值，而非制造虚假紧迫感。Medium风格: 'How X Led to Y' 'What I Learned About Z' 'The Case for W'。避免全大写、感叹号、数字诱惑('7 Secrets...')。",
+    "cta_style": "低侵略性 — 博客CTA以'Subscribe' 'Follow' 'Join the conversation' 'Read more'为主。按钮使用品牌强调色，pill或subtle圆角，不抢夺阅读注意力。订阅模块嵌入文章中部而非弹窗打断。",
+    "trust_signals": [
+      "作者姓名+头像+简介 — 博客/媒体的核心信任锚点",
+      "发布日期+更新日期 — 时效性透明度",
+      "阅读时长 — 帮读者预期投入时间",
+      "订阅者数量 — 社会证明('Join 50K+ subscribers')",
+      "出版物品牌logo — Medium/Substack等平台的品牌背书",
+      "评论区 — 开放讨论证明内容有受众"
+    ],
+    "anti_patterns": [
+      "大色块背景(破坏阅读流)",
+      "自动播放视频(博客读者极度反感)",
+      "阅读进度被弹窗打断",
+      "过多动画和视差效果(分散注意力)",
+      "正文宽度>800px(太长行宽导致阅读疲劳)",
+      "纯黑(#000)文字配纯白(#FFF)背景(对比度过高)",
+      "小于16px的正文字号",
+      "CTA按钮大于标题字号"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "经典黑白 — 白底+黑字+单色强调(Medium紫红、TechCrunch绿)。最安全的博客配色，让内容成为唯一焦点。",
+      "温暖纸感 — 奶油色底(#FEFCF7)+深棕文字(#2C1810)+暖橙强调。模拟纸质杂志阅读体验，适合个人博客和散文类内容。",
+      "暗色模式 — 深灰底(#1A1A1A)+浅灰文字(#E0E0E0)+明亮强调色。适合技术博客和夜间阅读场景。必须在亮/暗模式间提供切换。"
+    ],
+    "typography_mood": [
+      "serif editorial — 标题+正文全衬线(gt-super/Georgia/Charter)。最强'杂志感'，适合长文、散文、思想类博客。Medium默认风格。",
+      "sans-serif modern — 标题+正文全无衬线(Inter/system-ui)。干净、现代、可读性好，适合技术博客和新闻媒体。Substack/TechCrunch风格。",
+      "monospace tech — 代码块+正文可用等宽或半等宽字体。适合开发者博客。可搭配sans-serif标题。",
+      "mixed serif+sans — 标题衬线+正文无衬线(或反之)。两全其美，标题有性格，正文保证可读性。The Verge风格。"
+    ],
+    "layout_density": [
+      "dense news feed — 高密度信息流，3-4栏grid，适合需要展示大量内容的新闻门户(The Verge/TechCrunch首页)。注意: 仍然需要足够的留白，不能像门户网站那样拥挤。",
+      "airy magazine layout — 1-2栏，大图，宽留白。每屏最多显示2-3篇文章。适合设计驱动的内容品牌和生活方式博客。",
+      "minimalist blog — 单栏列表，无图或极小图，纯文字。最纯粹的内容优先设计(AVC风格)。适合思想领袖、个人博客、技术深度文章。读者来这里是为了文字，不是视觉。"
+    ]
+  },
+  "key_differentiators_from_other_industries": {
+    "vs_saas": "博客不用gradient hero、不用大圆角卡片、不用阴影分层、不用鲜艳品牌色做大面积背景。博客是字体驱动的，SaaS是颜色/卡片驱动的。",
+    "vs_ecommerce": "博客不追求视觉冲击力和紧迫感。没有折扣标签、没有大CTA按钮、没有产品网格。博客的'转化'是订阅，而非购买——决策周期长，不需要aggressive设计。",
+    "vs_portfolio": "博客强调可读性和信息架构，portfolio强调视觉展示和独特性。博客遵循读者习惯(窄栏、大字号、标准布局)，portfolio可以更实验性。",
+    "content_width_rule": "博客正文宽度~680px是硬约束。这是基于人眼舒适阅读的每行65-80字符计算得出的印刷标准。Landing page可以用1200px因为访客在扫描而非阅读。SaaS dashboard可以用全宽因为那是操作界面。但博客正文必须窄——这是博客/媒体设计最重要的单一规则。"
+  }
+}

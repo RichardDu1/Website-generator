@@ -1,0 +1,184 @@
+{
+  "industry": "saas-b2b",
+  "extracted_from": [
+    {"source": "官网分析", "brand": "Stripe", "url": "https://stripe.com", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Linear", "url": "https://linear.app", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Vercel", "url": "https://vercel.com", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Notion", "url": "https://www.notion.com", "date": "2026-06-02"},
+    {"source": "官网分析", "brand": "Slack", "url": "https://slack.com", "date": "2026-06-02"}
+  ],
+  "reference_brands": ["Stripe", "Linear", "Vercel", "Notion", "Slack"],
+  "design_tokens": {
+    "palette": {
+      "primary": ["#635bff", "#4a154b", "#000000"],
+      "primary_role": "主色带强品牌识别——Stripe用蓝紫渐变、Slack用深紫、Vercel用纯黑。深色背景上主色作高亮文字或图标，浅色背景上作实心按钮填充。几乎不用纯蓝(#0066cc)，因为太像默认链接色缺乏溢价感。",
+      "accent": ["#36c5f0", "#2eb67d", "#ecb22e"],
+      "accent_role": "强调色仅用于功能状态标签、图表数据系列、AI/agent功能图标(sparkle)。从不用于大色块——会稀释主色品牌识别。Linear完全没有强调色系统，全用灰度层级。",
+      "surface": ["#ffffff", "#f7f8f8", "#0f1011", "#08090a"],
+      "surface_role": "背景色层次分两极：Stripe/Notion用白色系(白->极浅灰)，Linear/Vercel用深色系(纯黑->深灰卡片)。中层灰度极少出现——B2B SaaS要么极亮要么极暗，没有中间状态。",
+      "neutral": ["#0a2540", "#2f3033"],
+      "neutral_role": "文字颜色：深色主题用#f7f8f8(正文)和#8a8f98(辅助文)，浅色主题用#0a2540(正文)和#6b7c93(辅助文)。对比度始终满足WCAG AA(4.5:1以上)。",
+      "border": ["#e5e5e6", "#1a1b1c"],
+      "border_role": "边框极细(1px)且颜色极淡——浅色主题用#e5e5e6近透明，深色主题用#1a1b1c(比卡片深一个层级)。边框的存在感被刻意压低，靠间距和白空间区分内容块。",
+      "semantic": {"success": "#2eb67d", "warning": "#ecb22e", "error": "#e01e5a", "info": "#36c5f0"}
+    },
+    "typography": {
+      "heading_fonts": ["Inter Variable", "SF Pro Display", "Slack Circular"],
+      "body_fonts": ["Inter", "SF Pro Text", "-apple-system", "BlinkMacSystemFont", "Segoe UI"],
+      "heading_weight": 510,
+      "body_weight": 400,
+      "scale": {
+        "h1": {"min": 48, "max": 80, "unit": "px"},
+        "h2": {"min": 32, "max": 56, "unit": "px"},
+        "h3": {"min": 18, "max": 26, "unit": "px"},
+        "body": {"min": 14, "max": 18, "unit": "px"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 64, "max": 160, "unit": "px"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px"}
+    },
+    "border_radius": {
+      "buttons": "9999px(Linear) / 4px(Stripe) / 8px(Vercel)——两极分化：要么全圆角药丸按钮表达亲和，要么4px直角微圆表达严谨",
+      "cards": "8px直跨所有5个品牌，Linear实测8px，Vercel/Notion/Slack均8-12px区间",
+      "inputs": "6-8px，略小于卡片半径以区分交互元素和展示容器"
+    },
+    "elevation": {
+      "shadows": "极简阴影——B2B SaaS不用Material Design式多层投影。Linear/Vercel深色主题完全不用阴影靠边框区分。Stripe浅色卡片用0 1px 3px rgba(0,0,0,0.08)的极淡单层阴影。Notion用0 0 0 1px inset边框代替阴影。",
+      "typical_values": ["0 1px 3px rgba(0,0,0,0.08)", "none(深色主题)", "0 0 0 1px rgba(0,0,0,0.04) inset"]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (sticky, 透明或实色背景, logo左 + 导航中 + CTA按钮右, 4-8个导航项, 高度56-64px)",
+      "hero (h1 48-80px + 副标题16-20px + 双CTA按钮 + 客户logo信任条或产品截图, padding 80-160px上下)",
+      "social proof logos (10-20个客户logo灰度展示, 常带'Trusted by'标题)",
+      "product capabilities grid (3-6列卡片, 图标+标题+描述, 每个卡片一个产品/功能点)",
+      "feature spotlight系列 (2-3个交替图文section, 左文右图或左图右文, 大padding 96-128px)",
+      "developer/integration section (代码块截图 + 框架logo + 技术指标, 面向技术决策者)",
+      "stats/metrics bar (3-5个数字指标横排: 货币量/用户数/正常运行时间/国家数)",
+      "customer stories/testimonials grid (3-4列引用卡片, 头像+姓名+职位+简短引语)",
+      "pricing or comparison (可选, 3-4列定价卡片, 或替代品成本计算器)",
+      "enterprise/sales section (安全认证 + 合规 + 专属支持, 面向采购决策者)",
+      "resources/blog/news carousel (4-8张图片卡片, 最新动态)",
+      "final CTA (大号标题 + 1-2个按钮, 深色背景或品牌色背景, padding 120-160px)",
+      "footer (4-6列链接网格, 社交图标, 语言选择器, 版权信息, 高度200-400px)"
+    ],
+    "hero_variants": [
+      "产品截图型(Linear): h1居中, 下方全宽产品界面截图, 截图带圆角+阴影, 无副标题",
+      "双CTA+客户logo型(Stripe/Slack): h1左对齐, 副标题, 两个CTA按钮(主+次), 下方或右侧客户logo矩阵",
+      "动画/视频型(Notion): h1居中, 背景动画或视频播放按钮, 强品牌视觉冲击",
+      "代码/命令型(Vercel): h1居中或左对齐, 下方terminal/代码块截图, 强调开发者体验"
+    ],
+    "card_variants": [
+      "产品功能卡片(Linear实测): bg稍深于页面背景(#0f1011 vs #08090a), border-radius 8px, padding 0 24px 28px, 图标+标题+描述, 无阴影",
+      "客户引用卡片(通用): 白色或微灰bg, 8-12px圆角, 16-24px padding, 右上引号装饰, 底部头像+姓名+职位",
+      "资源/博客卡片(通用): 图片16:9上部分, 文字下部分, 8-12px圆角, 悬停阴影",
+      "定价卡片(Stripe): 白底+1px边框, 8px圆角, 24px padding, 价格大号数字, CTA按钮底部"
+    ]
+  },
+  "tone_profile": {
+    "keywords": ["infrastructure", "scale", "future", "secure", "fast"],
+    "headline_style": "短句、现在时、动词驱动——Stripe'Grow your revenue', Linear'A new species of product tool', Vercel'Build and deploy', Notion'Meet the night shift', Slack'working together'。从不使用问句作为主标题。不含最高级(superlative)形容词如'best'/'greatest'。",
+    "cta_style": "动词短语、避免'Submit'/'Click here'等通用文案。Stripe用'Start now'+'Contact sales'双CTA(自助+销售两条路径)。Linear用'Sign up→'和'Open app'区分新老用户。Vercel用'Start Deploying'精确描述动作结果。Notion用'Get Notion free'前置价值。统一模式: CTA text = 动作动词 + 价值/对象, 2-3词。",
+    "trust_signals": [
+      "客户logo矩阵(Stripe: OpenAI+Amazon+Nvidia+Google等15+, Notion: 98% Forbes Cloud 100)",
+      "合规认证徽章(Slack: UK GDPR+ISO 27001+SOC 2 Type II直接放hero)",
+      "实时数据指标(Stripe: US$1.9tn volume+99.999% uptime+135+ currencies, Slack: 700M messages+4M Connect users)",
+      "G2/Forrester排行榜引用(Slack: leader in 303 G2 reports, Notion: #1 KB 3年连冠)",
+      "知名客户案例详情页(非匿名引用, 带姓名+头像+职位+公司)"
+    ],
+    "anti_patterns": [
+      "不要用'Welcome to...'开头的hero标题——5个品牌无一使用",
+      "不要用渐变色大按钮——Linear纯白/灰, Stripe纯品牌色, 无人用彩色渐变CTAs",
+      "不要超过2个hero CTA按钮——3个以上会稀释点击率",
+      "不要用'解决方案'('Solutions')作为唯一导航项——必须有'Product'或具体产品名",
+      "不要用Lorem ipsum或占位图展示产品——必须真实产品截图",
+      "不要在hero区用轮播图(slider/carousel)——全部用静态内容, 用户不需要等待",
+      "不要在定价页隐藏价格——价格透明度是B2B信任基础",
+      "不要用纯黑色文字(#000000)在纯白背景(#ffffff)上——对比度过高刺眼, 用#0a2540或#2f3033替代"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      "深色专业(Linear/Vercel): #000000-#0a0a0a背景, 白/灰文字, 品牌色仅用于图标和链接, 强调技术感和工具属性",
+      "明亮信任(Stripe/Notion/Slack): #ffffff主背景, 深色文字, 品牌色用于CTA按钮和hero区底色, 强调可访问性和企业规模"
+    ],
+    "typography_mood": [
+      "几何现代(Linear/Stripe): Inter或定制几何sans, 字重510/590(介于Regular和Semibold之间的Variable Font), 字母间距-0.02em紧缩, 线条等宽",
+      "人文柔和(Notion/Slack): 定制人文sans(Notion使用自己字体), 字重400-700标准区间, 字母间距正常, 字形更圆润亲和"
+    ],
+    "layout_density": [
+      "呼吸感(Linear): section padding 96-128px, 内容区1436px宽, 卡片间距大, 大量留白, 每屏最多1个信息组",
+      "信息密度(Stripe): section padding 48-80px, 内容区约1100px, 卡片网格密集, 每屏2-3个信息组, 更快传递更多信息"
+    ]
+  },
+  "per_brand_specifics": {
+    "stripe": {
+      "hero_heading": "Financial infrastructure to grow your revenue.",
+      "primary_cta_text": "Start now",
+      "secondary_cta_text": "Contact sales",
+      "section_count": 15,
+      "key_sections": ["customer_logos", "solutions_grid_6col", "sessions_promo", "stats_bar", "enterprise_stories", "startup_stories", "platforms", "developer_infrastructure", "news_carousel", "stripe_press"],
+      "notable": "唯一在hero和footer之间放置14+section的品牌，信息密度最高。双CTA模式(自助+销售)贯穿全页。"
+    },
+    "linear": {
+      "hero_heading": "The product development system for teams and agents",
+      "primary_cta_text": "Sign up",
+      "secondary_cta_text": "Open app",
+      "section_count": 9,
+      "key_sections": ["customer_logos", "sub_heading", "product_feature_alternating_5rows", "changelog", "final_cta"],
+      "notable": "纯暗色主题、Variable Inter字重510、药丸按钮9999px、无阴影设计、H2 48px全大写风格。卡片背景比页面深一个层级(#0f1011 vs #08090a)。section padding达96-128px。",
+      "extracted_css": {
+        "bodyBg": "rgb(8, 9, 10)",
+        "bodyColor": "rgb(247, 248, 248)",
+        "bodyFont": "\"Inter Variable\", \"SF Pro Display\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+        "h1Size": "64px",
+        "h1Weight": "510",
+        "h2Size": "48px",
+        "h2Weight": "510",
+        "h3Size": "20px",
+        "h3Weight": "590",
+        "btnBg": "rgb(229, 229, 230)",
+        "btnColor": "rgb(8, 9, 10)",
+        "btnBorderRadius": "9999px",
+        "btnPadding": "0px 12px",
+        "btnFontSize": "13px",
+        "btnFontWeight": "510",
+        "cardBg": "rgb(15, 16, 17)",
+        "cardBorderRadius": "8px",
+        "cardPadding": "0px 24px 28px",
+        "cardShadow": "none",
+        "containerMaxWidth": "1436px",
+        "sectionPadding": "96px 0px 128px"
+      }
+    },
+    "vercel": {
+      "hero_heading": "Build and deploy on the AI Cloud.",
+      "primary_cta_text": "Start Deploying",
+      "secondary_cta_text": "Get a Demo",
+      "section_count": 14,
+      "key_sections": ["announcement_bar", "hero_with_customer_stats", "product_tabs", "templates", "product_cards_bento", "framework_infrastructure", "enterprise_security", "global_deploy_map", "fluid_compute", "ai_gateway", "framework_templates", "final_cta_cluster"],
+      "notable": "唯一使用announcement bar的品牌(Ship 26活动)。深色主题+代码块截图强调开发者定位。Framework-Defined Infrastructure概念贯穿。双CTA分层: Deploy(自助)+Demo(销售)。"
+    },
+    "notion": {
+      "hero_heading": "Meet the night shift.",
+      "primary_cta_text": "Get Notion free",
+      "secondary_cta_text": "Request a demo",
+      "section_count": 8,
+      "key_sections": ["logo_trust_bar", "custom_agents_breakdown", "bento_product_cards", "docs_kb_projects_grid", "cost_calculator", "customer_testimonials_grid", "stats_marquee"],
+      "notable": "最具创意hero文案('Meet the night shift')聚焦agents。Bento网格布局贯穿全页。独特的成本计算器section(列出替代15个工具的费用)。98% Forbes Cloud 100信任条。100M+用户数据。"
+    },
+    "slack": {
+      "hero_heading": "All your people and AI agents working together.",
+      "primary_cta_text": "Get started",
+      "secondary_cta_text": "Find your subscription",
+      "section_count": 12,
+      "key_sections": ["hero_with_compliance_badges", "ai_agents_spotlight", "whats_new_cards_8up", "4pillar_grid", "customer_video_carousel", "stats_band", "g2_leader_mention", "deep_dive_resources", "final_cta"],
+      "notable": "唯一将合规认证直接放hero的品牌(UK GDPR+ISO 27001+SOC 2)。What's New section用红色NEW标签驱动产品发现。4-pillar网格(Knowledge/People/Process/Platform)组织所有功能。G2排行榜引用303个报告。"
+    }
+  },
+  "design_dna_summary": "B2B SaaS设计DNA的核心矛盾：技术可信度 vs 用户可接近性。Linear/Vercel走深色技术路线(暗背景+代码+精度)，Stripe/Notion/Slack走明亮亲和路线(白背景+人性化文案+社交认证)。5个品牌的公约数：(1)Hero标题≤10词，动词驱动；(2)至少1个客户logo信任条；(3)8px统一卡片圆角；(4)1-2px极细边框或不使用阴影；(5)双CTA(自助+销售)分层转化；(6)页脚前必有final CTA section；(7)字体全为几何/人文sans-serif，绝无衬线字体；(8)产品截图从不mockup，必须真实界面。"
+}

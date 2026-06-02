@@ -1,0 +1,219 @@
+{
+  "industry": "cleaning",
+  "extracted_from": [
+    {"source": "官网分析 (CloakBrowser)", "brand": "Molly Maid", "url": "https://www.mollymaid.com", "date": "2026-06-02"},
+    {"source": "官网分析 (CloakBrowser)", "brand": "Merry Maids", "url": "https://www.merrymaids.com", "date": "2026-06-02"},
+    {"source": "官网分析 (CloakBrowser)", "brand": "Handy", "url": "https://www.handy.com", "date": "2026-06-02"},
+    {"source": "官网分析 (CloakBrowser — 403 blocked by nginx)", "brand": "The Maids", "url": "https://www.maids.com", "date": "2026-06-02", "status": "failed"}
+  ],
+  "reference_brands": ["Molly Maid", "Merry Maids", "Handy"],
+  "design_tokens": {
+    "palette": {
+      "primary": [
+        "#cf0558",
+        "#78be21",
+        "#0cd5ec"
+      ],
+      "primary_role": "主色 — cleaning brands split between warm (raspberry #cf0558 conveys care/attention, used by Molly Maid), fresh green (#78be21 conveys eco-friendly/clean, used by Merry Maids), and modern cyan (#0cd5ec conveys tech/convenience, used by Handy)",
+      "accent": [
+        "#071d49",
+        "#101820",
+        "#1d1d1d"
+      ],
+      "accent_role": "深色强调 — navy/dark tones used for contrast sections, footer backgrounds, and depth. Molly Maid pairs raspberry with deep navy; Merry Maids uses near-black text; Handy uses dark footer",
+      "surface": [
+        "#ffffff",
+        "#f9fafb",
+        "#f9f7f3",
+        "rgba(156, 171, 181, 0.9)"
+      ],
+      "surface_role": "背景色 — dominant white (#ffffff) to emphasize cleanliness , light gray (#f9fafb) for alternating sections (Molly Maid reviews), warm almond (#f9f7f3 found on Merry Maids), and translucent gray-blue hero overlay (Handy)",
+      "neutral": [
+        "#000000",
+        "#4e4b48",
+        "#434343"
+      ],
+      "neutral_role": "正文颜色 — varies from pure black (Molly Maid), warm gray-brown #4e4b48 (Merry Maids creates softer, friendlier feel), to #434343 (Handy modern neutral)",
+      "border": [
+        "#e5e7eb",
+        "#d1d5db"
+      ],
+      "border_role": "边框颜色 — subtle grays for card borders and dividers, often omitted entirely in favor of white-space separation",
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#2563eb"
+      }
+    },
+    "typography": {
+      "heading_fonts": [
+        "Inter",
+        "Alexandria",
+        "Circular"
+      ],
+      "body_fonts": [
+        "Inter",
+        "Alexandria",
+        "Circular"
+      ],
+      "heading_weight": 600,
+      "body_weight": 400,
+      "notes": "Two distinct typography moods: traditional services (Molly Maid uses Inter — modern sans, Merry Maids uses custom Alexandria — elegant with thin weights) vs. tech-enabled (Handy uses Circular — premium geometric sans licensed from Lineto). Merry Maids uses ultra-thin weights (100) on nav items for an elegant, high-end feel. Handy uses light weights (300) on headlines for modern minimalism.",
+      "scale": {
+        "h1": {"min": 20, "max": 72, "unit": "px", "notes": "Molly Maid: 20px/800 (small but bold accent H1), Merry Maids: 72px/400 (massive elegant hero), Handy: 42px/300 (large light modern)"},
+        "h2": {"min": 24, "max": 36, "unit": "px", "notes": "Molly Maid: 36px/700 (bold raspberry), Handy: 36px/300 (light gray)"},
+        "h3": {"min": 14, "max": 24, "unit": "px", "notes": "Molly Maid: 14px/500, Merry Maids: 18px, Handy: 24px/300"},
+        "body": {"min": 15, "max": 18, "unit": "px", "notes": "Merry Maids uses large nav text (21px, weight 100)"},
+        "small": {"min": 12, "max": 14, "unit": "px"}
+      }
+    },
+    "spacing": {
+      "section_padding": {"min": 40, "max": 100, "unit": "px", "notes": "Molly Maid: 64-79px vertical section padding, Merry Maids: 64px hero padding, Handy: compact mobile-first"},
+      "content_max_width": {"typical": 1200, "unit": "px"},
+      "card_padding": {"typical": "24px 8px (Molly Maid cards with drop shadow), 0px 15px (Handy minimal cards), 64px 0px (Merry Maids generous)"}
+    },
+    "border_radius": {
+      "buttons": "8px (Molly Maid — soft rounded rectangle), 50px (Merry Maids — fully rounded pill buttons), 5px (Handy — subtle rounded corners)",
+      "cards": "8px (Molly Maid cards use filter: drop-shadow), 0px (Merry Maids and Handy skip card radius, use flat or whitespace separation)",
+      "inputs": "8px (Molly Maid lookups), 5px (Handy modern inputs)"
+    },
+    "elevation": {
+      "shadows": "Light and purposeful — cleaning sites avoid heavy shadows that suggest clutter. Molly Maid: filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.25)) on service cards. Merry Maids and Handy: flat design, no box-shadows on cards.",
+      "typical_values": [
+        "drop-shadow(4px 4px 8px rgba(0,0,0,0.25))",
+        "none (flat design preferred)"
+      ]
+    }
+  },
+  "section_patterns": {
+    "typical_order": [
+      "header (logo left, phone prominent, 'Get a Quote'/'Book Now' CTA right-aligned)",
+      "hero (clean home imagery OR lifestyle imagery, headline about reclaiming time/freedom, zip code locator OR direct CTA button, phone number visible)",
+      "trust bar (stats: years in business, happy customers, star rating, reviews count)",
+      "services overview (grid cards: recurring cleaning, one-time/deep clean, move in/out, specialty services — each with icon/photo, headline, short description, CTA link)",
+      "why choose us / differentiators (3-4 columns: insured & bonded, trained professionals, satisfaction guaranteed, flexible scheduling)",
+      "how it works (3-4 numbered steps: get a quote/schedule -> we clean -> you enjoy/relax)",
+      "testimonials / reviews (star ratings, customer quotes with names/locations, review count badge)",
+      "service areas / locations (with zip code search)",
+      "special offers / first-time discount / gift cards",
+      "app download (Handy only — mobile-first brands push app)",
+      "footer (services, locations, about, contact, phone, social links)"
+    ],
+    "hero_variants": [
+      "大标题 + 副标题 + 双CTA (Book a Cleaner + Book Furniture Assembly) — Handy模式",
+      "超大标题 (72px) + 信任徽章 + CTA按钮 — Merry Maids模式",
+      "小H1 (20px) + 大H2 (36px) + zip code查找器 + 电话 — Molly Maid模式"
+    ],
+    "card_variants": [
+      "服务卡片 (icon + service name + short description + 'Learn More' link, 4-column grid, cards have drop-shadow) — Molly Maid",
+      "信任指标卡片 (number/stat + label, 如 '40 years' + 'of experience') — Merry Maids",
+      "评价卡片 (quote + name + location + star rating) — all three brands",
+      "步骤卡片 (number + icon + title + short description, 3-step flow) — Handy"
+    ],
+    "nav_patterns": {
+      "traditional": "Logo left | Services dropdown | Why Hire Us | Resources | Phone number | FREE QUOTE button right — Merry Maids",
+      "locator_focused": "Logo left | Residential/Commercial links | Zip code finder | Phone | CTA — Molly Maid",
+      "marketplace": "Logo left | All Services dropdown | Blog | Become a Pro | Help | Log In — Handy (no phone, app-first)"
+    }
+  },
+  "tone_profile": {
+    "keywords": [
+      "clean",
+      "reliable",
+      "trustworthy",
+      "professional",
+      "convenient",
+      "flexible",
+      "hassle-free",
+      "customized",
+      "peace of mind",
+      "time-saving"
+    ],
+    "headline_style": "Emphasize time-reclaim and peace of mind. Traditional: 'A Professional-Grade Custom Clean You Can Rely On' (Molly Maid), 'Exceptional Home Cleaning Services' (Merry Maids, understated elegance). Modern: 'Book top-rated professionals for all your home needs' (Handy, benefit-driven). Key framing: cleaning = freedom to enjoy life, not a chore.",
+    "cta_style": "Dominant pattern: brightly colored CTA buttons with action verbs. 'Request a Free Quote' (Molly Maid, 12px, raspberry), 'FREE QUOTE' (Merry Maids, 16px, pill shaped, uppercase), 'Book a Cleaner' (Handy, 18px, cyan). Quote/Book/Schedule are the primary actions. Secondary: 'Call Us' with phone number.",
+    "trust_signals": [
+      "Years in business (40 years — Merry Maids)",
+      "Customer count (107k — Molly Maid, 7.6M reviews — Handy)",
+      "Star ratings (4.7/5 — Molly Maid)",
+      "Bonded & insured badges (Merry Maids)",
+      "Satisfaction guarantee (Done Right Promise — Molly Maid, Happiness Guarantee — Handy, 5-star promise — Merry Maids)",
+      "Third-party awards (Women's Choice Award, Consumer Affairs Accredited — Merry Maids)",
+      "Vetted/trained professionals (all three)",
+      "No contracts / flexible scheduling (Molly Maid, Merry Maids)",
+      "Prominent phone number for traditional services (800 number visible in header)"
+    ],
+    "anti_patterns": [
+      "Avoid dark/cluttered color schemes (reads as dirty)",
+      "Avoid showing actual dirt/mess too prominently in imagery (brief before/after OK, but clean result should dominate)",
+      "Avoid complex pricing tables (use 'Free Quote' / zip-code lookup instead of fixed pricing)",
+      "Avoid small text — cleaning customers skew older; Molly Maid buttons are only 12px which is too small for accessibility (>16px recommended)",
+      "Do NOT hide phone number — traditional cleaning customers call; Handy's no-phone model is an outlier for tech-enabled audiences"
+    ]
+  },
+  "variation_space": {
+    "color_mood": [
+      {
+        "name": "warm professional (Molly Maid style)",
+        "primary": "#cf0558",
+        "accent": "#071d49",
+        "surface": "#ffffff",
+        "feel": "Bold, caring, traditional maid service with personal touch"
+      },
+      {
+        "name": "fresh & eco-friendly (Merry Maids style)",
+        "primary": "#78be21",
+        "accent": "#101820",
+        "surface": "#ffffff",
+        "feel": "Natural, trustworthy, healthy, environmentally conscious"
+      },
+      {
+        "name": "modern tech-enabled (Handy style)",
+        "primary": "#0cd5ec",
+        "accent": "#1d1d1d",
+        "surface": "#ffffff",
+        "feel": "Convenient, app-first, on-demand, young urban demographic"
+      }
+    ],
+    "typography_mood": [
+      {
+        "name": "friendly modern sans",
+        "fonts": ["Inter", "system-ui"],
+        "feel": "Approachable but professional, Molly Maid style, highly readable"
+      },
+      {
+        "name": "elegant thin display",
+        "fonts": ["Alexandria", "helvetica"],
+        "feel": "High-end, premium, thin weight nav (100) + large hero (72px, 400 weight), Merry Maids style"
+      },
+      {
+        "name": "premium geometric sans",
+        "fonts": ["Circular", "SF Pro Display"],
+        "feel": "Tech-forward, minimal, light weight (300), Handy style"
+      }
+    ],
+    "layout_density": [
+      {
+        "name": "information-rich with trust signals",
+        "feel": "Traditional cleaning — Molly Maid. Many sections, stats, badges, zip code tools, phone everywhere. Services grid + before/after + reviews + locations."
+      },
+      {
+        "name": "elegant & spacious",
+        "feel": "Premium cleaning — Merry Maids. Large hero (72px H1), generous whitespace, lifestyle photography of families. Fewer but larger sections."
+      },
+      {
+        "name": "simple app-style",
+        "feel": "Tech marketplace — Handy. Minimal sections, icon-led, mobile-first. Book instantly, no phone. Clean but dense service grid for SEO."
+      }
+    ]
+  },
+  "extraction_notes": {
+    "method": "CloakBrowser (stealth Chromium, 58 C++ patches) with humanize=True",
+    "molly_maid": "Successfully scraped — Inter font, raspberry #cf0558 + navy #071d49 palette, CTA: 'Request a Free Quote', 8px border radius, phone 800-665-5962 prominently displayed, zip code finder in nav",
+    "merry_maids": "Successfully scraped — Alexandria custom font, lime green #78be21 primary with pill-shaped 50px radius buttons, 'FREE QUOTE' CTA, H1 at 72px/400 weight, 40 years experience trust signal, phone 888-894-6174",
+    "handy": "Successfully scraped — Circular premium font, cyan #0cd5ec primary, 'Book a Cleaner' CTA, 5px radius, H1 at 42px/300 weight, 7.6M reviews, no phone (app-first model), dark footer #1d1d1d",
+    "the_maids": "BLOCKED — nginx-level 403 Forbidden. CloakBrowser headed mode also blocked. This is the most aggressively protected site. For design reference, industry patterns from the other 3 sites should be applicable given The Maids is in the same traditional cleaning segment as Molly Maid and Merry Maids.",
+    "anti_bot_notes": "All 4 sites have anti-bot protection. Molly Maid initially redirected (Playwright), worked with CloakBrowser. Merry Maids redirected with Playwright, worked with CloakBrowser. Handy redirected to Sephora with Playwright, worked with CloakBrowser. The Maids returns nginx 403 even with CloakBrowser. Standard Playwright/goto is NOT sufficient for cleaning industry sites.",
+    "primary_insight": "The cleaning industry has a clear traditional-vs-modern split. Traditional brands (Molly Maid, Merry Maids) emphasize phone numbers, trust badges, years of experience, and local service. Modern brands (Handy) emphasize app booking, review counts, and instant scheduling. Color choices reflect this: warm/raspberry and green/natural for traditional, cool/cyan for tech-enabled."
+  }
+}
