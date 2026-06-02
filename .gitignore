@@ -22,3 +22,4 @@ node_modules/
 # Env
 .env
 .env.local
+design-dna/reference/
